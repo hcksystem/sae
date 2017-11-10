@@ -1,5 +1,5 @@
 <?php
-class Genero
+class NivelTitulo
 {
    public $id;
    public $descripcion;

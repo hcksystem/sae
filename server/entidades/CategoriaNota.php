@@ -1,5 +1,5 @@
 <?php
-class Genero
+class CategoriaNota
 {
    public $id;
    public $descripcion;

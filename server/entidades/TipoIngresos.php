@@ -1,5 +1,5 @@
 <?php
-class Genero
+class TipoIngresos
 {
    public $id;
    public $descripcion;
