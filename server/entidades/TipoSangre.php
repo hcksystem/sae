@@ -1,5 +1,5 @@
 <?php
-class Genero
+class TipoSangre
 {
    public $id;
    public $descripcion;

@@ -1,5 +1,5 @@
 <?php
-class Genero
+class Etnia
 {
    public $id;
    public $descripcion;

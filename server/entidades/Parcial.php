@@ -1,5 +1,5 @@
 <?php
-class Genero
+class Parcial
 {
    public $id;
    public $descripcion;

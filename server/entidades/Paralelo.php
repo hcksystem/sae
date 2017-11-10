@@ -1,5 +1,5 @@
 <?php
-class Genero
+class Paralelo
 {
    public $id;
    public $descripcion;

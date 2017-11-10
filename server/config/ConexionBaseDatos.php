@@ -9,10 +9,4 @@ class ConexionBaseDatos {
         $array[] = new DatosConexion("local","localhost","ignug","prueba","12345678");
         return $array;
     }
-
-    public static function Prueba(){
-        $array[] = "Hola";
-        $array[] = "Mundo";
-        return $array;
-    }
 }

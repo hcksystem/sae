@@ -1,5 +1,5 @@
 <?php
-class Genero
+class TipoAula
 {
    public $id;
    public $descripcion;

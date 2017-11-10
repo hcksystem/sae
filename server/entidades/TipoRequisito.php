@@ -1,5 +1,5 @@
 <?php
-class Genero
+class TipoRequisito
 {
    public $id;
    public $descripcion;

@@ -1,5 +1,5 @@
 <?php
-class Genero
+class Jornada
 {
    public $id;
    public $descripcion;

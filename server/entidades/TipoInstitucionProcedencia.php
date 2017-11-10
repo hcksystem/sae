@@ -1,5 +1,5 @@
 <?php
-class Genero
+class TipoInstitucionProcedencia
 {
    public $id;
    public $descripcion;

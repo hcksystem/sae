@@ -1,5 +1,5 @@
 <?php
-class Genero
+class Estado
 {
    public $id;
    public $descripcion;

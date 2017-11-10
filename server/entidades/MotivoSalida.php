@@ -1,5 +1,5 @@
 <?php
-class Genero
+class MotivoSalida
 {
    public $id;
    public $descripcion;

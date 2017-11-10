@@ -1,5 +1,5 @@
 <?php
-class Genero
+class TipoDiscapacidad
 {
    public $id;
    public $descripcion;

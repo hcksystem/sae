@@ -1,5 +1,5 @@
 <?php
-class Genero
+class PeriodoAcademico
 {
    public $id;
    public $descripcion;
