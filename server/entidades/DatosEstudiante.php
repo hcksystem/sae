@@ -6,7 +6,7 @@ class DatosEstudiante
    public $descripcion;
    public $dato;
 
-   function __construct($id,$idEstudiante,$descripcion,$dato){
+   function __construct(int $id,int $idEstudiante,string $descripcion,string $dato){
       $this->id = $id;
       $this->idEstudiante = $idEstudiante;
       $this->descripcion = $descripcion;

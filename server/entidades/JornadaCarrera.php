@@ -5,7 +5,7 @@ class JornadaCarrera
    public $idJornada;
    public $idCarrera;
 
-   function __construct($id,$idJornada,$idCarrera){
+   function __construct(int $id,int $idJornada,int $idCarrera){
       $this->id = $id;
       $this->idJornada = $idJornada;
       $this->idCarrera = $idCarrera;

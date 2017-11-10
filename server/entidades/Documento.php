@@ -5,7 +5,7 @@ class Documento
    public $documento;
    public $descripcion;
 
-   function __construct($id,$documento,$descripcion){
+   function __construct(int $id,string $documento,string $descripcion){
       $this->id = $id;
       $this->documento = $documento;
       $this->descripcion = $descripcion;

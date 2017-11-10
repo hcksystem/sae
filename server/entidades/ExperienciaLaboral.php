@@ -10,7 +10,7 @@ class ExperienciaLaboral
    public $nombreEmpresa;
    public $idMotivoSalida;
 
-   function __construct($id,$idPersona,$fechaInicio,$fechaFin,$descripcionCargo,$descripcionFunciones,$nombreEmpresa,$idMotivoSalida){
+   function __construct(int $id,int $idPersona,DateTime $fechaInicio,DateTime $fechaFin,string $descripcionCargo,string $descripcionFunciones,string $nombreEmpresa,int $idMotivoSalida){
       $this->id = $id;
       $this->idPersona = $idPersona;
       $this->fechaInicio = $fechaInicio;
