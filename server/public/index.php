@@ -1,14 +1,16 @@
 <?php
 
 function cargarControladores() {
-    $files = glob("../controladores/*.php");
+    define("controladoresDir", "../controladores/");
+    $files = glob(controladoresPath."*.php");
     foreach ($files as $filename) {
-        include_once($filename);
+        if($filename!=controladoresPath."ControladorBase.php"){
+            include_once($filename);
+        }        
     }
 }
 
 cargarControladores();
 
-use CRUD\CONTROLADORES\ControladorGenero;
 $a1 = new ControladorGenero();
-echo $a1->leer();
+echo json_encode($a1->leer());
