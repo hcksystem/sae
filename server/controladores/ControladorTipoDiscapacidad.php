@@ -47,7 +47,7 @@ class ControladorTipoDiscapacidad extends ControladorBase
       return $toReturn;
    }
 
-   function leerPaginado($pagina,$registrosPorPagina)
+   function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
       $sql ="SELECT * FROM TipoDiscapacidad LIMIT $desde,$registrosPorPagina;";

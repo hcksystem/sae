@@ -13,7 +13,7 @@ class DatosURI{
             $nombre = explode('=',$variable)[0];
             $valor = explode('=',$variable)[1];
             if($nombre!=""){
-                $this->argumentos[] = array("nombre"=>$nombre,"valor"=>$valor);
+                $this->argumentos = array_merge($this->argumentos,array($nombre=>$valor));
             }
         }
         $this->mensaje_body = json_decode(file_get_contents('php://input'),true);

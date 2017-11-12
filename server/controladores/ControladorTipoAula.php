@@ -47,7 +47,7 @@ class ControladorTipoAula extends ControladorBase
       return $toReturn;
    }
 
-   function leerPaginado($pagina,$registrosPorPagina)
+   function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
       $sql ="SELECT * FROM TipoAula LIMIT $desde,$registrosPorPagina;";

@@ -47,7 +47,7 @@ class ControladorNivelTitulo extends ControladorBase
       return $toReturn;
    }
 
-   function leerPaginado($pagina,$registrosPorPagina)
+   function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
       $sql ="SELECT * FROM NivelTitulo LIMIT $desde,$registrosPorPagina;";
