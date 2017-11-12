@@ -22,7 +22,7 @@ class RouterTipoDiscapacidad extends RouterBase
             return $this->controlador->leer_paginado($this->datosURI->argumentos["pagina"],$this->datosURI->argumentos["registros_por_pagina"]);
             break;
          case "numero_paginas":
-            return $this->controlador->numero_paginas();
+            return $this->controlador->numero_paginas($this->datosURI->argumentos["registros_por_pagina"]);
             break;
          case "leer_filtrado":
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
