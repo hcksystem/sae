@@ -21,6 +21,9 @@ class RouterParalelo extends RouterBase
          case "leer_paginado":
             return $this->controlador->leer_paginado($this->datosURI->argumentos["pagina"],$this->datosURI->argumentos["registros_por_pagina"]);
             break;
+         case "numero_paginas":
+            return $this->controlador->numero_paginas();
+            break;
          case "leer_filtrado":
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;

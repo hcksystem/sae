@@ -58,6 +58,16 @@ class ControladorTipoSangre extends ControladorBase
       return $toReturn;
    }
 
+   function numero_paginas($registrosPorPagina)
+   {
+      $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM TipoSangre;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      foreach($respuesta as $fila){
+         $toReturn[] = $fila;
+      }
+      return $toReturn;
+   }
+
    function leer_filtrado(string $nombreColumna, string $tipoFiltro, string $filtro)
    {
       switch ($tipoFiltro){
