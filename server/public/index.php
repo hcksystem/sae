@@ -1,7 +1,7 @@
 <?php
 
 function cargarControladores() {
-    define("controladoresDir", "../controladores/");
+    define("controladoresPath", "../controladores/");
     $files = glob(controladoresPath."*.php");
     foreach ($files as $filename) {
         if($filename!=controladoresPath."ControladorBase.php"){
