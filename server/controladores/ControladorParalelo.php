@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Paralelo.php');
-
-use CRUD\ENTIDADES\Paralelo;
-
 class ControladorParalelo extends ControladorBase
 {
    function crear(Paralelo $paralelo)

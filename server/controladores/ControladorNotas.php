@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Notas.php');
-
-use CRUD\ENTIDADES\Notas;
-
 class ControladorNotas extends ControladorBase
 {
    function crear(Notas $notas)

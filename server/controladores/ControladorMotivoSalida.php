@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/MotivoSalida.php');
-
-use CRUD\ENTIDADES\MotivoSalida;
-
 class ControladorMotivoSalida extends ControladorBase
 {
    function crear(MotivoSalida $motivosalida)

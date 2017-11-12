@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Malla.php');
-
-use CRUD\ENTIDADES\Malla;
-
 class ControladorMalla extends ControladorBase
 {
    function crear(Malla $malla)

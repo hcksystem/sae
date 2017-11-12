@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Carrera.php');
-
-use CRUD\ENTIDADES\Carrera;
-
 class ControladorCarrera extends ControladorBase
 {
    function crear(Carrera $carrera)

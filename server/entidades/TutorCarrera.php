@@ -1,5 +1,4 @@
 <?php
-namespace CRUD\ENTIDADES;
 class TutorCarrera
 {
    public $id;

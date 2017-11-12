@@ -1,5 +1,4 @@
 <?php
-namespace CRUD\ENTIDADES;
 class Cupo
 {
    public $id;

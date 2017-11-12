@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/ExperienciaLaboral.php');
-
-use CRUD\ENTIDADES\ExperienciaLaboral;
-
 class ControladorExperienciaLaboral extends ControladorBase
 {
    function crear(ExperienciaLaboral $experiencialaboral)

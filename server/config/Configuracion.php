@@ -1,2 +1,2 @@
 <?php
-define(NOMBRE_CONEXION,"local");
+define("NOMBRE_CONEXION","local");

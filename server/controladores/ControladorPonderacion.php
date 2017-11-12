@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Ponderacion.php');
-
-use CRUD\ENTIDADES\Ponderacion;
-
 class ControladorPonderacion extends ControladorBase
 {
    function crear(Ponderacion $ponderacion)

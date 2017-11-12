@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Contacto.php');
-
-use CRUD\ENTIDADES\Contacto;
-
 class ControladorContacto extends ControladorBase
 {
    function crear(Contacto $contacto)

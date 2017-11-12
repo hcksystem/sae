@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/EstadoCivil.php');
-
-use CRUD\ENTIDADES\EstadoCivil;
-
 class ControladorEstadoCivil extends ControladorBase
 {
    function crear(EstadoCivil $estadocivil)

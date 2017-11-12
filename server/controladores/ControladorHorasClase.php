@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/HorasClase.php');
-
-use CRUD\ENTIDADES\HorasClase;
-
 class ControladorHorasClase extends ControladorBase
 {
    function crear(HorasClase $horasclase)

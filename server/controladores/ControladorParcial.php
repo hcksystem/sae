@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Parcial.php');
-
-use CRUD\ENTIDADES\Parcial;
-
 class ControladorParcial extends ControladorBase
 {
    function crear(Parcial $parcial)

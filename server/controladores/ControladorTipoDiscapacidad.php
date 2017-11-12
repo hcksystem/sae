@@ -1,11 +1,6 @@
 <?php
-namespace CRUD\CONTROLADORES;
-
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/TipoDiscapacidad.php');
-
-use CRUD\ENTIDADES\TipoDiscapacidad;
-
 class ControladorTipoDiscapacidad extends ControladorBase
 {
    function crear(TipoDiscapacidad $tipodiscapacidad)
