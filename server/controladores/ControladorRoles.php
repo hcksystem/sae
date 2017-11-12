@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Roles.php');
+
+use CRUD\ENTIDADES\Roles;
+
 class ControladorRoles extends ControladorBase
 {
    function crear(Roles $roles)

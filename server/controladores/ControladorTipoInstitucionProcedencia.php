@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/TipoInstitucionProcedencia.php');
+
+use CRUD\ENTIDADES\TipoInstitucionProcedencia;
+
 class ControladorTipoInstitucionProcedencia extends ControladorBase
 {
    function crear(TipoInstitucionProcedencia $tipoinstitucionprocedencia)

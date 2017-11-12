@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Institucion.php');
+
+use CRUD\ENTIDADES\Institucion;
+
 class ControladorInstitucion extends ControladorBase
 {
    function crear(Institucion $institucion)

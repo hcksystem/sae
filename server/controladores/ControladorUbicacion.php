@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Ubicacion.php');
+
+use CRUD\ENTIDADES\Ubicacion;
+
 class ControladorUbicacion extends ControladorBase
 {
    function crear(Ubicacion $ubicacion)

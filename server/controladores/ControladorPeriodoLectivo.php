@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/PeriodoLectivo.php');
+
+use CRUD\ENTIDADES\PeriodoLectivo;
+
 class ControladorPeriodoLectivo extends ControladorBase
 {
    function crear(PeriodoLectivo $periodolectivo)

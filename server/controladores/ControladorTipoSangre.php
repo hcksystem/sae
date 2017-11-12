@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/TipoSangre.php');
+
+use CRUD\ENTIDADES\TipoSangre;
+
 class ControladorTipoSangre extends ControladorBase
 {
    function crear(TipoSangre $tiposangre)

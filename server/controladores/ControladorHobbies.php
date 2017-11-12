@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Hobbies.php');
+
+use CRUD\ENTIDADES\Hobbies;
+
 class ControladorHobbies extends ControladorBase
 {
    function crear(Hobbies $hobbies)

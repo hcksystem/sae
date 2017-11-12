@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/SolicitudMatricula.php');
+
+use CRUD\ENTIDADES\SolicitudMatricula;
+
 class ControladorSolicitudMatricula extends ControladorBase
 {
    function crear(SolicitudMatricula $solicitudmatricula)

@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Jornada.php');
+
+use CRUD\ENTIDADES\Jornada;
+
 class ControladorJornada extends ControladorBase
 {
    function crear(Jornada $jornada)

@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/NivelTitulo.php');
+
+use CRUD\ENTIDADES\NivelTitulo;
+
 class ControladorNivelTitulo extends ControladorBase
 {
    function crear(NivelTitulo $niveltitulo)

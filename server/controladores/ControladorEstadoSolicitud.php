@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/EstadoSolicitud.php');
+
+use CRUD\ENTIDADES\EstadoSolicitud;
+
 class ControladorEstadoSolicitud extends ControladorBase
 {
    function crear(EstadoSolicitud $estadosolicitud)

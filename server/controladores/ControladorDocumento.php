@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Documento.php');
+
+use CRUD\ENTIDADES\Documento;
+
 class ControladorDocumento extends ControladorBase
 {
    function crear(Documento $documento)

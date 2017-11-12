@@ -1,7 +1,11 @@
 <?php
 namespace CRUD\CONTROLADORES;
+
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/Genero.php');
+
+use CRUD\ENTIDADES\Genero;
+
 class ControladorGenero extends ControladorBase
 {
    function crear(Genero $genero)
