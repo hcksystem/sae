@@ -49,7 +49,7 @@ class ControladorEstadoCivil extends ControladorBase
 
    function leerPaginado($pagina,$registrosPorPagina)
    {
-      $desde = (($pagina-1)*$registrosPorPagina)+1;
+      $desde = (($pagina-1)*$registrosPorPagina);
       $sql ="SELECT * FROM EstadoCivil LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
