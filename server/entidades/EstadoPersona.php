@@ -1,4 +1,5 @@
 <?php
+namespace CRUD\ENTIDADES;
 class EstadoPersona
 {
    public $id;

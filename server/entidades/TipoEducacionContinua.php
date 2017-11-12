@@ -1,4 +1,5 @@
 <?php
+namespace CRUD\ENTIDADES;
 class TipoEducacionContinua
 {
    public $id;

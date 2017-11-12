@@ -1,4 +1,5 @@
 <?php
+namespace CRUD\CONTROLADORES;
 include_once('../controladores/ControladorBase.php');
 include_once('../entidades/EducacionContinua.php');
 class ControladorEducacionContinua extends ControladorBase

@@ -1,4 +1,5 @@
 <?php
+namespace CRUD\ENTIDADES;
 class TipoAula
 {
    public $id;

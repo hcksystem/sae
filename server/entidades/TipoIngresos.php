@@ -1,4 +1,5 @@
 <?php
+namespace CRUD\ENTIDADES;
 class TipoIngresos
 {
    public $id;
