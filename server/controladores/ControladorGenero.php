@@ -1,6 +1,6 @@
 <?php
 
-include_once("ControladorBase.php");
+include_once("../controladores/ControladorBase.php");
 include_once("../entidades/Genero.php");
 
 class ControladorGenero extends ControladorBase
