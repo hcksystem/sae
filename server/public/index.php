@@ -1,4 +1,5 @@
 <?php
+include_once('../modelos/DatosURI.php');
 
 function cargarControladores() {
     define("controladoresPath", "../controladores/");
@@ -11,6 +12,5 @@ function cargarControladores() {
 }
 
 cargarControladores();
-
-$a1 = new ControladorGenero();
-echo json_encode($a1->leer());
+$datosURI = new DatosURI($_SERVER['REQUEST_URI']);
+echo var_dump($datosURI->accion);
