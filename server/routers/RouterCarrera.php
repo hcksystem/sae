@@ -1,13 +1,13 @@
 <?php
 include_once('../routers/RouterBase.php');
-include_once('../controladores/ControladorGenero.php');
-class RouterGenero extends RouterBase
+include_once('../controladores/ControladorCarrera.php');
+class RouterCarrera extends RouterBase
 {
    public $controlador;
 
    function __construct(){
       parent::__construct();
-      $this->controlador = new ControladorGenero();
+      $this->controlador = new ControladorCarrera();
    }
    function route()
    {
@@ -25,10 +25,10 @@ class RouterGenero extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Genero($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->crear(new Carrera($this->datosURI->argumentos["id"],$this->datosURI->argumentos["resolucion"],$this->datosURI->argumentos["nombre"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["idModalidad"],$this->datosURI->argumentos["idInstituto"],$this->datosURI->argumentos["coordinador"],$this->datosURI->argumentos["siglas"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Genero($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->actualizar(new Carrera($this->datosURI->argumentos["id"],$this->datosURI->argumentos["resolucion"],$this->datosURI->argumentos["nombre"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["idModalidad"],$this->datosURI->argumentos["idInstituto"],$this->datosURI->argumentos["coordinador"],$this->datosURI->argumentos["siglas"]));
             break;
       }
    }

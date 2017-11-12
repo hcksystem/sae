@@ -1,13 +1,13 @@
 <?php
 include_once('../routers/RouterBase.php');
-include_once('../controladores/ControladorGenero.php');
-class RouterGenero extends RouterBase
+include_once('../controladores/ControladorTitulo.php');
+class RouterTitulo extends RouterBase
 {
    public $controlador;
 
    function __construct(){
       parent::__construct();
-      $this->controlador = new ControladorGenero();
+      $this->controlador = new ControladorTitulo();
    }
    function route()
    {
@@ -25,10 +25,10 @@ class RouterGenero extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Genero($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->crear(new Titulo($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idInstitucion"],$this->datosURI->argumentos["codigoRegistro"],$this->datosURI->argumentos["idNivelTitulo"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Genero($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->actualizar(new Titulo($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idInstitucion"],$this->datosURI->argumentos["codigoRegistro"],$this->datosURI->argumentos["idNivelTitulo"]));
             break;
       }
    }

@@ -1,13 +1,13 @@
 <?php
 include_once('../routers/RouterBase.php');
-include_once('../controladores/ControladorGenero.php');
-class RouterGenero extends RouterBase
+include_once('../controladores/ControladorMalla.php');
+class RouterMalla extends RouterBase
 {
    public $controlador;
 
    function __construct(){
       parent::__construct();
-      $this->controlador = new ControladorGenero();
+      $this->controlador = new ControladorMalla();
    }
    function route()
    {
@@ -25,10 +25,10 @@ class RouterGenero extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Genero($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->crear(new Malla($this->datosURI->argumentos["id"],$this->datosURI->argumentos["fechaMallaInicio"],$this->datosURI->argumentos["fechaMallaFin"],$this->datosURI->argumentos["idCarrera"],$this->datosURI->argumentos["idDocResolucion"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Genero($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->actualizar(new Malla($this->datosURI->argumentos["id"],$this->datosURI->argumentos["fechaMallaInicio"],$this->datosURI->argumentos["fechaMallaFin"],$this->datosURI->argumentos["idCarrera"],$this->datosURI->argumentos["idDocResolucion"]));
             break;
       }
    }

@@ -1,13 +1,13 @@
 <?php
 include_once('../routers/RouterBase.php');
-include_once('../controladores/ControladorGenero.php');
-class RouterGenero extends RouterBase
+include_once('../controladores/ControladorMatriculaAsignatura.php');
+class RouterMatriculaAsignatura extends RouterBase
 {
    public $controlador;
 
    function __construct(){
       parent::__construct();
-      $this->controlador = new ControladorGenero();
+      $this->controlador = new ControladorMatriculaAsignatura();
    }
    function route()
    {
@@ -25,10 +25,10 @@ class RouterGenero extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Genero($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->crear(new MatriculaAsignatura($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idMatricula"],$this->datosURI->argumentos["idAsignatura"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Genero($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->actualizar(new MatriculaAsignatura($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idMatricula"],$this->datosURI->argumentos["idAsignatura"]));
             break;
       }
    }
