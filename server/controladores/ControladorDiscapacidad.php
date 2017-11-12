@@ -65,13 +65,13 @@ class ControladorDiscapacidad extends ControladorBase
             $sql = "SELECT * FROM Discapacidad WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Discapacidad WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Discapacidad WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Discapacidad WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Discapacidad WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Discapacidad WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Discapacidad WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

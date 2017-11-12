@@ -65,13 +65,13 @@ class ControladorNotas extends ControladorBase
             $sql = "SELECT * FROM Notas WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Notas WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Notas WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Notas WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Notas WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Notas WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Notas WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

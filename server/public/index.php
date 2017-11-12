@@ -4,4 +4,4 @@ include_once("../controladores/ControladorGenero.php");
 
 $p1 = new ControladorGenero();
 
-echo json_encode($p1->leer(2));
+echo json_encode($p1->borrar(5));

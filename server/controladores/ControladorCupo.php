@@ -65,13 +65,13 @@ class ControladorCupo extends ControladorBase
             $sql = "SELECT * FROM Cupo WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Cupo WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Cupo WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Cupo WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Cupo WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Cupo WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Cupo WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

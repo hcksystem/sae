@@ -65,13 +65,13 @@ class ControladorTipoEducacionContinua extends ControladorBase
             $sql = "SELECT * FROM TipoEducacionContinua WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM TipoEducacionContinua WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM TipoEducacionContinua WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM TipoEducacionContinua WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM TipoEducacionContinua WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM TipoEducacionContinua WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM TipoEducacionContinua WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

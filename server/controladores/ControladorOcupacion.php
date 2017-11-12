@@ -65,13 +65,13 @@ class ControladorOcupacion extends ControladorBase
             $sql = "SELECT * FROM Ocupacion WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Ocupacion WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Ocupacion WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Ocupacion WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Ocupacion WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Ocupacion WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Ocupacion WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

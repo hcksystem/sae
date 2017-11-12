@@ -65,13 +65,13 @@ class ControladorCuenta extends ControladorBase
             $sql = "SELECT * FROM Cuenta WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

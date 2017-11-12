@@ -65,13 +65,13 @@ class ControladorMatricula extends ControladorBase
             $sql = "SELECT * FROM Matricula WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Matricula WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Matricula WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Matricula WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Matricula WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Matricula WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Matricula WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

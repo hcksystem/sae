@@ -65,13 +65,13 @@ class ControladorDocenteAsignatura extends ControladorBase
             $sql = "SELECT * FROM DocenteAsignatura WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM DocenteAsignatura WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM DocenteAsignatura WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM DocenteAsignatura WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM DocenteAsignatura WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM DocenteAsignatura WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM DocenteAsignatura WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

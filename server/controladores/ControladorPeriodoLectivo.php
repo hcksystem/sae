@@ -65,13 +65,13 @@ class ControladorPeriodoLectivo extends ControladorBase
             $sql = "SELECT * FROM PeriodoLectivo WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM PeriodoLectivo WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM PeriodoLectivo WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM PeriodoLectivo WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM PeriodoLectivo WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM PeriodoLectivo WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM PeriodoLectivo WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

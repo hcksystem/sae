@@ -65,13 +65,13 @@ class ControladorTipoSangre extends ControladorBase
             $sql = "SELECT * FROM TipoSangre WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM TipoSangre WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM TipoSangre WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM TipoSangre WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM TipoSangre WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM TipoSangre WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM TipoSangre WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

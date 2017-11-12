@@ -65,13 +65,13 @@ class ControladorRequisito extends ControladorBase
             $sql = "SELECT * FROM Requisito WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Requisito WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Requisito WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Requisito WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Requisito WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Requisito WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Requisito WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

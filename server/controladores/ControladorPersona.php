@@ -65,13 +65,13 @@ class ControladorPersona extends ControladorBase
             $sql = "SELECT * FROM Persona WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Persona WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Persona WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Persona WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Persona WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Persona WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Persona WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

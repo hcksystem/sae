@@ -65,13 +65,13 @@ class ControladorTutorCarrera extends ControladorBase
             $sql = "SELECT * FROM TutorCarrera WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM TutorCarrera WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM TutorCarrera WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM TutorCarrera WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM TutorCarrera WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM TutorCarrera WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM TutorCarrera WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

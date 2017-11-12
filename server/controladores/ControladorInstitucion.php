@@ -65,13 +65,13 @@ class ControladorInstitucion extends ControladorBase
             $sql = "SELECT * FROM Institucion WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Institucion WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Institucion WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Institucion WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Institucion WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Institucion WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Institucion WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

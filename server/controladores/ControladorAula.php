@@ -65,13 +65,13 @@ class ControladorAula extends ControladorBase
             $sql = "SELECT * FROM Aula WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Aula WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Aula WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Aula WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Aula WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Aula WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Aula WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

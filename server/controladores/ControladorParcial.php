@@ -65,13 +65,13 @@ class ControladorParcial extends ControladorBase
             $sql = "SELECT * FROM Parcial WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Parcial WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Parcial WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Parcial WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Parcial WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Parcial WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Parcial WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

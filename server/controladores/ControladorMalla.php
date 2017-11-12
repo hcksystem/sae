@@ -65,13 +65,13 @@ class ControladorMalla extends ControladorBase
             $sql = "SELECT * FROM Malla WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Malla WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Malla WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Malla WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Malla WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Malla WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Malla WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

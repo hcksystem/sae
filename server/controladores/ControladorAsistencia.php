@@ -65,13 +65,13 @@ class ControladorAsistencia extends ControladorBase
             $sql = "SELECT * FROM Asistencia WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Asistencia WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Asistencia WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Asistencia WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Asistencia WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Asistencia WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Asistencia WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

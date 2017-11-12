@@ -65,13 +65,13 @@ class ControladorHorasClase extends ControladorBase
             $sql = "SELECT * FROM HorasClase WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM HorasClase WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM HorasClase WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM HorasClase WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM HorasClase WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM HorasClase WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM HorasClase WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

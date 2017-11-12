@@ -65,13 +65,13 @@ class ControladorParalelo extends ControladorBase
             $sql = "SELECT * FROM Paralelo WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Paralelo WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Paralelo WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Paralelo WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Paralelo WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Paralelo WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Paralelo WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

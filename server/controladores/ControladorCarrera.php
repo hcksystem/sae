@@ -65,13 +65,13 @@ class ControladorCarrera extends ControladorBase
             $sql = "SELECT * FROM Carrera WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Carrera WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Carrera WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Carrera WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Carrera WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Carrera WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Carrera WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

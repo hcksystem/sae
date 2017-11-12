@@ -65,13 +65,13 @@ class ControladorUbicacion extends ControladorBase
             $sql = "SELECT * FROM Ubicacion WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Ubicacion WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Ubicacion WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Ubicacion WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Ubicacion WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Ubicacion WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Ubicacion WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

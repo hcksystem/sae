@@ -65,13 +65,13 @@ class ControladorDocumento extends ControladorBase
             $sql = "SELECT * FROM Documento WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Documento WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Documento WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Documento WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Documento WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Documento WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Documento WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);
