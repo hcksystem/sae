@@ -1,18 +1,10 @@
 <?php
 
 include_once("ControladorBase.php");
-include_once("../persistencia/AdministradorBaseDatos.php");
 include_once("../entidades/Genero.php");
-include_once("../config/configuracion.php");
 
 class ControladorGenero extends ControladorBase
 {   
-    private $conexion;
-    
-    function __construct(){
-       $this->conexion = new AdministradorBaseDatos(NOMBRE_CONEXION);
-    }
-
     function crear(Genero $genero)
     {
         $respuesta = $this->conexion->ejecutarConsulta("INSERT INTO Genero (descripcion) VALUES ('$genero->descripcion');");
