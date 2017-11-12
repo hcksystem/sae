@@ -1,7 +1,7 @@
 <?php
 
 include_once("../persistencia/AdministradorBaseDatos.php");
-include_once("../config/configuracion.php");
+include_once("../config/Configuracion.php");
 
 class ControladorBase
 {
