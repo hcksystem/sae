@@ -1,11 +1,11 @@
 <?php
 include_once('../controladores/ControladorBase.php');
-include_once('../entidades/Genero.php');
-class ControladorGenero extends ControladorBase
+include_once('../entidades/Requisito.php');
+class ControladorRequisito extends ControladorBase
 {
-   function crear(Genero $genero)
+   function crear(Requisito $requisito)
    {
-      $sql = "INSERT INTO Genero (descripcion) VALUES ('$genero->descripcion');";
+      $sql = "INSERT INTO Requisito (idAsignaturaDependiente,idAsignaturaIndependiente,idTipoRequisito) VALUES ('$requisito->idAsignaturaDependiente','$requisito->idAsignaturaIndependiente','$requisito->idTipoRequisito');";
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
@@ -13,9 +13,9 @@ class ControladorGenero extends ControladorBase
       return $toReturn;
    }
 
-   function actualizar(Genero $genero)
+   function actualizar(Requisito $requisito)
    {
-      $sql = "UPDATE Genero SET descripcion = '$genero->descripcion' WHERE id = $genero->id;";
+      $sql = "UPDATE Requisito SET idAsignaturaDependiente = '$requisito->idAsignaturaDependiente',idAsignaturaIndependiente = '$requisito->idAsignaturaIndependiente',idTipoRequisito = '$requisito->idTipoRequisito' WHERE id = $requisito->id;";
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
@@ -25,7 +25,7 @@ class ControladorGenero extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Genero WHERE id = $id;";
+      $sql = "DELETE FROM Requisito WHERE id = $id;";
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
@@ -36,9 +36,9 @@ class ControladorGenero extends ControladorBase
    function leer($id)
    {
       if ($id==""){
-         $sql = "SELECT * FROM Genero;";
+         $sql = "SELECT * FROM Requisito;";
       }else{
-         $sql = "SELECT * FROM Genero WHERE id = $id;";
+         $sql = "SELECT * FROM Requisito WHERE id = $id;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
@@ -50,7 +50,7 @@ class ControladorGenero extends ControladorBase
    function leerPaginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina)+1;
-      $sql ="SELECT * FROM Genero LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM Requisito LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
@@ -62,16 +62,16 @@ class ControladorGenero extends ControladorBase
    {
       switch ($tipoFiltro){
          case "coincide":
-            $sql = "SELECT * FROM Genero WHERE $nombreColumna = '$filtro';";
+            $sql = "SELECT * FROM Requisito WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Genero WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Requisito WHERE $nombreColumna = '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Genero WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Requisito WHERE $nombreColumna = '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Genero WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Requisito WHERE $nombreColumna = '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);

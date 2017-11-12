@@ -1,11 +1,11 @@
 <?php
 include_once('../controladores/ControladorBase.php');
-include_once('../entidades/Genero.php');
-class ControladorGenero extends ControladorBase
+include_once('../entidades/Roles.php');
+class ControladorRoles extends ControladorBase
 {
-   function crear(Genero $genero)
+   function crear(Roles $roles)
    {
-      $sql = "INSERT INTO Genero (descripcion) VALUES ('$genero->descripcion');";
+      $sql = "INSERT INTO Roles (descripcion,acceso) VALUES ('$roles->descripcion','$roles->acceso');";
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
@@ -13,9 +13,9 @@ class ControladorGenero extends ControladorBase
       return $toReturn;
    }
 
-   function actualizar(Genero $genero)
+   function actualizar(Roles $roles)
    {
-      $sql = "UPDATE Genero SET descripcion = '$genero->descripcion' WHERE id = $genero->id;";
+      $sql = "UPDATE Roles SET descripcion = '$roles->descripcion',acceso = '$roles->acceso' WHERE id = $roles->id;";
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
@@ -25,7 +25,7 @@ class ControladorGenero extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Genero WHERE id = $id;";
+      $sql = "DELETE FROM Roles WHERE id = $id;";
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
@@ -36,9 +36,9 @@ class ControladorGenero extends ControladorBase
    function leer($id)
    {
       if ($id==""){
-         $sql = "SELECT * FROM Genero;";
+         $sql = "SELECT * FROM Roles;";
       }else{
-         $sql = "SELECT * FROM Genero WHERE id = $id;";
+         $sql = "SELECT * FROM Roles WHERE id = $id;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
@@ -50,7 +50,7 @@ class ControladorGenero extends ControladorBase
    function leerPaginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina)+1;
-      $sql ="SELECT * FROM Genero LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM Roles LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
@@ -62,16 +62,16 @@ class ControladorGenero extends ControladorBase
    {
       switch ($tipoFiltro){
          case "coincide":
-            $sql = "SELECT * FROM Genero WHERE $nombreColumna = '$filtro';";
+            $sql = "SELECT * FROM Roles WHERE $nombreColumna = '$filtro';";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Genero WHERE $nombreColumna = '$filtro%';";
+            $sql = "SELECT * FROM Roles WHERE $nombreColumna = '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Genero WHERE $nombreColumna = '%$filtro';";
+            $sql = "SELECT * FROM Roles WHERE $nombreColumna = '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Genero WHERE $nombreColumna = '%$filtro%';";
+            $sql = "SELECT * FROM Roles WHERE $nombreColumna = '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql);
