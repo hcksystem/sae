@@ -1,2 +1,7 @@
 <?php
-echo "Soy OMNIPRESENTE";
+
+include_once("../controladores/ControladorGenero.php");
+
+$p1 = new ControladorGenero();
+
+echo json_encode($p1->leer(2));

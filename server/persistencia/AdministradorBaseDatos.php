@@ -4,6 +4,7 @@ class AdministradorBaseDatos
 {
     private $DatosConexionActual;
     private $Conexion;
+    public $baseDatos;
 
     public function __construct($nombreConexion){
         if (!$this->encontrarConexion($nombreConexion))
@@ -25,6 +26,7 @@ class AdministradorBaseDatos
 
     private function conectar(){
         $DatosAbrirConexion = $this->DatosConexionActual;
+        $this->baseDatos = $DatosAbrirConexion->baseDatos;
         try 
         {
             $this->Conexion = new PDO("mysql:host=$DatosAbrirConexion->servidor;dbname=$DatosAbrirConexion->baseDatos;charset=utf8", $DatosAbrirConexion->usuario, $DatosAbrirConexion->clave,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
@@ -48,10 +50,10 @@ class AdministradorBaseDatos
         {
             $array[]=$row;
         }
-        if(!count($array)==0){
-            return $array;
+        if(count($array)==0){
+            $array[]="Comando Ejecutado: ".$sql;
         }
-        return "Comando Ejecutado: ".$sql;
+        return $array;
     }
 
     public function ejecutarConsulta($sql){
