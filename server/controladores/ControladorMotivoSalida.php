@@ -17,7 +17,7 @@ class ControladorMotivoSalida extends ControladorBase
    function actualizar(MotivoSalida $motivosalida)
    {
       $parametros = array($motivosalida->descripcion,$motivosalida->id);
-      $sql = "UPDATE MotivoSalida SET descripcion = '$motivosalida->?' WHERE id = ?;";
+      $sql = "UPDATE MotivoSalida SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

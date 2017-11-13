@@ -17,7 +17,7 @@ class ControladorRoles extends ControladorBase
    function actualizar(Roles $roles)
    {
       $parametros = array($roles->descripcion,$roles->acceso,$roles->id);
-      $sql = "UPDATE Roles SET descripcion = '$roles->?',acceso = '$roles->?' WHERE id = ?;";
+      $sql = "UPDATE Roles SET descripcion = ?,acceso = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

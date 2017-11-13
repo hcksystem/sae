@@ -17,7 +17,7 @@ class ControladorEtnia extends ControladorBase
    function actualizar(Etnia $etnia)
    {
       $parametros = array($etnia->descripcion,$etnia->id);
-      $sql = "UPDATE Etnia SET descripcion = '$etnia->?' WHERE id = ?;";
+      $sql = "UPDATE Etnia SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

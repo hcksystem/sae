@@ -17,7 +17,7 @@ class ControladorHorasClase extends ControladorBase
    function actualizar(HorasClase $horasclase)
    {
       $parametros = array($horasclase->idAsignatura,$horasclase->idParalelo,$horasclase->fecha,$horasclase->horas,$horasclase->id);
-      $sql = "UPDATE HorasClase SET idAsignatura = '$horasclase->?',idParalelo = '$horasclase->?',fecha = '$horasclase->?',horas = '$horasclase->?' WHERE id = ?;";
+      $sql = "UPDATE HorasClase SET idAsignatura = ?,idParalelo = ?,fecha = ?,horas = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

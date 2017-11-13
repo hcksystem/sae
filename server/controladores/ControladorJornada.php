@@ -17,7 +17,7 @@ class ControladorJornada extends ControladorBase
    function actualizar(Jornada $jornada)
    {
       $parametros = array($jornada->descripcion,$jornada->id);
-      $sql = "UPDATE Jornada SET descripcion = '$jornada->?' WHERE id = ?;";
+      $sql = "UPDATE Jornada SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

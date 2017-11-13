@@ -17,7 +17,7 @@ class ControladorOcupacion extends ControladorBase
    function actualizar(Ocupacion $ocupacion)
    {
       $parametros = array($ocupacion->descripcion,$ocupacion->id);
-      $sql = "UPDATE Ocupacion SET descripcion = '$ocupacion->?' WHERE id = ?;";
+      $sql = "UPDATE Ocupacion SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

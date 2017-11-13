@@ -17,7 +17,7 @@ class ControladorEducacionContinua extends ControladorBase
    function actualizar(EducacionContinua $educacioncontinua)
    {
       $parametros = array($educacioncontinua->descripcion,$educacioncontinua->horas,$educacioncontinua->fechaInicio,$educacioncontinua->fechaFin,$educacioncontinua->idTipoEducacionContinua,$educacioncontinua->lugar,$educacioncontinua->id);
-      $sql = "UPDATE EducacionContinua SET descripcion = '$educacioncontinua->?',horas = '$educacioncontinua->?',fechaInicio = '$educacioncontinua->?',fechaFin = '$educacioncontinua->?',idTipoEducacionContinua = '$educacioncontinua->?',lugar = '$educacioncontinua->?' WHERE id = ?;";
+      $sql = "UPDATE EducacionContinua SET descripcion = ?,horas = ?,fechaInicio = ?,fechaFin = ?,idTipoEducacionContinua = ?,lugar = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

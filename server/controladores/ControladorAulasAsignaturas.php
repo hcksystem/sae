@@ -17,7 +17,7 @@ class ControladorAulasAsignaturas extends ControladorBase
    function actualizar(AulasAsignaturas $aulasasignaturas)
    {
       $parametros = array($aulasasignaturas->idAula,$aulasasignaturas->idDocenteAsignatura,$aulasasignaturas->id);
-      $sql = "UPDATE AulasAsignaturas SET idAula = '$aulasasignaturas->?',idDocenteAsignatura = '$aulasasignaturas->?' WHERE id = ?;";
+      $sql = "UPDATE AulasAsignaturas SET idAula = ?,idDocenteAsignatura = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

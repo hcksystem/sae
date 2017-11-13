@@ -17,7 +17,7 @@ class ControladorPeriodoLectivo extends ControladorBase
    function actualizar(PeriodoLectivo $periodolectivo)
    {
       $parametros = array($periodolectivo->descripcion,$periodolectivo->fechaInicio,$periodolectivo->fechaFin,$periodolectivo->matriculable,$periodolectivo->codigo,$periodolectivo->id);
-      $sql = "UPDATE PeriodoLectivo SET descripcion = '$periodolectivo->?',fechaInicio = '$periodolectivo->?',fechaFin = '$periodolectivo->?',matriculable = '$periodolectivo->?',codigo = '$periodolectivo->?' WHERE id = ?;";
+      $sql = "UPDATE PeriodoLectivo SET descripcion = ?,fechaInicio = ?,fechaFin = ?,matriculable = ?,codigo = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

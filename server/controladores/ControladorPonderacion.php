@@ -17,7 +17,7 @@ class ControladorPonderacion extends ControladorBase
    function actualizar(Ponderacion $ponderacion)
    {
       $parametros = array($ponderacion->idCategoria,$ponderacion->idParcial,$ponderacion->porcentaje,$ponderacion->id);
-      $sql = "UPDATE Ponderacion SET idCategoria = '$ponderacion->?',idParcial = '$ponderacion->?',porcentaje = '$ponderacion->?' WHERE id = ?;";
+      $sql = "UPDATE Ponderacion SET idCategoria = ?,idParcial = ?,porcentaje = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

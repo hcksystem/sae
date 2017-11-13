@@ -17,7 +17,7 @@ class ControladorGenero extends ControladorBase
    function actualizar(Genero $genero)
    {
       $parametros = array($genero->descripcion,$genero->id);
-      $sql = "UPDATE Genero SET descripcion = '$genero->?' WHERE id = ?;";
+      $sql = "UPDATE Genero SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

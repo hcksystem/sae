@@ -17,7 +17,7 @@ class ControladorCupo extends ControladorBase
    function actualizar(Cupo $cupo)
    {
       $parametros = array($cupo->idJornadaCarrera,$cupo->idPersona,$cupo->id);
-      $sql = "UPDATE Cupo SET idJornadaCarrera = '$cupo->?',idPersona = '$cupo->?' WHERE id = ?;";
+      $sql = "UPDATE Cupo SET idJornadaCarrera = ?,idPersona = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

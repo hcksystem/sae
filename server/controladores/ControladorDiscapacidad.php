@@ -17,7 +17,7 @@ class ControladorDiscapacidad extends ControladorBase
    function actualizar(Discapacidad $discapacidad)
    {
       $parametros = array($discapacidad->idPersona,$discapacidad->idTipoDiscapacidad,$discapacidad->porcentaje,$discapacidad->id);
-      $sql = "UPDATE Discapacidad SET idPersona = '$discapacidad->?',idTipoDiscapacidad = '$discapacidad->?',porcentaje = '$discapacidad->?' WHERE id = ?;";
+      $sql = "UPDATE Discapacidad SET idPersona = ?,idTipoDiscapacidad = ?,porcentaje = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

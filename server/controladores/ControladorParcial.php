@@ -17,7 +17,7 @@ class ControladorParcial extends ControladorBase
    function actualizar(Parcial $parcial)
    {
       $parametros = array($parcial->descripcion,$parcial->id);
-      $sql = "UPDATE Parcial SET descripcion = '$parcial->?' WHERE id = ?;";
+      $sql = "UPDATE Parcial SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

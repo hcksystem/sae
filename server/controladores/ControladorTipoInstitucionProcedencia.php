@@ -17,7 +17,7 @@ class ControladorTipoInstitucionProcedencia extends ControladorBase
    function actualizar(TipoInstitucionProcedencia $tipoinstitucionprocedencia)
    {
       $parametros = array($tipoinstitucionprocedencia->descripcion,$tipoinstitucionprocedencia->id);
-      $sql = "UPDATE TipoInstitucionProcedencia SET descripcion = '$tipoinstitucionprocedencia->?' WHERE id = ?;";
+      $sql = "UPDATE TipoInstitucionProcedencia SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

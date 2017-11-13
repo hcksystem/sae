@@ -17,7 +17,7 @@ class ControladorEnfermedad extends ControladorBase
    function actualizar(Enfermedad $enfermedad)
    {
       $parametros = array($enfermedad->descripcion,$enfermedad->observaciones,$enfermedad->tratamiento,$enfermedad->id);
-      $sql = "UPDATE Enfermedad SET descripcion = '$enfermedad->?',observaciones = '$enfermedad->?',tratamiento = '$enfermedad->?' WHERE id = ?;";
+      $sql = "UPDATE Enfermedad SET descripcion = ?,observaciones = ?,tratamiento = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

@@ -17,7 +17,7 @@ class ControladorMalla extends ControladorBase
    function actualizar(Malla $malla)
    {
       $parametros = array($malla->fechaMallaInicio,$malla->fechaMallaFin,$malla->idCarrera,$malla->idDocResolucion,$malla->id);
-      $sql = "UPDATE Malla SET fechaMallaInicio = '$malla->?',fechaMallaFin = '$malla->?',idCarrera = '$malla->?',idDocResolucion = '$malla->?' WHERE id = ?;";
+      $sql = "UPDATE Malla SET fechaMallaInicio = ?,fechaMallaFin = ?,idCarrera = ?,idDocResolucion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

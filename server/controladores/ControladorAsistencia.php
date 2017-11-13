@@ -17,7 +17,7 @@ class ControladorAsistencia extends ControladorBase
    function actualizar(Asistencia $asistencia)
    {
       $parametros = array($asistencia->idMatriculaAsignatura,$asistencia->fecha,$asistencia->horas,$asistencia->id);
-      $sql = "UPDATE Asistencia SET idMatriculaAsignatura = '$asistencia->?',fecha = '$asistencia->?',horas = '$asistencia->?' WHERE id = ?;";
+      $sql = "UPDATE Asistencia SET idMatriculaAsignatura = ?,fecha = ?,horas = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

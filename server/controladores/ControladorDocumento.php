@@ -17,7 +17,7 @@ class ControladorDocumento extends ControladorBase
    function actualizar(Documento $documento)
    {
       $parametros = array($documento->documento,$documento->descripcion,$documento->id);
-      $sql = "UPDATE Documento SET documento = '$documento->?',descripcion = '$documento->?' WHERE id = ?;";
+      $sql = "UPDATE Documento SET documento = ?,descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

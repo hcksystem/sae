@@ -17,7 +17,7 @@ class ControladorNivelTitulo extends ControladorBase
    function actualizar(NivelTitulo $niveltitulo)
    {
       $parametros = array($niveltitulo->descripcion,$niveltitulo->id);
-      $sql = "UPDATE NivelTitulo SET descripcion = '$niveltitulo->?' WHERE id = ?;";
+      $sql = "UPDATE NivelTitulo SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

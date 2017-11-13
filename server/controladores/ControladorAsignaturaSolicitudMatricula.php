@@ -17,7 +17,7 @@ class ControladorAsignaturaSolicitudMatricula extends ControladorBase
    function actualizar(AsignaturaSolicitudMatricula $asignaturasolicitudmatricula)
    {
       $parametros = array($asignaturasolicitudmatricula->idSolicitudMatricula,$asignaturasolicitudmatricula->idAsignatura,$asignaturasolicitudmatricula->id);
-      $sql = "UPDATE AsignaturaSolicitudMatricula SET idSolicitudMatricula = '$asignaturasolicitudmatricula->?',idAsignatura = '$asignaturasolicitudmatricula->?' WHERE id = ?;";
+      $sql = "UPDATE AsignaturaSolicitudMatricula SET idSolicitudMatricula = ?,idAsignatura = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

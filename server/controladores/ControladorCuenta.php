@@ -17,7 +17,7 @@ class ControladorCuenta extends ControladorBase
    function actualizar(Cuenta $cuenta)
    {
       $parametros = array($cuenta->nickname,$cuenta->idUsuario,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave,$cuenta->id);
-      $sql = "UPDATE Cuenta SET nickname = '$cuenta->?',idUsuario = '$cuenta->?',idRol = '$cuenta->?',idPersona = '$cuenta->?',clave = '$cuenta->?' WHERE id = ?;";
+      $sql = "UPDATE Cuenta SET nickname = ?,idUsuario = ?,idRol = ?,idPersona = ?,clave = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

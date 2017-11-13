@@ -17,7 +17,7 @@ class ControladorEstadoCivil extends ControladorBase
    function actualizar(EstadoCivil $estadocivil)
    {
       $parametros = array($estadocivil->descripcion,$estadocivil->id);
-      $sql = "UPDATE EstadoCivil SET descripcion = '$estadocivil->?' WHERE id = ?;";
+      $sql = "UPDATE EstadoCivil SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

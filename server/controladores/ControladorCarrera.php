@@ -17,7 +17,7 @@ class ControladorCarrera extends ControladorBase
    function actualizar(Carrera $carrera)
    {
       $parametros = array($carrera->resolucion,$carrera->nombre,$carrera->descripcion,$carrera->idModalidad,$carrera->idInstituto,$carrera->coordinador,$carrera->siglas,$carrera->id);
-      $sql = "UPDATE Carrera SET resolucion = '$carrera->?',nombre = '$carrera->?',descripcion = '$carrera->?',idModalidad = '$carrera->?',idInstituto = '$carrera->?',coordinador = '$carrera->?',siglas = '$carrera->?' WHERE id = ?;";
+      $sql = "UPDATE Carrera SET resolucion = ?,nombre = ?,descripcion = ?,idModalidad = ?,idInstituto = ?,coordinador = ?,siglas = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

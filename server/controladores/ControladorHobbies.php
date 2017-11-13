@@ -17,7 +17,7 @@ class ControladorHobbies extends ControladorBase
    function actualizar(Hobbies $hobbies)
    {
       $parametros = array($hobbies->idPersona,$hobbies->descripcion,$hobbies->id);
-      $sql = "UPDATE Hobbies SET idPersona = '$hobbies->?',descripcion = '$hobbies->?' WHERE id = ?;";
+      $sql = "UPDATE Hobbies SET idPersona = ?,descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

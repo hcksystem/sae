@@ -17,7 +17,7 @@ class ControladorContacto extends ControladorBase
    function actualizar(Contacto $contacto)
    {
       $parametros = array($contacto->idPersona,$contacto->descripcion,$contacto->contacto,$contacto->id);
-      $sql = "UPDATE Contacto SET idPersona = '$contacto->?',descripcion = '$contacto->?',contacto = '$contacto->?' WHERE id = ?;";
+      $sql = "UPDATE Contacto SET idPersona = ?,descripcion = ?,contacto = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

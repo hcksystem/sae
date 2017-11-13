@@ -17,7 +17,7 @@ class ControladorTipoRequisito extends ControladorBase
    function actualizar(TipoRequisito $tiporequisito)
    {
       $parametros = array($tiporequisito->descripcion,$tiporequisito->id);
-      $sql = "UPDATE TipoRequisito SET descripcion = '$tiporequisito->?' WHERE id = ?;";
+      $sql = "UPDATE TipoRequisito SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

@@ -17,7 +17,7 @@ class ControladorRequisito extends ControladorBase
    function actualizar(Requisito $requisito)
    {
       $parametros = array($requisito->idAsignaturaDependiente,$requisito->idAsignaturaIndependiente,$requisito->idTipoRequisito,$requisito->id);
-      $sql = "UPDATE Requisito SET idAsignaturaDependiente = '$requisito->?',idAsignaturaIndependiente = '$requisito->?',idTipoRequisito = '$requisito->?' WHERE id = ?;";
+      $sql = "UPDATE Requisito SET idAsignaturaDependiente = ?,idAsignaturaIndependiente = ?,idTipoRequisito = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

@@ -17,7 +17,7 @@ class ControladorExperienciaLaboral extends ControladorBase
    function actualizar(ExperienciaLaboral $experiencialaboral)
    {
       $parametros = array($experiencialaboral->idPersona,$experiencialaboral->fechaInicio,$experiencialaboral->fechaFin,$experiencialaboral->descripcionCargo,$experiencialaboral->descripcionFunciones,$experiencialaboral->nombreEmpresa,$experiencialaboral->idMotivoSalida,$experiencialaboral->id);
-      $sql = "UPDATE ExperienciaLaboral SET idPersona = '$experiencialaboral->?',fechaInicio = '$experiencialaboral->?',fechaFin = '$experiencialaboral->?',descripcionCargo = '$experiencialaboral->?',descripcionFunciones = '$experiencialaboral->?',nombreEmpresa = '$experiencialaboral->?',idMotivoSalida = '$experiencialaboral->?' WHERE id = ?;";
+      $sql = "UPDATE ExperienciaLaboral SET idPersona = ?,fechaInicio = ?,fechaFin = ?,descripcionCargo = ?,descripcionFunciones = ?,nombreEmpresa = ?,idMotivoSalida = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

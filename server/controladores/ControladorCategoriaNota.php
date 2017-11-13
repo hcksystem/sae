@@ -17,7 +17,7 @@ class ControladorCategoriaNota extends ControladorBase
    function actualizar(CategoriaNota $categorianota)
    {
       $parametros = array($categorianota->descripcion,$categorianota->id);
-      $sql = "UPDATE CategoriaNota SET descripcion = '$categorianota->?' WHERE id = ?;";
+      $sql = "UPDATE CategoriaNota SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

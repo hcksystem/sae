@@ -17,7 +17,7 @@ class ControladorSolicitudMatricula extends ControladorBase
    function actualizar(SolicitudMatricula $solicitudmatricula)
    {
       $parametros = array($solicitudmatricula->codigo,$solicitudmatricula->fecha,$solicitudmatricula->idPeriodoLectivo,$solicitudmatricula->idEstadoSolicitud,$solicitudmatricula->idPersona,$solicitudmatricula->idCarrera,$solicitudmatricula->id);
-      $sql = "UPDATE SolicitudMatricula SET codigo = '$solicitudmatricula->?',fecha = '$solicitudmatricula->?',idPeriodoLectivo = '$solicitudmatricula->?',idEstadoSolicitud = '$solicitudmatricula->?',idPersona = '$solicitudmatricula->?',idCarrera = '$solicitudmatricula->?' WHERE id = ?;";
+      $sql = "UPDATE SolicitudMatricula SET codigo = ?,fecha = ?,idPeriodoLectivo = ?,idEstadoSolicitud = ?,idPersona = ?,idCarrera = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

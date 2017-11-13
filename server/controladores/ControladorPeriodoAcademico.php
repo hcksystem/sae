@@ -17,7 +17,7 @@ class ControladorPeriodoAcademico extends ControladorBase
    function actualizar(PeriodoAcademico $periodoacademico)
    {
       $parametros = array($periodoacademico->descripcion,$periodoacademico->id);
-      $sql = "UPDATE PeriodoAcademico SET descripcion = '$periodoacademico->?' WHERE id = ?;";
+      $sql = "UPDATE PeriodoAcademico SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

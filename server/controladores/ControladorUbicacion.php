@@ -17,7 +17,7 @@ class ControladorUbicacion extends ControladorBase
    function actualizar(Ubicacion $ubicacion)
    {
       $parametros = array($ubicacion->codigo,$ubicacion->descripcion,$ubicacion->codigoPadre,$ubicacion->id);
-      $sql = "UPDATE Ubicacion SET codigo = '$ubicacion->?',descripcion = '$ubicacion->?',codigoPadre = '$ubicacion->?' WHERE id = ?;";
+      $sql = "UPDATE Ubicacion SET codigo = ?,descripcion = ?,codigoPadre = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

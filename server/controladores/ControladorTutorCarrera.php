@@ -17,7 +17,7 @@ class ControladorTutorCarrera extends ControladorBase
    function actualizar(TutorCarrera $tutorcarrera)
    {
       $parametros = array($tutorcarrera->idPersona,$tutorcarrera->idCarrera,$tutorcarrera->id);
-      $sql = "UPDATE TutorCarrera SET idPersona = '$tutorcarrera->?',idCarrera = '$tutorcarrera->?' WHERE id = ?;";
+      $sql = "UPDATE TutorCarrera SET idPersona = ?,idCarrera = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

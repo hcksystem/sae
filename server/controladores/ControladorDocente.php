@@ -17,7 +17,7 @@ class ControladorDocente extends ControladorBase
    function actualizar(Docente $docente)
    {
       $parametros = array($docente->idPersona,$docente->fechaInicio,$docente->idEstado,$docente->id);
-      $sql = "UPDATE Docente SET idPersona = '$docente->?',fechaInicio = '$docente->?',idEstado = '$docente->?' WHERE id = ?;";
+      $sql = "UPDATE Docente SET idPersona = ?,fechaInicio = ?,idEstado = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

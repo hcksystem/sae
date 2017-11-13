@@ -17,7 +17,7 @@ class ControladorTipoIngresos extends ControladorBase
    function actualizar(TipoIngresos $tipoingresos)
    {
       $parametros = array($tipoingresos->descripcion,$tipoingresos->id);
-      $sql = "UPDATE TipoIngresos SET descripcion = '$tipoingresos->?' WHERE id = ?;";
+      $sql = "UPDATE TipoIngresos SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

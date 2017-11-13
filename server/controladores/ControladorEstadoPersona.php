@@ -17,7 +17,7 @@ class ControladorEstadoPersona extends ControladorBase
    function actualizar(EstadoPersona $estadopersona)
    {
       $parametros = array($estadopersona->idPersona,$estadopersona->datosCompletos,$estadopersona->edicionDeDatos,$estadopersona->encuestaFactoresAsociados,$estadopersona->id);
-      $sql = "UPDATE EstadoPersona SET idPersona = '$estadopersona->?',datosCompletos = '$estadopersona->?',edicionDeDatos = '$estadopersona->?',encuestaFactoresAsociados = '$estadopersona->?' WHERE id = ?;";
+      $sql = "UPDATE EstadoPersona SET idPersona = ?,datosCompletos = ?,edicionDeDatos = ?,encuestaFactoresAsociados = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

@@ -17,7 +17,7 @@ class ControladorModalidad extends ControladorBase
    function actualizar(Modalidad $modalidad)
    {
       $parametros = array($modalidad->descripcion,$modalidad->id);
-      $sql = "UPDATE Modalidad SET descripcion = '$modalidad->?' WHERE id = ?;";
+      $sql = "UPDATE Modalidad SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

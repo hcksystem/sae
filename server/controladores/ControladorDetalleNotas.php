@@ -17,7 +17,7 @@ class ControladorDetalleNotas extends ControladorBase
    function actualizar(DetalleNotas $detallenotas)
    {
       $parametros = array($detallenotas->descripcion,$detallenotas->nota,$detallenotas->idCateogiraNota,$detallenotas->idNota,$detallenotas->id);
-      $sql = "UPDATE DetalleNotas SET descripcion = '$detallenotas->?',nota = '$detallenotas->?',idCateogiraNota = '$detallenotas->?',idNota = '$detallenotas->?' WHERE id = ?;";
+      $sql = "UPDATE DetalleNotas SET descripcion = ?,nota = ?,idCateogiraNota = ?,idNota = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

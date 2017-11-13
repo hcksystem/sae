@@ -17,7 +17,7 @@ class ControladorTipoSangre extends ControladorBase
    function actualizar(TipoSangre $tiposangre)
    {
       $parametros = array($tiposangre->descripcion,$tiposangre->id);
-      $sql = "UPDATE TipoSangre SET descripcion = '$tiposangre->?' WHERE id = ?;";
+      $sql = "UPDATE TipoSangre SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;

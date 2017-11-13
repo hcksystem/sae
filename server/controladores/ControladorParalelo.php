@@ -17,7 +17,7 @@ class ControladorParalelo extends ControladorBase
    function actualizar(Paralelo $paralelo)
    {
       $parametros = array($paralelo->descripcion,$paralelo->id);
-      $sql = "UPDATE Paralelo SET descripcion = '$paralelo->?' WHERE id = ?;";
+      $sql = "UPDATE Paralelo SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
