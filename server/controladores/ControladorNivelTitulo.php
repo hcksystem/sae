@@ -77,7 +77,8 @@ class ControladorNivelTitulo extends ControladorBase
    {
       switch ($tipoFiltro){
          case "coincide":
-            $sql = "SELECT * FROM NivelTitulo WHERE $nombreColumna = '$filtro';";
+            $parametros = array($filtro);
+            $sql = "SELECT * FROM NivelTitulo WHERE $nombreColumna = ?;";
             break;
          case "inicia":
             $sql = "SELECT * FROM NivelTitulo WHERE $nombreColumna LIKE '$filtro%';";

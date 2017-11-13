@@ -77,7 +77,8 @@ class ControladorCupo extends ControladorBase
    {
       switch ($tipoFiltro){
          case "coincide":
-            $sql = "SELECT * FROM Cupo WHERE $nombreColumna = '$filtro';";
+            $parametros = array($filtro);
+            $sql = "SELECT * FROM Cupo WHERE $nombreColumna = ?;";
             break;
          case "inicia":
             $sql = "SELECT * FROM Cupo WHERE $nombreColumna LIKE '$filtro%';";

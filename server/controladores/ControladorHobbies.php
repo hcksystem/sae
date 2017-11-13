@@ -77,7 +77,8 @@ class ControladorHobbies extends ControladorBase
    {
       switch ($tipoFiltro){
          case "coincide":
-            $sql = "SELECT * FROM Hobbies WHERE $nombreColumna = '$filtro';";
+            $parametros = array($filtro);
+            $sql = "SELECT * FROM Hobbies WHERE $nombreColumna = ?;";
             break;
          case "inicia":
             $sql = "SELECT * FROM Hobbies WHERE $nombreColumna LIKE '$filtro%';";

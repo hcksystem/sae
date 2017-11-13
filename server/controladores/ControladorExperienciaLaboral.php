@@ -77,7 +77,8 @@ class ControladorExperienciaLaboral extends ControladorBase
    {
       switch ($tipoFiltro){
          case "coincide":
-            $sql = "SELECT * FROM ExperienciaLaboral WHERE $nombreColumna = '$filtro';";
+            $parametros = array($filtro);
+            $sql = "SELECT * FROM ExperienciaLaboral WHERE $nombreColumna = ?;";
             break;
          case "inicia":
             $sql = "SELECT * FROM ExperienciaLaboral WHERE $nombreColumna LIKE '$filtro%';";
