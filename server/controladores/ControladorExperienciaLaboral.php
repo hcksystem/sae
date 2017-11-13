@@ -5,8 +5,9 @@ class ControladorExperienciaLaboral extends ControladorBase
 {
    function crear(ExperienciaLaboral $experiencialaboral)
    {
-      $sql = "INSERT INTO ExperienciaLaboral (idPersona,fechaInicio,fechaFin,descripcionCargo,descripcionFunciones,nombreEmpresa,idMotivoSalida) VALUES ('$experiencialaboral->idPersona','$experiencialaboral->fechaInicio','$experiencialaboral->fechaFin','$experiencialaboral->descripcionCargo','$experiencialaboral->descripcionFunciones','$experiencialaboral->nombreEmpresa','$experiencialaboral->idMotivoSalida');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO ExperienciaLaboral (idPersona,fechaInicio,fechaFin,descripcionCargo,descripcionFunciones,nombreEmpresa,idMotivoSalida) VALUES (?,?,?,?,?,?,?);";
+      $parametros = array($experiencialaboral->idPersona,$experiencialaboral->fechaInicio,$experiencialaboral->fechaFin,$experiencialaboral->descripcionCargo,$experiencialaboral->descripcionFunciones,$experiencialaboral->nombreEmpresa,$experiencialaboral->idMotivoSalida);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorExperienciaLaboral extends ControladorBase
 
    function actualizar(ExperienciaLaboral $experiencialaboral)
    {
-      $sql = "UPDATE ExperienciaLaboral SET idPersona = '$experiencialaboral->idPersona',fechaInicio = '$experiencialaboral->fechaInicio',fechaFin = '$experiencialaboral->fechaFin',descripcionCargo = '$experiencialaboral->descripcionCargo',descripcionFunciones = '$experiencialaboral->descripcionFunciones',nombreEmpresa = '$experiencialaboral->nombreEmpresa',idMotivoSalida = '$experiencialaboral->idMotivoSalida' WHERE id = $experiencialaboral->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($experiencialaboral->idPersona,$experiencialaboral->fechaInicio,$experiencialaboral->fechaFin,$experiencialaboral->descripcionCargo,$experiencialaboral->descripcionFunciones,$experiencialaboral->nombreEmpresa,$experiencialaboral->idMotivoSalida,$experiencialaboral->id);
+      $sql = "UPDATE ExperienciaLaboral SET idPersona = '$experiencialaboral->?',fechaInicio = '$experiencialaboral->?',fechaFin = '$experiencialaboral->?',descripcionCargo = '$experiencialaboral->?',descripcionFunciones = '$experiencialaboral->?',nombreEmpresa = '$experiencialaboral->?',idMotivoSalida = '$experiencialaboral->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorExperienciaLaboral extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM ExperienciaLaboral WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM ExperienciaLaboral WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorExperienciaLaboral extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM ExperienciaLaboral;";
       }else{
-         $sql = "SELECT * FROM ExperienciaLaboral WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM ExperienciaLaboral WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorExperienciaLaboral extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM ExperienciaLaboral LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM ExperienciaLaboral LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorExperienciaLaboral extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM ExperienciaLaboral;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorExperienciaLaboral extends ControladorBase
             $sql = "SELECT * FROM ExperienciaLaboral WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

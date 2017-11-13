@@ -5,8 +5,9 @@ class ControladorNivelTitulo extends ControladorBase
 {
    function crear(NivelTitulo $niveltitulo)
    {
-      $sql = "INSERT INTO NivelTitulo (descripcion) VALUES ('$niveltitulo->descripcion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO NivelTitulo (descripcion) VALUES (?);";
+      $parametros = array($niveltitulo->descripcion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorNivelTitulo extends ControladorBase
 
    function actualizar(NivelTitulo $niveltitulo)
    {
-      $sql = "UPDATE NivelTitulo SET descripcion = '$niveltitulo->descripcion' WHERE id = $niveltitulo->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($niveltitulo->descripcion,$niveltitulo->id);
+      $sql = "UPDATE NivelTitulo SET descripcion = '$niveltitulo->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorNivelTitulo extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM NivelTitulo WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM NivelTitulo WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorNivelTitulo extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM NivelTitulo;";
       }else{
-         $sql = "SELECT * FROM NivelTitulo WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM NivelTitulo WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorNivelTitulo extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM NivelTitulo LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM NivelTitulo LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorNivelTitulo extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM NivelTitulo;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorNivelTitulo extends ControladorBase
             $sql = "SELECT * FROM NivelTitulo WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

@@ -9,7 +9,7 @@ class AdministradorBaseDatos
     public function __construct($nombreConexion){
         if (!$this->encontrarConexion($nombreConexion))
         {
-            die("Conexión $nombreConexion no encontrada.");
+            die("Se ha producido un error.");
         }
     }
 
@@ -42,23 +42,20 @@ class AdministradorBaseDatos
         $this->Conexion = null;
     }
 
-    private function consultar($sql){
+    private function consultar($sql,$parametros){
         $stmt 	= $this->Conexion->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($parametros);
         $array=array();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
         {
             $array[]=$row;
         }
-        if(count($array)==0){
-            $array[]="Comando Ejecutado: ".$sql;
-        }
         return $array;
     }
 
-    public function ejecutarConsulta($sql){
+    public function ejecutarConsulta($sql,$parametros){
         $this->conectar();
-        $salida = $this->consultar($sql);
+        $salida = $this->consultar($sql,$parametros);
         $this->desconectar();
         return $salida;
     }

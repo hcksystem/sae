@@ -5,8 +5,9 @@ class ControladorJornadaCarrera extends ControladorBase
 {
    function crear(JornadaCarrera $jornadacarrera)
    {
-      $sql = "INSERT INTO JornadaCarrera (idJornada,idCarrera) VALUES ('$jornadacarrera->idJornada','$jornadacarrera->idCarrera');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO JornadaCarrera (idJornada,idCarrera) VALUES (?,?);";
+      $parametros = array($jornadacarrera->idJornada,$jornadacarrera->idCarrera);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorJornadaCarrera extends ControladorBase
 
    function actualizar(JornadaCarrera $jornadacarrera)
    {
-      $sql = "UPDATE JornadaCarrera SET idJornada = '$jornadacarrera->idJornada',idCarrera = '$jornadacarrera->idCarrera' WHERE id = $jornadacarrera->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($jornadacarrera->idJornada,$jornadacarrera->idCarrera,$jornadacarrera->id);
+      $sql = "UPDATE JornadaCarrera SET idJornada = '$jornadacarrera->?',idCarrera = '$jornadacarrera->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorJornadaCarrera extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM JornadaCarrera WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM JornadaCarrera WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorJornadaCarrera extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM JornadaCarrera;";
       }else{
-         $sql = "SELECT * FROM JornadaCarrera WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM JornadaCarrera WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorJornadaCarrera extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM JornadaCarrera LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM JornadaCarrera LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorJornadaCarrera extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM JornadaCarrera;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorJornadaCarrera extends ControladorBase
             $sql = "SELECT * FROM JornadaCarrera WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

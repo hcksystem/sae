@@ -5,8 +5,9 @@ class ControladorParcial extends ControladorBase
 {
    function crear(Parcial $parcial)
    {
-      $sql = "INSERT INTO Parcial (descripcion) VALUES ('$parcial->descripcion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Parcial (descripcion) VALUES (?);";
+      $parametros = array($parcial->descripcion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorParcial extends ControladorBase
 
    function actualizar(Parcial $parcial)
    {
-      $sql = "UPDATE Parcial SET descripcion = '$parcial->descripcion' WHERE id = $parcial->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($parcial->descripcion,$parcial->id);
+      $sql = "UPDATE Parcial SET descripcion = '$parcial->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorParcial extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Parcial WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Parcial WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorParcial extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Parcial;";
       }else{
-         $sql = "SELECT * FROM Parcial WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Parcial WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorParcial extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Parcial LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Parcial LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorParcial extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Parcial;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorParcial extends ControladorBase
             $sql = "SELECT * FROM Parcial WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

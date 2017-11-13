@@ -5,8 +5,9 @@ class ControladorDocenteAsignatura extends ControladorBase
 {
    function crear(DocenteAsignatura $docenteasignatura)
    {
-      $sql = "INSERT INTO DocenteAsignatura (idDocente,idPeriodoLectivo,idAsignatura,idParalelo) VALUES ('$docenteasignatura->idDocente','$docenteasignatura->idPeriodoLectivo','$docenteasignatura->idAsignatura','$docenteasignatura->idParalelo');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO DocenteAsignatura (idDocente,idPeriodoLectivo,idAsignatura,idParalelo) VALUES (?,?,?,?);";
+      $parametros = array($docenteasignatura->idDocente,$docenteasignatura->idPeriodoLectivo,$docenteasignatura->idAsignatura,$docenteasignatura->idParalelo);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorDocenteAsignatura extends ControladorBase
 
    function actualizar(DocenteAsignatura $docenteasignatura)
    {
-      $sql = "UPDATE DocenteAsignatura SET idDocente = '$docenteasignatura->idDocente',idPeriodoLectivo = '$docenteasignatura->idPeriodoLectivo',idAsignatura = '$docenteasignatura->idAsignatura',idParalelo = '$docenteasignatura->idParalelo' WHERE id = $docenteasignatura->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($docenteasignatura->idDocente,$docenteasignatura->idPeriodoLectivo,$docenteasignatura->idAsignatura,$docenteasignatura->idParalelo,$docenteasignatura->id);
+      $sql = "UPDATE DocenteAsignatura SET idDocente = '$docenteasignatura->?',idPeriodoLectivo = '$docenteasignatura->?',idAsignatura = '$docenteasignatura->?',idParalelo = '$docenteasignatura->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorDocenteAsignatura extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM DocenteAsignatura WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM DocenteAsignatura WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorDocenteAsignatura extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM DocenteAsignatura;";
       }else{
-         $sql = "SELECT * FROM DocenteAsignatura WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM DocenteAsignatura WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorDocenteAsignatura extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM DocenteAsignatura LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM DocenteAsignatura LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorDocenteAsignatura extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM DocenteAsignatura;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorDocenteAsignatura extends ControladorBase
             $sql = "SELECT * FROM DocenteAsignatura WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

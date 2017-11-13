@@ -5,8 +5,9 @@ class ControladorHorasClase extends ControladorBase
 {
    function crear(HorasClase $horasclase)
    {
-      $sql = "INSERT INTO HorasClase (idAsignatura,idParalelo,fecha,horas) VALUES ('$horasclase->idAsignatura','$horasclase->idParalelo','$horasclase->fecha','$horasclase->horas');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO HorasClase (idAsignatura,idParalelo,fecha,horas) VALUES (?,?,?,?);";
+      $parametros = array($horasclase->idAsignatura,$horasclase->idParalelo,$horasclase->fecha,$horasclase->horas);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorHorasClase extends ControladorBase
 
    function actualizar(HorasClase $horasclase)
    {
-      $sql = "UPDATE HorasClase SET idAsignatura = '$horasclase->idAsignatura',idParalelo = '$horasclase->idParalelo',fecha = '$horasclase->fecha',horas = '$horasclase->horas' WHERE id = $horasclase->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($horasclase->idAsignatura,$horasclase->idParalelo,$horasclase->fecha,$horasclase->horas,$horasclase->id);
+      $sql = "UPDATE HorasClase SET idAsignatura = '$horasclase->?',idParalelo = '$horasclase->?',fecha = '$horasclase->?',horas = '$horasclase->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorHorasClase extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM HorasClase WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM HorasClase WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorHorasClase extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM HorasClase;";
       }else{
-         $sql = "SELECT * FROM HorasClase WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM HorasClase WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorHorasClase extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM HorasClase LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM HorasClase LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorHorasClase extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM HorasClase;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorHorasClase extends ControladorBase
             $sql = "SELECT * FROM HorasClase WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

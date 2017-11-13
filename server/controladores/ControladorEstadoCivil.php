@@ -5,8 +5,9 @@ class ControladorEstadoCivil extends ControladorBase
 {
    function crear(EstadoCivil $estadocivil)
    {
-      $sql = "INSERT INTO EstadoCivil (descripcion) VALUES ('$estadocivil->descripcion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO EstadoCivil (descripcion) VALUES (?);";
+      $parametros = array($estadocivil->descripcion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorEstadoCivil extends ControladorBase
 
    function actualizar(EstadoCivil $estadocivil)
    {
-      $sql = "UPDATE EstadoCivil SET descripcion = '$estadocivil->descripcion' WHERE id = $estadocivil->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($estadocivil->descripcion,$estadocivil->id);
+      $sql = "UPDATE EstadoCivil SET descripcion = '$estadocivil->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorEstadoCivil extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM EstadoCivil WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM EstadoCivil WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorEstadoCivil extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM EstadoCivil;";
       }else{
-         $sql = "SELECT * FROM EstadoCivil WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM EstadoCivil WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorEstadoCivil extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM EstadoCivil LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM EstadoCivil LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorEstadoCivil extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM EstadoCivil;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorEstadoCivil extends ControladorBase
             $sql = "SELECT * FROM EstadoCivil WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

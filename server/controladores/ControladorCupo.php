@@ -5,8 +5,9 @@ class ControladorCupo extends ControladorBase
 {
    function crear(Cupo $cupo)
    {
-      $sql = "INSERT INTO Cupo (idJornadaCarrera,idPersona) VALUES ('$cupo->idJornadaCarrera','$cupo->idPersona');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Cupo (idJornadaCarrera,idPersona) VALUES (?,?);";
+      $parametros = array($cupo->idJornadaCarrera,$cupo->idPersona);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorCupo extends ControladorBase
 
    function actualizar(Cupo $cupo)
    {
-      $sql = "UPDATE Cupo SET idJornadaCarrera = '$cupo->idJornadaCarrera',idPersona = '$cupo->idPersona' WHERE id = $cupo->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($cupo->idJornadaCarrera,$cupo->idPersona,$cupo->id);
+      $sql = "UPDATE Cupo SET idJornadaCarrera = '$cupo->?',idPersona = '$cupo->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorCupo extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Cupo WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Cupo WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorCupo extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Cupo;";
       }else{
-         $sql = "SELECT * FROM Cupo WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Cupo WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorCupo extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Cupo LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Cupo LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorCupo extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Cupo;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorCupo extends ControladorBase
             $sql = "SELECT * FROM Cupo WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

@@ -5,8 +5,9 @@ class ControladorDocumento extends ControladorBase
 {
    function crear(Documento $documento)
    {
-      $sql = "INSERT INTO Documento (documento,descripcion) VALUES ('$documento->documento','$documento->descripcion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Documento (documento,descripcion) VALUES (?,?);";
+      $parametros = array($documento->documento,$documento->descripcion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorDocumento extends ControladorBase
 
    function actualizar(Documento $documento)
    {
-      $sql = "UPDATE Documento SET documento = '$documento->documento',descripcion = '$documento->descripcion' WHERE id = $documento->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($documento->documento,$documento->descripcion,$documento->id);
+      $sql = "UPDATE Documento SET documento = '$documento->?',descripcion = '$documento->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorDocumento extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Documento WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Documento WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorDocumento extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Documento;";
       }else{
-         $sql = "SELECT * FROM Documento WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Documento WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorDocumento extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Documento LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Documento LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorDocumento extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Documento;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorDocumento extends ControladorBase
             $sql = "SELECT * FROM Documento WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

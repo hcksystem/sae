@@ -5,8 +5,9 @@ class ControladorTutorCarrera extends ControladorBase
 {
    function crear(TutorCarrera $tutorcarrera)
    {
-      $sql = "INSERT INTO TutorCarrera (idPersona,idCarrera) VALUES ('$tutorcarrera->idPersona','$tutorcarrera->idCarrera');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO TutorCarrera (idPersona,idCarrera) VALUES (?,?);";
+      $parametros = array($tutorcarrera->idPersona,$tutorcarrera->idCarrera);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorTutorCarrera extends ControladorBase
 
    function actualizar(TutorCarrera $tutorcarrera)
    {
-      $sql = "UPDATE TutorCarrera SET idPersona = '$tutorcarrera->idPersona',idCarrera = '$tutorcarrera->idCarrera' WHERE id = $tutorcarrera->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($tutorcarrera->idPersona,$tutorcarrera->idCarrera,$tutorcarrera->id);
+      $sql = "UPDATE TutorCarrera SET idPersona = '$tutorcarrera->?',idCarrera = '$tutorcarrera->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorTutorCarrera extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM TutorCarrera WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM TutorCarrera WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorTutorCarrera extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM TutorCarrera;";
       }else{
-         $sql = "SELECT * FROM TutorCarrera WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM TutorCarrera WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorTutorCarrera extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM TutorCarrera LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM TutorCarrera LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorTutorCarrera extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM TutorCarrera;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorTutorCarrera extends ControladorBase
             $sql = "SELECT * FROM TutorCarrera WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

@@ -5,8 +5,9 @@ class ControladorContacto extends ControladorBase
 {
    function crear(Contacto $contacto)
    {
-      $sql = "INSERT INTO Contacto (idPersona,descripcion,contacto) VALUES ('$contacto->idPersona','$contacto->descripcion','$contacto->contacto');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Contacto (idPersona,descripcion,contacto) VALUES (?,?,?);";
+      $parametros = array($contacto->idPersona,$contacto->descripcion,$contacto->contacto);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorContacto extends ControladorBase
 
    function actualizar(Contacto $contacto)
    {
-      $sql = "UPDATE Contacto SET idPersona = '$contacto->idPersona',descripcion = '$contacto->descripcion',contacto = '$contacto->contacto' WHERE id = $contacto->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($contacto->idPersona,$contacto->descripcion,$contacto->contacto,$contacto->id);
+      $sql = "UPDATE Contacto SET idPersona = '$contacto->?',descripcion = '$contacto->?',contacto = '$contacto->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorContacto extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Contacto WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Contacto WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorContacto extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Contacto;";
       }else{
-         $sql = "SELECT * FROM Contacto WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Contacto WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorContacto extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Contacto LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Contacto LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorContacto extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Contacto;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorContacto extends ControladorBase
             $sql = "SELECT * FROM Contacto WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

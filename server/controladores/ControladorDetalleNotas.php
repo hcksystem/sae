@@ -5,8 +5,9 @@ class ControladorDetalleNotas extends ControladorBase
 {
    function crear(DetalleNotas $detallenotas)
    {
-      $sql = "INSERT INTO DetalleNotas (descripcion,nota,idCateogiraNota,idNota) VALUES ('$detallenotas->descripcion','$detallenotas->nota','$detallenotas->idCateogiraNota','$detallenotas->idNota');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO DetalleNotas (descripcion,nota,idCateogiraNota,idNota) VALUES (?,?,?,?);";
+      $parametros = array($detallenotas->descripcion,$detallenotas->nota,$detallenotas->idCateogiraNota,$detallenotas->idNota);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorDetalleNotas extends ControladorBase
 
    function actualizar(DetalleNotas $detallenotas)
    {
-      $sql = "UPDATE DetalleNotas SET descripcion = '$detallenotas->descripcion',nota = '$detallenotas->nota',idCateogiraNota = '$detallenotas->idCateogiraNota',idNota = '$detallenotas->idNota' WHERE id = $detallenotas->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($detallenotas->descripcion,$detallenotas->nota,$detallenotas->idCateogiraNota,$detallenotas->idNota,$detallenotas->id);
+      $sql = "UPDATE DetalleNotas SET descripcion = '$detallenotas->?',nota = '$detallenotas->?',idCateogiraNota = '$detallenotas->?',idNota = '$detallenotas->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorDetalleNotas extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM DetalleNotas WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM DetalleNotas WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorDetalleNotas extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM DetalleNotas;";
       }else{
-         $sql = "SELECT * FROM DetalleNotas WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM DetalleNotas WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorDetalleNotas extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM DetalleNotas LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM DetalleNotas LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorDetalleNotas extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM DetalleNotas;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorDetalleNotas extends ControladorBase
             $sql = "SELECT * FROM DetalleNotas WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

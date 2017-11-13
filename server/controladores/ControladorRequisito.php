@@ -5,8 +5,9 @@ class ControladorRequisito extends ControladorBase
 {
    function crear(Requisito $requisito)
    {
-      $sql = "INSERT INTO Requisito (idAsignaturaDependiente,idAsignaturaIndependiente,idTipoRequisito) VALUES ('$requisito->idAsignaturaDependiente','$requisito->idAsignaturaIndependiente','$requisito->idTipoRequisito');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Requisito (idAsignaturaDependiente,idAsignaturaIndependiente,idTipoRequisito) VALUES (?,?,?);";
+      $parametros = array($requisito->idAsignaturaDependiente,$requisito->idAsignaturaIndependiente,$requisito->idTipoRequisito);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorRequisito extends ControladorBase
 
    function actualizar(Requisito $requisito)
    {
-      $sql = "UPDATE Requisito SET idAsignaturaDependiente = '$requisito->idAsignaturaDependiente',idAsignaturaIndependiente = '$requisito->idAsignaturaIndependiente',idTipoRequisito = '$requisito->idTipoRequisito' WHERE id = $requisito->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($requisito->idAsignaturaDependiente,$requisito->idAsignaturaIndependiente,$requisito->idTipoRequisito,$requisito->id);
+      $sql = "UPDATE Requisito SET idAsignaturaDependiente = '$requisito->?',idAsignaturaIndependiente = '$requisito->?',idTipoRequisito = '$requisito->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorRequisito extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Requisito WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Requisito WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorRequisito extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Requisito;";
       }else{
-         $sql = "SELECT * FROM Requisito WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Requisito WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorRequisito extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Requisito LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Requisito LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorRequisito extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Requisito;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorRequisito extends ControladorBase
             $sql = "SELECT * FROM Requisito WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

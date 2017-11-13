@@ -5,8 +5,9 @@ class ControladorAsistencia extends ControladorBase
 {
    function crear(Asistencia $asistencia)
    {
-      $sql = "INSERT INTO Asistencia (idMatriculaAsignatura,fecha,horas) VALUES ('$asistencia->idMatriculaAsignatura','$asistencia->fecha','$asistencia->horas');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Asistencia (idMatriculaAsignatura,fecha,horas) VALUES (?,?,?);";
+      $parametros = array($asistencia->idMatriculaAsignatura,$asistencia->fecha,$asistencia->horas);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorAsistencia extends ControladorBase
 
    function actualizar(Asistencia $asistencia)
    {
-      $sql = "UPDATE Asistencia SET idMatriculaAsignatura = '$asistencia->idMatriculaAsignatura',fecha = '$asistencia->fecha',horas = '$asistencia->horas' WHERE id = $asistencia->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($asistencia->idMatriculaAsignatura,$asistencia->fecha,$asistencia->horas,$asistencia->id);
+      $sql = "UPDATE Asistencia SET idMatriculaAsignatura = '$asistencia->?',fecha = '$asistencia->?',horas = '$asistencia->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorAsistencia extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Asistencia WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Asistencia WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorAsistencia extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Asistencia;";
       }else{
-         $sql = "SELECT * FROM Asistencia WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Asistencia WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorAsistencia extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Asistencia LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Asistencia LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorAsistencia extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Asistencia;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorAsistencia extends ControladorBase
             $sql = "SELECT * FROM Asistencia WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

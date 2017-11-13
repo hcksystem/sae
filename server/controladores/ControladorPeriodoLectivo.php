@@ -5,8 +5,9 @@ class ControladorPeriodoLectivo extends ControladorBase
 {
    function crear(PeriodoLectivo $periodolectivo)
    {
-      $sql = "INSERT INTO PeriodoLectivo (descripcion,fechaInicio,fechaFin,matriculable,codigo) VALUES ('$periodolectivo->descripcion','$periodolectivo->fechaInicio','$periodolectivo->fechaFin','$periodolectivo->matriculable','$periodolectivo->codigo');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO PeriodoLectivo (descripcion,fechaInicio,fechaFin,matriculable,codigo) VALUES (?,?,?,?,?);";
+      $parametros = array($periodolectivo->descripcion,$periodolectivo->fechaInicio,$periodolectivo->fechaFin,$periodolectivo->matriculable,$periodolectivo->codigo);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorPeriodoLectivo extends ControladorBase
 
    function actualizar(PeriodoLectivo $periodolectivo)
    {
-      $sql = "UPDATE PeriodoLectivo SET descripcion = '$periodolectivo->descripcion',fechaInicio = '$periodolectivo->fechaInicio',fechaFin = '$periodolectivo->fechaFin',matriculable = '$periodolectivo->matriculable',codigo = '$periodolectivo->codigo' WHERE id = $periodolectivo->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($periodolectivo->descripcion,$periodolectivo->fechaInicio,$periodolectivo->fechaFin,$periodolectivo->matriculable,$periodolectivo->codigo,$periodolectivo->id);
+      $sql = "UPDATE PeriodoLectivo SET descripcion = '$periodolectivo->?',fechaInicio = '$periodolectivo->?',fechaFin = '$periodolectivo->?',matriculable = '$periodolectivo->?',codigo = '$periodolectivo->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorPeriodoLectivo extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM PeriodoLectivo WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM PeriodoLectivo WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorPeriodoLectivo extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM PeriodoLectivo;";
       }else{
-         $sql = "SELECT * FROM PeriodoLectivo WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM PeriodoLectivo WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorPeriodoLectivo extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM PeriodoLectivo LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM PeriodoLectivo LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorPeriodoLectivo extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM PeriodoLectivo;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorPeriodoLectivo extends ControladorBase
             $sql = "SELECT * FROM PeriodoLectivo WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

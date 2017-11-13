@@ -5,8 +5,9 @@ class ControladorRoles extends ControladorBase
 {
    function crear(Roles $roles)
    {
-      $sql = "INSERT INTO Roles (descripcion,acceso) VALUES ('$roles->descripcion','$roles->acceso');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Roles (descripcion,acceso) VALUES (?,?);";
+      $parametros = array($roles->descripcion,$roles->acceso);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorRoles extends ControladorBase
 
    function actualizar(Roles $roles)
    {
-      $sql = "UPDATE Roles SET descripcion = '$roles->descripcion',acceso = '$roles->acceso' WHERE id = $roles->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($roles->descripcion,$roles->acceso,$roles->id);
+      $sql = "UPDATE Roles SET descripcion = '$roles->?',acceso = '$roles->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorRoles extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Roles WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Roles WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorRoles extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Roles;";
       }else{
-         $sql = "SELECT * FROM Roles WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Roles WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorRoles extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Roles LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Roles LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorRoles extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Roles;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorRoles extends ControladorBase
             $sql = "SELECT * FROM Roles WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

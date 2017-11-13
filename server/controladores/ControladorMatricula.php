@@ -5,8 +5,9 @@ class ControladorMatricula extends ControladorBase
 {
    function crear(Matricula $matricula)
    {
-      $sql = "INSERT INTO Matricula (codigo,fecha,idPeriodoLectivo,idPersona,idCarrera,numeroMatricula,folio,idJornada) VALUES ('$matricula->codigo','$matricula->fecha','$matricula->idPeriodoLectivo','$matricula->idPersona','$matricula->idCarrera','$matricula->numeroMatricula','$matricula->folio','$matricula->idJornada');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Matricula (codigo,fecha,idPeriodoLectivo,idPersona,idCarrera,numeroMatricula,folio,idJornada) VALUES (?,?,?,?,?,?,?,?);";
+      $parametros = array($matricula->codigo,$matricula->fecha,$matricula->idPeriodoLectivo,$matricula->idPersona,$matricula->idCarrera,$matricula->numeroMatricula,$matricula->folio,$matricula->idJornada);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorMatricula extends ControladorBase
 
    function actualizar(Matricula $matricula)
    {
-      $sql = "UPDATE Matricula SET codigo = '$matricula->codigo',fecha = '$matricula->fecha',idPeriodoLectivo = '$matricula->idPeriodoLectivo',idPersona = '$matricula->idPersona',idCarrera = '$matricula->idCarrera',numeroMatricula = '$matricula->numeroMatricula',folio = '$matricula->folio',idJornada = '$matricula->idJornada' WHERE id = $matricula->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($matricula->codigo,$matricula->fecha,$matricula->idPeriodoLectivo,$matricula->idPersona,$matricula->idCarrera,$matricula->numeroMatricula,$matricula->folio,$matricula->idJornada,$matricula->id);
+      $sql = "UPDATE Matricula SET codigo = '$matricula->?',fecha = '$matricula->?',idPeriodoLectivo = '$matricula->?',idPersona = '$matricula->?',idCarrera = '$matricula->?',numeroMatricula = '$matricula->?',folio = '$matricula->?',idJornada = '$matricula->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorMatricula extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Matricula WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Matricula WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorMatricula extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Matricula;";
       }else{
-         $sql = "SELECT * FROM Matricula WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Matricula WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorMatricula extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Matricula LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Matricula LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorMatricula extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Matricula;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorMatricula extends ControladorBase
             $sql = "SELECT * FROM Matricula WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

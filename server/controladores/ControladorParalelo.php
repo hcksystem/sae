@@ -5,8 +5,9 @@ class ControladorParalelo extends ControladorBase
 {
    function crear(Paralelo $paralelo)
    {
-      $sql = "INSERT INTO Paralelo (descripcion) VALUES ('$paralelo->descripcion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Paralelo (descripcion) VALUES (?);";
+      $parametros = array($paralelo->descripcion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorParalelo extends ControladorBase
 
    function actualizar(Paralelo $paralelo)
    {
-      $sql = "UPDATE Paralelo SET descripcion = '$paralelo->descripcion' WHERE id = $paralelo->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($paralelo->descripcion,$paralelo->id);
+      $sql = "UPDATE Paralelo SET descripcion = '$paralelo->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorParalelo extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Paralelo WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Paralelo WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorParalelo extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Paralelo;";
       }else{
-         $sql = "SELECT * FROM Paralelo WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Paralelo WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorParalelo extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Paralelo LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Paralelo LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorParalelo extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Paralelo;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorParalelo extends ControladorBase
             $sql = "SELECT * FROM Paralelo WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

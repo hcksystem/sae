@@ -5,8 +5,9 @@ class ControladorTipoRequisito extends ControladorBase
 {
    function crear(TipoRequisito $tiporequisito)
    {
-      $sql = "INSERT INTO TipoRequisito (descripcion) VALUES ('$tiporequisito->descripcion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO TipoRequisito (descripcion) VALUES (?);";
+      $parametros = array($tiporequisito->descripcion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorTipoRequisito extends ControladorBase
 
    function actualizar(TipoRequisito $tiporequisito)
    {
-      $sql = "UPDATE TipoRequisito SET descripcion = '$tiporequisito->descripcion' WHERE id = $tiporequisito->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($tiporequisito->descripcion,$tiporequisito->id);
+      $sql = "UPDATE TipoRequisito SET descripcion = '$tiporequisito->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorTipoRequisito extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM TipoRequisito WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM TipoRequisito WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorTipoRequisito extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM TipoRequisito;";
       }else{
-         $sql = "SELECT * FROM TipoRequisito WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM TipoRequisito WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorTipoRequisito extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM TipoRequisito LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM TipoRequisito LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorTipoRequisito extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM TipoRequisito;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorTipoRequisito extends ControladorBase
             $sql = "SELECT * FROM TipoRequisito WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

@@ -5,8 +5,9 @@ class ControladorUbicacion extends ControladorBase
 {
    function crear(Ubicacion $ubicacion)
    {
-      $sql = "INSERT INTO Ubicacion (codigo,descripcion,codigoPadre) VALUES ('$ubicacion->codigo','$ubicacion->descripcion','$ubicacion->codigoPadre');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Ubicacion (codigo,descripcion,codigoPadre) VALUES (?,?,?);";
+      $parametros = array($ubicacion->codigo,$ubicacion->descripcion,$ubicacion->codigoPadre);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorUbicacion extends ControladorBase
 
    function actualizar(Ubicacion $ubicacion)
    {
-      $sql = "UPDATE Ubicacion SET codigo = '$ubicacion->codigo',descripcion = '$ubicacion->descripcion',codigoPadre = '$ubicacion->codigoPadre' WHERE id = $ubicacion->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($ubicacion->codigo,$ubicacion->descripcion,$ubicacion->codigoPadre,$ubicacion->id);
+      $sql = "UPDATE Ubicacion SET codigo = '$ubicacion->?',descripcion = '$ubicacion->?',codigoPadre = '$ubicacion->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorUbicacion extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Ubicacion WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Ubicacion WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorUbicacion extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Ubicacion;";
       }else{
-         $sql = "SELECT * FROM Ubicacion WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Ubicacion WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorUbicacion extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Ubicacion LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Ubicacion LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorUbicacion extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Ubicacion;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorUbicacion extends ControladorBase
             $sql = "SELECT * FROM Ubicacion WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

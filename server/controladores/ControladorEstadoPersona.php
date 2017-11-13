@@ -5,8 +5,9 @@ class ControladorEstadoPersona extends ControladorBase
 {
    function crear(EstadoPersona $estadopersona)
    {
-      $sql = "INSERT INTO EstadoPersona (idPersona,datosCompletos,edicionDeDatos,encuestaFactoresAsociados) VALUES ('$estadopersona->idPersona','$estadopersona->datosCompletos','$estadopersona->edicionDeDatos','$estadopersona->encuestaFactoresAsociados');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO EstadoPersona (idPersona,datosCompletos,edicionDeDatos,encuestaFactoresAsociados) VALUES (?,?,?,?);";
+      $parametros = array($estadopersona->idPersona,$estadopersona->datosCompletos,$estadopersona->edicionDeDatos,$estadopersona->encuestaFactoresAsociados);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorEstadoPersona extends ControladorBase
 
    function actualizar(EstadoPersona $estadopersona)
    {
-      $sql = "UPDATE EstadoPersona SET idPersona = '$estadopersona->idPersona',datosCompletos = '$estadopersona->datosCompletos',edicionDeDatos = '$estadopersona->edicionDeDatos',encuestaFactoresAsociados = '$estadopersona->encuestaFactoresAsociados' WHERE id = $estadopersona->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($estadopersona->idPersona,$estadopersona->datosCompletos,$estadopersona->edicionDeDatos,$estadopersona->encuestaFactoresAsociados,$estadopersona->id);
+      $sql = "UPDATE EstadoPersona SET idPersona = '$estadopersona->?',datosCompletos = '$estadopersona->?',edicionDeDatos = '$estadopersona->?',encuestaFactoresAsociados = '$estadopersona->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorEstadoPersona extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM EstadoPersona WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM EstadoPersona WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorEstadoPersona extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM EstadoPersona;";
       }else{
-         $sql = "SELECT * FROM EstadoPersona WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM EstadoPersona WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorEstadoPersona extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM EstadoPersona LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM EstadoPersona LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorEstadoPersona extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM EstadoPersona;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorEstadoPersona extends ControladorBase
             $sql = "SELECT * FROM EstadoPersona WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

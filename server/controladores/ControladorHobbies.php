@@ -5,8 +5,9 @@ class ControladorHobbies extends ControladorBase
 {
    function crear(Hobbies $hobbies)
    {
-      $sql = "INSERT INTO Hobbies (idPersona,descripcion) VALUES ('$hobbies->idPersona','$hobbies->descripcion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Hobbies (idPersona,descripcion) VALUES (?,?);";
+      $parametros = array($hobbies->idPersona,$hobbies->descripcion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorHobbies extends ControladorBase
 
    function actualizar(Hobbies $hobbies)
    {
-      $sql = "UPDATE Hobbies SET idPersona = '$hobbies->idPersona',descripcion = '$hobbies->descripcion' WHERE id = $hobbies->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($hobbies->idPersona,$hobbies->descripcion,$hobbies->id);
+      $sql = "UPDATE Hobbies SET idPersona = '$hobbies->?',descripcion = '$hobbies->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorHobbies extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Hobbies WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Hobbies WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorHobbies extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Hobbies;";
       }else{
-         $sql = "SELECT * FROM Hobbies WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Hobbies WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorHobbies extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Hobbies LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Hobbies LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorHobbies extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Hobbies;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorHobbies extends ControladorBase
             $sql = "SELECT * FROM Hobbies WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

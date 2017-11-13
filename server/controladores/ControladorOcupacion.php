@@ -5,8 +5,9 @@ class ControladorOcupacion extends ControladorBase
 {
    function crear(Ocupacion $ocupacion)
    {
-      $sql = "INSERT INTO Ocupacion (descripcion) VALUES ('$ocupacion->descripcion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Ocupacion (descripcion) VALUES (?);";
+      $parametros = array($ocupacion->descripcion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorOcupacion extends ControladorBase
 
    function actualizar(Ocupacion $ocupacion)
    {
-      $sql = "UPDATE Ocupacion SET descripcion = '$ocupacion->descripcion' WHERE id = $ocupacion->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($ocupacion->descripcion,$ocupacion->id);
+      $sql = "UPDATE Ocupacion SET descripcion = '$ocupacion->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorOcupacion extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Ocupacion WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Ocupacion WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorOcupacion extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Ocupacion;";
       }else{
-         $sql = "SELECT * FROM Ocupacion WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Ocupacion WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorOcupacion extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Ocupacion LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Ocupacion LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorOcupacion extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Ocupacion;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorOcupacion extends ControladorBase
             $sql = "SELECT * FROM Ocupacion WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

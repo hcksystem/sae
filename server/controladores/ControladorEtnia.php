@@ -5,8 +5,9 @@ class ControladorEtnia extends ControladorBase
 {
    function crear(Etnia $etnia)
    {
-      $sql = "INSERT INTO Etnia (descripcion) VALUES ('$etnia->descripcion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Etnia (descripcion) VALUES (?);";
+      $parametros = array($etnia->descripcion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorEtnia extends ControladorBase
 
    function actualizar(Etnia $etnia)
    {
-      $sql = "UPDATE Etnia SET descripcion = '$etnia->descripcion' WHERE id = $etnia->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($etnia->descripcion,$etnia->id);
+      $sql = "UPDATE Etnia SET descripcion = '$etnia->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorEtnia extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Etnia WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Etnia WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorEtnia extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Etnia;";
       }else{
-         $sql = "SELECT * FROM Etnia WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Etnia WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorEtnia extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Etnia LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Etnia LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorEtnia extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Etnia;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorEtnia extends ControladorBase
             $sql = "SELECT * FROM Etnia WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

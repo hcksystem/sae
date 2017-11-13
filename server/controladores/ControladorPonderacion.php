@@ -5,8 +5,9 @@ class ControladorPonderacion extends ControladorBase
 {
    function crear(Ponderacion $ponderacion)
    {
-      $sql = "INSERT INTO Ponderacion (idCategoria,idParcial,porcentaje) VALUES ('$ponderacion->idCategoria','$ponderacion->idParcial','$ponderacion->porcentaje');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Ponderacion (idCategoria,idParcial,porcentaje) VALUES (?,?,?);";
+      $parametros = array($ponderacion->idCategoria,$ponderacion->idParcial,$ponderacion->porcentaje);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorPonderacion extends ControladorBase
 
    function actualizar(Ponderacion $ponderacion)
    {
-      $sql = "UPDATE Ponderacion SET idCategoria = '$ponderacion->idCategoria',idParcial = '$ponderacion->idParcial',porcentaje = '$ponderacion->porcentaje' WHERE id = $ponderacion->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($ponderacion->idCategoria,$ponderacion->idParcial,$ponderacion->porcentaje,$ponderacion->id);
+      $sql = "UPDATE Ponderacion SET idCategoria = '$ponderacion->?',idParcial = '$ponderacion->?',porcentaje = '$ponderacion->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorPonderacion extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Ponderacion WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Ponderacion WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorPonderacion extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Ponderacion;";
       }else{
-         $sql = "SELECT * FROM Ponderacion WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Ponderacion WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorPonderacion extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Ponderacion LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Ponderacion LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorPonderacion extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Ponderacion;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorPonderacion extends ControladorBase
             $sql = "SELECT * FROM Ponderacion WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

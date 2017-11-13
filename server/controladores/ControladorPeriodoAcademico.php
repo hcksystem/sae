@@ -5,8 +5,9 @@ class ControladorPeriodoAcademico extends ControladorBase
 {
    function crear(PeriodoAcademico $periodoacademico)
    {
-      $sql = "INSERT INTO PeriodoAcademico (descripcion) VALUES ('$periodoacademico->descripcion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO PeriodoAcademico (descripcion) VALUES (?);";
+      $parametros = array($periodoacademico->descripcion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorPeriodoAcademico extends ControladorBase
 
    function actualizar(PeriodoAcademico $periodoacademico)
    {
-      $sql = "UPDATE PeriodoAcademico SET descripcion = '$periodoacademico->descripcion' WHERE id = $periodoacademico->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($periodoacademico->descripcion,$periodoacademico->id);
+      $sql = "UPDATE PeriodoAcademico SET descripcion = '$periodoacademico->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorPeriodoAcademico extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM PeriodoAcademico WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM PeriodoAcademico WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorPeriodoAcademico extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM PeriodoAcademico;";
       }else{
-         $sql = "SELECT * FROM PeriodoAcademico WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM PeriodoAcademico WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorPeriodoAcademico extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM PeriodoAcademico LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM PeriodoAcademico LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorPeriodoAcademico extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM PeriodoAcademico;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorPeriodoAcademico extends ControladorBase
             $sql = "SELECT * FROM PeriodoAcademico WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }

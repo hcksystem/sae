@@ -5,8 +5,9 @@ class ControladorMalla extends ControladorBase
 {
    function crear(Malla $malla)
    {
-      $sql = "INSERT INTO Malla (fechaMallaInicio,fechaMallaFin,idCarrera,idDocResolucion) VALUES ('$malla->fechaMallaInicio','$malla->fechaMallaFin','$malla->idCarrera','$malla->idDocResolucion');";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $sql = "INSERT INTO Malla (fechaMallaInicio,fechaMallaFin,idCarrera,idDocResolucion) VALUES (?,?,?,?);";
+      $parametros = array($malla->fechaMallaInicio,$malla->fechaMallaFin,$malla->idCarrera,$malla->idDocResolucion);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -15,8 +16,9 @@ class ControladorMalla extends ControladorBase
 
    function actualizar(Malla $malla)
    {
-      $sql = "UPDATE Malla SET fechaMallaInicio = '$malla->fechaMallaInicio',fechaMallaFin = '$malla->fechaMallaFin',idCarrera = '$malla->idCarrera',idDocResolucion = '$malla->idDocResolucion' WHERE id = $malla->id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($malla->fechaMallaInicio,$malla->fechaMallaFin,$malla->idCarrera,$malla->idDocResolucion,$malla->id);
+      $sql = "UPDATE Malla SET fechaMallaInicio = '$malla->?',fechaMallaFin = '$malla->?',idCarrera = '$malla->?',idDocResolucion = '$malla->?' WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -25,8 +27,9 @@ class ControladorMalla extends ControladorBase
 
    function borrar(int $id)
    {
-      $sql = "DELETE FROM Malla WHERE id = $id;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($id);
+      $sql = "DELETE FROM Malla WHERE id = ?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -38,9 +41,10 @@ class ControladorMalla extends ControladorBase
       if ($id==""){
          $sql = "SELECT * FROM Malla;";
       }else{
-         $sql = "SELECT * FROM Malla WHERE id = $id;";
+      $parametros = array($id);
+         $sql = "SELECT * FROM Malla WHERE id = ?;";
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -50,8 +54,9 @@ class ControladorMalla extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Malla LIMIT $desde,$registrosPorPagina;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $parametros = array($desde,$registrosPorPagina);
+      $sql ="SELECT * FROM Malla LIMIT ?,?;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -61,7 +66,7 @@ class ControladorMalla extends ControladorBase
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Malla;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
@@ -84,7 +89,7 @@ class ControladorMalla extends ControladorBase
             $sql = "SELECT * FROM Malla WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
-      $respuesta = $this->conexion->ejecutarConsulta($sql);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       foreach($respuesta as $fila){
          $toReturn[] = $fila;
       }
