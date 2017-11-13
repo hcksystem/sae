@@ -28,7 +28,9 @@
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)"><span>{{ 'Submenu' | translate }}</span></a>
+                        <a [routerLink]="['/estudiante']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-file-o"></i>&nbsp;{{ 'Estudiante' | translate }}
+                        </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)"><span>{{ 'Submenu' | translate }}</span></a>
