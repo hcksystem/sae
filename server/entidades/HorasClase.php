@@ -7,7 +7,7 @@ class HorasClase
    public $fecha;
    public $horas;
 
-   function __construct($id,$idAsignatura,$idParalelo,$fecha,$horas){
+   function __construct(int $id,int $idAsignatura,int $idParalelo,DateTime $fecha,int $horas){
       $this->id = $id;
       $this->idAsignatura = $idAsignatura;
       $this->idParalelo = $idParalelo;

@@ -8,7 +8,7 @@ class Cuenta
    public $idPersona;
    public $clave;
 
-   function __construct($id,$nickname,$idUsuario,$idRol,$idPersona,$clave){
+   function __construct(int $id,string $nickname,string $idUsuario,int $idRol,int $idPersona,blob $clave){
       $this->id = $id;
       $this->nickname = $nickname;
       $this->idUsuario = $idUsuario;

@@ -8,7 +8,7 @@ class PeriodoLectivo
    public $matriculable;
    public $codigo;
 
-   function __construct($id,$descripcion,$fechaInicio,$fechaFin,$matriculable,$codigo){
+   function __construct(int $id,string $descripcion,DateTime $fechaInicio,DateTime $fechaFin,tinyint $matriculable,string $codigo){
       $this->id = $id;
       $this->descripcion = $descripcion;
       $this->fechaInicio = $fechaInicio;

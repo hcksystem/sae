@@ -10,7 +10,7 @@ class Carrera
    public $coordinador;
    public $siglas;
 
-   function __construct($id,$resolucion,$nombre,$descripcion,$idModalidad,$idInstituto,$coordinador,$siglas){
+   function __construct(int $id,string $resolucion,string $nombre,string $descripcion,int $idModalidad,int $idInstituto,string $coordinador,string $siglas){
       $this->id = $id;
       $this->resolucion = $resolucion;
       $this->nombre = $nombre;

@@ -7,7 +7,7 @@ class Instituto
    public $vicerector;
    public $color;
 
-   function __construct($id,$descripcion,$rector,$vicerector,$color){
+   function __construct(int $id,string $descripcion,string $rector,string $vicerector,string $color){
       $this->id = $id;
       $this->descripcion = $descripcion;
       $this->rector = $rector;

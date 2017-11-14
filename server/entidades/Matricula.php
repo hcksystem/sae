@@ -11,7 +11,7 @@ class Matricula
    public $folio;
    public $idJornada;
 
-   function __construct($id,$codigo,$fecha,$idPeriodoLectivo,$idPersona,$idCarrera,$numeroMatricula,$folio,$idJornada){
+   function __construct(int $id,string $codigo,DateTime $fecha,int $idPeriodoLectivo,int $idPersona,int $idCarrera,int $numeroMatricula,string $folio,int $idJornada){
       $this->id = $id;
       $this->codigo = $codigo;
       $this->fecha = $fecha;

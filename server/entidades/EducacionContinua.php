@@ -9,7 +9,7 @@ class EducacionContinua
    public $idTipoEducacionContinua;
    public $lugar;
 
-   function __construct($id,$descripcion,$horas,$fechaInicio,$fechaFin,$idTipoEducacionContinua,$lugar){
+   function __construct(int $id,string $descripcion,int $horas,DateTime $fechaInicio,DateTime $fechaFin,string $idTipoEducacionContinua,string $lugar){
       $this->id = $id;
       $this->descripcion = $descripcion;
       $this->horas = $horas;

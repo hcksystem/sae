@@ -6,7 +6,7 @@ class Ponderacion
    public $idParcial;
    public $porcentaje;
 
-   function __construct($id,$idCategoria,$idParcial,$porcentaje){
+   function __construct(int $id,int $idCategoria,int $idParcial,double $porcentaje){
       $this->id = $id;
       $this->idCategoria = $idCategoria;
       $this->idParcial = $idParcial;

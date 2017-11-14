@@ -6,7 +6,7 @@ class Requisito
    public $idAsignaturaIndependiente;
    public $idTipoRequisito;
 
-   function __construct($id,$idAsignaturaDependiente,$idAsignaturaIndependiente,$idTipoRequisito){
+   function __construct(int $id,int $idAsignaturaDependiente,int $idAsignaturaIndependiente,string $idTipoRequisito){
       $this->id = $id;
       $this->idAsignaturaDependiente = $idAsignaturaDependiente;
       $this->idAsignaturaIndependiente = $idAsignaturaIndependiente;
