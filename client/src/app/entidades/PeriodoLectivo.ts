@@ -3,6 +3,6 @@ export class PeriodoLectivo {
    descripcion: string;
    fechaInicio: Date;
    fechaFin: Date;
-   matriculable: tinyint;
+   matriculable: number;
    codigo: string;
 }

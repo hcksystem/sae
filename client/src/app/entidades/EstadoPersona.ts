@@ -1,7 +1,7 @@
 export class EstadoPersona {
    id: number;
    idPersona: number;
-   datosCompletos: tinyint;
+   datosCompletos: number;
    edicionDeDatos: string;
-   encuestaFactoresAsociados: tinyint;
+   encuestaFactoresAsociados: number;
 }
