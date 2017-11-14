@@ -1,8 +1,8 @@
 export class ExperienciaLaboral {
    id: number;
    idPersona: number;
-   fechaInicio: datetime;
-   fechaFin: datetime;
+   fechaInicio: Date;
+   fechaFin: Date;
    descripcionCargo: string;
    descripcionFunciones: string;
    nombreEmpresa: string;

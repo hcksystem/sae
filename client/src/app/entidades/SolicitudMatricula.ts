@@ -1,7 +1,7 @@
 export class SolicitudMatricula {
    id: number;
    codigo: string;
-   fecha: datetime;
+   fecha: Date;
    idPeriodoLectivo: number;
    idEstadoSolicitud: number;
    idPersona: number;

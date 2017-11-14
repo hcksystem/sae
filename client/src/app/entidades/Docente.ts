@@ -1,6 +1,6 @@
 export class Docente {
    id: number;
    idPersona: number;
-   fechaInicio: datetime;
+   fechaInicio: Date;
    idEstado: number;
 }

@@ -1,7 +1,7 @@
 export class Malla {
    id: number;
-   fechaMallaInicio: datetime;
-   fechaMallaFin: datetime;
+   fechaMallaInicio: Date;
+   fechaMallaFin: Date;
    idCarrera: number;
    idDocResolucion: number;
 }

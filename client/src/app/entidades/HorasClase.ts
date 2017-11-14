@@ -2,6 +2,6 @@ export class HorasClase {
    id: number;
    idAsignatura: number;
    idParalelo: number;
-   fecha: datetime;
+   fecha: Date;
    horas: number;
 }

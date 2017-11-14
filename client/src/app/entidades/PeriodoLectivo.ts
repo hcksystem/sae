@@ -1,8 +1,8 @@
 export class PeriodoLectivo {
    id: number;
    descripcion: string;
-   fechaInicio: datetime;
-   fechaFin: datetime;
+   fechaInicio: Date;
+   fechaFin: Date;
    matriculable: tinyint;
    codigo: string;
 }

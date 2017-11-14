@@ -2,8 +2,8 @@ export class EducacionContinua {
    id: number;
    descripcion: string;
    horas: number;
-   fechaInicio: datetime;
-   fechaFin: datetime;
+   fechaInicio: Date;
+   fechaFin: Date;
    idTipoEducacionContinua: string;
    lugar: string;
 }

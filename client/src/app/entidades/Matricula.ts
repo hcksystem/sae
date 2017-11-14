@@ -1,7 +1,7 @@
 export class Matricula {
    id: number;
    codigo: string;
-   fecha: datetime;
+   fecha: Date;
    idPeriodoLectivo: number;
    idPersona: number;
    idCarrera: number;
