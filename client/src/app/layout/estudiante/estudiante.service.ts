@@ -8,14 +8,14 @@ import { Estudiante } from './estudiante';
 @Injectable()
 export class EstudianteService {
 
-    private headers = new Headers({ 'Content-Type': 'application/json' });
-    private urlBase = '../api/estudiante';  // URL to web api
+    private headers = new Headers({ 'Content-Type': 'application/jsonp', 'Access-Control-Allow-Origin': '*' });
+    private urlBase = 'http://localhost:62858/Api/values'; // '../api/estudiante';  // URL to web api
 
     constructor(private http: Http) {
+    }
 
-        function baseUrl(): string {
-            return this.urlBase;
-        }
+    baseUrl(): string {
+        return this.urlBase;
     }
 
     getAll(): Promise<Estudiante[]> {
