@@ -77,7 +77,8 @@ class ControladorPonderacion extends ControladorBase
    {
       switch ($tipoFiltro){
          case "coincide":
-            $sql = "SELECT * FROM Ponderacion WHERE $nombreColumna = '$filtro';";
+            $parametros = array($filtro);
+            $sql = "SELECT * FROM Ponderacion WHERE $nombreColumna = ?;";
             break;
          case "inicia":
             $sql = "SELECT * FROM Ponderacion WHERE $nombreColumna LIKE '$filtro%';";

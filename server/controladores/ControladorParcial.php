@@ -77,7 +77,8 @@ class ControladorParcial extends ControladorBase
    {
       switch ($tipoFiltro){
          case "coincide":
-            $sql = "SELECT * FROM Parcial WHERE $nombreColumna = '$filtro';";
+            $parametros = array($filtro);
+            $sql = "SELECT * FROM Parcial WHERE $nombreColumna = ?;";
             break;
          case "inicia":
             $sql = "SELECT * FROM Parcial WHERE $nombreColumna LIKE '$filtro%';";

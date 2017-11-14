@@ -77,7 +77,8 @@ class ControladorJornada extends ControladorBase
    {
       switch ($tipoFiltro){
          case "coincide":
-            $sql = "SELECT * FROM Jornada WHERE $nombreColumna = '$filtro';";
+            $parametros = array($filtro);
+            $sql = "SELECT * FROM Jornada WHERE $nombreColumna = ?;";
             break;
          case "inicia":
             $sql = "SELECT * FROM Jornada WHERE $nombreColumna LIKE '$filtro%';";

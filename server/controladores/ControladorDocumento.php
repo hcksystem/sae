@@ -77,7 +77,8 @@ class ControladorDocumento extends ControladorBase
    {
       switch ($tipoFiltro){
          case "coincide":
-            $sql = "SELECT * FROM Documento WHERE $nombreColumna = '$filtro';";
+            $parametros = array($filtro);
+            $sql = "SELECT * FROM Documento WHERE $nombreColumna = ?;";
             break;
          case "inicia":
             $sql = "SELECT * FROM Documento WHERE $nombreColumna LIKE '$filtro%';";
