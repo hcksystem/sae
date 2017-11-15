@@ -9,7 +9,7 @@ import { Genero } from '../entidades/Genero';
 export class GeneroService {
 
     private headers = new Headers({ 'Content-Type': 'application/jsonp', 'Access-Control-Allow-Origin': '*' });
-    private urlBase = 'http://localhost:62858/Api/values'; // '../api/Genero';  // URL to web api
+    private urlBase = 'http://localhost/sae/server/genero/'; // '../api/Genero';  // URL to web api
 
     constructor(private http: Http) {
     }

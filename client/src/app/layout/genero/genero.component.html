@@ -38,7 +38,7 @@
                         </th>
                         <th>
                             <span>
-                                <strong>Nombre</strong>
+                                <strong>Descripción</strong>
                             </span>
                         </th>
                     </tr>
@@ -46,7 +46,7 @@
                 <tbody>
                     <tr *ngFor="let actual of entidades" (click)="onSelect(actual)" [class.selected]="actual === entidadSeleccionada">
                         <td>{{actual.id}}</td>
-                        <td>{{actual.nombre}}</td>
+                        <td>{{actual.descripcion}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -60,7 +60,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">
                             <span *ngIf="entidadSeleccionada.id != 0">
-                                Edición del género {{entidadSeleccionada.Nombre | uppercase}}
+                                Edición del género {{entidadSeleccionada.descripcion | uppercase}}
                             </span>
                             <span *ngIf="entidadSeleccionada.id === 0">
                                 Creación del género
@@ -72,13 +72,13 @@
                             <div class="form-group row">
                                 <label for="id" class="col-sm-2 col-form-label">Identificador</label>
                                 <div class="col-sm-10">
-                                    <input type="text" readonly class="form-control-plaintext" id="id" [(ngModel)]="entidadSeleccionada.id">
+                                    <input type="text" readonly class="form-control-plaintext" id="id"><!-- *ngModel="entidadSeleccionada.id">-->
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
+                                <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="descripcion" placeholder="descripcion" [(ngModel)]="entidadSeleccionada.descripcion">
+                                    <input type="text" class="form-control" id="descripcion" placeholder="Descripción"><!-- *ngModel="entidadSeleccionada.descripcion">-->
                                 </div>
                             </div>
                         </form>
