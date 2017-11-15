@@ -1,4 +1,5 @@
 <?php
 include_once('../routers/RouterPrincipal.php');
+header("Access-Control-Allow-Origin: *");
 $r1 = new RouterPrincipal();
-$r1->route();
+echo $r1->route();
