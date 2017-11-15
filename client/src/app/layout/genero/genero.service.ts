@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Genero } from './genero';
+import { Genero } from '../entidades/Genero';
 
 @Injectable()
 export class GeneroService {
@@ -20,6 +20,14 @@ export class GeneroService {
 
     getAll(): Promise<Genero[]> {
         return this.http.get(this.urlBase)
+            .toPromise()
+            .then(response =>
+                response.json() as Genero[])
+            .catch(this.handleError);
+    }
+
+    getPagina(pagina: number, tamanoPagina: number): Promise<Genero[]> {
+        return this.http.get(this.urlBase + '?pagina=' + pagina + '&tamanoPagina=' + tamanoPagina)
             .toPromise()
             .then(response =>
                 response.json() as Genero[])
@@ -54,7 +62,7 @@ export class GeneroService {
     }
 
     update(entidadTransporte: Genero): Promise<Genero> {
-        const url = `${this.urlBase}/${entidadTransporte.GeneroId}`;
+        const url = `${this.urlBase}/${entidadTransporte.id}`;
         return this.http
             .put(url, JSON.stringify(entidadTransporte), { headers: this.headers })
             .toPromise()
