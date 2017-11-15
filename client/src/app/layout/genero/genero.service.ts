@@ -10,7 +10,7 @@ export class GeneroService {
 
     private headers = new Headers({ 'Content-Type': 'application/jsonp', 'Access-Control-Allow-Origin': '*' });
     // private urlBase = 'http://172.16.11.70/sae/server/genero/';
-    private urlBase = '../api/Genero';
+    private urlBase = 'http://localhost:62858/api/Values';
 
     constructor(private http: Http) {
     }
