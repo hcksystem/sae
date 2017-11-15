@@ -68,13 +68,13 @@
                             <div class="form-group row">
                                 <label for="id" class="col-sm-2 col-form-label">Identificador</label>
                                 <div class="col-sm-10">
-                                    <input type="text" readonly class="form-control-plaintext" id="id"><!-- *ngModel="entidadSeleccionada.id">-->
+                                    <input type="text" readonly class="form-control-plaintext" id="id" [(ngModel)]="entidadSeleccionada.id">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="descripcion" placeholder="Descripción"><!-- *ngModel="entidadSeleccionada.descripcion">-->
+                                    <input type="text" class="form-control" id="descripcion" placeholder="Descripción" [(ngModel)]="entidadSeleccionada.descripcion">-->
                                 </div>
                             </div>
                         </form>
