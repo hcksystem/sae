@@ -1,13 +1,15 @@
 <div class="container">
     <div class="row">
-        <h2 class="page-header text-right" style="margin-top:0px">Catálogo de género</h2>
+        <div class="col-md-12 text-right">
+            <h2 style="margin-top:0px">Catálogo de género</h2>
+        </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="btn-toolbar">
                 <div>
                     <button type="button" class="btn btn-default" (click)="refresh()">
-                        <span class="fa fa-refresh"></span>&nbsp;Refrescar
+                        <span class="fa fa-refresh"></span>&nbsp;Leer
                     </button>
                     <button type="button" class="btn btn-success" (click)="mostrarVentanaEdicion()" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
                         <span class="fa fa-edit"></span>&nbsp;Editar
@@ -42,7 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let actual of entidades" (click)="onSelect(actual)" [ngClass]="{ 'selected': estaSeleccionado(actual) }">
+                    <tr *ngFor="let actual of entidades" (click)="onSelect(actual)">
                         <td>
                             <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                         </td>
