@@ -68,16 +68,16 @@ export class GeneroService {
             .catch(this.handleError);
     }
 
-    create(entidadTransporte: Genero): Promise<Genero> {
+    create(entidadTransporte: Genero): Promise<string> {
         const url = `${this.urlBase+'/crear'}`;
-        return this.http.put(url, JSON.stringify(entidadTransporte), { headers: this.headers })
+        return this.http.post(url, JSON.stringify(entidadTransporte), { headers: this.headers })
             .toPromise()
             .then(response =>
                 response.json())
             .catch(this.handleError);
     }
 
-    update(entidadTransporte: Genero): Promise<Genero> {
+    update(entidadTransporte: Genero): Promise<string> {
         const url = `${this.urlBase+'/actualizar'}`;
         return this.http.put(url, JSON.stringify(entidadTransporte), { headers: this.headers })
             .toPromise()

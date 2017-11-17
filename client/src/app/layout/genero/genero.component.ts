@@ -106,34 +106,34 @@ export class GeneroComponent implements OnInit {
 
     add(entidadNueva: Genero): void {
         this.busy = this.dataService.create(entidadNueva)
-            .then(entidadRespuesta => {
+            .then(respuesta => {
                 //this.entidades.push(entidadRespuesta);
                 //this.entidadSeleccionada = this.crearEntidad();
-                if(entidadRespuesta){
+                if(respuesta){
                     this.toastr.success('La creación fue exitosa', 'Creación');
                 }else{
-                    this.toastr.warning('Se produjo un error', 'Creación');
+                    this.toastr.warning('Se produjo un error INTERNO', 'Creación');
                 }
             })
             .catch(error => {
-                this.toastr.warning('Se produjo un error', 'Creación');
+                this.toastr.warning('Se produjo un error GLOBAL', 'Creación');
             });
     }
 
     update(entidadParaActualizar: Genero): void {
         this.busy = this.dataService.update(entidadParaActualizar)
-            .then(entidadRespuesta => {
+            .then(respuesta => {
                 //const index = this.entidades.findIndex(entidad => entidad.id === entidadRespuesta.id);
                 //this.entidades[index] = entidadRespuesta;
                 //this.entidadSeleccionada = this.crearEntidad();
-                if(entidadRespuesta){
-                    this.toastr.success(JSON.stringify(entidadRespuesta));//'La actualización fue exitosa', 'Actualización');
+                if(respuesta){
+                    this.toastr.success('La actualización fue exitosa', 'Actualización');
                 }else{
-                    this.toastr.warning('Se produjo un error ENTRE', 'Actualización');
+                    this.toastr.warning('Se produjo un error INTERNO', 'Actualización');
                 }
             })
             .catch(error => {
-                this.toastr.warning('Se produjo un error', 'Actualización');
+                this.toastr.warning('Se produjo un error GLOBAL', 'Actualización');
             });
     }
 
