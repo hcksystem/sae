@@ -64,8 +64,7 @@ export class GeneroService {
         const url = `${this.urlBase+'/borrar'}?id=${id}`;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
-            .then(response =>
-                response.json() as boolean)
+            .then(this.quepasa)
             .catch(this.handleError);
     }
 
@@ -73,8 +72,8 @@ export class GeneroService {
         return this.http
             .post(this.urlBase+'/crear', JSON.stringify(entidadTransporte), { headers: this.headers })
             .toPromise()
-            .then(res =>
-                res.json() as Genero)
+            .then(response =>
+                response.json() as boolean)
             .catch(this.handleError);
     }
 
@@ -83,13 +82,17 @@ export class GeneroService {
         return this.http
             .put(url, JSON.stringify(entidadTransporte), { headers: this.headers })
             .toPromise()
-            .then(res =>
-                res.json() as Genero)
+            .then(response =>
+                response.json() as boolean)
             .catch(this.handleError);
     }
 
     handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
+    }
+
+    quepasa(): void {
+        
     }
 }

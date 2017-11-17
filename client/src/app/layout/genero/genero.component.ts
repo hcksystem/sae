@@ -5,6 +5,7 @@ import { Genero } from '../entidades/Genero';
 import { GeneroService } from './genero.service';
 
 import 'rxjs/add/operator/toPromise';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
     selector: 'app-genero',
@@ -106,25 +107,33 @@ export class GeneroComponent implements OnInit {
     add(entidadNueva: Genero): void {
         this.busy = this.dataService.create(entidadNueva)
             .then(entidadRespuesta => {
-                this.entidades.push(entidadRespuesta);
-                this.entidadSeleccionada = this.crearEntidad();
-                this.toastr.success('La creación fue exitosa', 'Creación');
+                //this.entidades.push(entidadRespuesta);
+                //this.entidadSeleccionada = this.crearEntidad();
+                if(entidadRespuesta){
+                    this.toastr.success('La creación fue exitosa', 'Creación');
+                }else{
+                    this.toastr.warning('Se produjo un error', 'Creación');
+                }
             })
             .catch(error => {
-                this.toastr.success('Se produjo un error', 'Creación');
+                this.toastr.warning('Se produjo un error', 'Creación');
             });
     }
 
     update(entidadParaActualizar: Genero): void {
         this.busy = this.dataService.update(entidadParaActualizar)
             .then(entidadRespuesta => {
-                const index = this.entidades.findIndex(entidad => entidad.id === entidadRespuesta.id);
-                this.entidades[index] = entidadRespuesta;
-                this.entidadSeleccionada = this.crearEntidad();
-                this.toastr.success('La actualización fue exitosa', 'Actualización');
+                //const index = this.entidades.findIndex(entidad => entidad.id === entidadRespuesta.id);
+                //this.entidades[index] = entidadRespuesta;
+                //this.entidadSeleccionada = this.crearEntidad();
+                if(entidadRespuesta){
+                    this.toastr.success('La actualización fue exitosa', 'Actualización');
+                }else{
+                    this.toastr.warning('Se produjo un error', 'Actualización');
+                }
             })
             .catch(error => {
-                this.toastr.success('Se produjo un error', 'Actualización');
+                this.toastr.warning('Se produjo un error', 'Actualización');
             });
     }
 
@@ -136,7 +145,7 @@ export class GeneroComponent implements OnInit {
 
         this.busy = this.dataService
             .remove(entidadParaBorrar.id)
-            .then(() => {
+            /*.then(() => {
                 this.entidades = this.entidades.filter(entidad => entidad !== entidadParaBorrar);
                 if (this.entidadSeleccionada === entidadParaBorrar) { this.entidadSeleccionada = this.crearEntidad(); }
                 this.toastr.success('La eliminación fue exitosa', 'Eliminación');
@@ -145,7 +154,17 @@ export class GeneroComponent implements OnInit {
             .catch(() => {
                 this.toastr.success('Se produjo un error', 'Eliminación');
                 return true;
+            });*/
+            .then(entidadRespuesta => {
+                //const index = this.entidades.findIndex(entidad => entidad.id === entidadRespuesta.id);
+                //this.entidades[index] = entidadRespuesta;
+                //this.entidadSeleccionada = this.crearEntidad();
+                this.toastr.success(JSON.stringify(entidadRespuesta));
+            })
+            .catch(error => {
+                this.toastr.warning(JSON.stringify(error));
             });
+
     }
 
     refresh(): void {
