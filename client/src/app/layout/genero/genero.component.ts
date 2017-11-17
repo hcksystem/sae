@@ -6,8 +6,6 @@ import { GeneroService } from './genero.service';
 
 import 'rxjs/add/operator/toPromise';
 
-declare var jQuery: any;
-
 @Component({
     selector: 'app-genero',
     templateUrl: './genero.component.html',
@@ -19,10 +17,19 @@ export class GeneroComponent implements OnInit {
     entidadSeleccionada: Genero;
     pagina: 1;
     tamanoPagina: 20;
+    esVisibleVentanaEdicion: boolean;
 
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private dataService: GeneroService) {
         this.toastr.setRootViewContainerRef(vcr);
+    }
+
+    cerrarVentanaEdicion(): void {
+        this.esVisibleVentanaEdicion = false;
+    }
+
+    mostrarVentanaEdicion(): void {
+        this.esVisibleVentanaEdicion = true;
     }
 
     resetEntidadSeleccionada(): void {
@@ -75,7 +82,7 @@ export class GeneroComponent implements OnInit {
         } else {
             this.update(this.entidadSeleccionada);
         }
-        jQuery('#modal').modal('hide');
+        this.cerrarVentanaEdicion();
     }
 
     crearEntidad(): Genero {
@@ -130,7 +137,7 @@ export class GeneroComponent implements OnInit {
     refresh(): void {
         this.entidades = Genero[0];
         this.entidadSeleccionada = this.crearEntidad();
-        //this.getPagina(this.pagina, this.tamanoPagina);
+        // this.getPagina(this.pagina, this.tamanoPagina);
         this.getAll();
     }
 

@@ -1,7 +1,7 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "project": {
-        "name": "AsistenciaYavirac"
+        "name": "Ignug"
     },
     "apps": [
         {
@@ -24,7 +24,8 @@
                 "styles/app.scss"
             ],
             "scripts": [
-                "../node_modules/chart.js/dist/Chart.js"
+                "../node_modules/chart.js/dist/Chart.js",
+                "../node_modules/ng2-toastr/bundles/ng2-toastr.min.js"
             ],
             "environmentSource": "environments/environment.ts",
             "environments": {

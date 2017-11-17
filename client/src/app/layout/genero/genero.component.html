@@ -9,10 +9,10 @@
                     <button type="button" class="btn btn-default" (click)="refresh()">
                         <span class="fa fa-refresh"></span>&nbsp;Refrescar
                     </button>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
+                    <button type="button" class="btn btn-success" (click)="mostrarVentanaEdicion()" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
                         <span class="fa fa-edit"></span>&nbsp;Editar
                     </button>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal" (click)="resetEntidadSeleccionada()">
+                    <button type="button" class="btn btn-info" (click)="resetEntidadSeleccionada()">
                         <span class="fa fa-plus"></span>&nbsp;Nuevo
                     </button>
                     <button type="button" class="btn btn-danger" (click)="delete(entidadSeleccionada); $event.stopPropagation()" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
@@ -48,51 +48,36 @@
             </table>
         </div>
     </div>
-    <div>
-        <div class="modal fade" id="modal" role="dialog">
-            <div class="modal-dialog" style="width: 70%;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">
-                            <span *ngIf="entidadSeleccionada.id != 0">
-                                Edición del género {{entidadSeleccionada.descripcion | uppercase}}
-                            </span>
-                            <span *ngIf="entidadSeleccionada.id === 0">
-                                Creación del género
-                            </span>
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group row">
-                                <label for="id" class="col-sm-2 col-form-label">Identificador</label>
-                                <div class="col-sm-10">
-                                    <input type="text" readonly class="form-control-plaintext" id="id" name="id" [(ngModel)]="entidadSeleccionada.id">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" [(ngModel)]="entidadSeleccionada.descripcion">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="col-sm-12">
-                            <div class="pull-right">
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-primary" (click)="aceptar()">
-                                        <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
-                                    </button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrar">Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
+    <div class="row" style="margin-top:15px" *ngIf="esVisibleVentanaEdicion">
+        <div class="jumbotron">
+            <h4>
+                <span *ngIf="entidadSeleccionada.id != 0">
+                    Edición del género {{entidadSeleccionada.descripcion | uppercase}}
+                </span>
+                <span *ngIf="entidadSeleccionada.id === 0">
+                    Creación del género
+                </span>
+            </h4>
+            <hr>
+            <form>
+                <div class="form-group row">
+                    <label for="id" class="col-sm-4 col-form-label">Identificador</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="id" name="id" [(ngModel)]="entidadSeleccionada.id">
                     </div>
                 </div>
-            </div>
+                <div class="form-group row">
+                    <label for="descripcion" class="col-sm-4 col-form-label">Descripción</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" [(ngModel)]="entidadSeleccionada.descripcion">
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <button type="button" class="btn btn-primary col-offset-sm-4" (click)="aceptar()">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+            </button>
+            <button type="button" class="btn btn-default" id="cerrar" (click)="cerrarVentanaEdicion()">Cerrar</button>
         </div>
     </div>
 </div>

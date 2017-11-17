@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -9,8 +10,7 @@ import { Genero } from '../entidades/Genero';
 export class GeneroService {
 
     private headers = new Headers({ 'Content-Type': 'application/jsonp', 'Access-Control-Allow-Origin': '*' });
-    // private urlBase = 'http://172.16.11.70/sae/server/genero/';
-    private urlBase = 'http://localhost:62858/api/Values';
+    private urlBase = environment.apiUrl + 'genero';
 
     constructor(private http: Http) {
     }
