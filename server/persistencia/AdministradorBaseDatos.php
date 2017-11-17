@@ -43,14 +43,18 @@ class AdministradorBaseDatos
     }
 
     private function consultar($sql,$parametros){
-        $stmt 	= $this->Conexion->prepare($sql);
+        $stmt = $this->Conexion->prepare($sql);
         $stmt->execute($parametros);
-        $array=array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-        {
-            $array[]=$row;
+        $array = array();
+        $cuenta = $stmt->rowCount();
+        if($cuenta>0){
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                $array[]=$row;
+            }
+        }else{
+            $array[]=$cuenta;
         }
-        $array[]=$stmt->rowCount();
         return $array;
     }
 
