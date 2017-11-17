@@ -24,8 +24,11 @@ class ControladorDocumento extends ControladorBase
       $parametros = array($id);
       $sql = "DELETE FROM Documento WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
-   }
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
 
    function leer($id)
    {
