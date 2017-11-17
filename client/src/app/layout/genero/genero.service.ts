@@ -20,7 +20,7 @@ export class GeneroService {
     }
 
     getAll(): Promise<Genero[]> {
-        return this.http.get(this.urlBase)
+        return this.http.get(this.urlBase+'/leer')
             .toPromise()
             .then(response =>
                 response.json() as Genero[])
@@ -28,7 +28,23 @@ export class GeneroService {
     }
 
     getPagina(pagina: number, tamanoPagina: number): Promise<Genero[]> {
-        return this.http.get(this.urlBase + '?pagina=' + pagina + '&tamanoPagina=' + tamanoPagina)
+        return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registrosPorPagina=' + tamanoPagina)
+            .toPromise()
+            .then(response =>
+                response.json() as Genero[])
+            .catch(this.handleError);
+    }
+
+    getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<Genero[]> {
+        return this.http.get(this.urlBase+'/leer_filtrado' + '?columna=' + columna + '&tipo_filtro=' + tipoFiltro + '&filtro=' + filtro)
+            .toPromise()
+            .then(response =>
+                response.json() as Genero[])
+            .catch(this.handleError);
+    }
+
+    getNumeroPaginas(tamanoPagina: number): Promise<number> {
+        return this.http.get(this.urlBase+'/numero_paginas' + '?registrosPorPagina=' + tamanoPagina)
             .toPromise()
             .then(response =>
                 response.json() as Genero[])
@@ -36,7 +52,7 @@ export class GeneroService {
     }
 
     get(id: number): Promise<Genero> {
-        const url = `${this.urlBase}/${id}`;
+        const url = `${this.urlBase+'/leer'}?id=${id}`;
         return this.http.get(url)
             .toPromise()
             .then(response =>
@@ -45,7 +61,7 @@ export class GeneroService {
     }
 
     remove(id: number): Promise<boolean> {
-        const url = `${this.urlBase}/${id}`;
+        const url = `${this.urlBase+'/borrar'}?id=${id}`;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(response =>
@@ -55,7 +71,7 @@ export class GeneroService {
 
     create(entidadTransporte: Genero): Promise<Genero> {
         return this.http
-            .post(this.urlBase, JSON.stringify(entidadTransporte), { headers: this.headers })
+            .post(this.urlBase+'/crear', JSON.stringify(entidadTransporte), { headers: this.headers })
             .toPromise()
             .then(res =>
                 res.json() as Genero)
@@ -63,7 +79,7 @@ export class GeneroService {
     }
 
     update(entidadTransporte: Genero): Promise<Genero> {
-        const url = `${this.urlBase}/${entidadTransporte.id}`;
+        const url = `${this.urlBase+'/actualizar'}/${entidadTransporte.id}`;
         return this.http
             .put(url, JSON.stringify(entidadTransporte), { headers: this.headers })
             .toPromise()

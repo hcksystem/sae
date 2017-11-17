@@ -29,11 +29,12 @@ class ControladorGenero extends ControladorBase
    {
       $parametros = array($id);
       $sql = "DELETE FROM Genero WHERE id = ?;";
-      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
+      try{
+            $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+            return true;
+      }catch(Exception $e){
+            return false;
       }
-      return $toReturn;
    }
 
    function leer($id)
