@@ -29,6 +29,7 @@ class ControladorOcupacion extends ControladorBase
       }else{
          return false;
       }
+   }
 
    function leer($id)
    {

@@ -29,6 +29,7 @@ class ControladorMalla extends ControladorBase
       }else{
          return false;
       }
+   }
 
    function leer($id)
    {

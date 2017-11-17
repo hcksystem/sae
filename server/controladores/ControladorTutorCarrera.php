@@ -29,6 +29,7 @@ class ControladorTutorCarrera extends ControladorBase
       }else{
          return false;
       }
+   }
 
    function leer($id)
    {

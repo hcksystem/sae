@@ -29,6 +29,7 @@ class ControladorExperienciaLaboral extends ControladorBase
       }else{
          return false;
       }
+   }
 
    function leer($id)
    {

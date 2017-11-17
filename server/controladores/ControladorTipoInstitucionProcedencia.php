@@ -29,6 +29,7 @@ class ControladorTipoInstitucionProcedencia extends ControladorBase
       }else{
          return false;
       }
+   }
 
    function leer($id)
    {

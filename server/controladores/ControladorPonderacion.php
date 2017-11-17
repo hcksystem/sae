@@ -29,6 +29,7 @@ class ControladorPonderacion extends ControladorBase
       }else{
          return false;
       }
+   }
 
    function leer($id)
    {
