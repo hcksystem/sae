@@ -8,7 +8,11 @@ class ControladorAsistencia extends ControladorBase
       $sql = "INSERT INTO Asistencia (idMatriculaAsignatura,fecha,horas) VALUES (?,?,?);";
       $parametros = array($asistencia->idMatriculaAsignatura,$asistencia->fecha,$asistencia->horas);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Asistencia $asistencia)
@@ -16,7 +20,11 @@ class ControladorAsistencia extends ControladorBase
       $parametros = array($asistencia->idMatriculaAsignatura,$asistencia->fecha,$asistencia->horas,$asistencia->id);
       $sql = "UPDATE Asistencia SET idMatriculaAsignatura = ?,fecha = ?,horas = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

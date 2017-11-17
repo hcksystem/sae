@@ -8,7 +8,11 @@ class ControladorParalelo extends ControladorBase
       $sql = "INSERT INTO Paralelo (descripcion) VALUES (?);";
       $parametros = array($paralelo->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Paralelo $paralelo)
@@ -16,7 +20,11 @@ class ControladorParalelo extends ControladorBase
       $parametros = array($paralelo->descripcion,$paralelo->id);
       $sql = "UPDATE Paralelo SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

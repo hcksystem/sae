@@ -8,7 +8,11 @@ class ControladorPeriodoLectivo extends ControladorBase
       $sql = "INSERT INTO PeriodoLectivo (descripcion,fechaInicio,fechaFin,matriculable,codigo) VALUES (?,?,?,?,?);";
       $parametros = array($periodolectivo->descripcion,$periodolectivo->fechaInicio,$periodolectivo->fechaFin,$periodolectivo->matriculable,$periodolectivo->codigo);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(PeriodoLectivo $periodolectivo)
@@ -16,7 +20,11 @@ class ControladorPeriodoLectivo extends ControladorBase
       $parametros = array($periodolectivo->descripcion,$periodolectivo->fechaInicio,$periodolectivo->fechaFin,$periodolectivo->matriculable,$periodolectivo->codigo,$periodolectivo->id);
       $sql = "UPDATE PeriodoLectivo SET descripcion = ?,fechaInicio = ?,fechaFin = ?,matriculable = ?,codigo = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

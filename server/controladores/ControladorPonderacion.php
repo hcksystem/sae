@@ -8,7 +8,11 @@ class ControladorPonderacion extends ControladorBase
       $sql = "INSERT INTO Ponderacion (idCategoria,idParcial,porcentaje) VALUES (?,?,?);";
       $parametros = array($ponderacion->idCategoria,$ponderacion->idParcial,$ponderacion->porcentaje);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Ponderacion $ponderacion)
@@ -16,7 +20,11 @@ class ControladorPonderacion extends ControladorBase
       $parametros = array($ponderacion->idCategoria,$ponderacion->idParcial,$ponderacion->porcentaje,$ponderacion->id);
       $sql = "UPDATE Ponderacion SET idCategoria = ?,idParcial = ?,porcentaje = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

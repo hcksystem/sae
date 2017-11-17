@@ -8,7 +8,11 @@ class ControladorTipoIngresos extends ControladorBase
       $sql = "INSERT INTO TipoIngresos (descripcion) VALUES (?);";
       $parametros = array($tipoingresos->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(TipoIngresos $tipoingresos)
@@ -16,7 +20,11 @@ class ControladorTipoIngresos extends ControladorBase
       $parametros = array($tipoingresos->descripcion,$tipoingresos->id);
       $sql = "UPDATE TipoIngresos SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

@@ -8,7 +8,11 @@ class ControladorModalidad extends ControladorBase
       $sql = "INSERT INTO Modalidad (descripcion) VALUES (?);";
       $parametros = array($modalidad->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Modalidad $modalidad)
@@ -16,7 +20,11 @@ class ControladorModalidad extends ControladorBase
       $parametros = array($modalidad->descripcion,$modalidad->id);
       $sql = "UPDATE Modalidad SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

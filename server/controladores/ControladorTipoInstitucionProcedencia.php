@@ -8,7 +8,11 @@ class ControladorTipoInstitucionProcedencia extends ControladorBase
       $sql = "INSERT INTO TipoInstitucionProcedencia (descripcion) VALUES (?);";
       $parametros = array($tipoinstitucionprocedencia->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(TipoInstitucionProcedencia $tipoinstitucionprocedencia)
@@ -16,7 +20,11 @@ class ControladorTipoInstitucionProcedencia extends ControladorBase
       $parametros = array($tipoinstitucionprocedencia->descripcion,$tipoinstitucionprocedencia->id);
       $sql = "UPDATE TipoInstitucionProcedencia SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

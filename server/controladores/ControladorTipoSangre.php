@@ -8,7 +8,11 @@ class ControladorTipoSangre extends ControladorBase
       $sql = "INSERT INTO TipoSangre (descripcion) VALUES (?);";
       $parametros = array($tiposangre->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(TipoSangre $tiposangre)
@@ -16,7 +20,11 @@ class ControladorTipoSangre extends ControladorBase
       $parametros = array($tiposangre->descripcion,$tiposangre->id);
       $sql = "UPDATE TipoSangre SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

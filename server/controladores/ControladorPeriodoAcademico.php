@@ -8,7 +8,11 @@ class ControladorPeriodoAcademico extends ControladorBase
       $sql = "INSERT INTO PeriodoAcademico (descripcion) VALUES (?);";
       $parametros = array($periodoacademico->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(PeriodoAcademico $periodoacademico)
@@ -16,7 +20,11 @@ class ControladorPeriodoAcademico extends ControladorBase
       $parametros = array($periodoacademico->descripcion,$periodoacademico->id);
       $sql = "UPDATE PeriodoAcademico SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

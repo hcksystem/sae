@@ -8,7 +8,11 @@ class ControladorEtnia extends ControladorBase
       $sql = "INSERT INTO Etnia (descripcion) VALUES (?);";
       $parametros = array($etnia->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Etnia $etnia)
@@ -16,7 +20,11 @@ class ControladorEtnia extends ControladorBase
       $parametros = array($etnia->descripcion,$etnia->id);
       $sql = "UPDATE Etnia SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

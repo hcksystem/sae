@@ -8,7 +8,11 @@ class ControladorMatriculaAsignatura extends ControladorBase
       $sql = "INSERT INTO MatriculaAsignatura (idMatricula,idAsignatura) VALUES (?,?);";
       $parametros = array($matriculaasignatura->idMatricula,$matriculaasignatura->idAsignatura);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(MatriculaAsignatura $matriculaasignatura)
@@ -16,7 +20,11 @@ class ControladorMatriculaAsignatura extends ControladorBase
       $parametros = array($matriculaasignatura->idMatricula,$matriculaasignatura->idAsignatura,$matriculaasignatura->id);
       $sql = "UPDATE MatriculaAsignatura SET idMatricula = ?,idAsignatura = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

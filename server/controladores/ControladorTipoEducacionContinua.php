@@ -8,7 +8,11 @@ class ControladorTipoEducacionContinua extends ControladorBase
       $sql = "INSERT INTO TipoEducacionContinua (descripcion) VALUES (?);";
       $parametros = array($tipoeducacioncontinua->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(TipoEducacionContinua $tipoeducacioncontinua)
@@ -16,7 +20,11 @@ class ControladorTipoEducacionContinua extends ControladorBase
       $parametros = array($tipoeducacioncontinua->descripcion,$tipoeducacioncontinua->id);
       $sql = "UPDATE TipoEducacionContinua SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

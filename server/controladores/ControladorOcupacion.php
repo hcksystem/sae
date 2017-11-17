@@ -8,7 +8,11 @@ class ControladorOcupacion extends ControladorBase
       $sql = "INSERT INTO Ocupacion (descripcion) VALUES (?);";
       $parametros = array($ocupacion->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Ocupacion $ocupacion)
@@ -16,7 +20,11 @@ class ControladorOcupacion extends ControladorBase
       $parametros = array($ocupacion->descripcion,$ocupacion->id);
       $sql = "UPDATE Ocupacion SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

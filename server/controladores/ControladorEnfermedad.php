@@ -8,7 +8,11 @@ class ControladorEnfermedad extends ControladorBase
       $sql = "INSERT INTO Enfermedad (descripcion,observaciones,tratamiento) VALUES (?,?,?);";
       $parametros = array($enfermedad->descripcion,$enfermedad->observaciones,$enfermedad->tratamiento);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Enfermedad $enfermedad)
@@ -16,7 +20,11 @@ class ControladorEnfermedad extends ControladorBase
       $parametros = array($enfermedad->descripcion,$enfermedad->observaciones,$enfermedad->tratamiento,$enfermedad->id);
       $sql = "UPDATE Enfermedad SET descripcion = ?,observaciones = ?,tratamiento = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

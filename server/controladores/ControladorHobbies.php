@@ -8,7 +8,11 @@ class ControladorHobbies extends ControladorBase
       $sql = "INSERT INTO Hobbies (idPersona,descripcion) VALUES (?,?);";
       $parametros = array($hobbies->idPersona,$hobbies->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Hobbies $hobbies)
@@ -16,7 +20,11 @@ class ControladorHobbies extends ControladorBase
       $parametros = array($hobbies->idPersona,$hobbies->descripcion,$hobbies->id);
       $sql = "UPDATE Hobbies SET idPersona = ?,descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

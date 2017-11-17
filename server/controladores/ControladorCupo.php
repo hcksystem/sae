@@ -8,7 +8,11 @@ class ControladorCupo extends ControladorBase
       $sql = "INSERT INTO Cupo (idJornadaCarrera,idPersona) VALUES (?,?);";
       $parametros = array($cupo->idJornadaCarrera,$cupo->idPersona);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Cupo $cupo)
@@ -16,7 +20,11 @@ class ControladorCupo extends ControladorBase
       $parametros = array($cupo->idJornadaCarrera,$cupo->idPersona,$cupo->id);
       $sql = "UPDATE Cupo SET idJornadaCarrera = ?,idPersona = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

@@ -8,7 +8,11 @@ class ControladorUbicacion extends ControladorBase
       $sql = "INSERT INTO Ubicacion (codigo,descripcion,codigoPadre) VALUES (?,?,?);";
       $parametros = array($ubicacion->codigo,$ubicacion->descripcion,$ubicacion->codigoPadre);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Ubicacion $ubicacion)
@@ -16,7 +20,11 @@ class ControladorUbicacion extends ControladorBase
       $parametros = array($ubicacion->codigo,$ubicacion->descripcion,$ubicacion->codigoPadre,$ubicacion->id);
       $sql = "UPDATE Ubicacion SET codigo = ?,descripcion = ?,codigoPadre = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

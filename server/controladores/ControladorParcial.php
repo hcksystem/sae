@@ -8,7 +8,11 @@ class ControladorParcial extends ControladorBase
       $sql = "INSERT INTO Parcial (descripcion) VALUES (?);";
       $parametros = array($parcial->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Parcial $parcial)
@@ -16,7 +20,11 @@ class ControladorParcial extends ControladorBase
       $parametros = array($parcial->descripcion,$parcial->id);
       $sql = "UPDATE Parcial SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

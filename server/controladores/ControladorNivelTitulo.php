@@ -8,7 +8,11 @@ class ControladorNivelTitulo extends ControladorBase
       $sql = "INSERT INTO NivelTitulo (descripcion) VALUES (?);";
       $parametros = array($niveltitulo->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(NivelTitulo $niveltitulo)
@@ -16,7 +20,11 @@ class ControladorNivelTitulo extends ControladorBase
       $parametros = array($niveltitulo->descripcion,$niveltitulo->id);
       $sql = "UPDATE NivelTitulo SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

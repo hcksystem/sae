@@ -8,7 +8,11 @@ class ControladorCategoriaNota extends ControladorBase
       $sql = "INSERT INTO CategoriaNota (descripcion) VALUES (?);";
       $parametros = array($categorianota->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(CategoriaNota $categorianota)
@@ -16,7 +20,11 @@ class ControladorCategoriaNota extends ControladorBase
       $parametros = array($categorianota->descripcion,$categorianota->id);
       $sql = "UPDATE CategoriaNota SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

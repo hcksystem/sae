@@ -8,7 +8,11 @@ class ControladorMotivoSalida extends ControladorBase
       $sql = "INSERT INTO MotivoSalida (descripcion) VALUES (?);";
       $parametros = array($motivosalida->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(MotivoSalida $motivosalida)
@@ -16,7 +20,11 @@ class ControladorMotivoSalida extends ControladorBase
       $parametros = array($motivosalida->descripcion,$motivosalida->id);
       $sql = "UPDATE MotivoSalida SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

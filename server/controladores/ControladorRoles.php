@@ -8,7 +8,11 @@ class ControladorRoles extends ControladorBase
       $sql = "INSERT INTO Roles (descripcion,acceso) VALUES (?,?);";
       $parametros = array($roles->descripcion,$roles->acceso);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Roles $roles)
@@ -16,7 +20,11 @@ class ControladorRoles extends ControladorBase
       $parametros = array($roles->descripcion,$roles->acceso,$roles->id);
       $sql = "UPDATE Roles SET descripcion = ?,acceso = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

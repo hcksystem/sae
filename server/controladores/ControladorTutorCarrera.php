@@ -8,7 +8,11 @@ class ControladorTutorCarrera extends ControladorBase
       $sql = "INSERT INTO TutorCarrera (idPersona,idCarrera) VALUES (?,?);";
       $parametros = array($tutorcarrera->idPersona,$tutorcarrera->idCarrera);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(TutorCarrera $tutorcarrera)
@@ -16,7 +20,11 @@ class ControladorTutorCarrera extends ControladorBase
       $parametros = array($tutorcarrera->idPersona,$tutorcarrera->idCarrera,$tutorcarrera->id);
       $sql = "UPDATE TutorCarrera SET idPersona = ?,idCarrera = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

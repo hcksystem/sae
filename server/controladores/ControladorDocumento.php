@@ -8,7 +8,11 @@ class ControladorDocumento extends ControladorBase
       $sql = "INSERT INTO Documento (documento,descripcion) VALUES (?,?);";
       $parametros = array($documento->documento,$documento->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Documento $documento)
@@ -16,7 +20,11 @@ class ControladorDocumento extends ControladorBase
       $parametros = array($documento->documento,$documento->descripcion,$documento->id);
       $sql = "UPDATE Documento SET documento = ?,descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

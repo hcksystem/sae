@@ -8,7 +8,11 @@ class ControladorEstadoSolicitud extends ControladorBase
       $sql = "INSERT INTO EstadoSolicitud (descripcion) VALUES (?);";
       $parametros = array($estadosolicitud->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(EstadoSolicitud $estadosolicitud)
@@ -16,7 +20,11 @@ class ControladorEstadoSolicitud extends ControladorBase
       $parametros = array($estadosolicitud->descripcion,$estadosolicitud->id);
       $sql = "UPDATE EstadoSolicitud SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

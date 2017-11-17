@@ -8,7 +8,11 @@ class ControladorCuenta extends ControladorBase
       $sql = "INSERT INTO Cuenta (nickname,idUsuario,idRol,idPersona,clave) VALUES (?,?,?,?,?);";
       $parametros = array($cuenta->nickname,$cuenta->idUsuario,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Cuenta $cuenta)
@@ -16,7 +20,11 @@ class ControladorCuenta extends ControladorBase
       $parametros = array($cuenta->nickname,$cuenta->idUsuario,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave,$cuenta->id);
       $sql = "UPDATE Cuenta SET nickname = ?,idUsuario = ?,idRol = ?,idPersona = ?,clave = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

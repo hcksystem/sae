@@ -8,7 +8,11 @@ class ControladorGenero extends ControladorBase
       $sql = "INSERT INTO Genero (descripcion) VALUES (?);";
       $parametros = array($genero->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(Genero $genero)
@@ -16,7 +20,11 @@ class ControladorGenero extends ControladorBase
       $parametros = array($genero->descripcion,$genero->id);
       $sql = "UPDATE Genero SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)

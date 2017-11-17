@@ -8,7 +8,11 @@ class ControladorTipoRequisito extends ControladorBase
       $sql = "INSERT INTO TipoRequisito (descripcion) VALUES (?);";
       $parametros = array($tiporequisito->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function actualizar(TipoRequisito $tiporequisito)
@@ -16,7 +20,11 @@ class ControladorTipoRequisito extends ControladorBase
       $parametros = array($tiporequisito->descripcion,$tiporequisito->id);
       $sql = "UPDATE TipoRequisito SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      if(is_null($respuesta[0])){
+         return true;
+      }else{
+         return false;
+      }
    }
 
    function borrar(int $id)
