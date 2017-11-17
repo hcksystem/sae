@@ -107,64 +107,46 @@ export class GeneroComponent implements OnInit {
     add(entidadNueva: Genero): void {
         this.busy = this.dataService.create(entidadNueva)
             .then(respuesta => {
-                //this.entidades.push(entidadRespuesta);
-                //this.entidadSeleccionada = this.crearEntidad();
                 if(respuesta){
                     this.toastr.success('La creación fue exitosa', 'Creación');
                 }else{
-                    this.toastr.warning('Se produjo un error INTERNO', 'Creación');
+                    this.toastr.warning('Se produjo un error', 'Creación');
                 }
+                this.refresh();
             })
             .catch(error => {
-                this.toastr.warning('Se produjo un error GLOBAL', 'Creación');
+                this.toastr.warning('Se produjo un error', 'Creación');
             });
     }
 
     update(entidadParaActualizar: Genero): void {
         this.busy = this.dataService.update(entidadParaActualizar)
             .then(respuesta => {
-                //const index = this.entidades.findIndex(entidad => entidad.id === entidadRespuesta.id);
-                //this.entidades[index] = entidadRespuesta;
-                //this.entidadSeleccionada = this.crearEntidad();
                 if(respuesta){
                     this.toastr.success('La actualización fue exitosa', 'Actualización');
                 }else{
-                    this.toastr.warning('Se produjo un error INTERNO', 'Actualización');
+                    this.toastr.warning('Se produjo un error', 'Actualización');
                 }
+                this.refresh();
             })
             .catch(error => {
-                this.toastr.warning('Se produjo un error GLOBAL', 'Actualización');
+                this.toastr.warning('Se produjo un error', 'Actualización');
             });
     }
 
     delete(entidadParaBorrar: Genero): void {
-        if (this.entidadSeleccionada.id === 0) {
-            this.toastr.success('No está seleccionado ningún registro');
-            return;
-        }
-
-        this.busy = this.dataService
-            .remove(entidadParaBorrar.id)
-            /*.then(() => {
-                this.entidades = this.entidades.filter(entidad => entidad !== entidadParaBorrar);
-                if (this.entidadSeleccionada === entidadParaBorrar) { this.entidadSeleccionada = this.crearEntidad(); }
-                this.toastr.success('La eliminación fue exitosa', 'Eliminación');
-                return true;
-            })
-            .catch(() => {
-                this.toastr.success('Se produjo un error', 'Eliminación');
-                return true;
-            });*/
-            .then(entidadRespuesta => {
-                //const index = this.entidades.findIndex(entidad => entidad.id === entidadRespuesta.id);
-                //this.entidades[index] = entidadRespuesta;
-                //this.entidadSeleccionada = this.crearEntidad();
-                this.toastr.success(JSON.stringify(entidadRespuesta));
+        this.busy = this.dataService.remove(entidadParaBorrar.id)
+            .then(respuesta => {
+                if(respuesta){
+                    this.toastr.success('La eliminación fue exitosa', 'Eliminación');
+                }else{
+                    this.toastr.warning('Se produjo un error', 'Eliminación');
+                }
+                this.refresh();
             })
             .catch(error => {
-                this.toastr.warning(JSON.stringify(error));
+                this.toastr.success('Se produjo un error', 'Eliminación');
             });
-
     }
 
     refresh(): void {

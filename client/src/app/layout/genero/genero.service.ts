@@ -62,27 +62,24 @@ export class GeneroService {
 
     remove(id: number): Promise<boolean> {
         const url = `${this.urlBase+'/borrar'}?id=${id}`;
-        return this.http.delete(url, { headers: this.headers })
-            .toPromise()
-            .then(this.quepasa)
+        return this.http.post(url,"").toPromise()
+            .then(response=>response.json())
             .catch(this.handleError);
     }
 
-    create(entidadTransporte: Genero): Promise<string> {
+    create(entidadTransporte: Genero): Promise<boolean> {
         const url = `${this.urlBase+'/crear'}`;
-        return this.http.post(url, JSON.stringify(entidadTransporte), { headers: this.headers })
+        return this.http.post(url, JSON.stringify(entidadTransporte))
             .toPromise()
-            .then(response =>
-                response.json())
+            .then(response=>response.json())
             .catch(this.handleError);
     }
 
-    update(entidadTransporte: Genero): Promise<string> {
+    update(entidadTransporte: Genero): Promise<boolean> {
         const url = `${this.urlBase+'/actualizar'}`;
-        return this.http.put(url, JSON.stringify(entidadTransporte), { headers: this.headers })
+        return this.http.post(url, JSON.stringify(entidadTransporte))
             .toPromise()
-            .then(response =>
-                response.json())
+            .then(response=>response.json())
             .catch(this.handleError);
     }
 
