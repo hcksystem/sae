@@ -98,7 +98,9 @@ export class GeneroComponent implements OnInit {
     }
 
     crearEntidad(): Genero {
-        return new Genero();
+        const nuevoGenero = new Genero();
+        nuevoGenero.id = 0;
+        return nuevoGenero;
     }
 
     add(entidadNueva: Genero): void {
