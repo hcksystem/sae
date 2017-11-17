@@ -1,2 +1,2 @@
 <?php
-define("NOMBRE_CONEXION","pruebasITSY");
+define("NOMBRE_CONEXION","local");
