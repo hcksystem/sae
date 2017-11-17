@@ -28,10 +28,10 @@ class RouterTitulo extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Titulo($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idInstitucion"],$this->datosURI->argumentos["codigoRegistro"],$this->datosURI->argumentos["idNivelTitulo"]));
+            return $this->controlador->crear(new Titulo($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idInstitucion"],$this->datosURI->mensaje_body["codigoRegistro"],$this->datosURI->mensaje_body["idNivelTitulo"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Titulo($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idInstitucion"],$this->datosURI->argumentos["codigoRegistro"],$this->datosURI->argumentos["idNivelTitulo"]));
+            return $this->controlador->actualizar(new Titulo($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idInstitucion"],$this->datosURI->mensaje_body["codigoRegistro"],$this->datosURI->mensaje_body["idNivelTitulo"]));
             break;
       }
    }

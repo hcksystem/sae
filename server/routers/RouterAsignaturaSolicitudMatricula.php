@@ -28,10 +28,10 @@ class RouterAsignaturaSolicitudMatricula extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new AsignaturaSolicitudMatricula($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idSolicitudMatricula"],$this->datosURI->argumentos["idAsignatura"]));
+            return $this->controlador->crear(new AsignaturaSolicitudMatricula($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idSolicitudMatricula"],$this->datosURI->mensaje_body["idAsignatura"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new AsignaturaSolicitudMatricula($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idSolicitudMatricula"],$this->datosURI->argumentos["idAsignatura"]));
+            return $this->controlador->actualizar(new AsignaturaSolicitudMatricula($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idSolicitudMatricula"],$this->datosURI->mensaje_body["idAsignatura"]));
             break;
       }
    }

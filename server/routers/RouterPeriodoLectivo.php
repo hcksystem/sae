@@ -28,10 +28,10 @@ class RouterPeriodoLectivo extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new PeriodoLectivo($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["fechaInicio"],$this->datosURI->argumentos["fechaFin"],$this->datosURI->argumentos["matriculable"],$this->datosURI->argumentos["codigo"]));
+            return $this->controlador->crear(new PeriodoLectivo($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["fechaInicio"],$this->datosURI->mensaje_body["fechaFin"],$this->datosURI->mensaje_body["matriculable"],$this->datosURI->mensaje_body["codigo"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new PeriodoLectivo($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["fechaInicio"],$this->datosURI->argumentos["fechaFin"],$this->datosURI->argumentos["matriculable"],$this->datosURI->argumentos["codigo"]));
+            return $this->controlador->actualizar(new PeriodoLectivo($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["fechaInicio"],$this->datosURI->mensaje_body["fechaFin"],$this->datosURI->mensaje_body["matriculable"],$this->datosURI->mensaje_body["codigo"]));
             break;
       }
    }

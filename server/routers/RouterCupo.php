@@ -28,10 +28,10 @@ class RouterCupo extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Cupo($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idJornadaCarrera"],$this->datosURI->argumentos["idPersona"]));
+            return $this->controlador->crear(new Cupo($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idJornadaCarrera"],$this->datosURI->mensaje_body["idPersona"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Cupo($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idJornadaCarrera"],$this->datosURI->argumentos["idPersona"]));
+            return $this->controlador->actualizar(new Cupo($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idJornadaCarrera"],$this->datosURI->mensaje_body["idPersona"]));
             break;
       }
    }

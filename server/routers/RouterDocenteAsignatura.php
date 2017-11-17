@@ -28,10 +28,10 @@ class RouterDocenteAsignatura extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new DocenteAsignatura($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idDocente"],$this->datosURI->argumentos["idPeriodoLectivo"],$this->datosURI->argumentos["idAsignatura"],$this->datosURI->argumentos["idParalelo"]));
+            return $this->controlador->crear(new DocenteAsignatura($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idDocente"],$this->datosURI->mensaje_body["idPeriodoLectivo"],$this->datosURI->mensaje_body["idAsignatura"],$this->datosURI->mensaje_body["idParalelo"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new DocenteAsignatura($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idDocente"],$this->datosURI->argumentos["idPeriodoLectivo"],$this->datosURI->argumentos["idAsignatura"],$this->datosURI->argumentos["idParalelo"]));
+            return $this->controlador->actualizar(new DocenteAsignatura($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idDocente"],$this->datosURI->mensaje_body["idPeriodoLectivo"],$this->datosURI->mensaje_body["idAsignatura"],$this->datosURI->mensaje_body["idParalelo"]));
             break;
       }
    }

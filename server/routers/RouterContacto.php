@@ -28,10 +28,10 @@ class RouterContacto extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Contacto($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["contacto"]));
+            return $this->controlador->crear(new Contacto($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["contacto"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Contacto($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["contacto"]));
+            return $this->controlador->actualizar(new Contacto($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["contacto"]));
             break;
       }
    }

@@ -28,10 +28,10 @@ class RouterExperienciaLaboral extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new ExperienciaLaboral($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["fechaInicio"],$this->datosURI->argumentos["fechaFin"],$this->datosURI->argumentos["descripcionCargo"],$this->datosURI->argumentos["descripcionFunciones"],$this->datosURI->argumentos["nombreEmpresa"],$this->datosURI->argumentos["idMotivoSalida"]));
+            return $this->controlador->crear(new ExperienciaLaboral($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["fechaInicio"],$this->datosURI->mensaje_body["fechaFin"],$this->datosURI->mensaje_body["descripcionCargo"],$this->datosURI->mensaje_body["descripcionFunciones"],$this->datosURI->mensaje_body["nombreEmpresa"],$this->datosURI->mensaje_body["idMotivoSalida"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new ExperienciaLaboral($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["fechaInicio"],$this->datosURI->argumentos["fechaFin"],$this->datosURI->argumentos["descripcionCargo"],$this->datosURI->argumentos["descripcionFunciones"],$this->datosURI->argumentos["nombreEmpresa"],$this->datosURI->argumentos["idMotivoSalida"]));
+            return $this->controlador->actualizar(new ExperienciaLaboral($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["fechaInicio"],$this->datosURI->mensaje_body["fechaFin"],$this->datosURI->mensaje_body["descripcionCargo"],$this->datosURI->mensaje_body["descripcionFunciones"],$this->datosURI->mensaje_body["nombreEmpresa"],$this->datosURI->mensaje_body["idMotivoSalida"]));
             break;
       }
    }

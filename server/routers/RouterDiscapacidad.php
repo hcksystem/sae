@@ -28,10 +28,10 @@ class RouterDiscapacidad extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Discapacidad($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idTipoDiscapacidad"],$this->datosURI->argumentos["porcentaje"]));
+            return $this->controlador->crear(new Discapacidad($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idTipoDiscapacidad"],$this->datosURI->mensaje_body["porcentaje"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Discapacidad($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idTipoDiscapacidad"],$this->datosURI->argumentos["porcentaje"]));
+            return $this->controlador->actualizar(new Discapacidad($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idTipoDiscapacidad"],$this->datosURI->mensaje_body["porcentaje"]));
             break;
       }
    }

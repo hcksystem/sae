@@ -28,10 +28,10 @@ class RouterHobbies extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Hobbies($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->crear(new Hobbies($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["descripcion"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Hobbies($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->actualizar(new Hobbies($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["descripcion"]));
             break;
       }
    }

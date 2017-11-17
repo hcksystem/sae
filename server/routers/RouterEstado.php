@@ -28,10 +28,10 @@ class RouterEstado extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Estado($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->crear(new Estado($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Estado($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->actualizar(new Estado($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"]));
             break;
       }
    }

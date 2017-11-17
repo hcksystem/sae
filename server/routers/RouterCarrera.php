@@ -28,10 +28,10 @@ class RouterCarrera extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Carrera($this->datosURI->argumentos["id"],$this->datosURI->argumentos["resolucion"],$this->datosURI->argumentos["nombre"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["idModalidad"],$this->datosURI->argumentos["idInstituto"],$this->datosURI->argumentos["coordinador"],$this->datosURI->argumentos["siglas"]));
+            return $this->controlador->crear(new Carrera($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["resolucion"],$this->datosURI->mensaje_body["nombre"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["idModalidad"],$this->datosURI->mensaje_body["idInstituto"],$this->datosURI->mensaje_body["coordinador"],$this->datosURI->mensaje_body["siglas"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Carrera($this->datosURI->argumentos["id"],$this->datosURI->argumentos["resolucion"],$this->datosURI->argumentos["nombre"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["idModalidad"],$this->datosURI->argumentos["idInstituto"],$this->datosURI->argumentos["coordinador"],$this->datosURI->argumentos["siglas"]));
+            return $this->controlador->actualizar(new Carrera($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["resolucion"],$this->datosURI->mensaje_body["nombre"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["idModalidad"],$this->datosURI->mensaje_body["idInstituto"],$this->datosURI->mensaje_body["coordinador"],$this->datosURI->mensaje_body["siglas"]));
             break;
       }
    }

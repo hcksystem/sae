@@ -28,10 +28,10 @@ class RouterEstudiante extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Estudiante($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["notaPostulacion"],$this->datosURI->argumentos["tituloBachiller"],$this->datosURI->argumentos["idTipoInstitucionProcedencia"]));
+            return $this->controlador->crear(new Estudiante($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["notaPostulacion"],$this->datosURI->mensaje_body["tituloBachiller"],$this->datosURI->mensaje_body["idTipoInstitucionProcedencia"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Estudiante($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["notaPostulacion"],$this->datosURI->argumentos["tituloBachiller"],$this->datosURI->argumentos["idTipoInstitucionProcedencia"]));
+            return $this->controlador->actualizar(new Estudiante($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["notaPostulacion"],$this->datosURI->mensaje_body["tituloBachiller"],$this->datosURI->mensaje_body["idTipoInstitucionProcedencia"]));
             break;
       }
    }

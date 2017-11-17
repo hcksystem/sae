@@ -28,10 +28,10 @@ class RouterTutorCarrera extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new TutorCarrera($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idCarrera"]));
+            return $this->controlador->crear(new TutorCarrera($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idCarrera"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new TutorCarrera($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idCarrera"]));
+            return $this->controlador->actualizar(new TutorCarrera($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idCarrera"]));
             break;
       }
    }

@@ -28,10 +28,10 @@ class RouterSolicitudMatricula extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new SolicitudMatricula($this->datosURI->argumentos["id"],$this->datosURI->argumentos["codigo"],$this->datosURI->argumentos["fecha"],$this->datosURI->argumentos["idPeriodoLectivo"],$this->datosURI->argumentos["idEstadoSolicitud"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idCarrera"]));
+            return $this->controlador->crear(new SolicitudMatricula($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["codigo"],$this->datosURI->mensaje_body["fecha"],$this->datosURI->mensaje_body["idPeriodoLectivo"],$this->datosURI->mensaje_body["idEstadoSolicitud"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idCarrera"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new SolicitudMatricula($this->datosURI->argumentos["id"],$this->datosURI->argumentos["codigo"],$this->datosURI->argumentos["fecha"],$this->datosURI->argumentos["idPeriodoLectivo"],$this->datosURI->argumentos["idEstadoSolicitud"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idCarrera"]));
+            return $this->controlador->actualizar(new SolicitudMatricula($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["codigo"],$this->datosURI->mensaje_body["fecha"],$this->datosURI->mensaje_body["idPeriodoLectivo"],$this->datosURI->mensaje_body["idEstadoSolicitud"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idCarrera"]));
             break;
       }
    }

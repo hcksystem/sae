@@ -28,10 +28,10 @@ class RouterMatriculaAsignatura extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new MatriculaAsignatura($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idMatricula"],$this->datosURI->argumentos["idAsignatura"]));
+            return $this->controlador->crear(new MatriculaAsignatura($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idMatricula"],$this->datosURI->mensaje_body["idAsignatura"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new MatriculaAsignatura($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idMatricula"],$this->datosURI->argumentos["idAsignatura"]));
+            return $this->controlador->actualizar(new MatriculaAsignatura($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idMatricula"],$this->datosURI->mensaje_body["idAsignatura"]));
             break;
       }
    }

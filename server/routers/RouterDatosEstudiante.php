@@ -28,10 +28,10 @@ class RouterDatosEstudiante extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new DatosEstudiante($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idEstudiante"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["dato"]));
+            return $this->controlador->crear(new DatosEstudiante($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idEstudiante"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["dato"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new DatosEstudiante($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idEstudiante"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["dato"]));
+            return $this->controlador->actualizar(new DatosEstudiante($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idEstudiante"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["dato"]));
             break;
       }
    }

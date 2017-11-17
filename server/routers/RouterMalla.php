@@ -28,10 +28,10 @@ class RouterMalla extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Malla($this->datosURI->argumentos["id"],$this->datosURI->argumentos["fechaMallaInicio"],$this->datosURI->argumentos["fechaMallaFin"],$this->datosURI->argumentos["idCarrera"],$this->datosURI->argumentos["idDocResolucion"]));
+            return $this->controlador->crear(new Malla($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["fechaMallaInicio"],$this->datosURI->mensaje_body["fechaMallaFin"],$this->datosURI->mensaje_body["idCarrera"],$this->datosURI->mensaje_body["idDocResolucion"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Malla($this->datosURI->argumentos["id"],$this->datosURI->argumentos["fechaMallaInicio"],$this->datosURI->argumentos["fechaMallaFin"],$this->datosURI->argumentos["idCarrera"],$this->datosURI->argumentos["idDocResolucion"]));
+            return $this->controlador->actualizar(new Malla($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["fechaMallaInicio"],$this->datosURI->mensaje_body["fechaMallaFin"],$this->datosURI->mensaje_body["idCarrera"],$this->datosURI->mensaje_body["idDocResolucion"]));
             break;
       }
    }

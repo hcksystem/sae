@@ -28,10 +28,10 @@ class RouterEstadoPersona extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new EstadoPersona($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["datosCompletos"],$this->datosURI->argumentos["edicionDeDatos"],$this->datosURI->argumentos["encuestaFactoresAsociados"]));
+            return $this->controlador->crear(new EstadoPersona($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["datosCompletos"],$this->datosURI->mensaje_body["edicionDeDatos"],$this->datosURI->mensaje_body["encuestaFactoresAsociados"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new EstadoPersona($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["datosCompletos"],$this->datosURI->argumentos["edicionDeDatos"],$this->datosURI->argumentos["encuestaFactoresAsociados"]));
+            return $this->controlador->actualizar(new EstadoPersona($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["datosCompletos"],$this->datosURI->mensaje_body["edicionDeDatos"],$this->datosURI->mensaje_body["encuestaFactoresAsociados"]));
             break;
       }
    }

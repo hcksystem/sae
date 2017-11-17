@@ -28,10 +28,10 @@ class RouterEducacionContinua extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new EducacionContinua($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["horas"],$this->datosURI->argumentos["fechaInicio"],$this->datosURI->argumentos["fechaFin"],$this->datosURI->argumentos["idTipoEducacionContinua"],$this->datosURI->argumentos["lugar"]));
+            return $this->controlador->crear(new EducacionContinua($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["horas"],$this->datosURI->mensaje_body["fechaInicio"],$this->datosURI->mensaje_body["fechaFin"],$this->datosURI->mensaje_body["idTipoEducacionContinua"],$this->datosURI->mensaje_body["lugar"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new EducacionContinua($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["horas"],$this->datosURI->argumentos["fechaInicio"],$this->datosURI->argumentos["fechaFin"],$this->datosURI->argumentos["idTipoEducacionContinua"],$this->datosURI->argumentos["lugar"]));
+            return $this->controlador->actualizar(new EducacionContinua($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["horas"],$this->datosURI->mensaje_body["fechaInicio"],$this->datosURI->mensaje_body["fechaFin"],$this->datosURI->mensaje_body["idTipoEducacionContinua"],$this->datosURI->mensaje_body["lugar"]));
             break;
       }
    }

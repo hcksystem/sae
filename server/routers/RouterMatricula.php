@@ -28,10 +28,10 @@ class RouterMatricula extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Matricula($this->datosURI->argumentos["id"],$this->datosURI->argumentos["codigo"],$this->datosURI->argumentos["fecha"],$this->datosURI->argumentos["idPeriodoLectivo"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idCarrera"],$this->datosURI->argumentos["numeroMatricula"],$this->datosURI->argumentos["folio"],$this->datosURI->argumentos["idJornada"]));
+            return $this->controlador->crear(new Matricula($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["codigo"],$this->datosURI->mensaje_body["fecha"],$this->datosURI->mensaje_body["idPeriodoLectivo"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idCarrera"],$this->datosURI->mensaje_body["numeroMatricula"],$this->datosURI->mensaje_body["folio"],$this->datosURI->mensaje_body["idJornada"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Matricula($this->datosURI->argumentos["id"],$this->datosURI->argumentos["codigo"],$this->datosURI->argumentos["fecha"],$this->datosURI->argumentos["idPeriodoLectivo"],$this->datosURI->argumentos["idPersona"],$this->datosURI->argumentos["idCarrera"],$this->datosURI->argumentos["numeroMatricula"],$this->datosURI->argumentos["folio"],$this->datosURI->argumentos["idJornada"]));
+            return $this->controlador->actualizar(new Matricula($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["codigo"],$this->datosURI->mensaje_body["fecha"],$this->datosURI->mensaje_body["idPeriodoLectivo"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idCarrera"],$this->datosURI->mensaje_body["numeroMatricula"],$this->datosURI->mensaje_body["folio"],$this->datosURI->mensaje_body["idJornada"]));
             break;
       }
    }

@@ -28,10 +28,10 @@ class RouterAsistencia extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Asistencia($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idMatriculaAsignatura"],$this->datosURI->argumentos["fecha"],$this->datosURI->argumentos["horas"]));
+            return $this->controlador->crear(new Asistencia($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idMatriculaAsignatura"],$this->datosURI->mensaje_body["fecha"],$this->datosURI->mensaje_body["horas"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Asistencia($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idMatriculaAsignatura"],$this->datosURI->argumentos["fecha"],$this->datosURI->argumentos["horas"]));
+            return $this->controlador->actualizar(new Asistencia($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idMatriculaAsignatura"],$this->datosURI->mensaje_body["fecha"],$this->datosURI->mensaje_body["horas"]));
             break;
       }
    }

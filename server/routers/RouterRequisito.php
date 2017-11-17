@@ -28,10 +28,10 @@ class RouterRequisito extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Requisito($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idAsignaturaDependiente"],$this->datosURI->argumentos["idAsignaturaIndependiente"],$this->datosURI->argumentos["idTipoRequisito"]));
+            return $this->controlador->crear(new Requisito($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idAsignaturaDependiente"],$this->datosURI->mensaje_body["idAsignaturaIndependiente"],$this->datosURI->mensaje_body["idTipoRequisito"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Requisito($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idAsignaturaDependiente"],$this->datosURI->argumentos["idAsignaturaIndependiente"],$this->datosURI->argumentos["idTipoRequisito"]));
+            return $this->controlador->actualizar(new Requisito($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idAsignaturaDependiente"],$this->datosURI->mensaje_body["idAsignaturaIndependiente"],$this->datosURI->mensaje_body["idTipoRequisito"]));
             break;
       }
    }

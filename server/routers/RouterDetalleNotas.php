@@ -28,10 +28,10 @@ class RouterDetalleNotas extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new DetalleNotas($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["nota"],$this->datosURI->argumentos["idCateogiraNota"],$this->datosURI->argumentos["idNota"]));
+            return $this->controlador->crear(new DetalleNotas($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["nota"],$this->datosURI->mensaje_body["idCateogiraNota"],$this->datosURI->mensaje_body["idNota"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new DetalleNotas($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["nota"],$this->datosURI->argumentos["idCateogiraNota"],$this->datosURI->argumentos["idNota"]));
+            return $this->controlador->actualizar(new DetalleNotas($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["nota"],$this->datosURI->mensaje_body["idCateogiraNota"],$this->datosURI->mensaje_body["idNota"]));
             break;
       }
    }

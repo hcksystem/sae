@@ -28,10 +28,10 @@ class RouterPonderacion extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Ponderacion($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idCategoria"],$this->datosURI->argumentos["idParcial"],$this->datosURI->argumentos["porcentaje"]));
+            return $this->controlador->crear(new Ponderacion($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idCategoria"],$this->datosURI->mensaje_body["idParcial"],$this->datosURI->mensaje_body["porcentaje"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Ponderacion($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idCategoria"],$this->datosURI->argumentos["idParcial"],$this->datosURI->argumentos["porcentaje"]));
+            return $this->controlador->actualizar(new Ponderacion($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idCategoria"],$this->datosURI->mensaje_body["idParcial"],$this->datosURI->mensaje_body["porcentaje"]));
             break;
       }
    }

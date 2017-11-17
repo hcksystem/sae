@@ -28,10 +28,10 @@ class RouterAulasAsignaturas extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new AulasAsignaturas($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idAula"],$this->datosURI->argumentos["idDocenteAsignatura"]));
+            return $this->controlador->crear(new AulasAsignaturas($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idAula"],$this->datosURI->mensaje_body["idDocenteAsignatura"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new AulasAsignaturas($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idAula"],$this->datosURI->argumentos["idDocenteAsignatura"]));
+            return $this->controlador->actualizar(new AulasAsignaturas($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idAula"],$this->datosURI->mensaje_body["idDocenteAsignatura"]));
             break;
       }
    }

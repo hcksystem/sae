@@ -28,10 +28,10 @@ class RouterNotas extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Notas($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idParcial"],$this->datosURI->argumentos["idMatriculaAsignatura"]));
+            return $this->controlador->crear(new Notas($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idParcial"],$this->datosURI->mensaje_body["idMatriculaAsignatura"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Notas($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idParcial"],$this->datosURI->argumentos["idMatriculaAsignatura"]));
+            return $this->controlador->actualizar(new Notas($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idParcial"],$this->datosURI->mensaje_body["idMatriculaAsignatura"]));
             break;
       }
    }

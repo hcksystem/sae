@@ -28,10 +28,10 @@ class RouterAsignatura extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Asignatura($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idMalla"],$this->datosURI->argumentos["codigo"],$this->datosURI->argumentos["nombre"],$this->datosURI->argumentos["nivel"],$this->datosURI->argumentos["idDocumentoPea"],$this->datosURI->argumentos["horasSemana"],$this->datosURI->argumentos["horasPractica"],$this->datosURI->argumentos["horasDocente"],$this->datosURI->argumentos["horasAutonomas"]));
+            return $this->controlador->crear(new Asignatura($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idMalla"],$this->datosURI->mensaje_body["codigo"],$this->datosURI->mensaje_body["nombre"],$this->datosURI->mensaje_body["nivel"],$this->datosURI->mensaje_body["idDocumentoPea"],$this->datosURI->mensaje_body["horasSemana"],$this->datosURI->mensaje_body["horasPractica"],$this->datosURI->mensaje_body["horasDocente"],$this->datosURI->mensaje_body["horasAutonomas"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Asignatura($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idMalla"],$this->datosURI->argumentos["codigo"],$this->datosURI->argumentos["nombre"],$this->datosURI->argumentos["nivel"],$this->datosURI->argumentos["idDocumentoPea"],$this->datosURI->argumentos["horasSemana"],$this->datosURI->argumentos["horasPractica"],$this->datosURI->argumentos["horasDocente"],$this->datosURI->argumentos["horasAutonomas"]));
+            return $this->controlador->actualizar(new Asignatura($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idMalla"],$this->datosURI->mensaje_body["codigo"],$this->datosURI->mensaje_body["nombre"],$this->datosURI->mensaje_body["nivel"],$this->datosURI->mensaje_body["idDocumentoPea"],$this->datosURI->mensaje_body["horasSemana"],$this->datosURI->mensaje_body["horasPractica"],$this->datosURI->mensaje_body["horasDocente"],$this->datosURI->mensaje_body["horasAutonomas"]));
             break;
       }
    }

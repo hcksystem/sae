@@ -28,10 +28,10 @@ class RouterInstitucion extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Institucion($this->datosURI->argumentos["id"],$this->datosURI->argumentos["nombre"],$this->datosURI->argumentos["idUbicacion"],$this->datosURI->argumentos["tipo"]));
+            return $this->controlador->crear(new Institucion($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["nombre"],$this->datosURI->mensaje_body["idUbicacion"],$this->datosURI->mensaje_body["tipo"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Institucion($this->datosURI->argumentos["id"],$this->datosURI->argumentos["nombre"],$this->datosURI->argumentos["idUbicacion"],$this->datosURI->argumentos["tipo"]));
+            return $this->controlador->actualizar(new Institucion($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["nombre"],$this->datosURI->mensaje_body["idUbicacion"],$this->datosURI->mensaje_body["tipo"]));
             break;
       }
    }

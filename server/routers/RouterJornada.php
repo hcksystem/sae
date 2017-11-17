@@ -28,10 +28,10 @@ class RouterJornada extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Jornada($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->crear(new Jornada($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Jornada($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"]));
+            return $this->controlador->actualizar(new Jornada($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"]));
             break;
       }
    }

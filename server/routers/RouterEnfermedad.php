@@ -28,10 +28,10 @@ class RouterEnfermedad extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Enfermedad($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["observaciones"],$this->datosURI->argumentos["tratamiento"]));
+            return $this->controlador->crear(new Enfermedad($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["observaciones"],$this->datosURI->mensaje_body["tratamiento"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Enfermedad($this->datosURI->argumentos["id"],$this->datosURI->argumentos["descripcion"],$this->datosURI->argumentos["observaciones"],$this->datosURI->argumentos["tratamiento"]));
+            return $this->controlador->actualizar(new Enfermedad($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["descripcion"],$this->datosURI->mensaje_body["observaciones"],$this->datosURI->mensaje_body["tratamiento"]));
             break;
       }
    }

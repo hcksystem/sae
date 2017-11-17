@@ -28,10 +28,10 @@ class RouterHorasClase extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new HorasClase($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idAsignatura"],$this->datosURI->argumentos["idParalelo"],$this->datosURI->argumentos["fecha"],$this->datosURI->argumentos["horas"]));
+            return $this->controlador->crear(new HorasClase($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idAsignatura"],$this->datosURI->mensaje_body["idParalelo"],$this->datosURI->mensaje_body["fecha"],$this->datosURI->mensaje_body["horas"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new HorasClase($this->datosURI->argumentos["id"],$this->datosURI->argumentos["idAsignatura"],$this->datosURI->argumentos["idParalelo"],$this->datosURI->argumentos["fecha"],$this->datosURI->argumentos["horas"]));
+            return $this->controlador->actualizar(new HorasClase($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idAsignatura"],$this->datosURI->mensaje_body["idParalelo"],$this->datosURI->mensaje_body["fecha"],$this->datosURI->mensaje_body["horas"]));
             break;
       }
    }
