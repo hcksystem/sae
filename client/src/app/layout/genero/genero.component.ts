@@ -127,9 +127,9 @@ export class GeneroComponent implements OnInit {
                 //this.entidades[index] = entidadRespuesta;
                 //this.entidadSeleccionada = this.crearEntidad();
                 if(entidadRespuesta){
-                    this.toastr.success('La actualización fue exitosa', 'Actualización');
+                    this.toastr.success(JSON.stringify(entidadRespuesta));//'La actualización fue exitosa', 'Actualización');
                 }else{
-                    this.toastr.warning('Se produjo un error', 'Actualización');
+                    this.toastr.warning('Se produjo un error ENTRE', 'Actualización');
                 }
             })
             .catch(error => {
