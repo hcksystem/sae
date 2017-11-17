@@ -8,10 +8,7 @@ class ControladorCuenta extends ControladorBase
       $sql = "INSERT INTO Cuenta (nickname,idUsuario,idRol,idPersona,clave) VALUES (?,?,?,?,?);";
       $parametros = array($cuenta->nickname,$cuenta->idUsuario,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function actualizar(Cuenta $cuenta)
@@ -19,10 +16,7 @@ class ControladorCuenta extends ControladorBase
       $parametros = array($cuenta->nickname,$cuenta->idUsuario,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave,$cuenta->id);
       $sql = "UPDATE Cuenta SET nickname = ?,idUsuario = ?,idRol = ?,idPersona = ?,clave = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function borrar(int $id)
@@ -30,10 +24,7 @@ class ControladorCuenta extends ControladorBase
       $parametros = array($id);
       $sql = "DELETE FROM Cuenta WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer($id)
@@ -45,10 +36,7 @@ class ControladorCuenta extends ControladorBase
          $sql = "SELECT * FROM Cuenta WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer_paginado($pagina,$registrosPorPagina)
@@ -57,20 +45,14 @@ class ControladorCuenta extends ControladorBase
       $parametros = array($desde,$registrosPorPagina);
       $sql ="SELECT * FROM Cuenta LIMIT ?,?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Cuenta;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer_filtrado(string $nombreColumna, string $tipoFiltro, string $filtro)
@@ -91,9 +73,6 @@ class ControladorCuenta extends ControladorBase
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 }

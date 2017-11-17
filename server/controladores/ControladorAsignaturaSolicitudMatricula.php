@@ -8,10 +8,7 @@ class ControladorAsignaturaSolicitudMatricula extends ControladorBase
       $sql = "INSERT INTO AsignaturaSolicitudMatricula (idSolicitudMatricula,idAsignatura) VALUES (?,?);";
       $parametros = array($asignaturasolicitudmatricula->idSolicitudMatricula,$asignaturasolicitudmatricula->idAsignatura);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function actualizar(AsignaturaSolicitudMatricula $asignaturasolicitudmatricula)
@@ -19,10 +16,7 @@ class ControladorAsignaturaSolicitudMatricula extends ControladorBase
       $parametros = array($asignaturasolicitudmatricula->idSolicitudMatricula,$asignaturasolicitudmatricula->idAsignatura,$asignaturasolicitudmatricula->id);
       $sql = "UPDATE AsignaturaSolicitudMatricula SET idSolicitudMatricula = ?,idAsignatura = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function borrar(int $id)
@@ -30,10 +24,7 @@ class ControladorAsignaturaSolicitudMatricula extends ControladorBase
       $parametros = array($id);
       $sql = "DELETE FROM AsignaturaSolicitudMatricula WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer($id)
@@ -45,10 +36,7 @@ class ControladorAsignaturaSolicitudMatricula extends ControladorBase
          $sql = "SELECT * FROM AsignaturaSolicitudMatricula WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer_paginado($pagina,$registrosPorPagina)
@@ -57,20 +45,14 @@ class ControladorAsignaturaSolicitudMatricula extends ControladorBase
       $parametros = array($desde,$registrosPorPagina);
       $sql ="SELECT * FROM AsignaturaSolicitudMatricula LIMIT ?,?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM AsignaturaSolicitudMatricula;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer_filtrado(string $nombreColumna, string $tipoFiltro, string $filtro)
@@ -91,9 +73,6 @@ class ControladorAsignaturaSolicitudMatricula extends ControladorBase
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 }

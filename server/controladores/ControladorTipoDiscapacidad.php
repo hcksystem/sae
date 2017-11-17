@@ -8,10 +8,7 @@ class ControladorTipoDiscapacidad extends ControladorBase
       $sql = "INSERT INTO TipoDiscapacidad (descripcion) VALUES (?);";
       $parametros = array($tipodiscapacidad->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function actualizar(TipoDiscapacidad $tipodiscapacidad)
@@ -19,10 +16,7 @@ class ControladorTipoDiscapacidad extends ControladorBase
       $parametros = array($tipodiscapacidad->descripcion,$tipodiscapacidad->id);
       $sql = "UPDATE TipoDiscapacidad SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function borrar(int $id)
@@ -30,10 +24,7 @@ class ControladorTipoDiscapacidad extends ControladorBase
       $parametros = array($id);
       $sql = "DELETE FROM TipoDiscapacidad WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer($id)
@@ -45,10 +36,7 @@ class ControladorTipoDiscapacidad extends ControladorBase
          $sql = "SELECT * FROM TipoDiscapacidad WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer_paginado($pagina,$registrosPorPagina)
@@ -57,20 +45,14 @@ class ControladorTipoDiscapacidad extends ControladorBase
       $parametros = array($desde,$registrosPorPagina);
       $sql ="SELECT * FROM TipoDiscapacidad LIMIT ?,?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM TipoDiscapacidad;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer_filtrado(string $nombreColumna, string $tipoFiltro, string $filtro)
@@ -91,9 +73,6 @@ class ControladorTipoDiscapacidad extends ControladorBase
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 }

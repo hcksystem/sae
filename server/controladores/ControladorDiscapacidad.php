@@ -8,10 +8,7 @@ class ControladorDiscapacidad extends ControladorBase
       $sql = "INSERT INTO Discapacidad (idPersona,idTipoDiscapacidad,porcentaje) VALUES (?,?,?);";
       $parametros = array($discapacidad->idPersona,$discapacidad->idTipoDiscapacidad,$discapacidad->porcentaje);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function actualizar(Discapacidad $discapacidad)
@@ -19,10 +16,7 @@ class ControladorDiscapacidad extends ControladorBase
       $parametros = array($discapacidad->idPersona,$discapacidad->idTipoDiscapacidad,$discapacidad->porcentaje,$discapacidad->id);
       $sql = "UPDATE Discapacidad SET idPersona = ?,idTipoDiscapacidad = ?,porcentaje = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function borrar(int $id)
@@ -30,10 +24,7 @@ class ControladorDiscapacidad extends ControladorBase
       $parametros = array($id);
       $sql = "DELETE FROM Discapacidad WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer($id)
@@ -45,10 +36,7 @@ class ControladorDiscapacidad extends ControladorBase
          $sql = "SELECT * FROM Discapacidad WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer_paginado($pagina,$registrosPorPagina)
@@ -57,20 +45,14 @@ class ControladorDiscapacidad extends ControladorBase
       $parametros = array($desde,$registrosPorPagina);
       $sql ="SELECT * FROM Discapacidad LIMIT ?,?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Discapacidad;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer_filtrado(string $nombreColumna, string $tipoFiltro, string $filtro)
@@ -91,9 +73,6 @@ class ControladorDiscapacidad extends ControladorBase
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 }

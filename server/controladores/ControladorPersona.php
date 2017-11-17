@@ -8,10 +8,7 @@ class ControladorPersona extends ControladorBase
       $sql = "INSERT INTO Persona (identificacion,nombre1,nombre2,apellido1,apellido2,fechaNacimiento,telefonoCelular,telefonoDomicilio,correoElectronico,idGenero,idUbicacionDomicilioPais,idUbicacionDomicilioProvincia,idUbicacionDomicilioCanton,idUbicacionDomicilioParroquia,direccionDomicilio,idEstadoCivil,idUbicacionNacimientoPais,idUbicacionNacimientoProvincia,idUbicacionNacimientoCanton,idUbicacionNacimientoParroquia,idIngresos,idEtnia,idTipoSangre,numeroHijos,idOcupacion,carnetConadis,idTipoDiscapacidad,porcentajeDiscapacidad,nombrePadre,paisOrigenPadre,idNivelEstudioPadre,nombreMadre,paisOrigenMadre,idNivelEstudioMadre,foto) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
       $parametros = array($persona->identificacion,$persona->nombre1,$persona->nombre2,$persona->apellido1,$persona->apellido2,$persona->fechaNacimiento,$persona->telefonoCelular,$persona->telefonoDomicilio,$persona->correoElectronico,$persona->idGenero,$persona->idUbicacionDomicilioPais,$persona->idUbicacionDomicilioProvincia,$persona->idUbicacionDomicilioCanton,$persona->idUbicacionDomicilioParroquia,$persona->direccionDomicilio,$persona->idEstadoCivil,$persona->idUbicacionNacimientoPais,$persona->idUbicacionNacimientoProvincia,$persona->idUbicacionNacimientoCanton,$persona->idUbicacionNacimientoParroquia,$persona->idIngresos,$persona->idEtnia,$persona->idTipoSangre,$persona->numeroHijos,$persona->idOcupacion,$persona->carnetConadis,$persona->idTipoDiscapacidad,$persona->porcentajeDiscapacidad,$persona->nombrePadre,$persona->paisOrigenPadre,$persona->idNivelEstudioPadre,$persona->nombreMadre,$persona->paisOrigenMadre,$persona->idNivelEstudioMadre,$persona->foto);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function actualizar(Persona $persona)
@@ -19,10 +16,7 @@ class ControladorPersona extends ControladorBase
       $parametros = array($persona->identificacion,$persona->nombre1,$persona->nombre2,$persona->apellido1,$persona->apellido2,$persona->fechaNacimiento,$persona->telefonoCelular,$persona->telefonoDomicilio,$persona->correoElectronico,$persona->idGenero,$persona->idUbicacionDomicilioPais,$persona->idUbicacionDomicilioProvincia,$persona->idUbicacionDomicilioCanton,$persona->idUbicacionDomicilioParroquia,$persona->direccionDomicilio,$persona->idEstadoCivil,$persona->idUbicacionNacimientoPais,$persona->idUbicacionNacimientoProvincia,$persona->idUbicacionNacimientoCanton,$persona->idUbicacionNacimientoParroquia,$persona->idIngresos,$persona->idEtnia,$persona->idTipoSangre,$persona->numeroHijos,$persona->idOcupacion,$persona->carnetConadis,$persona->idTipoDiscapacidad,$persona->porcentajeDiscapacidad,$persona->nombrePadre,$persona->paisOrigenPadre,$persona->idNivelEstudioPadre,$persona->nombreMadre,$persona->paisOrigenMadre,$persona->idNivelEstudioMadre,$persona->foto,$persona->id);
       $sql = "UPDATE Persona SET identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,telefonoCelular = ?,telefonoDomicilio = ?,correoElectronico = ?,idGenero = ?,idUbicacionDomicilioPais = ?,idUbicacionDomicilioProvincia = ?,idUbicacionDomicilioCanton = ?,idUbicacionDomicilioParroquia = ?,direccionDomicilio = ?,idEstadoCivil = ?,idUbicacionNacimientoPais = ?,idUbicacionNacimientoProvincia = ?,idUbicacionNacimientoCanton = ?,idUbicacionNacimientoParroquia = ?,idIngresos = ?,idEtnia = ?,idTipoSangre = ?,numeroHijos = ?,idOcupacion = ?,carnetConadis = ?,idTipoDiscapacidad = ?,porcentajeDiscapacidad = ?,nombrePadre = ?,paisOrigenPadre = ?,idNivelEstudioPadre = ?,nombreMadre = ?,paisOrigenMadre = ?,idNivelEstudioMadre = ?,foto = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function borrar(int $id)
@@ -30,10 +24,7 @@ class ControladorPersona extends ControladorBase
       $parametros = array($id);
       $sql = "DELETE FROM Persona WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer($id)
@@ -45,10 +36,7 @@ class ControladorPersona extends ControladorBase
          $sql = "SELECT * FROM Persona WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer_paginado($pagina,$registrosPorPagina)
@@ -57,20 +45,14 @@ class ControladorPersona extends ControladorBase
       $parametros = array($desde,$registrosPorPagina);
       $sql ="SELECT * FROM Persona LIMIT ?,?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function numero_paginas($registrosPorPagina)
    {
       $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM Persona;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 
    function leer_filtrado(string $nombreColumna, string $tipoFiltro, string $filtro)
@@ -91,9 +73,6 @@ class ControladorPersona extends ControladorBase
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      foreach($respuesta as $fila){
-         $toReturn[] = $fila;
-      }
-      return $toReturn;
+      return $respuesta;
    }
 }
