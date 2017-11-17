@@ -12,7 +12,7 @@
                     <button type="button" class="btn btn-success" (click)="mostrarVentanaEdicion()" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
                         <span class="fa fa-edit"></span>&nbsp;Editar
                     </button>
-                    <button type="button" class="btn btn-info" (click)="resetEntidadSeleccionada()">
+                    <button type="button" class="btn btn-info" (click)="mostrarVentanaNuevo()">
                         <span class="fa fa-plus"></span>&nbsp;Nuevo
                     </button>
                     <button type="button" class="btn btn-danger" (click)="delete(entidadSeleccionada); $event.stopPropagation()" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
@@ -25,14 +25,16 @@
     <div class="row" style="margin-top:15px">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <table class="table table-striped table-bordered">
-                <thead>
+                <thead class="thead-dark">
                     <tr>
                         <th>
+                        </th>
+                        <th scope="col">
                             <span>
                                 <strong>Identificador</strong>
                             </span>
                         </th>
-                        <th>
+                        <th scope="col">
                             <span>
                                 <strong>Descripción</strong>
                             </span>
@@ -40,7 +42,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let actual of entidades" (click)="onSelect(actual)" [class.selected]="actual === entidadSeleccionada">
+                    <tr *ngFor="let actual of entidades" (click)="onSelect(actual)" [ngClass]="{ 'selected': estaSeleccionado(actual) }">
+                        <td>
+                            <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
+                        </td>
                         <td>{{actual.id}}</td>
                         <td>{{actual.descripcion}}</td>
                     </tr>

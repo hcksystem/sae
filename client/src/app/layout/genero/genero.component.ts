@@ -24,8 +24,20 @@ export class GeneroComponent implements OnInit {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
+    estaSeleccionado(porVerificar): boolean {
+        if (this.entidadSeleccionada == null) {
+            return false;
+        }
+        return porVerificar.id === this.entidadSeleccionada.id
+    }
+
     cerrarVentanaEdicion(): void {
         this.esVisibleVentanaEdicion = false;
+    }
+
+    mostrarVentanaNuevo(): void {
+        this.resetEntidadSeleccionada();
+        this.esVisibleVentanaEdicion = true;
     }
 
     mostrarVentanaEdicion(): void {

@@ -9,7 +9,7 @@ import { Genero } from '../entidades/Genero';
 @Injectable()
 export class GeneroService {
 
-    private headers = new Headers({ 'Content-Type': 'application/jsonp', 'Access-Control-Allow-Origin': '*' });
+    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     private urlBase = environment.apiUrl + 'genero';
 
     constructor(private http: Http) {
