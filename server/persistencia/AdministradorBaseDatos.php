@@ -50,6 +50,7 @@ class AdministradorBaseDatos
         {
             $array[]=$row;
         }
+        $array[]=$stmt->rowCount();
         return $array;
     }
 
