@@ -1,6 +1,8 @@
 {
     "Dashboard": "Principal",
     "Charts": "Caracteres",
+    "Reports": "Reportes",
+    "CRUD Entity": "CRUD Entidades",
     "Tables": "Tablas",
     "Forms": "Formularios",
     "Boostrap Element": "Elementos Boostrap",
