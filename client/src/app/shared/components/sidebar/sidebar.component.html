@@ -3,11 +3,10 @@
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' | translate }}
         </a>
-        <!--
         <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Charts' | translate }}
         </a>
-        <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <!--<a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Tables' | translate }}
         </a>
         <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -31,249 +30,250 @@
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages1')">
                 <span>
-                    <i class="fa fa-plus"></i>&nbsp; {{ 'Menu 1' | translate }}</span>
+                    <i class="fa fa-plus"></i>&nbsp; {{ 'CRUD TABLAS' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'pages1'">
                 <ul class="submenu">
                     <li>
-                        <a [routerLink]="['/asignatura']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Asignatura' | translate }} </a>
+                       <a [routerLink]="['/asignatura']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Asignatura' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/asignaturaSolicitudMatricula']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Asignatura Solicitud Matricula' | translate }} </a>
+                       <a [routerLink]="['/asignaturasolicitudmatricula']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'AsignaturaSolicitudMatricula' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/asistencia']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Asistencia' | translate }} </a>
+                       <a [routerLink]="['/asistencia']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Asistencia' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/aula']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Aula' | translate }} </a>
+                       <a [routerLink]="['/aula']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Aula' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/aulasAsignaturas']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'AulasAsignaturas' | translate }} </a>
+                       <a [routerLink]="['/aulasasignaturas']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'AulasAsignaturas' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/carrera']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Carrera' | translate }} </a>
+                       <a [routerLink]="['/carrera']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Carrera' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/categoriaNota']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'CategoriaNota' | translate }} </a>
+                       <a [routerLink]="['/categorianota']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'CategoriaNota' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/contacto']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Contacto' | translate }} </a>
+                       <a [routerLink]="['/contacto']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Contacto' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/cuenta']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Cuenta' | translate }} </a>
+                       <a [routerLink]="['/cuenta']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Cuenta' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/cupo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Cupo' | translate }} </a>
+                       <a [routerLink]="['/cupo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Cupo' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/datosEstudiante']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'DatosEstudiante' | translate }} </a>
+                       <a [routerLink]="['/datosestudiante']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'DatosEstudiante' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/detalleNotas']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'DetalleNotas' | translate }} </a>
+                       <a [routerLink]="['/detallenotas']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'DetalleNotas' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/discapacidad']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Discapacidad' | translate }} </a>
+                       <a [routerLink]="['/discapacidad']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Discapacidad' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/docente']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Docente' | translate }} </a>
+                       <a [routerLink]="['/docente']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Docente' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/docenteAsignatura']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'DocenteAsignatura' | translate }} </a>
+                       <a [routerLink]="['/docenteasignatura']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'DocenteAsignatura' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/documento']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Documento' | translate }} </a>
+                       <a [routerLink]="['/documento']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Documento' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/educacionContinua']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'EducacionContinua' | translate }} </a>
+                       <a [routerLink]="['/educacioncontinua']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'EducacionContinua' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/enfermedad']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Enfermedad' | translate }} </a>
+                       <a [routerLink]="['/enfermedad']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Enfermedad' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/estado']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Estado' | translate }} </a>
+                       <a [routerLink]="['/estado']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Estado' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/estadoCivil']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'EstadoCivil' | translate }} </a>
+                       <a [routerLink]="['/estadocivil']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'EstadoCivil' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/estadoPersona']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'EstadoPersona' | translate }} </a>
+                       <a [routerLink]="['/estadopersona']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'EstadoPersona' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/estadoSolicitud']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'EstadoSolicitud' | translate }} </a>
+                       <a [routerLink]="['/estadosolicitud']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'EstadoSolicitud' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/estudiante']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Estudiante' | translate }} </a>
+                       <a [routerLink]="['/estudiante']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Estudiante' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/etnia']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Etnia' | translate }} </a>
+                       <a [routerLink]="['/etnia']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Etnia' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/experienciaLaboral']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'ExperienciaLaboral' | translate }} </a>
+                       <a [routerLink]="['/experiencialaboral']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'ExperienciaLaboral' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/genero']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-venus-mars"></i>&nbsp;{{ 'Genero' | translate }} </a>
+                       <a [routerLink]="['/genero']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Genero' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/hobbies']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Hobbies' | translate }} </a>
+                       <a [routerLink]="['/hobbies']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Hobbies' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/horasClase']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'HorasClase' | translate }} </a>
+                       <a [routerLink]="['/horasclase']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'HorasClase' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/institucion']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Institucion' | translate }} </a>
+                       <a [routerLink]="['/institucion']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Institucion' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/instituto']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Instituto' | translate }} </a>
+                       <a [routerLink]="['/instituto']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Instituto' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/jornada']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Jornada' | translate }} </a>
+                       <a [routerLink]="['/jornada']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Jornada' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/jornadaCarrera']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'JornadaCarrera' | translate }} </a>
+                       <a [routerLink]="['/jornadacarrera']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'JornadaCarrera' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/malla']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Malla' | translate }} </a>
+                       <a [routerLink]="['/malla']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Malla' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/matricula']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Matricula' | translate }} </a>
+                       <a [routerLink]="['/matricula']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Matricula' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/matriculaAsignatura']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'MatriculaAsignatura' | translate }} </a>
+                       <a [routerLink]="['/matriculaasignatura']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'MatriculaAsignatura' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/modalidad']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Modalidad' | translate }} </a>
+                       <a [routerLink]="['/modalidad']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Modalidad' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/motivoSalida']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'MotivoSalida' | translate }} </a>
+                       <a [routerLink]="['/motivosalida']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'MotivoSalida' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/nivelTitulo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'NivelTitulo' | translate }} </a>
+                       <a [routerLink]="['/niveltitulo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'NivelTitulo' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/notas']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Notas' | translate }} </a>
+                       <a [routerLink]="['/notas']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Notas' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/ocupacion']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Ocupacion' | translate }} </a>
+                       <a [routerLink]="['/ocupacion']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Ocupacion' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/paralelo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Paralelo' | translate }} </a>
+                       <a [routerLink]="['/paralelo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Paralelo' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/parcial']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Parcial' | translate }} </a>
+                       <a [routerLink]="['/parcial']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Parcial' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/periodoAcademico']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'PeriodoAcademico' | translate }} </a>
+                       <a [routerLink]="['/periodoacademico']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'PeriodoAcademico' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/periodoLectivo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'PeriodoLectivo' | translate }} </a>
+                       <a [routerLink]="['/periodolectivo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'PeriodoLectivo' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/persona']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Persona' | translate }} </a>
+                       <a [routerLink]="['/persona']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Persona' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/ponderacion']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Ponderacion' | translate }} </a>
+                       <a [routerLink]="['/ponderacion']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Ponderacion' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/requisito']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Requisito' | translate }} </a>
+                       <a [routerLink]="['/requisito']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Requisito' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/roles']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Roles' | translate }} </a>
+                       <a [routerLink]="['/roles']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Roles' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/solicitudMatricula']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'SolicitudMatricula' | translate }} </a>
+                       <a [routerLink]="['/solicitudmatricula']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'SolicitudMatricula' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/tipoAula']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'TipoAula' | translate }} </a>
+                       <a [routerLink]="['/tipoaula']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'TipoAula' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/tipoDiscapacidad']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'TipoDiscapacidad' | translate }} </a>
+                       <a [routerLink]="['/tipodiscapacidad']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'TipoDiscapacidad' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/tipoEducacionContinua']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'TipoEducacionContinua' | translate }} </a>
+                       <a [routerLink]="['/tipoeducacioncontinua']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'TipoEducacionContinua' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/tipoIngresos']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'TipoIngresos' | translate }} </a>
+                       <a [routerLink]="['/tipoingresos']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'TipoIngresos' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/tipoInstitucionProcedencia']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'TipoInstitucionProcedencia' | translate }} </a>
+                       <a [routerLink]="['/tipoinstitucionprocedencia']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'TipoInstitucionProcedencia' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/tipoRequisito']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'TipoRequisito' | translate }} </a>
+                       <a [routerLink]="['/tiporequisito']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'TipoRequisito' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/tipoSangre']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'TipoSangre' | translate }} </a>
+                       <a [routerLink]="['/tiposangre']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'TipoSangre' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/titulo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Titulo' | translate }} </a>
+                       <a [routerLink]="['/titulo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Titulo' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/tutorCarrera']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'TutorCarrera' | translate }} </a>
+                       <a [routerLink]="['/tutorcarrera']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'TutorCarrera' | translate }} </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/ubicacion']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-users"></i>&nbsp;{{ 'Ubicacion' | translate }} </a>
+                       <a [routerLink]="['/ubicacion']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                       <i class="fa fa-users"></i>&nbsp;{{ 'Ubicacion' | translate }} </a>
                     </li>
                 </ul>
             </li>
         </div>
+        <!--
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages2')">
                 <span>
@@ -287,6 +287,6 @@
                     </li>
                 </ul>
             </li>
-        </div>
+        </div>-->
     </ul>
 </nav>
