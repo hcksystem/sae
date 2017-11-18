@@ -24,7 +24,7 @@ export class TutorCarreraService {
    }
 
    getPagina(pagina: number, tamanoPagina: number): Promise<TutorCarrera[]> {
-      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registrosPorPagina=' + tamanoPagina).toPromise().then(response=>response.json() as TutorCarrera[]).catch(this.handleError);
+      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as TutorCarrera[]).catch(this.handleError);
    }
 
    getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<TutorCarrera[]> {
@@ -32,7 +32,7 @@ export class TutorCarreraService {
    }
 
    getNumeroPaginas(tamanoPagina: number): Promise<number> {
-      return this.http.get(this.urlBase+'/numero_paginas' + '?registrosPorPagina=' + tamanoPagina).toPromise().then(response=>response.json() as TutorCarrera[]).catch(this.handleError);
+      return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as TutorCarrera[]).catch(this.handleError);
    }
 
    get(id: number): Promise<TutorCarrera> {

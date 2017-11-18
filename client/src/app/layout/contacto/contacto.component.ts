@@ -149,7 +149,7 @@ export class ContactoComponent implements OnInit {
    refresh(): void {
       this.entidades = Contacto[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getAll();
+      this.getPagina(1,5);
    }
 
    ngOnInit() {

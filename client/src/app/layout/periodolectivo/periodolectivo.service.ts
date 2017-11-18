@@ -24,7 +24,7 @@ export class PeriodoLectivoService {
    }
 
    getPagina(pagina: number, tamanoPagina: number): Promise<PeriodoLectivo[]> {
-      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registrosPorPagina=' + tamanoPagina).toPromise().then(response=>response.json() as PeriodoLectivo[]).catch(this.handleError);
+      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as PeriodoLectivo[]).catch(this.handleError);
    }
 
    getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<PeriodoLectivo[]> {
@@ -32,7 +32,7 @@ export class PeriodoLectivoService {
    }
 
    getNumeroPaginas(tamanoPagina: number): Promise<number> {
-      return this.http.get(this.urlBase+'/numero_paginas' + '?registrosPorPagina=' + tamanoPagina).toPromise().then(response=>response.json() as PeriodoLectivo[]).catch(this.handleError);
+      return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as PeriodoLectivo[]).catch(this.handleError);
    }
 
    get(id: number): Promise<PeriodoLectivo> {

@@ -24,7 +24,7 @@ export class DatosEstudianteService {
    }
 
    getPagina(pagina: number, tamanoPagina: number): Promise<DatosEstudiante[]> {
-      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registrosPorPagina=' + tamanoPagina).toPromise().then(response=>response.json() as DatosEstudiante[]).catch(this.handleError);
+      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as DatosEstudiante[]).catch(this.handleError);
    }
 
    getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<DatosEstudiante[]> {
@@ -32,7 +32,7 @@ export class DatosEstudianteService {
    }
 
    getNumeroPaginas(tamanoPagina: number): Promise<number> {
-      return this.http.get(this.urlBase+'/numero_paginas' + '?registrosPorPagina=' + tamanoPagina).toPromise().then(response=>response.json() as DatosEstudiante[]).catch(this.handleError);
+      return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as DatosEstudiante[]).catch(this.handleError);
    }
 
    get(id: number): Promise<DatosEstudiante> {
