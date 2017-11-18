@@ -42,7 +42,7 @@ export class CategoriaNotaService {
 
    remove(id: number): Promise<boolean> {
       const url = `${this.urlBase+'/borrar'}?id=${id}`;
-      return this.http.post(url,'').toPromise().then(response=>response.json()).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>response.json() as CategoriaNota).catch(this.handleError);
    }
 
    create(entidadTransporte: CategoriaNota): Promise<boolean> {

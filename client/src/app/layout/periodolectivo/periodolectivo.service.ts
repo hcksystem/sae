@@ -42,7 +42,7 @@ export class PeriodoLectivoService {
 
    remove(id: number): Promise<boolean> {
       const url = `${this.urlBase+'/borrar'}?id=${id}`;
-      return this.http.post(url,'').toPromise().then(response=>response.json()).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>response.json() as PeriodoLectivo).catch(this.handleError);
    }
 
    create(entidadTransporte: PeriodoLectivo): Promise<boolean> {
