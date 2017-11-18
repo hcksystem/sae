@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-
 import { Genero } from '../entidades/Genero';
 import { GeneroService } from './genero.service';
 
@@ -8,159 +7,156 @@ import 'rxjs/add/operator/toPromise';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
-    selector: 'app-genero',
-    templateUrl: './genero.component.html',
-    styleUrls: ['./genero.component.scss']
+   selector: 'app-genero',
+   templateUrl: './genero.component.html',
+   styleUrls: ['./genero.component.scss']
 })
+
 export class GeneroComponent implements OnInit {
-    busy: Promise<any>;
-    entidades: Genero[];
-    entidadSeleccionada: Genero;
-    pagina: 1;
-    tamanoPagina: 20;
-    esVisibleVentanaEdicion: boolean;
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
-        private dataService: GeneroService) {
-        this.toastr.setRootViewContainerRef(vcr);
-    }
+   busy: Promise<any>;
+   entidades: Genero[];
+   entidadSeleccionada: Genero;
+   pagina: 1;
+   tamanoPagina: 20;
+   esVisibleVentanaEdicion: boolean;
 
-    estaSeleccionado(porVerificar): boolean {
-        if (this.entidadSeleccionada == null) {
-            return false;
-        }
-        return porVerificar.id === this.entidadSeleccionada.id
-    }
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: GeneroService) {
+      this.toastr.setRootViewContainerRef(vcr);
+   }
 
-    cerrarVentanaEdicion(): void {
-        this.esVisibleVentanaEdicion = false;
-    }
+   estaSeleccionado(porVerificar): boolean {
+      if (this.entidadSeleccionada == null) {
+         return false;
+      }
+      return porVerificar.id === this.entidadSeleccionada.id;
+   }
 
-    mostrarVentanaNuevo(): void {
-        this.resetEntidadSeleccionada();
-        this.esVisibleVentanaEdicion = true;
-    }
+   cerrarVentanaEdicion(): void {
+      this.esVisibleVentanaEdicion = false;
+   }
 
-    mostrarVentanaEdicion(): void {
-        this.esVisibleVentanaEdicion = true;
-    }
+   mostrarVentanaNuevo(): void {
+      this.resetEntidadSeleccionada();
+      this.esVisibleVentanaEdicion = true;
+   }
 
-    resetEntidadSeleccionada(): void {
-        this.entidadSeleccionada = this.crearEntidad();
-    }
+   mostrarVentanaEdicion(): void {
+      this.esVisibleVentanaEdicion = true;
+   }
 
-    getAll(): void {
-        this.busy = this.dataService
-            .getAll()
-            .then(entidadesRecuperadas => {
-                this.entidades = entidadesRecuperadas
-                if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
-                    this.toastr.success('¡No hay datos!', 'Consulta');
-                } else {
-                    this.toastr.success('La consulta fue exitosa', 'Consulta');
-                }
-            })
-            .catch(error => {
-                this.toastr.success('Se produjo un error', 'Consulta');
-            });
-    }
+   resetEntidadSeleccionada(): void {
+      this.entidadSeleccionada = this.crearEntidad();
+   }
 
-    getPagina(pagina: number, tamanoPagina: number): void {
-        this.busy = this.dataService
-            .getPagina(pagina, tamanoPagina)
-            .then(entidadesRecuperadas => {
-                this.entidades = entidadesRecuperadas
-                if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
-                    this.toastr.success('¡No hay datos!', 'Consulta');
-                } else {
-                    this.toastr.success('La consulta fue exitosa', 'Consulta');
-                }
-            })
-            .catch(error => {
-                this.toastr.success('Se produjo un error', 'Consulta');
-            });
-    }
+   getAll(): void {
+      this.busy = this.dataService
+      .getAll()
+      .then(entidadesRecuperadas => {
+         this.entidades = entidadesRecuperadas
+         if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+            this.toastr.success('¡No hay datos!', 'Consulta');
+         } else {
+            this.toastr.success('La consulta fue exitosa', 'Consulta');
+         }
+      })
+      .catch(error => {
+         this.toastr.success('Se produjo un error', 'Consulta');
+      });
+   }
 
-    isValid(entidadPorEvaluar: Genero): boolean {
-        return true;
-    }
+   getPagina(pagina: number, tamanoPagina: number): void {
+      this.busy = this.dataService
+      .getPagina(pagina, tamanoPagina)
+      .then(entidadesRecuperadas => {
+         this.entidades = entidadesRecuperadas
+         if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+            this.toastr.success('¡No hay datos!', 'Consulta');
+         } else {
+            this.toastr.success('La consulta fue exitosa', 'Consulta');
+         }
+      })
+      .catch(error => {
+         this.toastr.success('Se produjo un error', 'Consulta');
+      });
+   }
 
-    aceptar(): void {
-        if (!this.isValid(this.entidadSeleccionada)) {
-            return;
-        }
+   isValid(entidadPorEvaluar: Genero): boolean {
+      return true;
+   }
 
-        if (this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
-            this.add(this.entidadSeleccionada);
-        } else {
-            this.update(this.entidadSeleccionada);
-        }
-        this.cerrarVentanaEdicion();
-    }
+   aceptar(): void {
+      if (!this.isValid(this.entidadSeleccionada)) {return;}
+      if (this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
+         this.add(this.entidadSeleccionada);
+      } else {
+         this.update(this.entidadSeleccionada);
+      }
+      this.cerrarVentanaEdicion();
+   }
 
-    crearEntidad(): Genero {
-        const nuevoGenero = new Genero();
-        nuevoGenero.id = 0;
-        return nuevoGenero;
-    }
+   crearEntidad(): Genero {
+      const nuevoGenero = new Genero();
+      nuevoGenero.id = 0;
+      return nuevoGenero;
+   }
 
-    add(entidadNueva: Genero): void {
-        this.busy = this.dataService.create(entidadNueva)
-            .then(respuesta => {
-                if(respuesta){
-                    this.toastr.success('La creación fue exitosa', 'Creación');
-                }else{
-                    this.toastr.warning('Se produjo un error', 'Creación');
-                }
-                this.refresh();
-            })
-            .catch(error => {
-                this.toastr.warning('Se produjo un error', 'Creación');
-            });
-    }
+   add(entidadNueva: Genero): void {
+      this.busy = this.dataService.create(entidadNueva)
+      .then(respuesta => {
+         if(respuesta){
+            this.toastr.success('La creación fue exitosa', 'Creación');
+         }else{
+            this.toastr.warning('Se produjo un error', 'Creación');
+         }
+         this.refresh();
+      })
+      .catch(error => {
+         this.toastr.warning('Se produjo un error', 'Creación');
+      });
+   }
 
-    update(entidadParaActualizar: Genero): void {
-        this.busy = this.dataService.update(entidadParaActualizar)
-            .then(respuesta => {
-                if(respuesta){
-                    this.toastr.success('La actualización fue exitosa', 'Actualización');
-                }else{
-                    this.toastr.warning('Se produjo un error', 'Actualización');
-                }
-                this.refresh();
-            })
-            .catch(error => {
-                this.toastr.warning('Se produjo un error', 'Actualización');
-            });
-    }
+   update(entidadParaActualizar: Genero): void {
+      this.busy = this.dataService.update(entidadParaActualizar)
+      .then(respuesta => {
+         if(respuesta){
+            this.toastr.success('La actualización fue exitosa', 'Actualización');
+         }else{
+            this.toastr.warning('Se produjo un error', 'Actualización');
+         }
+         this.refresh();
+      })
+      .catch(error => {
+         this.toastr.warning('Se produjo un error', 'Actualización');
+      });
+   }
 
-    delete(entidadParaBorrar: Genero): void {
-        this.busy = this.dataService.remove(entidadParaBorrar.id)
-            .then(respuesta => {
-                if(respuesta){
-                    this.toastr.success('La eliminación fue exitosa', 'Eliminación');
-                }else{
-                    this.toastr.warning('Se produjo un error', 'Eliminación');
-                }
-                this.refresh();
-            })
-            .catch(error => {
-                this.toastr.success('Se produjo un error', 'Eliminación');
-            });
-    }
+   delete(entidadParaBorrar: Genero): void {
+      this.busy = this.dataService.remove(entidadParaBorrar.id)
+      .then(respuesta => {
+         if(respuesta){
+            this.toastr.success('La eliminación fue exitosa', 'Eliminación');
+         }else{
+            this.toastr.warning('Se produjo un error', 'Eliminación');
+         }
+         this.refresh();
+      })
+      .catch(error => {
+         this.toastr.success('Se produjo un error', 'Eliminación');
+      });
+   }
 
-    refresh(): void {
-        this.entidades = Genero[0];
-        this.entidadSeleccionada = this.crearEntidad();
-        // this.getPagina(this.pagina, this.tamanoPagina);
-        this.getAll();
-    }
+   refresh(): void {
+      this.entidades = Genero[0];
+      this.entidadSeleccionada = this.crearEntidad();
+      this.getAll();
+   }
 
-    ngOnInit() {
-        this.refresh();
-    }
+   ngOnInit() {
+      this.refresh();
+   }
 
-    onSelect(entidadActual: Genero): void {
-        this.entidadSeleccionada = entidadActual;
-    }
+   onSelect(entidadActual: Genero): void {
+      this.entidadSeleccionada = entidadActual;
+   }
 }

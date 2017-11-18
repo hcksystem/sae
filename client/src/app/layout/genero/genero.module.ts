@@ -7,12 +7,12 @@ import { GeneroComponent } from './genero.component';
 import { GeneroService } from 'app/layout/genero/genero.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    GeneroRoutingModule
-  ],
-  providers: [GeneroService],
-  declarations: [GeneroComponent]
+   imports: [
+      CommonModule,
+      FormsModule,
+      GeneroRoutingModule
+   ],
+   providers: [GeneroService],
+   declarations: [GeneroComponent],
 })
 export class GeneroModule { }
