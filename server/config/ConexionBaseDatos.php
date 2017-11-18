@@ -5,7 +5,7 @@ class ConexionBaseDatos {
     public static function DatosConexiones(){
         $array = array();
         $array[] = new DatosConexion("pruebasITSY","","","","");
-        $array[] = new DatosConexion("local","","","","");
+        $array[] = new DatosConexion("local","localhost","ignug","prueba","12345678");
         return $array;
     }
 }
