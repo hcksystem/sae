@@ -54,8 +54,7 @@ class ControladorMatriculaAsignatura extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $parametros = array($desde,$registrosPorPagina);
-      $sql ="SELECT * FROM MatriculaAsignatura LIMIT ?,?;";
+      $sql ="SELECT * FROM MatriculaAsignatura LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
