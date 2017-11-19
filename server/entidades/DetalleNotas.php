@@ -7,7 +7,7 @@ class DetalleNotas
    public $idCateogiraNota;
    public $idNota;
 
-   function __construct(int $id,string $descripcion,double $nota,int $idCateogiraNota,int $idNota){
+   function __construct(int $id,string $descripcion,float $nota,int $idCateogiraNota,int $idNota){
       $this->id = $id;
       $this->descripcion = $descripcion;
       $this->nota = $nota;

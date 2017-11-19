@@ -7,7 +7,7 @@ class Estudiante
    public $tituloBachiller;
    public $idTipoInstitucionProcedencia;
 
-   function __construct(int $id,int $idPersona,double $notaPostulacion,string $tituloBachiller,int $idTipoInstitucionProcedencia){
+   function __construct(int $id,int $idPersona,float $notaPostulacion,string $tituloBachiller,int $idTipoInstitucionProcedencia){
       $this->id = $id;
       $this->idPersona = $idPersona;
       $this->notaPostulacion = $notaPostulacion;
