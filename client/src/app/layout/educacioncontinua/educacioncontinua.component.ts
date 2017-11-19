@@ -149,7 +149,7 @@ export class EducacionContinuaComponent implements OnInit {
    refresh(): void {
       this.entidades = EducacionContinua[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getAll();
+      this.getPagina(1,5);
    }
 
    ngOnInit() {

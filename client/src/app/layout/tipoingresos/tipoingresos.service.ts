@@ -24,7 +24,7 @@ export class TipoIngresosService {
    }
 
    getPagina(pagina: number, tamanoPagina: number): Promise<TipoIngresos[]> {
-      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registrosPorPagina=' + tamanoPagina).toPromise().then(response=>response.json() as TipoIngresos[]).catch(this.handleError);
+      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as TipoIngresos[]).catch(this.handleError);
    }
 
    getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<TipoIngresos[]> {
@@ -32,7 +32,7 @@ export class TipoIngresosService {
    }
 
    getNumeroPaginas(tamanoPagina: number): Promise<number> {
-      return this.http.get(this.urlBase+'/numero_paginas' + '?registrosPorPagina=' + tamanoPagina).toPromise().then(response=>response.json() as TipoIngresos[]).catch(this.handleError);
+      return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as TipoIngresos[]).catch(this.handleError);
    }
 
    get(id: number): Promise<TipoIngresos> {
@@ -42,7 +42,7 @@ export class TipoIngresosService {
 
    remove(id: number): Promise<boolean> {
       const url = `${this.urlBase+'/borrar'}?id=${id}`;
-      return this.http.post(url,'').toPromise().then(response=>response.json()).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>response.json() as TipoIngresos).catch(this.handleError);
    }
 
    create(entidadTransporte: TipoIngresos): Promise<boolean> {

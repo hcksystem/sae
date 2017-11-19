@@ -149,7 +149,7 @@ export class MatriculaComponent implements OnInit {
    refresh(): void {
       this.entidades = Matricula[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getAll();
+      this.getPagina(1,5);
    }
 
    ngOnInit() {

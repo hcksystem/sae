@@ -149,7 +149,7 @@ export class CategoriaNotaComponent implements OnInit {
    refresh(): void {
       this.entidades = CategoriaNota[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getAll();
+      this.getPagina(1,5);
    }
 
    ngOnInit() {

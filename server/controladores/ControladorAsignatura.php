@@ -54,8 +54,7 @@ class ControladorAsignatura extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $parametros = array($desde,$registrosPorPagina);
-      $sql ="SELECT * FROM Asignatura LIMIT ?,?;";
+      $sql ="SELECT * FROM Asignatura LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }

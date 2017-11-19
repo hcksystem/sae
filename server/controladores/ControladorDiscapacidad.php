@@ -54,8 +54,7 @@ class ControladorDiscapacidad extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $parametros = array($desde,$registrosPorPagina);
-      $sql ="SELECT * FROM Discapacidad LIMIT ?,?;";
+      $sql ="SELECT * FROM Discapacidad LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }

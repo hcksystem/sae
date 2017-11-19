@@ -149,7 +149,7 @@ export class InstitucionComponent implements OnInit {
    refresh(): void {
       this.entidades = Institucion[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getAll();
+      this.getPagina(1,5);
    }
 
    ngOnInit() {

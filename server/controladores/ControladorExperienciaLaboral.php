@@ -54,8 +54,7 @@ class ControladorExperienciaLaboral extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $parametros = array($desde,$registrosPorPagina);
-      $sql ="SELECT * FROM ExperienciaLaboral LIMIT ?,?;";
+      $sql ="SELECT * FROM ExperienciaLaboral LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }

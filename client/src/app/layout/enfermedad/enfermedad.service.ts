@@ -24,7 +24,7 @@ export class EnfermedadService {
    }
 
    getPagina(pagina: number, tamanoPagina: number): Promise<Enfermedad[]> {
-      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registrosPorPagina=' + tamanoPagina).toPromise().then(response=>response.json() as Enfermedad[]).catch(this.handleError);
+      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Enfermedad[]).catch(this.handleError);
    }
 
    getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<Enfermedad[]> {
@@ -32,7 +32,7 @@ export class EnfermedadService {
    }
 
    getNumeroPaginas(tamanoPagina: number): Promise<number> {
-      return this.http.get(this.urlBase+'/numero_paginas' + '?registrosPorPagina=' + tamanoPagina).toPromise().then(response=>response.json() as Enfermedad[]).catch(this.handleError);
+      return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Enfermedad[]).catch(this.handleError);
    }
 
    get(id: number): Promise<Enfermedad> {
@@ -42,7 +42,7 @@ export class EnfermedadService {
 
    remove(id: number): Promise<boolean> {
       const url = `${this.urlBase+'/borrar'}?id=${id}`;
-      return this.http.post(url,'').toPromise().then(response=>response.json()).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>response.json() as Enfermedad).catch(this.handleError);
    }
 
    create(entidadTransporte: Enfermedad): Promise<boolean> {
