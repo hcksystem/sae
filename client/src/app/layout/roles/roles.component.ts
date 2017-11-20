@@ -19,6 +19,8 @@ export class RolesComponent implements OnInit {
    entidadSeleccionada: Roles;
    pagina: 1;
    tamanoPagina: 20;
+   paginaActual: number;
+   paginaUltima: number;
    esVisibleVentanaEdicion: boolean;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RolesService) {

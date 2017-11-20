@@ -19,6 +19,8 @@ export class GeneroComponent implements OnInit {
    entidadSeleccionada: Genero;
    pagina: 1;
    tamanoPagina: 20;
+   paginaActual: number;
+   paginaUltima: number;
    esVisibleVentanaEdicion: boolean;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: GeneroService) {

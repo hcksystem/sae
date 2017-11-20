@@ -19,6 +19,8 @@ export class DocumentoComponent implements OnInit {
    entidadSeleccionada: Documento;
    pagina: 1;
    tamanoPagina: 20;
+   paginaActual: number;
+   paginaUltima: number;
    esVisibleVentanaEdicion: boolean;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: DocumentoService) {

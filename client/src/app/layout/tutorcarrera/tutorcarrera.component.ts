@@ -19,6 +19,8 @@ export class TutorCarreraComponent implements OnInit {
    entidadSeleccionada: TutorCarrera;
    pagina: 1;
    tamanoPagina: 20;
+   paginaActual: number;
+   paginaUltima: number;
    esVisibleVentanaEdicion: boolean;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: TutorCarreraService) {

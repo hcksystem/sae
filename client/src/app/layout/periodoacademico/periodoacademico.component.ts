@@ -19,6 +19,8 @@ export class PeriodoAcademicoComponent implements OnInit {
    entidadSeleccionada: PeriodoAcademico;
    pagina: 1;
    tamanoPagina: 20;
+   paginaActual: number;
+   paginaUltima: number;
    esVisibleVentanaEdicion: boolean;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: PeriodoAcademicoService) {

@@ -19,6 +19,8 @@ export class EducacionContinuaComponent implements OnInit {
    entidadSeleccionada: EducacionContinua;
    pagina: 1;
    tamanoPagina: 20;
+   paginaActual: number;
+   paginaUltima: number;
    esVisibleVentanaEdicion: boolean;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: EducacionContinuaService) {

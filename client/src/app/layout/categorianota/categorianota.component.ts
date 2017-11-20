@@ -19,6 +19,8 @@ export class CategoriaNotaComponent implements OnInit {
    entidadSeleccionada: CategoriaNota;
    pagina: 1;
    tamanoPagina: 20;
+   paginaActual: number;
+   paginaUltima: number;
    esVisibleVentanaEdicion: boolean;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: CategoriaNotaService) {
