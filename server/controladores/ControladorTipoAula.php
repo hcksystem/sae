@@ -61,9 +61,9 @@ class ControladorTipoAula extends ControladorBase
 
    function numero_paginas($registrosPorPagina)
    {
-      $sql ="SELECT ceil(count(*)/$registrosPorPagina)as'paginas' FROM TipoAula;";
+      $sql ="SELECT IF(ceil(count(*)/$registrosPorPagina)>0,ceil(count(*)/$registrosPorPagina),1) as 'paginas' FROM TipoAula;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      return $respuesta;
+      return $respuesta[0];
    }
 
    function leer_filtrado(string $nombreColumna, string $tipoFiltro, string $filtro)

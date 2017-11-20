@@ -21,6 +21,7 @@ export class UbicacionComponent implements OnInit {
    tamanoPagina: 20;
    paginaActual: number;
    paginaUltima: number;
+   registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: UbicacionService) {
@@ -87,10 +88,7 @@ export class UbicacionComponent implements OnInit {
       this.busy = this.dataService
       .getNumeroPaginas(tamanoPagina)
       .then(respuesta => {
-         this.paginaUltima = respuesta[0].paginas;
-         if(this.paginaUltima == 0){
-            this.paginaUltima = 1;
-         }
+         this.paginaUltima = respuesta.paginas;
       })
       .catch(error => {
          //Error al leer las paginas
@@ -163,15 +161,42 @@ export class UbicacionComponent implements OnInit {
    }
 
    refresh(): void {
+      this.getNumeroPaginas(this.registrosPorPagina);
+      this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = Ubicacion[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getPagina(1,5);
-      this.getNumeroPaginas(5);
+   }
+
+   getPaginaPrimera():void {
+      this.paginaActual = 1;
+      this.refresh();
+   }
+
+   getPaginaAnterior():void {
+      this.paginaActual = this.paginaActual - 1;
+      if(this.paginaActual==0){
+         this.paginaActual = 1;
+      }
+      this.refresh();
+   }
+
+   getPaginaSiguiente():void {
+      this.paginaActual = this.paginaActual + 1;
+      if(this.paginaActual == this.paginaUltima){
+         this.paginaActual = this.paginaUltima;
+      }
+      this.refresh();
+   }
+
+   getPaginaUltima():void {
+      this.paginaActual = this.paginaUltima;
+      this.refresh();
    }
 
    ngOnInit() {
-      this.refresh();
       this.paginaActual=1;
+      this.registrosPorPagina = 5;
+      this.refresh();
    }
 
    onSelect(entidadActual: Ubicacion): void {
