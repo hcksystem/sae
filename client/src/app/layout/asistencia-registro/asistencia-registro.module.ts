@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { AsistenciaRegistroRoutingModule } from './asistencia-registro-routing.module';
 import { AsistenciaRegistroComponent } from './asistencia-registro.component';
 import { AsistenciaRegistroService } from './asistencia-registro.service';
+import { AsignaturaService } from '../asignatura/asignatura.service';
+
 
 @NgModule({
    imports: [
@@ -12,7 +14,7 @@ import { AsistenciaRegistroService } from './asistencia-registro.service';
       FormsModule,
       AsistenciaRegistroRoutingModule
    ],
-   providers: [AsistenciaRegistroService],
+   providers: [AsistenciaRegistroService, AsignaturaService],
    declarations: [AsistenciaRegistroComponent],
 })
 export class AsistenciaRegistroModule { }

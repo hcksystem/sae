@@ -7,7 +7,7 @@ import { AsignaturaService } from '../asignatura/asignatura.service';
 
 import 'rxjs/add/operator/toPromise';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { CabeceraMes } from 'app/layout/asistencia-registro/cabecera-mes';
+import { CabeceraMes } from './cabecera-mes';
 
 @Component({
     selector: 'app-asistencia-registro',
@@ -28,9 +28,12 @@ export class AsistenciaRegistroComponent implements OnInit {
         , private dataService: AsistenciaRegistroService
         , private dataServiceAsignatura: AsignaturaService) {
         this.toastr.setRootViewContainerRef(vcr);
+        // this.cabecerasMes = new CabeceraMes[0]();
+        // this.asistencias = new AsistenciaRegistro[0]();
+        // this.asignaturas = new AsignaturaDocente[0]();
     }
 
-    nombreMes(fecha: Date): string {
+    calcularNombreMes(fecha: Date): string {
         switch (fecha.getMonth()) {
             case 0: return 'Enero';
             case 1: return 'Febrero';
@@ -49,31 +52,31 @@ export class AsistenciaRegistroComponent implements OnInit {
 
     calcularCabecerasMes(asistencias: AsistenciaRegistro[]): void {
         if (asistencias.length > 0) {
-            asistencias[0].asistencias.forEach(function (value) {
-                if (this.cabecerasMes.length > 0) {
-                    const indice = this.cabecerasMes.forEach(function (item, index) {
-                        if (item.nombreMes === this.nombreMes(value.fecha)) {
-                            return index;
-                        }
-                        return -1;
-                    });
+            for (let value of asistencias[0].asistencias) {
+                let mes = this.calcularNombreMes(value.fecha);
 
-                    if (indice >= 0) {
-                        this.cabecerasMes[indice].numeroColumnas++;
-                    } else {
-                        const cabeceraMes = new CabeceraMes();
-                        cabeceraMes.nombreMes = this.nombreMes(value.fecha);
-                        cabeceraMes.numeroColumnas = 1;
-                        this.cabecerasMes.push(cabeceraMes);
+                if (this.cabecerasMes.length > 0) {
+
+                    let cabeceraActual = null;
+                    for (let cabecera of this.cabecerasMes) {
+                        if (cabecera.nombreMes === mes) {
+                            cabeceraActual = cabecera;
+                            return;
+                        }
                     }
-                } else {
-                    const cabeceraMes = new CabeceraMes();
-                    cabeceraMes.nombreMes = this.nombreMes(value.fecha);
-                    cabeceraMes.numeroColumnas = 1;
-                    this.cabecerasMes.push(cabeceraMes);
+
+                    if (cabeceraActual != null) {
+                        cabeceraActual.numeroColumnas++;
+                        break;
+                    }
                 }
-            });
-        };
+
+                let cabeceraMes = new CabeceraMes();
+                cabeceraMes.nombreMes = mes;
+                cabeceraMes.numeroColumnas = 1;
+                this.cabecerasMes.push(cabeceraMes);
+            }
+        }
     }
 
     onChangeAsignatura(asignatura: AsignaturaDocente): void {
@@ -127,8 +130,8 @@ export class AsistenciaRegistroComponent implements OnInit {
             });
     }
 
-    update(entidadParaActualizar: AsistenciaRegistro[]): void {
-        this.busy = this.dataService.update(entidadParaActualizar)
+    update(): void {
+        this.busy = this.dataService.update(this.asistencias)
             .then(respuesta => {
                 if (respuesta) {
                     this.toastr.success('La actualización fue exitosa', 'Actualización');
