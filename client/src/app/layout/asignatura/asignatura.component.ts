@@ -20,6 +20,8 @@ export class AsignaturaComponent implements OnInit {
    pagina: 1;
    tamanoPagina: 20;
    esVisibleVentanaEdicion: boolean;
+   paginaActual: number;
+   paginaUltima: number;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: AsignaturaService) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -154,6 +156,8 @@ export class AsignaturaComponent implements OnInit {
 
    ngOnInit() {
       this.refresh();
+      this.paginaActual=1;
+      this.paginaUltima=10;
    }
 
    onSelect(entidadActual: Asignatura): void {
