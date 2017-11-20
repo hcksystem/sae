@@ -81,6 +81,21 @@ export class GeneroComponent implements OnInit {
       });
    }
 
+   getNumeroPaginas(tamanoPagina: number): void{
+      this.busy = this.dataService
+      .getNumeroPaginas(tamanoPagina)
+      .then(respuesta => {
+         if(respuesta>0){
+            this.paginaUltima = respuesta;
+         } else {
+            this.paginaUltima = 1;
+         }
+      })
+      .catch(error => {
+         //Error al leer las paginas
+      });
+   }
+
    isValid(entidadPorEvaluar: Genero): boolean {
       return true;
    }
@@ -150,10 +165,12 @@ export class GeneroComponent implements OnInit {
       this.entidades = Genero[0];
       this.entidadSeleccionada = this.crearEntidad();
       this.getPagina(1,5);
+      this.getNumeroPaginas(5);
    }
 
    ngOnInit() {
       this.refresh();
+      this.paginaActual=1;
    }
 
    onSelect(entidadActual: Genero): void {

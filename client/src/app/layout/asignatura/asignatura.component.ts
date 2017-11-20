@@ -20,8 +20,6 @@ export class AsignaturaComponent implements OnInit {
    pagina: 1;
    tamanoPagina: 20;
    esVisibleVentanaEdicion: boolean;
-   paginaActual: number;
-   paginaUltima: number;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: AsignaturaService) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -80,6 +78,21 @@ export class AsignaturaComponent implements OnInit {
       })
       .catch(error => {
          this.toastr.success('Se produjo un error', 'Consulta');
+      });
+   }
+
+   getNumeroPaginas(tamanoPagina: number): void{
+      this.busy = this.dataService
+      .getNumeroPaginas(tamanoPagina)
+      .then(respuesta => {
+         if(respuesta>0){
+            this.paginaUltima = respuesta;
+         } else {
+            this.paginaUltima = 1;
+         }
+      })
+      .catch(error => {
+         //Error al leer las paginas
       });
    }
 
@@ -152,12 +165,12 @@ export class AsignaturaComponent implements OnInit {
       this.entidades = Asignatura[0];
       this.entidadSeleccionada = this.crearEntidad();
       this.getPagina(1,5);
+      this.getNumeroPaginas(5);
    }
 
    ngOnInit() {
       this.refresh();
       this.paginaActual=1;
-      this.paginaUltima=10;
    }
 
    onSelect(entidadActual: Asignatura): void {
