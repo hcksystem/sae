@@ -87,9 +87,8 @@ export class JornadaComponent implements OnInit {
       this.busy = this.dataService
       .getNumeroPaginas(tamanoPagina)
       .then(respuesta => {
-         if(respuesta>0){
-            this.paginaUltima = respuesta[0].paginas;
-         } else {
+         this.paginaUltima = respuesta[0].paginas;
+         if(this.paginaUltima == 0){
             this.paginaUltima = 1;
          }
       })

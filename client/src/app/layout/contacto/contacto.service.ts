@@ -31,8 +31,8 @@ export class ContactoService {
       return this.http.get(this.urlBase+'/leer_filtrado' + '?columna=' + columna + '&tipo_filtro=' + tipoFiltro + '&filtro=' + filtro).toPromise().then(response=>response.json() as Contacto[]).catch(this.handleError);
    }
 
-   getNumeroPaginas(tamanoPagina: number): Promise<number> {
-      return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Contacto[]).catch(this.handleError);
+   getNumeroPaginas(tamanoPagina: number): Promise<any> {
+      return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 
    get(id: number): Promise<Contacto> {
