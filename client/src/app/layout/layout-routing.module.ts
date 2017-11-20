@@ -22,10 +22,10 @@ const routes: Routes = [
             },
             { path: 'asistencia', loadChildren: './asistencia/asistencia.module#AsistenciaModule' },
             { path: 'asistencia-registro', loadChildren: './asistencia-registro/asistencia-registro.module#AsistenciaRegistroModule' },
-            {
+            /*{
                 path: 'asistencia-justificacion',
                 loadChildren: './asistencia-justificacion/asistencia-justificacion.module#AsistenciaJustificacionModule'
-            },
+            },*/
             { path: 'aula', loadChildren: './aula/aula.module#AulaModule' },
             { path: 'aulasasignaturas', loadChildren: './aulasasignaturas/aulasasignaturas.module#AulasAsignaturasModule' },
             { path: 'carrera', loadChildren: './carrera/carrera.module#CarreraModule' },

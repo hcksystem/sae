@@ -85,7 +85,7 @@ export class AsistenciaRegistroComponent implements OnInit {
 
     leerDocente(): void {
         this.idDocente = 1; // TODO GE : leer el id de docente de la cuenta actual
-        this.getAsignaturas(this.idDocente);
+        //this.getAsignaturas(this.idDocente);
         this.encerarAsistencias();
     }
 
@@ -98,7 +98,7 @@ export class AsistenciaRegistroComponent implements OnInit {
         this.getAll(this.idMatriculaAsignatura);
     }
 
-    getAsignaturas(idDocente: number): void {
+    /*getAsignaturas(idDocente: number): void {
         this.busy = this.dataServiceAsignatura
             .getAsignaturas(idDocente)
             .then(entidadesRecuperadas => {
@@ -111,7 +111,7 @@ export class AsistenciaRegistroComponent implements OnInit {
                 this.toastr.warning('Se produjo un error al consultar las asignaturas del docente', 'Consulta');
             });
 
-    }
+    }*/
 
     getAll(idMatriculaAsignatura: number): void {
         this.busy = this.dataService

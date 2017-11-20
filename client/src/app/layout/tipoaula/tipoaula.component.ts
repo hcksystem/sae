@@ -88,7 +88,7 @@ export class TipoAulaComponent implements OnInit {
       .getNumeroPaginas(tamanoPagina)
       .then(respuesta => {
          if(respuesta>0){
-            this.paginaUltima = respuesta;
+            this.paginaUltima = respuesta[0].paginas;
          } else {
             this.paginaUltima = 1;
          }
