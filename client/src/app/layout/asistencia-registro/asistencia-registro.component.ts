@@ -28,9 +28,9 @@ export class AsistenciaRegistroComponent implements OnInit {
         , private dataService: AsistenciaRegistroService
         , private dataServiceAsignatura: AsignaturaService) {
         this.toastr.setRootViewContainerRef(vcr);
-        this.cabecerasMes = new CabeceraMes[0];
-        this.asistencias = new AsistenciaRegistro[0];
-        this.asignaturas = new AsignaturaDocente[0];
+        // this.cabecerasMes = new CabeceraMes[0]();
+        // this.asistencias = new AsistenciaRegistro[0]();
+        // this.asignaturas = new AsignaturaDocente[0]();
     }
 
     calcularNombreMes(fecha: Date): string {
@@ -130,8 +130,8 @@ export class AsistenciaRegistroComponent implements OnInit {
             });
     }
 
-    update(entidadParaActualizar: AsistenciaRegistro[]): void {
-        this.busy = this.dataService.update(entidadParaActualizar)
+    update(): void {
+        this.busy = this.dataService.update(this.asistencias)
             .then(respuesta => {
                 if (respuesta) {
                     this.toastr.success('La actualización fue exitosa', 'Actualización');

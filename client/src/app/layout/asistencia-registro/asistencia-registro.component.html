@@ -11,7 +11,7 @@
           <button type="button" class="btn btn-default" (click)="refresh()">
             <span class="fa fa-refresh"></span>&nbsp;Leer
           </button>
-          <button type="button" class="btn btn-primary" (click)="aceptar()">
+          <button type="button" class="btn btn-primary" (click)="update()">
             <span class="fa fa-save"></span>&nbsp;Guardar
           </button>
         </div>
@@ -35,9 +35,9 @@
               <span>
               </span>
             </th>
-            <th scope="col" *ngFor="let dato of cabecerasMes" colspan="{{dato.numeroColumnas}}">
+            <th scope="col" *ngFor="let itemCabecera of cabecerasMes" [attr.colspan]="itemCabecera.numeroColumnas">
               <span>
-                <strong>{{dato.nombreMes}}</strong>
+                <strong>{{itemCabecera.nombreMes}}</strong>
               </span>
             </th>
           </tr>
@@ -47,9 +47,9 @@
                 <strong>Estudiante</strong>
               </span>
             </th>
-            <th scope="col" *ngFor="let dato of asistencias.asistencia">
+            <th scope="col" *ngFor="let itemAsistencia of asistencias[0].asistencias">
               <span>
-                <strong>{{dato.fecha | date:'d'}}</strong>
+                <strong>{{itemAsistencia.fecha | date:'d'}}</strong>
               </span>
             </th>
           </tr>
@@ -57,8 +57,8 @@
         <tbody>
           <tr *ngFor="let asistencia of asistencias">
             <td>{{asistencia.estudiante}}</td>
-            <td *ngFor="let dato of asistencia">
-              <input type="number" min="0" [(ngModel)]="{{dato.horas}}" class="form-control">
+            <td *ngFor="let dato of asistencia.asistencias">
+              <input type="number" min="0" [(ngModel)]="dato.horas" class="form-control">
             </td>
           </tr>
         </tbody>
