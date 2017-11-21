@@ -4,11 +4,12 @@ class AdministradorBaseDatos
 {
     private $DatosConexionActual;
     private $Conexion;
+    public $baseDatos;
 
     public function __construct($nombreConexion){
         if (!$this->encontrarConexion($nombreConexion))
         {
-            die("Conexión $nombreConexion no encontrada.");
+            die("Se ha producido un error.");
         }
     }
 
@@ -25,6 +26,7 @@ class AdministradorBaseDatos
 
     private function conectar(){
         $DatosAbrirConexion = $this->DatosConexionActual;
+        $this->baseDatos = $DatosAbrirConexion->baseDatos;
         try 
         {
             $this->Conexion = new PDO("mysql:host=$DatosAbrirConexion->servidor;dbname=$DatosAbrirConexion->baseDatos;charset=utf8", $DatosAbrirConexion->usuario, $DatosAbrirConexion->clave,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
@@ -40,23 +42,25 @@ class AdministradorBaseDatos
         $this->Conexion = null;
     }
 
-    private function consultar($sql){
-        $stmt 	= $this->Conexion->prepare($sql);
-        $stmt->execute();
-        $array=array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-        {
-            $array[]=$row;
+    private function consultar($sql,$parametros){
+        $stmt = $this->Conexion->prepare($sql);
+        $stmt->execute($parametros);
+        $array = array();
+        $cuenta = $stmt->rowCount();
+        if($cuenta>0){
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                $array[]=$row;
+            }
+        }else{
+            $array[]=$cuenta;
         }
-        if(!count($array)==0){
-            return $array;
-        }
-        return "Comando Ejecutado: ".$sql;
+        return $array;
     }
 
-    public function ejecutarConsulta($sql){
+    public function ejecutarConsulta($sql,$parametros){
         $this->conectar();
-        $salida = $this->consultar($sql);
+        $salida = $this->consultar($sql,$parametros);
         $this->desconectar();
         return $salida;
     }
