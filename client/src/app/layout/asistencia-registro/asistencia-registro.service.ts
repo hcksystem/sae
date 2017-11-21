@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { environment } from '../../../environments/environment';
 
-import { AsistenciaRegistro } from '../entidades/Asistencia-Registro';
+import { AsistenciaRegistro } from '../../entidades/Asistencia-Registro';
 
 import 'rxjs/add/operator/toPromise';
 

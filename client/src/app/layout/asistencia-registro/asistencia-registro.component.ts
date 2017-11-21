@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { AsistenciaRegistro } from '../entidades/Asistencia-Registro';
-import { AsignaturaDocente } from '../entidades/Asignatura-Docente';
+import { AsistenciaRegistro } from '../../entidades/Asistencia-Registro';
+import { AsignaturaDocente } from '../../entidades/Asignatura-Docente';
 import { AsistenciaRegistroService } from './asistencia-registro.service';
-import { AsignaturaService } from '../asignatura/asignatura.service';
+import { AsignaturaService } from '../../CRUD/asignatura/asignatura.service';
 
 import 'rxjs/add/operator/toPromise';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';

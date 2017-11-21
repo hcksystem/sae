@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AsistenciaRegistroRoutingModule } from './asistencia-registro-routing.module';
 import { AsistenciaRegistroComponent } from './asistencia-registro.component';
 import { AsistenciaRegistroService } from './asistencia-registro.service';
-import { AsignaturaService } from '../asignatura/asignatura.service';
+import { AsignaturaService } from '../../CRUD/asignatura/asignatura.service';
 
 
 @NgModule({
