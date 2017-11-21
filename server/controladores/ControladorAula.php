@@ -10,7 +10,6 @@ class ControladorAula extends ControladorBase
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
-         
       }else{
          return false;
       }
