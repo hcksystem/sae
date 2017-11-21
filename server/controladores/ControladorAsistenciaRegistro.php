@@ -18,20 +18,9 @@ class ControladorAsistenciaRegistro extends ControladorBase
       function leer(int $idMatriculaAsignatura)
       {
             $parametros = array($idMatriculaAsignatura);
-
-            $sql = "SELECT MatriculaAsignatura.id idMatriculaAsignatura, Persona.id id
-            , Persona.nombre1 + ' ' + Persona.nombre2 + ' ' + Persona.apellido1 + ' ' + Persona.apellido2 estudiante 
-            , Asistencia.fecha fecha, Asistencia.horas horas 
-            FROM Persona 
-            INNER JOIN Matricula ON Persona.id = Matricula.idPersona
-            INNER JOIN MatriculaAsignatura ON Matricula.id = MatriculaAsignatura.idMatricula
-            INNER JOIN Asistencia ON Asistencia.idMatriculaAsignatura = MatriculaAsignatura.id
-            WHERE MatriculaAsignatura.id = ?;";
-
+            $sql = "SELECT MatriculaAsignatura.id as 'idMatriculaAsignatura', Persona.id as 'id', CONCAT(Persona.nombre1,' ',Persona.nombre2,' ',Persona.apellido1,' ',Persona.apellido2) as 'estudiante',Asistencia.fecha as 'fecha',Asistencia.horas as 'horas' FROM Persona INNER JOIN Matricula ON Persona.id = Matricula.idPersona INNER JOIN MatriculaAsignatura ON Matricula.id = MatriculaAsignatura.idMatricula INNER JOIN Asistencia ON Asistencia.idMatriculaAsignatura = MatriculaAsignatura.id WHERE MatriculaAsignatura.id = ?;";
             $respuesta = $this->conexion->ejecutarConsulta($sql, $parametros);
-
             // TODO : devolver un AsistenciaRegistro[] ordenado por estudiante y el vector asistenciadato ordenado por fecha, ver estructura esperada
-
             return $respuesta;
       }
 }
