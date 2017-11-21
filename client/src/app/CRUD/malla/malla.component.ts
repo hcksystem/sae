@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Malla } from '../../entidades/Malla';
+import { Malla } from '../../entidades/CRUD/Malla';
 import { MallaService } from './malla.service';
 
 import 'rxjs/add/operator/toPromise';

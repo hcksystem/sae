@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { NivelTitulo } from '../../entidades/NivelTitulo';
+import { NivelTitulo } from '../../entidades/CRUD/NivelTitulo';
 import { NivelTituloService } from './niveltitulo.service';
 
 import 'rxjs/add/operator/toPromise';

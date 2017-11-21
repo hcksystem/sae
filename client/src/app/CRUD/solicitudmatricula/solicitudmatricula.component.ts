@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { SolicitudMatricula } from '../../entidades/SolicitudMatricula';
+import { SolicitudMatricula } from '../../entidades/CRUD/SolicitudMatricula';
 import { SolicitudMatriculaService } from './solicitudmatricula.service';
 
 import 'rxjs/add/operator/toPromise';

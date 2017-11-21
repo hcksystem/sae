@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { TipoRequisito } from '../../entidades/TipoRequisito';
+import { TipoRequisito } from '../../entidades/CRUD/TipoRequisito';
 import { TipoRequisitoService } from './tiporequisito.service';
 
 import 'rxjs/add/operator/toPromise';

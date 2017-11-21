@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { TutorCarrera } from '../../entidades/TutorCarrera';
+import { TutorCarrera } from '../../entidades/CRUD/TutorCarrera';
 import { TutorCarreraService } from './tutorcarrera.service';
 
 import 'rxjs/add/operator/toPromise';

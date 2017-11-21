@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Genero } from '../../entidades/Genero';
+import { Genero } from '../../entidades/CRUD/Genero';
 import { GeneroService } from './genero.service';
 
 import 'rxjs/add/operator/toPromise';

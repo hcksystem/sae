@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { SolicitudMatricula } from '../../entidades/SolicitudMatricula';
+import { SolicitudMatricula } from '../../entidades/CRUD/SolicitudMatricula';
 
 @Injectable()
 

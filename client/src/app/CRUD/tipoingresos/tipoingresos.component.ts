@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { TipoIngresos } from '../../entidades/TipoIngresos';
+import { TipoIngresos } from '../../entidades/CRUD/TipoIngresos';
 import { TipoIngresosService } from './tipoingresos.service';
 
 import 'rxjs/add/operator/toPromise';

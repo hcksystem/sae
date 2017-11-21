@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Hobbies } from '../../entidades/Hobbies';
+import { Hobbies } from '../../entidades/CRUD/Hobbies';
 import { HobbiesService } from './hobbies.service';
 
 import 'rxjs/add/operator/toPromise';

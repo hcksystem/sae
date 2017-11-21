@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { ExperienciaLaboral } from '../../entidades/ExperienciaLaboral';
+import { ExperienciaLaboral } from '../../entidades/CRUD/ExperienciaLaboral';
 
 @Injectable()
 

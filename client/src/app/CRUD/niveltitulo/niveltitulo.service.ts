@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { NivelTitulo } from '../../entidades/NivelTitulo';
+import { NivelTitulo } from '../../entidades/CRUD/NivelTitulo';
 
 @Injectable()
 

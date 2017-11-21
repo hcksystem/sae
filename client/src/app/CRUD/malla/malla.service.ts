@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Malla } from '../../entidades/Malla';
+import { Malla } from '../../entidades/CRUD/Malla';
 
 @Injectable()
 

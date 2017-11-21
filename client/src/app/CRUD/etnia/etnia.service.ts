@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Etnia } from '../../entidades/Etnia';
+import { Etnia } from '../../entidades/CRUD/Etnia';
 
 @Injectable()
 

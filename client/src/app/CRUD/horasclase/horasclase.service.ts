@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { HorasClase } from '../../entidades/HorasClase';
+import { HorasClase } from '../../entidades/CRUD/HorasClase';
 
 @Injectable()
 

@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Jornada } from '../../entidades/Jornada';
+import { Jornada } from '../../entidades/CRUD/Jornada';
 
 @Injectable()
 

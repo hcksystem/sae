@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Persona } from '../../entidades/Persona';
+import { Persona } from '../../entidades/CRUD/Persona';
 import { PersonaService } from './persona.service';
 
 import 'rxjs/add/operator/toPromise';

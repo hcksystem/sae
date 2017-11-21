@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Paralelo } from '../../entidades/Paralelo';
+import { Paralelo } from '../../entidades/CRUD/Paralelo';
 
 @Injectable()
 

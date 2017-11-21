@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Parcial } from '../../entidades/Parcial';
+import { Parcial } from '../../entidades/CRUD/Parcial';
 
 @Injectable()
 

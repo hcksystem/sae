@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Cupo } from '../../entidades/Cupo';
+import { Cupo } from '../../entidades/CRUD/Cupo';
 import { CupoService } from './cupo.service';
 
 import 'rxjs/add/operator/toPromise';

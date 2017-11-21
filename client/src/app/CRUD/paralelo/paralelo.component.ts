@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Paralelo } from '../../entidades/Paralelo';
+import { Paralelo } from '../../entidades/CRUD/Paralelo';
 import { ParaleloService } from './paralelo.service';
 
 import 'rxjs/add/operator/toPromise';

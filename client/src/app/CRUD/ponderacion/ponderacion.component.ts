@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Ponderacion } from '../../entidades/Ponderacion';
+import { Ponderacion } from '../../entidades/CRUD/Ponderacion';
 import { PonderacionService } from './ponderacion.service';
 
 import 'rxjs/add/operator/toPromise';

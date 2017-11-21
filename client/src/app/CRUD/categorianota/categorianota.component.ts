@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { CategoriaNota } from '../../entidades/CategoriaNota';
+import { CategoriaNota } from '../../entidades/CRUD/CategoriaNota';
 import { CategoriaNotaService } from './categorianota.service';
 
 import 'rxjs/add/operator/toPromise';

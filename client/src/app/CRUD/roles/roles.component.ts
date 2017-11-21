@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Roles } from '../../entidades/Roles';
+import { Roles } from '../../entidades/CRUD/Roles';
 import { RolesService } from './roles.service';
 
 import 'rxjs/add/operator/toPromise';

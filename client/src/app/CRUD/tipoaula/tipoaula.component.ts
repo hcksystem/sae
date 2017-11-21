@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { TipoAula } from '../../entidades/TipoAula';
+import { TipoAula } from '../../entidades/CRUD/TipoAula';
 import { TipoAulaService } from './tipoaula.service';
 
 import 'rxjs/add/operator/toPromise';

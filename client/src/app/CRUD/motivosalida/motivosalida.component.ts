@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { MotivoSalida } from '../../entidades/MotivoSalida';
+import { MotivoSalida } from '../../entidades/CRUD/MotivoSalida';
 import { MotivoSalidaService } from './motivosalida.service';
 
 import 'rxjs/add/operator/toPromise';

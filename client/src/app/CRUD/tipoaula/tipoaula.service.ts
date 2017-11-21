@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { TipoAula } from '../../entidades/TipoAula';
+import { TipoAula } from '../../entidades/CRUD/TipoAula';
 
 @Injectable()
 

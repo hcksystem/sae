@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Etnia } from '../../entidades/Etnia';
+import { Etnia } from '../../entidades/CRUD/Etnia';
 import { EtniaService } from './etnia.service';
 
 import 'rxjs/add/operator/toPromise';
