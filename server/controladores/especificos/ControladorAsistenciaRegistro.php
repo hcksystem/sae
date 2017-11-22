@@ -1,6 +1,6 @@
 <?php
 include_once('../controladores/ControladorBase.php');
-include_once('../entidades/Asistencia.php');
+include_once('../entidades/CRUD/Asistencia.php');
 class ControladorAsistenciaRegistro extends ControladorBase
 {
       function actualizar(Asistencia $asistencia)
