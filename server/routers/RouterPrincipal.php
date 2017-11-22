@@ -1,11 +1,14 @@
 <?php
+include_once('../routers/RouterBase.php');
 function cargarRouters() {
    define("routersPath", "../routers/");
-   $files = glob(routersPath."*.php");
+   $files = glob(routersPath."CRUD/*.php");
    foreach ($files as $filename) {
-      if($filename!=routersPath."Router.php"||$filename!=routersPath."RouterBase.php"){
-         include_once($filename);
-      }
+      include_once($filename);
+   }
+   $files = glob(routersPath."especificos/*.php");
+   foreach ($files as $filename) {
+      include_once($filename);
    }
 }
 cargarRouters();
