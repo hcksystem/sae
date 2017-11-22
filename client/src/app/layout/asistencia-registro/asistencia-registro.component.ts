@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { AsistenciaRegistro } from '../../entidades/Asistencia-Registro';
-import { AsignaturaDocente } from '../../entidades/Asignatura-Docente';
+import { AsistenciaRegistro } from '../../entidades/especifico/Asistencia-Registro';
+import { AsignaturaDocente } from '../../entidades/especifico/Asignatura-Docente';
 import { AsistenciaRegistroService } from './asistencia-registro.service';
 import { AsignaturaService } from '../../CRUD/asignatura/asignatura.service';
 
