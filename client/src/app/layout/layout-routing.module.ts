@@ -6,6 +6,7 @@ const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
+            { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
             { path: 'yavirac', loadChildren: './yavirac/yavirac.module#YaviracModule' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
