@@ -6,6 +6,12 @@ const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
+            { path: 'solicitud-matricula', loadChildren: './matriculacion/solicitud-matricula/solicitud-matricula.module#SolicitudMatriculaModule' },
+            { path: 'secretaria-academica', loadChildren: './matriculacion/secretaria-academica/secretaria-academica.module#SecretariaAcademicaModule' },
+            { path: 'tutor', loadChildren: './matriculacion/tutor/tutor.module#TutorModule' },
+            { path: 'postulante', loadChildren: './matriculacion/postulante/postulante.module#PostulanteModule' },
+            { path: 'hoja-datos', loadChildren: './matriculacion/hoja-datos/hoja-datos.module#HojaDatosModule' },
+            { path: 'encuesta-factores-asociados', loadChildren: './encuesta-factores-asociados/encuesta-factores-asociados.module#EncuestaFactoresAsociadosModule' },
             { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
             { path: 'yavirac', loadChildren: './yavirac/yavirac.module#YaviracModule' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
