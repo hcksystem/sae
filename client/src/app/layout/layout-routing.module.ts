@@ -6,6 +6,7 @@ const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
+            { path: 'certificado-matricula', loadChildren: './matriculacion/certificado-matricula/certificado-matricula.module#CertificadoMatriculaModule' },
             { path: 'postulante', loadChildren: './matriculacion/postulante/postulante.module#PostulanteModule' },
             { path: 'secretaria-academica', loadChildren: './matriculacion/secretaria-academica/secretaria-academica.module#SecretariaAcademicaModule' },
             { path: 'tutor', loadChildren: './matriculacion/tutor/tutor.module#TutorModule' },
