@@ -173,19 +173,18 @@ export class InstitucionComponent implements OnInit {
    }
 
    getPaginaAnterior():void {
-      this.paginaActual = this.paginaActual - 1;
-      if(this.paginaActual==0){
-         this.paginaActual = 1;
+      if(this.paginaActual>1){
+         this.paginaActual = this.paginaActual - 1;
+         this.refresh();
       }
-      this.refresh();
    }
 
    getPaginaSiguiente():void {
+      if(this.paginaActual < this.paginaUltima){
       this.paginaActual = this.paginaActual + 1;
-      if(this.paginaActual == this.paginaUltima){
          this.paginaActual = this.paginaUltima;
+         this.refresh();
       }
-      this.refresh();
    }
 
    getPaginaUltima():void {
