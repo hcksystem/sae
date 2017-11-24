@@ -1,8 +1,8 @@
 <?php
 
 function cargarRoutersEspecificos() {
-    define("routersPath", "../routers/especificos/");
-    $files = glob(routersPath."*.php");
+    define("routersEspecificosPath", "../routers/especificos/");
+    $files = glob(routersEspecificosPath."*.php");
     foreach ($files as $filename) {
        include_once($filename);
     }
