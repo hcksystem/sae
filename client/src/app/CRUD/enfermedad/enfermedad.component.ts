@@ -181,8 +181,7 @@ export class EnfermedadComponent implements OnInit {
 
    getPaginaSiguiente():void {
       if(this.paginaActual < this.paginaUltima){
-      this.paginaActual = this.paginaActual + 1;
-         this.paginaActual = this.paginaUltima;
+         this.paginaActual = this.paginaActual + 1;
          this.refresh();
       }
    }
