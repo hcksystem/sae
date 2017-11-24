@@ -53,6 +53,7 @@ const routes: Routes = [
             { path: 'estudiante', loadChildren: '../CRUD/estudiante/estudiante.module#EstudianteModule' },
             { path: 'etnia', loadChildren: '../CRUD/etnia/etnia.module#EtniaModule' },
             { path: 'experiencialaboral', loadChildren: '../CRUD/experiencialaboral/experiencialaboral.module#ExperienciaLaboralModule' },
+            { path: 'fotoperfil', loadChildren: '../CRUD/fotoperfil/fotoperfil.module#FotoPerfilModule' },
             { path: 'genero', loadChildren: '../CRUD/genero/genero.module#GeneroModule' },
             { path: 'hobbies', loadChildren: '../CRUD/hobbies/hobbies.module#HobbiesModule' },
             { path: 'horasclase', loadChildren: '../CRUD/horasclase/horasclase.module#HorasClaseModule' },

@@ -43,11 +43,6 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idUsuario</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
                         <strong>idRol</strong>
                      </span>
                   </th>
@@ -70,7 +65,6 @@
                   </td>
                   <td>{{actual.id}}</td>
                   <td>{{actual.nickname}}</td>
-                  <td>{{actual.idUsuario}}</td>
                   <td>{{actual.idRol}}</td>
                   <td>{{actual.idPersona}}</td>
                   <td>{{actual.clave}}</td>
@@ -120,12 +114,6 @@
             <label for="nickname" class="col-sm-4 col-form-label">nickname</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="nickname" name="nickname" placeholder="nickname" [(ngModel)]="entidadSeleccionada.nickname">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="idUsuario" class="col-sm-4 col-form-label">idUsuario</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idUsuario" name="idUsuario" placeholder="idUsuario" [(ngModel)]="entidadSeleccionada.idUsuario">
             </div>
          </div>
          <div class="form-group row">

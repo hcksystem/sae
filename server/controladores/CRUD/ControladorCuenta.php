@@ -5,8 +5,8 @@ class ControladorCuenta extends ControladorBase
 {
    function crear(Cuenta $cuenta)
    {
-      $sql = "INSERT INTO Cuenta (nickname,idUsuario,idRol,idPersona,clave) VALUES (?,?,?,?,?);";
-      $parametros = array($cuenta->nickname,$cuenta->idUsuario,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave);
+      $sql = "INSERT INTO Cuenta (nickname,idRol,idPersona,clave) VALUES (?,?,?,?);";
+      $parametros = array($cuenta->nickname,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -17,8 +17,8 @@ class ControladorCuenta extends ControladorBase
 
    function actualizar(Cuenta $cuenta)
    {
-      $parametros = array($cuenta->nickname,$cuenta->idUsuario,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave,$cuenta->id);
-      $sql = "UPDATE Cuenta SET nickname = ?,idUsuario = ?,idRol = ?,idPersona = ?,clave = ? WHERE id = ?;";
+      $parametros = array($cuenta->nickname,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave,$cuenta->id);
+      $sql = "UPDATE Cuenta SET nickname = ?,idRol = ?,idPersona = ?,clave = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -42,10 +42,10 @@ class ControladorCuenta extends ControladorBase
    function leer($id)
    {
       if ($id==""){
-         $sql = "SELECT * FROM Cuenta;";
+         $sql = "SELECT id, nickname, idRol, idPersona FROM Cuenta;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM Cuenta WHERE id = ?;";
+         $sql = "SELECT id, nickname, idRol, idPersona FROM Cuenta WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -54,7 +54,7 @@ class ControladorCuenta extends ControladorBase
    function leer_paginado($pagina,$registrosPorPagina)
    {
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Cuenta LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT id, nickname, idRol, idPersona FROM Cuenta LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -71,16 +71,16 @@ class ControladorCuenta extends ControladorBase
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna = ?;";
+            $sql = "SELECT id, nickname, idRol, idPersona FROM Cuenta WHERE $nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT id, nickname, idRol, idPersona FROM Cuenta WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT id, nickname, idRol, idPersona FROM Cuenta WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT id, nickname, idRol, idPersona FROM Cuenta WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

@@ -34,5 +34,4 @@ export class Persona {
    nombreMadre: string;
    paisOrigenMadre: number;
    idNivelEstudioMadre: number;
-   foto: Blob;
 }
