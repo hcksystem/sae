@@ -4,15 +4,15 @@ include_once('../entidades/especificos/LoginResult.php');
 class ControladorLogin extends ControladorBase
 {
    function login(String $email, String $clave)
-   {
-      if($email == "prueba" && $clave == "123"){
-          // AUTENTICAR CON GOOGLE SI EL EMAIL CON ESA CLAVE ES UN USUARIO
-          // OBTENER LA ID DE LA PERSONA DUEÑA DE ESE EMAIL
-          // OBTENER EL IDROL DE ESA PERSONA
-         $toReturn = new LoginResult(1,1);
-         return $toReturn;
-      }else{
-         return false;
+   { 
+      $in=imap_open("{pop.gmail.com:995/pop3/ssl}",$email, $clave);
+      if($in==false){
+          return false;
       }
+      imap_close($in);
+      $sql = "SELECT Persona.id, Cuenta.idRol FROM Persona INNER JOIN Cuenta ON Cuenta.idPersona = Persona.id WHERE Persona.correoElectronico = ?;";
+      $parametros = array($email);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+      return $respuesta;
    }
 }
