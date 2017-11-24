@@ -5,6 +5,7 @@ class ControladorLogin extends ControladorBase
 {
    function login(String $email, String $clave)
    { 
+        // CIFRAR LA CLAVE
         $sql = "SELECT Persona.id, Cuenta.idRol FROM Persona INNER JOIN Cuenta ON Cuenta.idPersona = Persona.id WHERE Persona.correoElectronico = ?;";
         $parametros = array($email);
         $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
