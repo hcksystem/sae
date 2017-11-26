@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('idRol', respuesta.idRol.toString());
                 localStorage.setItem('idPersona', respuesta.idPersona.toString());
+                this.router.navigate(['/yavirac']);
             }
         })
         .catch(error => {
