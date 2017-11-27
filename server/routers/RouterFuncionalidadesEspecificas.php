@@ -17,6 +17,7 @@ function cargarRoutersEspecificos() {
             $routerLogin = new RouterLogin();
             return json_encode($routerLogin->route());
             break;
+          //AQUI TU CASE
        }
     }
  }
