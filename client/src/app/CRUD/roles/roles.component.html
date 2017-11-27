@@ -14,7 +14,7 @@
                <button type="button" class="btn btn-success" (click)="open(content,false)" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
                   <span class="fa fa-edit"></span>&nbsp;Editar
                </button>
-               <button type="button" class="btn btn-success" (click)="open(content,true)" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
+               <button type="button" class="btn btn-info" (click)="open(content,true)">
                   <span class="fa fa-plus"></span>&nbsp;Nuevo
                </button>
                <button type="button" class="btn btn-danger" (click)="delete(entidadSeleccionada); $event.stopPropagation();" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
