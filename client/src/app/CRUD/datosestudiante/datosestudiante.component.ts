@@ -4,6 +4,8 @@ import { DatosEstudiante } from '../../entidades/CRUD/DatosEstudiante';
 import { DatosEstudianteService } from './datosestudiante.service';
 
 import 'rxjs/add/operator/toPromise';
+import { ModalComponent } from 'app/layout/bs-component/components';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
@@ -24,8 +26,23 @@ export class DatosEstudianteComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: DatosEstudianteService) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: AsignaturaService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
+   }
+
+   open(content, nuevo){
+      if(nuevo){
+         this.resetEntidadSeleccionada();
+      }
+      this.modalService.open(content)
+      .result
+      .then((result => {
+         if(result=="save"){
+            this.aceptar();
+         }
+      }),(result => {
+         //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
+      }));
    }
 
    estaSeleccionado(porVerificar): boolean {

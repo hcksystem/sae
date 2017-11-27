@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BsComponentModule} from 'app/layout/bs-component/bs-component.module';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
     // for development
@@ -25,6 +26,7 @@ export function HttpLoaderFactory(http: Http) {
         FormsModule,
         HttpModule,
         AppRoutingModule,
+        BsComponentModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
