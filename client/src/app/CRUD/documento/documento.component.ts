@@ -26,7 +26,7 @@ export class DocumentoComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: AsignaturaService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: DocumentoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
