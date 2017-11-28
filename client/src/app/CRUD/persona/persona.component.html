@@ -11,10 +11,10 @@
                <button type="button" class="btn btn-default" (click)="refresh()">
                   <span class="fa fa-refresh"></span>&nbsp;Leer
                </button>
-               <button type="button" class="btn btn-success" (click)="mostrarVentanaEdicion()" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
+               <button type="button" class="btn btn-success" (click)="open(content,false)" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
                   <span class="fa fa-edit"></span>&nbsp;Editar
                </button>
-               <button type="button" class="btn btn-info" (click)="mostrarVentanaNuevo()">
+               <button type="button" class="btn btn-info" (click)="open(content,true)">
                   <span class="fa fa-plus"></span>&nbsp;Nuevo
                </button>
                <button type="button" class="btn btn-danger" (click)="delete(entidadSeleccionada); $event.stopPropagation();" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
@@ -206,11 +206,6 @@
                         <strong>idNivelEstudioMadre</strong>
                      </span>
                   </th>
-                  <th scope="col">
-                     <span>
-                        <strong>foto</strong>
-                     </span>
-                  </th>
                </tr>
             </thead>
             <tbody>
@@ -253,7 +248,6 @@
                   <td>{{actual.nombreMadre}}</td>
                   <td>{{actual.paisOrigenMadre}}</td>
                   <td>{{actual.idNivelEstudioMadre}}</td>
-                  <td>{{actual.foto}}</td>
                </tr>
             </tbody>
          </table>
@@ -278,9 +272,9 @@
          </div>
       </div>
    </div>
-   <div class="row" style="margin-top:15px" *ngIf="esVisibleVentanaEdicion">
-      <div class="jumbotron">
-         <h4>
+   <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+         <h4 class="modal-title">
             <span *ngIf="entidadSeleccionada.id != 0">
                Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
             </span>
@@ -288,7 +282,11 @@
                Ingreso de Datos:
             </span>
          </h4>
-         <hr>
+         <button type="button" class="close" aria-label="Close" (click)="d('ClickEnX')">
+            <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <div class="modal-body">
          <form>
          <div class="form-group row">
             <label for="id" class="col-sm-4 col-form-label">Identificador</label>
@@ -500,18 +498,13 @@
               <input type="text" class="form-control" id="idNivelEstudioMadre" name="idNivelEstudioMadre" placeholder="idNivelEstudioMadre" [(ngModel)]="entidadSeleccionada.idNivelEstudioMadre">
             </div>
          </div>
-         <div class="form-group row">
-            <label for="foto" class="col-sm-4 col-form-label">foto</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="foto" name="foto" placeholder="foto" [(ngModel)]="entidadSeleccionada.foto">
-            </div>
-         </div>
          </form>
-         <hr>
-         <button type="button" class="btn btn-primary col-offset-sm-4" (click)="aceptar()">
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('save')">
             <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
          </button>
-         <button type="button" class="btn btn-default" id="cerrar" (click)="cerrarVentanaEdicion()">Cerrar</button>
+         <button type="button" class="btn btn-default" (click)="c('close')">Cerrar</button>
       </div>
-   </div>
+   </ng-template>
 </div>

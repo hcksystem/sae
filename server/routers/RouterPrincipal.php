@@ -1,12 +1,10 @@
 <?php
 include_once('../routers/RouterBase.php');
+include_once('../routers/RouterFuncionalidadesEspecificas.php');
+
 function cargarRouters() {
    define("routersPath", "../routers/");
    $files = glob(routersPath."CRUD/*.php");
-   foreach ($files as $filename) {
-      include_once($filename);
-   }
-   $files = glob(routersPath."especificos/*.php");
    foreach ($files as $filename) {
       include_once($filename);
    }
@@ -116,6 +114,10 @@ class RouterPrincipal extends RouterBase
          case "experiencialaboral":
             $routerExperienciaLaboral = new RouterExperienciaLaboral();
             return json_encode($routerExperienciaLaboral->route());
+            break;
+         case "fotoperfil":
+            $routerFotoPerfil = new RouterFotoPerfil();
+            return json_encode($routerFotoPerfil->route());
             break;
          case "genero":
             $routerGenero = new RouterGenero();
@@ -252,6 +254,10 @@ class RouterPrincipal extends RouterBase
          case "ubicacion":
             $routerUbicacion = new RouterUbicacion();
             return json_encode($routerUbicacion->route());
+            break;
+         default:
+            $routerEspeficias = new RouterFuncionalidadesEspecificas();
+            return $routerEspeficias->route();
             break;
       }
    }

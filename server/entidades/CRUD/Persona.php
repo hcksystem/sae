@@ -36,9 +36,8 @@ class Persona
    public $nombreMadre;
    public $paisOrigenMadre;
    public $idNivelEstudioMadre;
-   public $foto;
 
-   function __construct(int $id,string $identificacion,string $nombre1,string $nombre2,string $apellido1,string $apellido2,DateTime $fechaNacimiento,string $telefonoCelular,string $telefonoDomicilio,string $correoElectronico,int $idGenero,string $idUbicacionDomicilioPais,string $idUbicacionDomicilioProvincia,string $idUbicacionDomicilioCanton,string $idUbicacionDomicilioParroquia,string $direccionDomicilio,int $idEstadoCivil,string $idUbicacionNacimientoPais,string $idUbicacionNacimientoProvincia,string $idUbicacionNacimientoCanton,string $idUbicacionNacimientoParroquia,float $idIngresos,int $idEtnia,int $idTipoSangre,int $numeroHijos,int $idOcupacion,string $carnetConadis,int $idTipoDiscapacidad,float $porcentajeDiscapacidad,string $nombrePadre,int $paisOrigenPadre,int $idNivelEstudioPadre,string $nombreMadre,int $paisOrigenMadre,int $idNivelEstudioMadre,string $foto){
+   function __construct(int $id,string $identificacion,string $nombre1,string $nombre2,string $apellido1,string $apellido2,DateTime $fechaNacimiento,string $telefonoCelular,string $telefonoDomicilio,string $correoElectronico,int $idGenero,string $idUbicacionDomicilioPais,string $idUbicacionDomicilioProvincia,string $idUbicacionDomicilioCanton,string $idUbicacionDomicilioParroquia,string $direccionDomicilio,int $idEstadoCivil,string $idUbicacionNacimientoPais,string $idUbicacionNacimientoProvincia,string $idUbicacionNacimientoCanton,string $idUbicacionNacimientoParroquia,float $idIngresos,int $idEtnia,int $idTipoSangre,int $numeroHijos,int $idOcupacion,string $carnetConadis,int $idTipoDiscapacidad,float $porcentajeDiscapacidad,string $nombrePadre,int $paisOrigenPadre,int $idNivelEstudioPadre,string $nombreMadre,int $paisOrigenMadre,int $idNivelEstudioMadre){
       $this->id = $id;
       $this->identificacion = $identificacion;
       $this->nombre1 = $nombre1;
@@ -74,7 +73,6 @@ class Persona
       $this->nombreMadre = $nombreMadre;
       $this->paisOrigenMadre = $paisOrigenMadre;
       $this->idNivelEstudioMadre = $idNivelEstudioMadre;
-      $this->foto = $foto;
    }
 }
 ?>

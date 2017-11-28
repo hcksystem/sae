@@ -28,10 +28,10 @@ class RouterCuenta extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new Cuenta($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["nickname"],$this->datosURI->mensaje_body["idUsuario"],$this->datosURI->mensaje_body["idRol"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["clave"]));
+            return $this->controlador->crear(new Cuenta($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idRol"],$this->datosURI->mensaje_body["idPersona"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new Cuenta($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["nickname"],$this->datosURI->mensaje_body["idUsuario"],$this->datosURI->mensaje_body["idRol"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["clave"]));
+            return $this->controlador->actualizar(new Cuenta($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idRol"],$this->datosURI->mensaje_body["idPersona"]));
             break;
       }
    }

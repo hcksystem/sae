@@ -5,8 +5,8 @@ class ControladorCuenta extends ControladorBase
 {
    function crear(Cuenta $cuenta)
    {
-      $sql = "INSERT INTO Cuenta (nickname,idUsuario,idRol,idPersona,clave) VALUES (?,?,?,?,?);";
-      $parametros = array($cuenta->nickname,$cuenta->idUsuario,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave);
+      $sql = "INSERT INTO Cuenta (idRol,idPersona) VALUES (?,?);";
+      $parametros = array($cuenta->idRol,$cuenta->idPersona);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -17,8 +17,8 @@ class ControladorCuenta extends ControladorBase
 
    function actualizar(Cuenta $cuenta)
    {
-      $parametros = array($cuenta->nickname,$cuenta->idUsuario,$cuenta->idRol,$cuenta->idPersona,$cuenta->clave,$cuenta->id);
-      $sql = "UPDATE Cuenta SET nickname = ?,idUsuario = ?,idRol = ?,idPersona = ?,clave = ? WHERE id = ?;";
+      $parametros = array($cuenta->idRol,$cuenta->idPersona,$cuenta->id);
+      $sql = "UPDATE Cuenta SET idRol = ?,idPersona = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

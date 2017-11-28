@@ -4,6 +4,8 @@ import { Instituto } from '../../entidades/CRUD/Instituto';
 import { InstitutoService } from './instituto.service';
 
 import 'rxjs/add/operator/toPromise';
+import { ModalComponent } from 'app/layout/bs-component/components';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
@@ -24,8 +26,23 @@ export class InstitutoComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: InstitutoService) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: InstitutoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
+   }
+
+   open(content, nuevo){
+      if(nuevo){
+         this.resetEntidadSeleccionada();
+      }
+      this.modalService.open(content)
+      .result
+      .then((result => {
+         if(result=="save"){
+            this.aceptar();
+         }
+      }),(result => {
+         //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
+      }));
    }
 
    estaSeleccionado(porVerificar): boolean {
@@ -181,8 +198,7 @@ export class InstitutoComponent implements OnInit {
 
    getPaginaSiguiente():void {
       if(this.paginaActual < this.paginaUltima){
-      this.paginaActual = this.paginaActual + 1;
-         this.paginaActual = this.paginaUltima;
+         this.paginaActual = this.paginaActual + 1;
          this.refresh();
       }
    }
