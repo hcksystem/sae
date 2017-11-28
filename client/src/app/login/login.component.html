@@ -4,18 +4,9 @@
             <img src="assets/images/logo.png" width="150px" class="user-avatar" />
             <h1>Ignug</h1>
             <form role="form">
-                <div class="form-content">
-                    <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Email">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
-                    </div>
+                <div class="form-content">                    
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Ingreso </a>
-                &nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/signup']">Registro</a>
+                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Ingresar con Google </a>            
             </form>
         </div>
     </div>
