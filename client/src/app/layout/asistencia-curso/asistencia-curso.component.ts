@@ -47,6 +47,10 @@ export class AsistenciaCursoComponent implements OnInit {
             });
     }
 
+    getAsistencias(idAsignatura, fecha): void {
+
+    }
+
     ngOnInit() {
         this.leerDocente();
     }
