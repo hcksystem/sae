@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
-import { UserService } from './user.service'
 import { LoginRequest } from '../entidades/especifico/Login-Request';
 import { LoginResult } from '../entidades/especifico/Login-Result';
 import { LoginService } from './login.service';
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
     busy: Promise<any>;
     loginEntidad: LoginRequest;
     
-    constructor(public router: Router, private _userService: UserService, vcr: ViewContainerRef, public toastr: ToastsManager, private dataService: LoginService) {
+    constructor(public router: Router, vcr: ViewContainerRef, public toastr: ToastsManager, private dataService: LoginService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
