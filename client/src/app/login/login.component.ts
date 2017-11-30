@@ -47,12 +47,13 @@ export class LoginComponent implements OnInit {
             if(JSON.stringify(respuesta)==="false"){
                 this.toastr.warning('Credenciales Incorrectos', 'Autenticar');     
                 localStorage.setItem('isLoggedin', 'false');
-                localStorage.setItem('idRol', '0');
-                localStorage.setItem('idPersona', '0');
+                let toReturn = new LoginResult();
+                toReturn.idPersona = 0;
+                toReturn.idRol = 0;
+                localStorage.setItem('logedResult', JSON.stringify(toReturn));
             }else{
                 localStorage.setItem('isLoggedin', 'true');
-                localStorage.setItem('idRol', respuesta.idRol.toString());
-                localStorage.setItem('idPersona', respuesta.idPersona.toString());
+                localStorage.setItem('logedResult', JSON.stringify(respuesta));
                 this.router.navigate(['/yavirac']);
             }
         })

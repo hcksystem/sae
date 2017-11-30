@@ -11,6 +11,7 @@ import { AuthGuard } from './shared';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { NgGapiClientConfig, GoogleApiModule, NG_GAPI_CONFIG } from 'ng-gapi';
 import { BsComponentModule } from 'app/layout/bs-component/bs-component.module';
+import { PersonaService } from 'app/CRUD/persona/persona.service';
 
 let gapiClientConfig: NgGapiClientConfig = {
     client_id: "187932274156-ef13vn93jvvih9mkd0et8miu769ghn8f.apps.googleusercontent.com",
@@ -52,7 +53,7 @@ export function HttpLoaderFactory(http: Http) {
           }),
         ToastModule.forRoot()
     ],
-    providers: [AuthGuard],
+    providers: [AuthGuard, PersonaService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

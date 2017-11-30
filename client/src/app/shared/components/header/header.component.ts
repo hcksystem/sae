@@ -1,6 +1,11 @@
+import { UsePipeTransformInterfaceRule } from 'codelyzer';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { LoginResult } from 'app/entidades/especifico/Login-Result';
+import { stringify } from '@angular/core/src/util';
+import { PersonaService } from 'app/CRUD/persona/persona.service';
+import { Persona } from 'app/entidades/CRUD/Persona';
 
 @Component({
     selector: 'app-header',
@@ -10,9 +15,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class HeaderComponent implements OnInit {
 
     pushRightClass: string = 'push-right';
-    usuario: any = {};
+    username: string;
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService, public router: Router, private personaService: PersonaService) {
         this.router.events.subscribe((val) => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
                 this.toggleSidebar();
@@ -21,7 +26,9 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+        let respuesta = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
+        let personaLogeada = this.personaService.getFiltrado("id","coincide",respuesta.idPersona.toString())[0];
+        this.username = JSON.stringify(personaLogeada);
     }
 
     isToggled(): boolean {
