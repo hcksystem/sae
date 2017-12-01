@@ -1,10 +1,10 @@
+import { LoginResult } from '../entidades/especifico/Login-Result';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { LoginResult } from '../entidades/especifico/Login-Result';
 import { LoginRequest } from '../entidades/especifico/Login-Request';
 
 @Injectable()
@@ -18,7 +18,15 @@ export class LoginService {
 
    cuenta(entidadTransporte: LoginRequest): Promise<LoginResult> {
       const url = `${this.urlBase+'/cuenta'}`;
-      return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json() as LoginResult).catch(this.handleError);
+      return this.http.post(url, JSON.stringify(entidadTransporte))
+      .toPromise()
+      .then(response=>{
+          let toReturn = new LoginResult();
+          toReturn.idRol = response.json().idRol;
+          toReturn.persona = response.json().Persona;
+          return toReturn;
+      })
+      .catch(this.handleError);
    }
 
    baseUrl(): string {

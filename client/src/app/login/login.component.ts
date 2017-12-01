@@ -43,15 +43,12 @@ export class LoginComponent implements OnInit {
     }
 
     login(datosLogin: LoginRequest): void {
-        let toReturn = new LoginResult();
-        toReturn.persona = new Persona();
-        toReturn.idRol = 0;
         this.busy = this.dataService.cuenta(datosLogin)
         .then(respuesta => {
             if(JSON.stringify(respuesta)==="false"){
                 this.toastr.warning('Credenciales Incorrectos', 'Autenticar');     
                 localStorage.setItem('isLoggedin', 'false');
-                localStorage.setItem('logedResult', JSON.stringify(toReturn));
+                localStorage.setItem('logedResult', JSON.stringify(respuesta));
             }else{
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('logedResult', JSON.stringify(respuesta));
@@ -59,7 +56,7 @@ export class LoginComponent implements OnInit {
             }
         })
         .catch(error => {
-           this.toastr.warning('Se produjo un error', 'Autenticar');
+           this.toastr.warning('Ocurrió un error', 'Autenticar');
         });
     }
 }

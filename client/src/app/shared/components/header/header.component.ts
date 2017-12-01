@@ -26,9 +26,8 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        let respuesta = localStorage.getItem('logedResult');
-        let personaLogeada = new Persona();
-        personaLogeada = JSON.parse(respuesta).Persona as Persona;
+        let logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
+        let personaLogeada = logedResult.persona;
         this.username = personaLogeada.nombre1 + ' ' + personaLogeada.nombre2 + ' ' + personaLogeada.apellido1 + ' ' + personaLogeada.apellido2;
     }
 
