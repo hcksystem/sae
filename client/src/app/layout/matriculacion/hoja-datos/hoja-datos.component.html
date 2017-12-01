@@ -18,73 +18,73 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
                <img src="https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.iconhot.com%2Ficon%2Fpng%2Fglossy%2F256%2Fuser-male-3.png&f=1" class="img-circle" alt="Foto" width="150px">
             </div>
-            <label class="col-form-label">Identificación:</label><h4 id="identificacion">1720364049</h4>
+            <label class="col-form-label">Identificación:</label><h4 id="identificacion">{{personaLogeada.identificacion}}</h4>
         </div>
         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
             <div class="form-group row">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-                    <label class="col-form-label">Primer Nombre</label>
-                    <input type="text" class="form-control" id="primerNombre" placeholder="Primer Nombre">
+                    <label class="col-form-label">Primer Nombre</label><br/>
+                    <label class="col-form-label">{{personaLogeada.nombre1}}</label>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-                    <label class="col-form-label">Segundo Nombre</label>
-                    <input type="text" class="form-control" id="segundoNombre" placeholder="Segundo Nombre">
+                    <label class="col-form-label">Segundo Nombre</label><br/>
+                    <label class="col-form-label">{{personaLogeada.nombre2}}</label>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-                    <label class="col-form-label">Primer Apellido</label>
-                    <input type="text" class="form-control" id="primerApellido" placeholder="Primer Apellido">
+                    <label class="col-form-label">Primer Apellido</label><br/>
+                    <label class="col-form-label">{{personaLogeada.apellido1}}</label>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-                    <label class="col-form-label">Segundo Apellido</label>
-                    <input type="text" class="form-control" id="segundoApellido" placeholder="Segundo Apellido">
+                    <label class="col-form-label">Segundo Apellido</label><br/>
+                    <label class="col-form-label">{{personaLogeada.apellido2}}</label>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-                    <label class="col-form-label">Género</label>
-                    <input type="text" class="form-control" id="idGenero" placeholder="Género">
+                    <label class="col-form-label">Género</label><br/>
+                    <label class="col-form-label">{{personaLogeada.idGenero}}</label>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-                    <label class="col-form-label">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" id="fechaNacimiento" placeholder="Fecha de Nacimiento">
+                    <label class="col-form-label">Fecha de Nacimiento</label><br/>
+                    <label class="col-form-label">{{personaLogeada.fechaNacimiento}}</label>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-                    <label class="col-form-label">Teléfono Celular</label>
-                    <input type="number" class="form-control" id="telefonoCelular" placeholder="Teléfono Celular">
+                    <label class="col-form-label">Teléfono Celular</label><br/>
+                    <label class="col-form-label">{{personaLogeada.telefonoCelular}}</label>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-                    <label class="col-form-label">Teléfono Domicilio</label>
-                    <input type="number" class="form-control" id="telefonoDomicilio" placeholder="Teléfono Domicilio">
+                    <label class="col-form-label">Teléfono Domicilio</label><br/>
+                    <label class="col-form-label">{{personaLogeada.telefonoDomicilio}}</label>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <label class="col-form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="correoElectronico" placeholder="Correo Electrónico">
+                    <label class="col-form-label">Correo Electrónico</label><br/>
+                    <label class="col-form-label">{{personaLogeada.correoElectronico}}</label>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <label class="col-form-label">Dirección Domicilio</label>
-                    <input type="text" class="form-control" id="idDireccionDomicilio" placeholder="Dirección Domicilio">
+                    <label class="col-form-label">Dirección Domicilio</label><br/>
+                    <label class="col-form-label">{{personaLogeada.direccionDomicilio}}</label>
                 </div>
             </div>                        
         </div>
     </div>    
     <div class="form-group row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Estado Civil</label>
-            <input type="text" class="form-control" id="idEstadoCivil" placeholder="Estado Civil">
+            <label class="col-form-label">Estado Civil</label><br/>
+            <label class="col-form-label">{{personaLogeada.idEstadoCivil}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Identificación Étnica</label>
-            <input type="text" class="form-control" id="idEtnia" placeholder="Identificación Étnica">
+            <label class="col-form-label">Identificación Étnica</label><br/>
+            <label class="col-form-label">{{personaLogeada.idEtnia}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Tipo de Sangre</label>
-            <input type="text" class="form-control" id="idTipoSangre" placeholder="Tipo de Sangre">
+            <label class="col-form-label">Tipo de Sangre</label><br/>
+            <label class="col-form-label">{{personaLogeada.idTipoSangre}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Número de Hijos</label>
-            <input type="number" class="form-control" id="numeroHijos" placeholder="Número de Hijos">
+            <label class="col-form-label">Número de Hijos</label><br/>
+            <label class="col-form-label">{{personaLogeada.numeroHijos}}</label>
         </div>
     </div>
     <div class="form-group row">
@@ -125,20 +125,20 @@
     </div>
     <div class="form-group row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Ingresos Familiares</label>
-            <input type="text" class="form-control" id="idIngresosFamiliares" placeholder="Ingresos Familiares">
+            <label class="col-form-label">Ingresos Familiares</label><br/>
+            <label class="col-form-label">{{personaLogeada.idIngresos}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Ocupación</label>
-            <input type="text" class="form-control" id="idOcupacion" placeholder="Ocupación">
+            <label class="col-form-label">Ocupación</label><br/>
+            <label class="col-form-label">{{personaLogeada.idOcupacion}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Tipo de Discapacidad</label>
-            <input type="text" class="form-control" id="idTipoDiscapacidad" placeholder="Tipo de Discapacidad">
+            <label class="col-form-label">Tipo de Discapacidad</label><br/>
+            <label class="col-form-label">{{personaLogeada.idTipoDiscapacidad}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Porcentaje de Discapacidad</label>
-            <input type="number" class="form-control" id="porcentajeDiscapacidad" placeholder="Porcentaje de Discapacidad">
+            <label class="col-form-label">Porcentaje de Discapacidad</label><br/>
+            <label class="col-form-label">{{personaLogeada.porcentajeDiscapacidad}}</label>
         </div>
     </div>
     <div class="form-group row">
@@ -161,30 +161,30 @@
     </div>
     <div class="form-group row">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
-            <label class="col-form-label">Nombre del Padre</label>
-            <input type="text" class="form-control" id="nombrePadre" placeholder="Nombre del Padre">
+            <label class="col-form-label">Nombre del Padre</label><br/>
+            <label class="col-form-label">{{personaLogeada.nombrePadre}}</label>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
-            <label class="col-form-label">Nacionalidad del Padre</label>
-            <input type="text" class="form-control" id="nacionalidadPadre" placeholder="Nacionalidad del Padre">            
+            <label class="col-form-label">Nacionalidad del Padre</label><br/>
+            <label class="col-form-label">{{personaLogeada.paisOrigenPadre}}</label>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
-            <label class="col-form-label">Nivel de Estudios del Padre</label>
-            <input type="text" class="form-control" id="estudiosPadre" placeholder="Nivel de Estudios del Padre">
+            <label class="col-form-label">Nivel de Estudios del Padre</label><br/>
+            <label class="col-form-label">{{personaLogeada.idNivelEstudioPadre}}</label>
         </div>
     </div>
     <div class="form-group row">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
-            <label class="col-form-label">Nombre de la Madre</label>
-            <input type="text" class="form-control" id="nombreMadre" placeholder="Nombre de la Madre">
+            <label class="col-form-label">Nombre de la Madre</label><br/>
+            <label class="col-form-label">{{personaLogeada.nombreMadre}}</label>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
-            <label class="col-form-label">Nacionalidad de la Madre</label>
-            <input type="text" class="form-control" id="nacionalidadMadre" placeholder="Nacionalidad de la Madre">
+            <label class="col-form-label">Nacionalidad de la Madre</label><br/>
+            <label class="col-form-label">{{personaLogeada.paisOrigenMadre}}</label>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
-            <label class="col-form-label">Nivel de Estudios de la Madre</label>
-            <input type="text" class="form-control" id="estudiosMadre" placeholder="Nivel de Estudios de la Madre">
+            <label class="col-form-label">Nivel de Estudios de la Madre</label><br/>
+            <label class="col-form-label">{{personaLogeada.idNivelEstudioMadre}}</label>
         </div>
     </div>
     <div class="form-group row">
