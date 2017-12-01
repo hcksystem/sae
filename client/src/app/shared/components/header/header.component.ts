@@ -26,9 +26,8 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        let respuesta = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
-        let personaLogeada = this.personaService.getFiltrado("id","coincide",respuesta.idPersona.toString())[0];
-        this.username = JSON.stringify(personaLogeada);
+        let respuesta = localStorage.getItem('logedResult');
+        this.username = JSON.stringify(respuesta);
     }
 
     isToggled(): boolean {
