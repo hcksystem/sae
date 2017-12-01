@@ -5,7 +5,7 @@ class TutorCarrera
    public $idPersona;
    public $idCarrera;
 
-   function __construct(int $id,int $idPersona,int $idCarrera){
+   function __construct($id,$idPersona,$idCarrera){
       $this->id = $id;
       $this->idPersona = $idPersona;
       $this->idCarrera = $idCarrera;

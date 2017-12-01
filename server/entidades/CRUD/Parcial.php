@@ -4,7 +4,7 @@ class Parcial
    public $id;
    public $descripcion;
 
-   function __construct(int $id,string $descripcion){
+   function __construct($id,$descripcion){
       $this->id = $id;
       $this->descripcion = $descripcion;
    }

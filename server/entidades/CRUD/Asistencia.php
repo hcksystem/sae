@@ -6,7 +6,7 @@ class Asistencia
    public $fecha;
    public $horas;
 
-   function __construct(int $id,int $idMatriculaAsignatura,DateTime $fecha,int $horas){
+   function __construct($id,$idMatriculaAsignatura,$fecha,$horas){
       $this->id = $id;
       $this->idMatriculaAsignatura = $idMatriculaAsignatura;
       $this->fecha = $fecha;

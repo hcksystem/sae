@@ -7,7 +7,7 @@ class DocenteAsignatura
    public $idAsignatura;
    public $idParalelo;
 
-   function __construct(int $id,int $idDocente,int $idPeriodoLectivo,int $idAsignatura,int $idParalelo){
+   function __construct($id,$idDocente,$idPeriodoLectivo,$idAsignatura,$idParalelo){
       $this->id = $id;
       $this->idDocente = $idDocente;
       $this->idPeriodoLectivo = $idPeriodoLectivo;

@@ -6,7 +6,7 @@ class Contacto
    public $descripcion;
    public $contacto;
 
-   function __construct(int $id,int $idPersona,string $descripcion,string $contacto){
+   function __construct($id,$idPersona,$descripcion,$contacto){
       $this->id = $id;
       $this->idPersona = $idPersona;
       $this->descripcion = $descripcion;

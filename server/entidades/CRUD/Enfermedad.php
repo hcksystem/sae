@@ -6,7 +6,7 @@ class Enfermedad
    public $observaciones;
    public $tratamiento;
 
-   function __construct(int $id,string $descripcion,string $observaciones,string $tratamiento){
+   function __construct($id,$descripcion,$observaciones,$tratamiento){
       $this->id = $id;
       $this->descripcion = $descripcion;
       $this->observaciones = $observaciones;

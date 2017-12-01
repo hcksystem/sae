@@ -5,7 +5,7 @@ class Roles
    public $descripcion;
    public $acceso;
 
-   function __construct(int $id,string $descripcion,int $acceso){
+   function __construct($id,$descripcion,$acceso){
       $this->id = $id;
       $this->descripcion = $descripcion;
       $this->acceso = $acceso;

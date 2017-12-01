@@ -7,7 +7,7 @@ class Titulo
    public $codigoRegistro;
    public $idNivelTitulo;
 
-   function __construct(int $id,int $idPersona,int $idInstitucion,string $codigoRegistro,int $idNivelTitulo){
+   function __construct($id,$idPersona,$idInstitucion,$codigoRegistro,$idNivelTitulo){
       $this->id = $id;
       $this->idPersona = $idPersona;
       $this->idInstitucion = $idInstitucion;

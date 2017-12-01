@@ -5,7 +5,7 @@ class Cupo
    public $idJornadaCarrera;
    public $idPersona;
 
-   function __construct(int $id,int $idJornadaCarrera,int $idPersona){
+   function __construct($id,$idJornadaCarrera,$idPersona){
       $this->id = $id;
       $this->idJornadaCarrera = $idJornadaCarrera;
       $this->idPersona = $idPersona;
