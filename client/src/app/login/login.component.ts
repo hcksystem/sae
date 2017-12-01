@@ -1,3 +1,4 @@
+import { Persona } from '../entidades/CRUD/Persona';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
@@ -42,14 +43,14 @@ export class LoginComponent implements OnInit {
     }
 
     login(datosLogin: LoginRequest): void {
+        let toReturn = new LoginResult();
+        toReturn.persona = new Persona();
+        toReturn.idRol = 0;
         this.busy = this.dataService.cuenta(datosLogin)
         .then(respuesta => {
             if(JSON.stringify(respuesta)==="false"){
                 this.toastr.warning('Credenciales Incorrectos', 'Autenticar');     
                 localStorage.setItem('isLoggedin', 'false');
-                let toReturn = new LoginResult();
-                toReturn.idPersona = 0;
-                toReturn.idRol = 0;
                 localStorage.setItem('logedResult', JSON.stringify(toReturn));
             }else{
                 localStorage.setItem('isLoggedin', 'true');
