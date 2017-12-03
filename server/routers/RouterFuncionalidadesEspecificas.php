@@ -17,7 +17,10 @@ function cargarRoutersEspecificos() {
             $routerLogin = new RouterLogin();
             return json_encode($routerLogin->route());
             break;
-          //AQUI TU CASE
+          case "asistencia_estudiante":
+            $routerAsistenciaEstudiante = new RouterAsistenciaEstudiante();
+            return json_encode($routerAsistenciaEstudiante->route());
+            break; 
        }
     }
  }
