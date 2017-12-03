@@ -24,6 +24,7 @@ import { TipoIngresosService } from './CRUD/tipoingresos/tipoingresos.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    busy: Promise<any>;
     generos: Genero[];
     ubicaciones: Ubicacion[];
     etnias: Etnia[];
@@ -31,14 +32,186 @@ export class AppComponent {
     estadosCiviles: EstadoCivil[];
     tiposIngresos: TipoIngresos[];
     tiposSangre: TipoSangre[];
-    constructor(private translate: TranslateService) {
+
+    constructor(private translate: TranslateService, private tipoSangreDataService: TipoSangreService, private estadoCivilDataService: EstadoCivilService, private carreraDataService: CarreraService, private ubicacionDataService: UbicacionService, private generoDataService: GeneroService, private etniaDataService: EtniaService, private tipoIngresosDataService: TipoIngresosService) {
         translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa']);
         translate.setDefaultLang('en');
         const browserLang = translate.getBrowserLang();
         translate.use(browserLang.match(/en|fr|ur|es|it|fa/) ? browserLang : 'en');
     }
+    
+    obtenerTiposSangre(sobreescribir:boolean): TipoSangre[] {
+        if(sobreescribir){
+            this.busy = this.tipoSangreDataService
+            .getAll()
+            .then(entidadesRecuperadas => {
+                this.tiposSangre = entidadesRecuperadas
+            })
+            .catch(error => {
+                
+            });
+        }else{
+            if(this.tiposSangre.length==0){
+                this.busy = this.tipoSangreDataService
+                .getAll()
+                .then(entidadesRecuperadas => {
+                    this.tiposSangre = entidadesRecuperadas
+                })
+                .catch(error => {
+                    
+                });
+            }
+        }
+        return this.tiposSangre;
+    }
+    
+    obtenerEstadosCivil(sobreescribir:boolean): EstadoCivil[] {
+        if(sobreescribir){
+            this.busy = this.estadoCivilDataService
+            .getAll()
+            .then(entidadesRecuperadas => {
+                this.estadosCiviles = entidadesRecuperadas
+            })
+            .catch(error => {
+                
+            });
+        }else{
+            if(this.estadosCiviles.length==0){
+                this.busy = this.estadoCivilDataService
+                .getAll()
+                .then(entidadesRecuperadas => {
+                    this.estadosCiviles = entidadesRecuperadas
+                })
+                .catch(error => {
+                    
+                });
+            }
+        }
+        return this.estadosCiviles;
+    }
+    
+    obtenerCarreras(sobreescribir:boolean): Carrera[] {
+        if(sobreescribir){
+            this.busy = this.carreraDataService
+            .getAll()
+            .then(entidadesRecuperadas => {
+                this.carreras = entidadesRecuperadas
+            })
+            .catch(error => {
+                
+            });
+        }else{
+            if(this.carreras.length==0){
+                this.busy = this.carreraDataService
+                .getAll()
+                .then(entidadesRecuperadas => {
+                    this.carreras = entidadesRecuperadas
+                })
+                .catch(error => {
+                    
+                });
+            }
+        }
+        return this.carreras;
+    }
+    
+    obtenerUbicaciones(sobreescribir:boolean): Ubicacion[] {
+        if(sobreescribir){
+            this.busy = this.ubicacionDataService
+            .getAll()
+            .then(entidadesRecuperadas => {
+                this.ubicaciones = entidadesRecuperadas
+            })
+            .catch(error => {
+                
+            });
+        }else{
+            if(this.ubicaciones.length==0){
+                this.busy = this.ubicacionDataService
+                .getAll()
+                .then(entidadesRecuperadas => {
+                    this.ubicaciones = entidadesRecuperadas
+                })
+                .catch(error => {
+                    
+                });
+            }
+        }
+        return this.ubicaciones;
+    }
 
-    obtenerGeneros(): void {
+    obtenerGeneros(sobreescribir:boolean): Genero[] {
+        if(sobreescribir){
+            this.busy = this.generoDataService
+            .getAll()
+            .then(entidadesRecuperadas => {
+               this.generos = entidadesRecuperadas
+            })
+            .catch(error => {
+               
+            });
+        }else{
+            if(this.generos.length==0){
+                this.busy = this.generoDataService
+                .getAll()
+                .then(entidadesRecuperadas => {
+                   this.generos = entidadesRecuperadas
+                })
+                .catch(error => {
+                   
+                });
+            }
+        }
+        return this.generos;
+    }
 
+    obtenerEtnias(sobreescribir:boolean): Etnia[] {
+        if(sobreescribir){
+            this.busy = this.etniaDataService
+            .getAll()
+            .then(entidadesRecuperadas => {
+            this.etnias = entidadesRecuperadas
+            })
+            .catch(error => {
+            
+            });
+        }else{
+            if(this.etnias.length==0){
+                this.busy = this.etniaDataService
+                .getAll()
+                .then(entidadesRecuperadas => {
+                this.etnias = entidadesRecuperadas
+                })
+                .catch(error => {
+                
+                });
+            }
+        }
+        return this.etnias;
+    }
+    
+    obtenerTipoIngresos(sobreescribir:boolean): TipoIngresos[] {
+        if(sobreescribir){
+            this.busy = this.tipoIngresosDataService
+            .getAll()
+            .then(entidadesRecuperadas => {
+            this.tiposIngresos = entidadesRecuperadas
+            })
+            .catch(error => {
+            
+            });
+        }else{
+            if(this.tiposIngresos.length==0){
+                this.busy = this.tipoIngresosDataService
+                .getAll()
+                .then(entidadesRecuperadas => {
+                this.tiposIngresos = entidadesRecuperadas
+                })
+                .catch(error => {
+                
+                });
+            }
+        }
+        return this.tiposIngresos;
     }
 }
