@@ -9,12 +9,12 @@
     </div>
     <div class="row">
         <div class="col-md-12 text-right">
-            <h2 class="text-center">Hoja de Datos Personales</h2>
+            <h2 class="text-center">Hoja de Datos Personales {{cuenta}}</h2>
         </div>
     </div>
     <div style="width:100%; height:30px;"></div>
     <div class="form-group row">
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
                <img src="https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.iconhot.com%2Ficon%2Fpng%2Fglossy%2F256%2Fuser-male-3.png&f=1" class="img-circle" alt="Foto" width="150px">
             </div>
@@ -42,11 +42,11 @@
             <div class="form-group row">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
                     <label class="col-form-label">Género</label><br/>
-                    <label class="col-form-label">{{personaLogeada.idGenero}}</label>
+                    <label class="col-form-label">{{genero}}</label>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
                     <label class="col-form-label">Fecha de Nacimiento</label><br/>
-                    <label class="col-form-label">{{personaLogeada.fechaNacimiento}}</label>
+                    <label class="col-form-label">{{personaLogeada.fechaNacimiento | date:'yyyy-MM-dd'}}</label>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
                     <label class="col-form-label">Teléfono Celular</label><br/>
@@ -69,18 +69,18 @@
             </div>                        
         </div>
     </div>    
-    <div class="form-group row">
+    <div class="form-group row" style="border-top: 1px solid black;">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
             <label class="col-form-label">Estado Civil</label><br/>
-            <label class="col-form-label">{{personaLogeada.idEstadoCivil}}</label>
+            <label class="col-form-label">{{estadoCivil}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
             <label class="col-form-label">Identificación Étnica</label><br/>
-            <label class="col-form-label">{{personaLogeada.idEtnia}}</label>
+            <label class="col-form-label">{{etnia}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
             <label class="col-form-label">Tipo de Sangre</label><br/>
-            <label class="col-form-label">{{personaLogeada.idTipoSangre}}</label>
+            <label class="col-form-label">{{tipoSangre}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
             <label class="col-form-label">Número de Hijos</label><br/>
@@ -89,88 +89,84 @@
     </div>
     <div class="form-group row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">País Domicilio</label>
-            <input type="text" class="form-control" id="idPaisDomicilio" placeholder="País Domicilio">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Provincia Domicilio</label>
-            <input type="text" class="form-control" id="idProvinciaDomicilio" placeholder="Provincia Domicilio">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Cantón Domicilio</label>
-            <input type="text" class="form-control" id="idCantonDomicilio" placeholder="Cantón Domicilio">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Parroquia Domicilio</label>
-            <input type="text" class="form-control" id="idParroquiaDomicilio" placeholder="Parroquia Domicilio">
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">País Nacimiento</label>
-            <input type="text" class="form-control" id="idPaisNacimiento" placeholder="País Nacimiento">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Provincia Nacimiento</label>
-            <input type="text" class="form-control" id="idProvinciaNacimiento" placeholder="Provincia Nacimiento">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Cantón Nacimiento</label>
-            <input type="text" class="form-control" id="idCantonNacimiento" placeholder="Cantón Nacimiento">
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Parroquia Nacimiento</label>
-            <input type="text" class="form-control" id="idParroquiaNacimiento" placeholder="Parroquia Nacimiento">
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
             <label class="col-form-label">Ingresos Familiares</label><br/>
-            <label class="col-form-label">{{personaLogeada.idIngresos}}</label>
+            <label class="col-form-label">{{ingresos}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
             <label class="col-form-label">Ocupación</label><br/>
-            <label class="col-form-label">{{personaLogeada.idOcupacion}}</label>
+            <label class="col-form-label">{{ocupacion}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
             <label class="col-form-label">Tipo de Discapacidad</label><br/>
-            <label class="col-form-label">{{personaLogeada.idTipoDiscapacidad}}</label>
+            <label class="col-form-label">{{tipoDiscapacidad}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
             <label class="col-form-label">Porcentaje de Discapacidad</label><br/>
             <label class="col-form-label">{{personaLogeada.porcentajeDiscapacidad}}</label>
         </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group row" style="border-top: 1px solid black;">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Tipo de Institución</label>
-            <input type="text" class="form-control" id="idTipoInstitucion" placeholder="Tipo de Institución de Procedencia">
+            <label class="col-form-label">País Domicilio</label><br/>
+            <label class="col-form-label">{{paisDomicilio}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Institución de Procedencia</label>
-            <input type="text" class="form-control" id="idInstitucion" placeholder="Institución de Procedencia">
+            <label class="col-form-label">Provincia Domicilio</label><br/>
+            <label class="col-form-label">{{provinciaDomicilio}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Título de Bachiller</label>
-            <input type="text" class="form-control" id="tituloBachiller" placeholder="Título de Bachiller">
+            <label class="col-form-label">Cantón Domicilio</label><br/>
+            <label class="col-form-label">{{cantonDomicilio}}</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-            <label class="col-form-label">Nota de Postulación</label>
-            <input type="number" class="form-control" id="notaPostulación" placeholder="Nota de Postulación">
+            <label class="col-form-label">Parroquia Domicilio</label><br/>
+            <label class="col-form-label">{{parroquiaDomicilio}}</label>
         </div>
     </div>
     <div class="form-group row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+            <label class="col-form-label">País Nacimiento</label><br/>
+            <label class="col-form-label">{{paisNacimiento}}</label>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+            <label class="col-form-label">Provincia Nacimiento</label><br/>
+            <label class="col-form-label">{{provinciaNacimiento}}</label>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+            <label class="col-form-label">Cantón Nacimiento</label><br/>
+            <label class="col-form-label">{{cantonNacimiento}}</label>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+            <label class="col-form-label">Parroquia Nacimiento</label><br/>
+            <label class="col-form-label">{{parroquiaNacimiento}}</label>
+        </div>
+    </div>
+    <div class="form-group row" style="border-top: 1px solid black;">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
+            <label class="col-form-label">Tipo de Colegio</label><br/>
+            <label class="col-form-label">{{tipoInstitucionProcedencia}}</label>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
+            <label class="col-form-label">Título de Bachiller</label><br/>
+            <label class="col-form-label">{{tituloBachiller}}</label>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
+            <label class="col-form-label">Nota de Postulación</label><br/>
+            <label class="col-form-label">{{notaPostulacion}}</label>
+        </div>
+    </div>
+    <div class="form-group row" style="border-top: 1px solid black;">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
             <label class="col-form-label">Nombre del Padre</label><br/>
             <label class="col-form-label">{{personaLogeada.nombrePadre}}</label>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
             <label class="col-form-label">Nacionalidad del Padre</label><br/>
-            <label class="col-form-label">{{personaLogeada.paisOrigenPadre}}</label>
+            <label class="col-form-label">{{paisOrigenPadre}}</label>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
             <label class="col-form-label">Nivel de Estudios del Padre</label><br/>
-            <label class="col-form-label">{{personaLogeada.idNivelEstudioPadre}}</label>
+            <label class="col-form-label">{{nivelEstudioPadre}}</label>
         </div>
     </div>
     <div class="form-group row">
@@ -180,11 +176,11 @@
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
             <label class="col-form-label">Nacionalidad de la Madre</label><br/>
-            <label class="col-form-label">{{personaLogeada.paisOrigenMadre}}</label>
+            <label class="col-form-label">{{paisOrigenMadre}}</label>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
             <label class="col-form-label">Nivel de Estudios de la Madre</label><br/>
-            <label class="col-form-label">{{personaLogeada.idNivelEstudioMadre}}</label>
+            <label class="col-form-label">{{nivelEstudioMadre}}</label>
         </div>
     </div>
     <div class="form-group row">
