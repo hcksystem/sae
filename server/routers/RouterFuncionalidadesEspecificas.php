@@ -1,5 +1,5 @@
 <?php
-
+header('Content-Type: text/html; charset=UTF-8');
 function cargarRoutersEspecificos() {
     define("routersEspecificosPath", "../routers/especificos/");
     $files = glob(routersEspecificosPath."*.php");
