@@ -1,5 +1,3 @@
-import { NivelTituloService } from '../../../CRUD/niveltitulo/niveltitulo.service';
-import { UbicacionService } from '../../../CRUD/ubicacion/ubicacion.service';
 import { Component, OnInit } from '@angular/core';
 import { LoginResult } from 'app/entidades/especifico/Login-Result';
 import { Persona } from 'app/entidades/CRUD/Persona';
@@ -13,6 +11,8 @@ import { EstadoCivilService } from '../../../CRUD/estadocivil/estadocivil.servic
 import { TituloService } from 'app/CRUD/titulo/titulo.service';
 import { EstudianteService } from 'app/CRUD/estudiante/estudiante.service';
 import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionprocedencia/tipoinstitucionprocedencia.service';
+import { NivelTituloService } from '../../../CRUD/niveltitulo/niveltitulo.service';
+import { UbicacionService } from '../../../CRUD/ubicacion/ubicacion.service';
 @Component({
     selector: 'app-hoja-datos',
     templateUrl: './hoja-datos.component.html',
