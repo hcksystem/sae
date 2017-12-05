@@ -45,10 +45,10 @@ export class LoginComponent implements OnInit {
     login(datosLogin: LoginRequest): void {
         this.busy = this.dataService.cuenta(datosLogin)
         .then(respuesta => {
-            if(JSON.stringify(respuesta)==="false"){
+            if(respuesta.idRol===0){
                 this.toastr.warning('Credenciales Incorrectos', 'Autenticar');     
                 localStorage.setItem('isLoggedin', 'false');
-                localStorage.setItem('logedResult', JSON.stringify(respuesta));
+                this.router.navigate(['/login']);
             }else{
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('logedResult', JSON.stringify(respuesta));

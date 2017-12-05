@@ -11,11 +11,11 @@ class ControladorLogin extends ControladorBase
         $parametros = array($email);
         $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
         if(is_null($respuesta[0])||$respuesta[0]==0){
-           return false;
+           return new LoginResult(0,new Persona);
         }else{
             $in=imap_open("{pop.gmail.com:995/pop3/ssl}",$email, $clave);
             if($in==false){
-               return false;
+                return new LoginResult(0,new Persona);
             }
             imap_close($in);
             $sqlPersona = "SELECT * FROM Persona WHERE Persona.id = ?;";
