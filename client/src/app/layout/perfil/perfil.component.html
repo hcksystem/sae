@@ -304,67 +304,71 @@
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
             <label class="switch">
-                <input type="checkbox" id="carnetConadis">
+                <input type="checkbox" id="carnetConadis" [(ngModel)]="tieneDiscapacidad" (click)="TieneDiscapacidad()">
                 <span class="slider round"></span>
             </label>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
-    <div class="form-group row">
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
-        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
-            <label class="col-form-label">Tipo de Discapacidad</label>
+    <div class="container-fluid" id="panelDiscapacidad">
+        <div class="form-group row">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <label class="col-form-label">Tipo de Discapacidad</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <select class="form-control" id="idTipoDiscapacidad" name="idTipoDiscapacidad" [(ngModel)]="personaLogeada.idTipoDiscapacidad">
+                    <option value="" selected>Seleccione...</option>
+                    <option *ngFor="let tipoDiscapacidad of tiposDiscapacidad" value={{tipoDiscapacidad.id}}>{{tipoDiscapacidad.descripcion}}</option>
+                </select>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" id="idTipoDiscapacidad" name="idTipoDiscapacidad" [(ngModel)]="personaLogeada.idTipoDiscapacidad">
-                <option value="" selected>Seleccione...</option>
-                <option *ngFor="let tipoDiscapacidad of tiposDiscapacidad" value={{tipoDiscapacidad.id}}>{{tipoDiscapacidad.descripcion}}</option>
-            </select>
+        <div class="form-group row">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <label class="col-form-label">Porcentaje de Discapacidad</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <input type="number" class="form-control" id="porcentajeDiscapacidad" placeholder="Porcentaje de Discapacidad" [(ngModel)]="personaLogeada.porcentajeDiscapacidad">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
         </div>
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
-    <div class="form-group row">
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
-        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
-            <label class="col-form-label">Porcentaje de Discapacidad</label>
+    <div class="container-fluid" id="panelEstudiante">
+        <div class="form-group row">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <label class="col-form-label">Tipo de Institución</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <select class="form-control" id="idTipoInstitucion" name="idTipoInstitucion" [(ngModel)]="estudiante.idTipoInstitucionProcedencia">
+                    <option value="" selected>Seleccione...</option>
+                    <option *ngFor="let tipoInstitucionProcedencia of tiposInstitucionProcedencia" value={{tipoInstitucionProcedencia.id}}>{{tipoInstitucionProcedencia.descripcion}}</option>
+                </select>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="number" class="form-control" id="porcentajeDiscapacidad" placeholder="Porcentaje de Discapacidad" [(ngModel)]="personaLogeada.porcentajeDiscapacidad">
+        <div class="form-group row">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <label class="col-form-label">Título de Bachiller</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <input type="text" class="form-control" id="tituloBachiller" placeholder="Título de Bachiller" [(ngModel)]="estudiante.tituloBachiller">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
         </div>
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
-        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
-            <label class="col-form-label">Tipo de Institución</label>
+        <div class="form-group row">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <label class="col-form-label">Nota de Postulación</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <input type="number" class="form-control" id="notaPostulación" placeholder="Nota de Postulación" [(ngModel)]="estudiante.notaPostulacion">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" id="idTipoInstitucion" name="idTipoInstitucion" [(ngModel)]="estudiante.idTipoInstitucionProcedencia">
-                <option value="" selected>Seleccione...</option>
-                <option *ngFor="let tipoInstitucionProcedencia of tiposInstitucionProcedencia" value={{tipoInstitucionProcedencia.id}}>{{tipoInstitucionProcedencia.descripcion}}</option>
-            </select>
-        </div>
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
-        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
-            <label class="col-form-label">Título de Bachiller</label>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="tituloBachiller" placeholder="Título de Bachiller" [(ngModel)]="estudiante.tituloBachiller">
-        </div>
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
-        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
-            <label class="col-form-label">Nota de Postulación</label>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="number" class="form-control" id="notaPostulación" placeholder="Nota de Postulación" [(ngModel)]="estudiante.notaPostulacion">
-        </div>
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
     <div class="form-group row">
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>

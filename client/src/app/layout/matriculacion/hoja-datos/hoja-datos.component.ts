@@ -21,6 +21,7 @@ import { UbicacionService } from '../../../CRUD/ubicacion/ubicacion.service';
 export class HojaDatosComponent implements OnInit {
     busy: Promise<any>;
     personaLogeada: Persona;
+    rol: number;
     genero: string;
     estadoCivil: string;
     etnia: string;
@@ -61,6 +62,7 @@ export class HojaDatosComponent implements OnInit {
     ngOnInit() {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
+        this.rol = logedResult.idRol;
         this.busy = this.generoDataService.getFiltrado('id', 'coincide', this.personaLogeada.idGenero.toString())
         .then(respuesta => {
             this.genero = respuesta[0].descripcion;
@@ -103,17 +105,13 @@ export class HojaDatosComponent implements OnInit {
         .catch(error => {
 
         });
-        if (this.personaLogeada.idTipoDiscapacidad == 0) {
-           this.tipoDiscapacidad = 'NINGUNA';
-        }else {
-            this.busy = this.tipoDiscapacidadDataService.getFiltrado('id', 'coincide', this.personaLogeada.idTipoDiscapacidad.toString())
-            .then(respuesta => {
-                this.tipoDiscapacidad = respuesta[0].descripcion;
-            })
-            .catch(error => {
+        this.busy = this.tipoDiscapacidadDataService.getFiltrado('id', 'coincide', this.personaLogeada.idTipoDiscapacidad.toString())
+        .then(respuesta => {
+            this.tipoDiscapacidad = respuesta[0].descripcion;
+        })
+        .catch(error => {
 
-            });
-        }
+        });
         this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.idUbicacionDomicilioPais.toString())
         .then(respuesta => {
             this.paisDomicilio = respuesta[0].descripcion;
@@ -198,21 +196,26 @@ export class HojaDatosComponent implements OnInit {
         .catch(error => {
 
         });
-        this.busy = this.estudianteDataService.getFiltrado('idPersona', 'coincide', this.personaLogeada.id.toString())
-        .then(respuesta => {
-            this.idTipoInstitucionProcedencia = respuesta[0].idTipoInstitucionProcedencia;
-            this.tituloBachiller = respuesta[0].tituloBachiller;
-            this.notaPostulacion = respuesta[0].notaPostulacion;
-            this.busy = this.tipoInstitucionProcedenciaService.getFiltrado('id', 'coincide', this.idTipoInstitucionProcedencia.toString())
+        if (this.rol === 2 || this.rol === 6) {
+            document.getElementById('panelEstudiante').style.display = 'block';
+            this.busy = this.estudianteDataService.getFiltrado('idPersona', 'coincide', this.personaLogeada.id.toString())
             .then(respuesta => {
-                this.tipoInstitucionProcedencia = respuesta[0].descripcion;
+                this.idTipoInstitucionProcedencia = respuesta[0].idTipoInstitucionProcedencia;
+                this.tituloBachiller = respuesta[0].tituloBachiller;
+                this.notaPostulacion = respuesta[0].notaPostulacion;
+                this.busy = this.tipoInstitucionProcedenciaService.getFiltrado('id', 'coincide', this.idTipoInstitucionProcedencia.toString())
+                .then(respuesta => {
+                    this.tipoInstitucionProcedencia = respuesta[0].descripcion;
+                })
+                .catch(error => {
+
+                });
             })
             .catch(error => {
-
+                // ERROR
             });
-        })
-        .catch(error => {
-
-        });
+        }else {
+            document.getElementById('panelEstudiante').style.display = 'none';
+        }
     }
 }

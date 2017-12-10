@@ -35,6 +35,7 @@ import { Estudiante } from 'app/entidades/CRUD/Estudiante';
 export class PerfilComponent implements OnInit {
     busy: Promise<any>;
     personaLogeada: Persona;
+    rol: number;
     estudiante: Estudiante;
     generos: Genero[];
     etnias: Etnia[];
@@ -54,6 +55,7 @@ export class PerfilComponent implements OnInit {
     parroquiasNacimiento: Ubicacion[];
     ocupaciones: Ocupacion[];
     tiposDiscapacidad: TipoDiscapacidad[];
+    tieneDiscapacidad: Boolean;
     constructor(private generoDataService: GeneroService,
         private estadoCivilDataService: EstadoCivilService,
         private etniaDataService: EtniaService,
@@ -65,11 +67,14 @@ export class PerfilComponent implements OnInit {
         private nivelTituloDataService: NivelTituloService,
         private estudianteDataService: EstudianteService,
         private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService) {
+            this.estudiante = new Estudiante();
+            this.tieneDiscapacidad = false;
     }
 
     ngOnInit() {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
+        this.rol = logedResult.idRol;
         this.busy = this.generoDataService.getAll()
         .then(respuesta => {
             this.generos = respuesta;
@@ -152,13 +157,25 @@ export class PerfilComponent implements OnInit {
         .catch(error => {
 
         });
-        this.busy = this.estudianteDataService.getFiltrado('idPersona', 'coincide', this.personaLogeada.id.toString())
-        .then(respuesta => {
-            this.estudiante = respuesta[0];
-        })
-        .catch(error => {
-
-        });
+        if (this.personaLogeada.carnetConadis === 'true') {
+            this.tieneDiscapacidad = true;
+            document.getElementById('panelDiscapacidad').style.display = 'block';
+        }else {
+            this.tieneDiscapacidad = false;
+            document.getElementById('panelDiscapacidad').style.display = 'none';
+        }
+        if (this.rol === 2 || this.rol === 6) {
+            document.getElementById('panelEstudiante').style.display = 'block';
+            this.busy = this.estudianteDataService.getFiltrado('idPersona', 'coincide', this.personaLogeada.id.toString())
+            .then(respuesta => {
+                this.estudiante = respuesta[0];
+            })
+            .catch(error => {
+                // Error
+            });
+        }else {
+            document.getElementById('panelEstudiante').style.display = 'none';
+        }
     }
 
     getProvinciasDomicilio() {
@@ -213,5 +230,18 @@ export class PerfilComponent implements OnInit {
                 this.parroquiasNacimiento.push(element);
             }
         });
+    }
+
+    TieneDiscapacidad() {
+        if (this.tieneDiscapacidad) {
+            this.tieneDiscapacidad = false;
+            this.personaLogeada.carnetConadis = 'false';
+            document.getElementById('panelDiscapacidad').style.display = 'none';
+        }else {
+            this.tieneDiscapacidad = true;
+            this.personaLogeada.carnetConadis = 'true';
+            document.getElementById('panelDiscapacidad').style.display = 'block';
+        }
+
     }
 }
