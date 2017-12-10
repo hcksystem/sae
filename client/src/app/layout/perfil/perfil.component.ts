@@ -126,6 +126,12 @@ export class PerfilComponent implements OnInit {
                     this.paises.push(element);
                 }
             });
+            this.getProvinciasDomicilio();
+            this.getCantonesDomicilio();
+            this.getParroquiasDomicilio();
+            this.getProvinciasNacimiento();
+            this.getCantonesNacimiento();
+            this.getParroquiasNacimiento();
         })
         .catch(error => {
 
@@ -143,6 +149,60 @@ export class PerfilComponent implements OnInit {
         })
         .catch(error => {
 
+        });
+    }
+
+    getProvinciasDomicilio() {
+        this.provinciasDomicilio = [];
+        this.ubicaciones.forEach(element => {
+            if (element.codigoPadre === this.personaLogeada.idUbicacionDomicilioPais) {
+                this.provinciasDomicilio.push(element);
+            }
+        });
+    }
+
+    getCantonesDomicilio() {
+        this.cantonesDomicilio = [];
+        this.ubicaciones.forEach(element => {
+            if (element.codigoPadre === this.personaLogeada.idUbicacionDomicilioProvincia) {
+                this.cantonesDomicilio.push(element);
+            }
+        });
+    }
+
+    getParroquiasDomicilio() {
+        this.parroquiasDomicilio = [];
+        this.ubicaciones.forEach(element => {
+            if (element.codigoPadre === this.personaLogeada.idUbicacionDomicilioCanton) {
+                this.parroquiasDomicilio.push(element);
+            }
+        });
+    }
+
+    getProvinciasNacimiento() {
+        this.provinciasNacimiento = [];
+        this.ubicaciones.forEach(element => {
+            if (element.codigoPadre === this.personaLogeada.idUbicacionNacimientoPais) {
+                this.provinciasNacimiento.push(element);
+            }
+        });
+    }
+
+    getCantonesNacimiento() {
+        this.cantonesNacimiento = [];
+        this.ubicaciones.forEach(element => {
+            if (element.codigoPadre === this.personaLogeada.idUbicacionNacimientoProvincia) {
+                this.cantonesNacimiento.push(element);
+            }
+        });
+    }
+
+    getParroquiasNacimiento() {
+        this.parroquiasNacimiento = [];
+        this.ubicaciones.forEach(element => {
+            if (element.codigoPadre === this.personaLogeada.idUbicacionNacimientoCanton) {
+                this.parroquiasNacimiento.push(element);
+            }
         });
     }
 }
