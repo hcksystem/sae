@@ -1,6 +1,8 @@
 import { LoginResult } from '../../entidades/especifico/Login-Result';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // SERVICIOS
+import { PersonaService } from 'app/CRUD/persona/persona.service';
 import { GeneroService } from 'app/CRUD/genero/genero.service';
 import { EtniaService } from 'app/CRUD/etnia/etnia.service';
 import { TipoIngresosService } from 'app/CRUD/tipoingresos/tipoingresos.service';
@@ -56,7 +58,9 @@ export class PerfilComponent implements OnInit {
     ocupaciones: Ocupacion[];
     tiposDiscapacidad: TipoDiscapacidad[];
     tieneDiscapacidad: Boolean;
-    constructor(private generoDataService: GeneroService,
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
+        private personaDataService: PersonaService,
+        private generoDataService: GeneroService,
         private estadoCivilDataService: EstadoCivilService,
         private etniaDataService: EtniaService,
         private tipoSangreDataService: TipoSangreService,
@@ -69,6 +73,7 @@ export class PerfilComponent implements OnInit {
         private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService) {
             this.estudiante = new Estudiante();
             this.tieneDiscapacidad = false;
+            this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
@@ -243,5 +248,24 @@ export class PerfilComponent implements OnInit {
             document.getElementById('panelDiscapacidad').style.display = 'block';
         }
 
+    }
+
+   update(personaParaActualizar: Persona): void {
+        this.busy = this.personaDataService.update(personaParaActualizar)
+        .then(respuesta => {
+            if (respuesta) {
+                this.toastr.success('La actualización fue exitosa', 'Actualización');
+                const newLogResult = new LoginResult();
+                newLogResult.idRol = this.rol;
+                newLogResult.persona = personaParaActualizar;
+                localStorage.setItem('logedResult', JSON.stringify(newLogResult));
+            }else {
+                this.toastr.warning('Se produjo un error', 'Actualización');
+            }
+            this.ngOnInit();
+        })
+        .catch(error => {
+            this.toastr.warning('Se produjo un error', 'Actualización');
+        });
     }
 }

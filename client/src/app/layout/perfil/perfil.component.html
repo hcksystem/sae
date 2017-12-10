@@ -61,7 +61,7 @@
             <label class="col-form-label">Fecha de Nacimiento</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="fechaNacimiento" placeholder="Fecha de Nacimiento" [(ngModel)]="personaLogeada.fechaNacimiento">
+            <input type="date" class="form-control" id="fechaNacimiento" placeholder="Fecha de Nacimiento" [(ngModel)]="personaLogeada.fechaNacimiento">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -71,7 +71,7 @@
             <label class="col-form-label">Teléfono Celular</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="number" class="form-control" id="telefonoCelular" placeholder="Teléfono Celular" [(ngModel)]="personaLogeada.telefonoCelular">
+            <input type="text" class="form-control" id="telefonoCelular" placeholder="Teléfono Celular" [(ngModel)]="personaLogeada.telefonoCelular">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -81,7 +81,7 @@
             <label class="col-form-label">Teléfono Domicilio</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="number" class="form-control" id="telefonoDomicilio" placeholder="Teléfono Domicilio" [(ngModel)]="personaLogeada.telefonoDomicilio">
+            <input type="text" class="form-control" id="telefonoDomicilio" placeholder="Teléfono Domicilio" [(ngModel)]="personaLogeada.telefonoDomicilio">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -460,7 +460,7 @@
     <div class="form-group row">
         <div style="width: 100%; text-align:center;">
             <div>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary" (click)="update(personaLogeada)">
                     <span class="fa fa-refresh"></span>&nbsp;Actualizar
                 </button>
                 <button type="button" class="btn btn-danger" (click)="ngOnInit()">
