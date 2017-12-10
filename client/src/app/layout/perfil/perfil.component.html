@@ -127,7 +127,7 @@
             <label class="col-form-label">País Domicilio</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" id="idPaisDomicilio" name="idPaisDomicilio" [(ngModel)]="personaLogeada.idUbicacionDomicilioPais">
+            <select class="form-control" id="idPaisDomicilio" name="idPaisDomicilio" [(ngModel)]="personaLogeada.idUbicacionDomicilioPais" (change)="getProvinciasDomicilio()">
                 <option value="" selected>Seleccione...</option>
                 <option *ngFor="let pais of paises" value={{pais.codigo}}>{{pais.descripcion}}</option>
             </select>
@@ -140,7 +140,7 @@
             <label class="col-form-label">Provincia Domicilio</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" id="idProvinciaDomicilio" name="idProvinciaDomicilio" [(ngModel)]="personaLogeada.idUbicacionDomicilioProvincia">
+            <select class="form-control" id="idProvinciaDomicilio" name="idProvinciaDomicilio" [(ngModel)]="personaLogeada.idUbicacionDomicilioProvincia" (change)="getCantonesDomicilio()">
                 <option value="" selected>Seleccione...</option>
                 <option *ngFor="let privincia of provinciasDomicilio" value={{privincia.codigo}}>{{privincia.descripcion}}</option>
             </select>
@@ -153,7 +153,7 @@
             <label class="col-form-label">Cantón Domicilio</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" id="idCantonDomicilio" name="idCantonDomicilio" [(ngModel)]="personaLogeada.idUbicacionDomicilioCanton">
+            <select class="form-control" id="idCantonDomicilio" name="idCantonDomicilio" [(ngModel)]="personaLogeada.idUbicacionDomicilioCanton" (change)="getParroquiasDomicilio()">
                 <option value="" selected>Seleccione...</option>
                 <option *ngFor="let canton of cantonesDomicilio" value={{canton.codigo}}>{{canton.descripcion}}</option>
             </select>
@@ -189,7 +189,7 @@
             <label class="col-form-label">País Nacimiento</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" id="idPaisNacimiento" name="idPaisNacimiento" [(ngModel)]="personaLogeada.idUbicacionNacimientoPais">
+            <select class="form-control" id="idPaisNacimiento" name="idPaisNacimiento" [(ngModel)]="personaLogeada.idUbicacionNacimientoPais" (change)="getProvinciasNacimiento()">
                 <option value="" selected>Seleccione...</option>
                 <option *ngFor="let pais of paises" value={{pais.codigo}}>{{pais.descripcion}}</option>
             </select>
@@ -202,7 +202,7 @@
             <label class="col-form-label">Provincia Nacimiento</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" id="idProvinciaNacimiento" name="idProvinciaNacimiento" [(ngModel)]="personaLogeada.idUbicacionNacimientoProvincia">
+            <select class="form-control" id="idProvinciaNacimiento" name="idProvinciaNacimiento" [(ngModel)]="personaLogeada.idUbicacionNacimientoProvincia" (change)="getCantonesNacimiento()">
                 <option value="" selected>Seleccione...</option>
                 <option *ngFor="let privincia of provinciasNacimiento" value={{privincia.codigo}}>{{privincia.descripcion}}</option>
             </select>
@@ -215,7 +215,7 @@
             <label class="col-form-label">Cantón Nacimiento</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" id="idCantonNacimiento" name="idCantonNacimiento" [(ngModel)]="personaLogeada.idUbicacionNacimientoCanton">
+            <select class="form-control" id="idCantonNacimiento" name="idCantonNacimiento" [(ngModel)]="personaLogeada.idUbicacionNacimientoCanton" (change)="getParroquiasNacimiento()">
                 <option value="" selected>Seleccione...</option>
                 <option *ngFor="let canton of cantonesNacimiento" value={{canton.codigo}}>{{canton.descripcion}}</option>
             </select>
@@ -339,20 +339,10 @@
             <label class="col-form-label">Tipo de Institución</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <!--<select class="form-control" id="idTipoInstitucion" name="idTipoInstitucion" [(ngModel)]="personaLogeada.idTipoInstitucion">
+            <select class="form-control" id="idTipoInstitucion" name="idTipoInstitucion" [(ngModel)]="estudiante.idTipoInstitucionProcedencia">
                 <option value="" selected>Seleccione...</option>
                 <option *ngFor="let tipoInstitucionProcedencia of tiposInstitucionProcedencia" value={{tipoInstitucionProcedencia.id}}>{{tipoInstitucionProcedencia.descripcion}}</option>
-            </select>-->
-        </div>
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
-        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
-            <label class="col-form-label">Institución de Procedencia</label>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="idInstitucion" placeholder="Institución de Procedencia">
+            </select>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -362,7 +352,7 @@
             <label class="col-form-label">Título de Bachiller</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="tituloBachiller" placeholder="Título de Bachiller">
+            <input type="text" class="form-control" id="tituloBachiller" placeholder="Título de Bachiller" [(ngModel)]="estudiante.tituloBachiller">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -372,7 +362,7 @@
             <label class="col-form-label">Nota de Postulación</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="number" class="form-control" id="notaPostulación" placeholder="Nota de Postulación">
+            <input type="number" class="form-control" id="notaPostulación" placeholder="Nota de Postulación" [(ngModel)]="estudiante.notaPostulacion">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -469,7 +459,7 @@
                 <button type="button" class="btn btn-primary">
                     <span class="fa fa-refresh"></span>&nbsp;Actualizar
                 </button>
-                <button type="button" class="btn btn-danger">
+                <button type="button" class="btn btn-danger" (click)="ngOnInit()">
                     <span class="fa fa-remove"></span>&nbsp;Cancelar
                 </button>
             </div>

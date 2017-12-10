@@ -26,6 +26,7 @@ import { Titulo } from 'app/entidades/CRUD/Titulo';
 import { TipoInstitucionProcedencia } from 'app/entidades/CRUD/TipoInstitucionProcedencia';
 import { NivelTitulo } from 'app/entidades/CRUD/NivelTitulo';
 import { Ubicacion } from 'app/entidades/CRUD/Ubicacion';
+import { Estudiante } from 'app/entidades/CRUD/Estudiante';
 @Component({
     selector: 'app-perfil',
     templateUrl: './perfil.component.html',
@@ -34,6 +35,7 @@ import { Ubicacion } from 'app/entidades/CRUD/Ubicacion';
 export class PerfilComponent implements OnInit {
     busy: Promise<any>;
     personaLogeada: Persona;
+    estudiante: Estudiante;
     generos: Genero[];
     etnias: Etnia[];
     tiposIngresos: TipoIngresos[];
@@ -146,6 +148,13 @@ export class PerfilComponent implements OnInit {
         this.busy = this.tipoInstitucionProcedenciaService.getAll()
         .then(respuesta => {
             this.tiposInstitucionProcedencia = respuesta;
+        })
+        .catch(error => {
+
+        });
+        this.busy = this.estudianteDataService.getFiltrado('idPersona', 'coincide', this.personaLogeada.id.toString())
+        .then(respuesta => {
+            this.estudiante = respuesta[0];
         })
         .catch(error => {
 

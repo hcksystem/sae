@@ -40,7 +40,7 @@ export class HojaDatosComponent implements OnInit {
     nivelEstudioPadre: string;
     paisOrigenMadre: string;
     nivelEstudioMadre: string;
-    idTipoInstitucionProcedencia: number;       
+    idTipoInstitucionProcedencia: number;
     tipoInstitucionProcedencia: string;
     tituloBachiller: string;
     notaPostulacion: number;
@@ -59,156 +59,156 @@ export class HojaDatosComponent implements OnInit {
     }
 
     ngOnInit() {
-        let logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
+        const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
-        this.busy = this.generoDataService.getFiltrado("id","coincide",this.personaLogeada.idGenero.toString())
+        this.busy = this.generoDataService.getFiltrado('id', 'coincide', this.personaLogeada.idGenero.toString())
         .then(respuesta => {
-            this.genero=respuesta[0].descripcion;
+            this.genero = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.estadoCivilDataService.getFiltrado("id","coincide",this.personaLogeada.idEstadoCivil.toString())
+        this.busy = this.estadoCivilDataService.getFiltrado('id', 'coincide', this.personaLogeada.idEstadoCivil.toString())
         .then(respuesta => {
-            this.estadoCivil=respuesta[0].descripcion;
+            this.estadoCivil = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.etniaDataService.getFiltrado("id","coincide",this.personaLogeada.idEtnia.toString())
+        this.busy = this.etniaDataService.getFiltrado('id', 'coincide', this.personaLogeada.idEtnia.toString())
         .then(respuesta => {
-            this.etnia=respuesta[0].descripcion;
+            this.etnia = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.tipoSangreDataService.getFiltrado("id","coincide",this.personaLogeada.idTipoSangre.toString())
+        this.busy = this.tipoSangreDataService.getFiltrado('id', 'coincide', this.personaLogeada.idTipoSangre.toString())
         .then(respuesta => {
-            this.tipoSangre=respuesta[0].descripcion;
+            this.tipoSangre = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ingresosDataService.getFiltrado("id","coincide",this.personaLogeada.idIngresos.toString())
+        this.busy = this.ingresosDataService.getFiltrado('id', 'coincide', this.personaLogeada.idIngresos.toString())
         .then(respuesta => {
-            this.ingresos=respuesta[0].descripcion;
+            this.ingresos = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ocupacionDataService.getFiltrado("id","coincide",this.personaLogeada.idOcupacion.toString())
+        this.busy = this.ocupacionDataService.getFiltrado('id', 'coincide', this.personaLogeada.idOcupacion.toString())
         .then(respuesta => {
-            this.ocupacion=respuesta[0].descripcion;
+            this.ocupacion = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        if(this.personaLogeada.idTipoDiscapacidad==0){
-           this.tipoDiscapacidad = "NINGUNA";
-        }else{
-            this.busy = this.tipoDiscapacidadDataService.getFiltrado("id","coincide",this.personaLogeada.idTipoDiscapacidad.toString())
+        if (this.personaLogeada.idTipoDiscapacidad == 0) {
+           this.tipoDiscapacidad = 'NINGUNA';
+        }else {
+            this.busy = this.tipoDiscapacidadDataService.getFiltrado('id', 'coincide', this.personaLogeada.idTipoDiscapacidad.toString())
             .then(respuesta => {
-                this.tipoDiscapacidad=respuesta[0].descripcion;            
+                this.tipoDiscapacidad = respuesta[0].descripcion;
             })
             .catch(error => {
-    
+
             });
         }
-        this.busy = this.ubicacionDataService.getFiltrado("codigo","coincide",this.personaLogeada.idUbicacionDomicilioPais.toString())
+        this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.idUbicacionDomicilioPais.toString())
         .then(respuesta => {
-            this.paisDomicilio=respuesta[0].descripcion;
+            this.paisDomicilio = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ubicacionDataService.getFiltrado("codigo","coincide",this.personaLogeada.idUbicacionDomicilioProvincia.toString())
+        this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.idUbicacionDomicilioProvincia.toString())
         .then(respuesta => {
-            this.provinciaDomicilio=respuesta[0].descripcion;
+            this.provinciaDomicilio = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ubicacionDataService.getFiltrado("codigo","coincide",this.personaLogeada.idUbicacionDomicilioCanton.toString())
+        this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.idUbicacionDomicilioCanton.toString())
         .then(respuesta => {
-            this.cantonDomicilio=respuesta[0].descripcion;
+            this.cantonDomicilio = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ubicacionDataService.getFiltrado("codigo","coincide",this.personaLogeada.idUbicacionDomicilioParroquia.toString())
+        this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.idUbicacionDomicilioParroquia.toString())
         .then(respuesta => {
-            this.parroquiaDomicilio=respuesta[0].descripcion;
+            this.parroquiaDomicilio = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ubicacionDataService.getFiltrado("codigo","coincide",this.personaLogeada.idUbicacionNacimientoPais.toString())
+        this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.idUbicacionNacimientoPais.toString())
         .then(respuesta => {
-            this.paisNacimiento=respuesta[0].descripcion;
+            this.paisNacimiento = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ubicacionDataService.getFiltrado("codigo","coincide",this.personaLogeada.idUbicacionNacimientoProvincia.toString())
+        this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.idUbicacionNacimientoProvincia.toString())
         .then(respuesta => {
-            this.provinciaNacimiento=respuesta[0].descripcion;
+            this.provinciaNacimiento = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ubicacionDataService.getFiltrado("codigo","coincide",this.personaLogeada.idUbicacionNacimientoCanton.toString())
+        this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.idUbicacionNacimientoCanton.toString())
         .then(respuesta => {
-            this.cantonNacimiento=respuesta[0].descripcion;
+            this.cantonNacimiento = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ubicacionDataService.getFiltrado("codigo","coincide",this.personaLogeada.idUbicacionNacimientoParroquia.toString())
+        this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.idUbicacionNacimientoParroquia.toString())
         .then(respuesta => {
-            this.parroquiaNacimiento=respuesta[0].descripcion;
+            this.parroquiaNacimiento = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ubicacionDataService.getFiltrado("codigo","coincide",this.personaLogeada.paisOrigenPadre.toString())
+        this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.paisOrigenPadre.toString())
         .then(respuesta => {
-            this.paisOrigenPadre=respuesta[0].descripcion;
+            this.paisOrigenPadre = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.ubicacionDataService.getFiltrado("codigo","coincide",this.personaLogeada.paisOrigenMadre.toString())
+        this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', this.personaLogeada.paisOrigenMadre.toString())
         .then(respuesta => {
-            this.paisOrigenMadre=respuesta[0].descripcion;
+            this.paisOrigenMadre = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.nivelTituloDataService.getFiltrado("id","coincide",this.personaLogeada.idNivelEstudioPadre.toString())
+        this.busy = this.nivelTituloDataService.getFiltrado('id', 'coincide', this.personaLogeada.idNivelEstudioPadre.toString())
         .then(respuesta => {
-            this.nivelEstudioPadre=respuesta[0].descripcion;
+            this.nivelEstudioPadre = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.nivelTituloDataService.getFiltrado("id","coincide",this.personaLogeada.idNivelEstudioMadre.toString())
+        this.busy = this.nivelTituloDataService.getFiltrado('id', 'coincide', this.personaLogeada.idNivelEstudioMadre.toString())
         .then(respuesta => {
-            this.nivelEstudioMadre=respuesta[0].descripcion;
+            this.nivelEstudioMadre = respuesta[0].descripcion;
         })
         .catch(error => {
 
         });
-        this.busy = this.estudianteDataService.getFiltrado("idPersona","coincide",this.personaLogeada.id.toString())
+        this.busy = this.estudianteDataService.getFiltrado('idPersona', 'coincide', this.personaLogeada.id.toString())
         .then(respuesta => {
-            this.idTipoInstitucionProcedencia=respuesta[0].idTipoInstitucionProcedencia;
-            this.tituloBachiller=respuesta[0].tituloBachiller;
-            this.notaPostulacion=respuesta[0].notaPostulacion;
-            this.busy = this.tipoInstitucionProcedenciaService.getFiltrado("id","coincide",this.idTipoInstitucionProcedencia.toString())
+            this.idTipoInstitucionProcedencia = respuesta[0].idTipoInstitucionProcedencia;
+            this.tituloBachiller = respuesta[0].tituloBachiller;
+            this.notaPostulacion = respuesta[0].notaPostulacion;
+            this.busy = this.tipoInstitucionProcedenciaService.getFiltrado('id', 'coincide', this.idTipoInstitucionProcedencia.toString())
             .then(respuesta => {
-                this.tipoInstitucionProcedencia=respuesta[0].descripcion;
+                this.tipoInstitucionProcedencia = respuesta[0].descripcion;
             })
             .catch(error => {
-    
+
             });
         })
         .catch(error => {
