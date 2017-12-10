@@ -43,6 +43,13 @@ export class PerfilComponent implements OnInit {
     tiposInstitucionProcedencia: TipoInstitucionProcedencia[];
     nivelesTitulo: NivelTitulo[];
     ubicaciones: Ubicacion[];
+    paises: Ubicacion[];
+    provinciasDomicilio: Ubicacion[];
+    cantonesDomicilio: Ubicacion[];
+    parroquiasDomicilio: Ubicacion[];
+    provinciasNacimiento: Ubicacion[];
+    cantonesNacimiento: Ubicacion[];
+    parroquiasNacimiento: Ubicacion[];
     ocupaciones: Ocupacion[];
     tiposDiscapacidad: TipoDiscapacidad[];
     constructor(private generoDataService: GeneroService,
@@ -113,6 +120,12 @@ export class PerfilComponent implements OnInit {
         this.busy = this.ubicacionDataService.getAll()
         .then(respuesta => {
             this.ubicaciones = respuesta;
+            this.paises = [];
+            this.ubicaciones.forEach(element => {
+                if (element.codigoPadre == null) {
+                    this.paises.push(element);
+                }
+            });
         })
         .catch(error => {
 
