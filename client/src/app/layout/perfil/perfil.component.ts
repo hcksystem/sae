@@ -45,7 +45,6 @@ export class PerfilComponent implements OnInit {
     ubicaciones: Ubicacion[];
     ocupaciones: Ocupacion[];
     tiposDiscapacidad: TipoDiscapacidad[];
-
     constructor(private generoDataService: GeneroService,
         private estadoCivilDataService: EstadoCivilService,
         private etniaDataService: EtniaService,
@@ -60,74 +59,74 @@ export class PerfilComponent implements OnInit {
     }
 
     ngOnInit() {
-        let logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
+        const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.busy = this.generoDataService.getAll()
         .then(respuesta => {
-            this.generos=respuesta;
+            this.generos = respuesta;
         })
         .catch(error => {
 
         });
         this.busy = this.estadoCivilDataService.getAll()
         .then(respuesta => {
-            this.estadosCivil=respuesta;
+            this.estadosCivil = respuesta;
         })
         .catch(error => {
 
         });
         this.busy = this.etniaDataService.getAll()
         .then(respuesta => {
-            this.etnias=respuesta;
+            this.etnias = respuesta;
         })
         .catch(error => {
 
         });
         this.busy = this.tipoSangreDataService.getAll()
         .then(respuesta => {
-            this.tiposSangre=respuesta;
+            this.tiposSangre = respuesta;
         })
         .catch(error => {
 
         });
         this.busy = this.ingresosDataService.getAll()
         .then(respuesta => {
-            this.tiposIngresos=respuesta;
+            this.tiposIngresos = respuesta;
         })
         .catch(error => {
 
         });
         this.busy = this.ocupacionDataService.getAll()
         .then(respuesta => {
-            this.ocupaciones=respuesta;
+            this.ocupaciones = respuesta;
         })
         .catch(error => {
 
         });
         this.busy = this.tipoDiscapacidadDataService.getAll()
         .then(respuesta => {
-            this.tiposDiscapacidad=respuesta;
+            this.tiposDiscapacidad = respuesta;
         })
         .catch(error => {
 
         });
         this.busy = this.ubicacionDataService.getAll()
         .then(respuesta => {
-            this.ubicaciones=respuesta;
+            this.ubicaciones = respuesta;
         })
         .catch(error => {
 
         });
         this.busy = this.nivelTituloDataService.getAll()
         .then(respuesta => {
-            this.nivelesTitulo=respuesta;
+            this.nivelesTitulo = respuesta;
         })
         .catch(error => {
 
         });
         this.busy = this.tipoInstitucionProcedenciaService.getAll()
         .then(respuesta => {
-            this.tiposInstitucionProcedencia=respuesta;
+            this.tiposInstitucionProcedencia = respuesta;
         })
         .catch(error => {
 

@@ -101,7 +101,10 @@
             <label class="col-form-label">Género</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="idGenero" placeholder="Género" [(ngModel)]="personaLogeada.idGenero">
+            <select class="form-control" id="idGenero" name="idGenero" [(ngModel)]="personaLogeada.idGenero">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let genero of generos" value={{genero.id}}>{{genero.descripcion}}</option>
+            </select>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -111,7 +114,10 @@
             <label class="col-form-label">Identificación Étnica</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="idEtnia" placeholder="Identificación Étnica" [(ngModel)]="personaLogeada.idEtnia">
+            <select class="form-control" id="idEtnia" name="idEtnia" [(ngModel)]="personaLogeada.idEtnia">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let etnia of etnias" value={{etnia.id}}>{{etnia.descripcion}}</option>
+            </select>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -211,7 +217,10 @@
             <label class="col-form-label">Estado Civil</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="idEstadoCivil" placeholder="Estado Civil" [(ngModel)]="personaLogeada.idEstadoCivil">
+            <select class="form-control" id="idEstadoCivil" name="idEstadoCivil" [(ngModel)]="personaLogeada.idEstadoCivil">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let estadoCivil of estadosCivil" value={{estadoCivil.id}}>{{estadoCivil.descripcion}}</option>
+            </select>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -221,7 +230,10 @@
             <label class="col-form-label">Ingresos Familiares</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="idIngresosFamiliares" placeholder="Ingresos Familiares" [(ngModel)]="personaLogeada.idIngresos">
+            <select class="form-control" id="idIngresosFamiliares" name="idIngresosFamiliares" [(ngModel)]="personaLogeada.idIngresos">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let tipoIngresos of tiposIngresos" value={{tipoIngresos.id}}>{{tipoIngresos.descripcion}}</option>
+            </select>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -231,7 +243,10 @@
             <label class="col-form-label">Tipo de Sangre</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="idTipoSangre" placeholder="Tipo de Sangre" [(ngModel)]="personaLogeada.idTipoSangre">
+            <select class="form-control" id="idTipoSangre" name="idTipoSangre" [(ngModel)]="personaLogeada.idTipoSangre">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let tipoSangre of tiposSangre" value={{tipoSangre.id}}>{{tipoSangre.descripcion}}</option>
+            </select>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -251,7 +266,10 @@
             <label class="col-form-label">Ocupación</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="idOcupacion" placeholder="Ocupación" [(ngModel)]="personaLogeada.idOcupacion">
+            <select class="form-control" id="idOcupacion" name="idOcupacion" [(ngModel)]="personaLogeada.idOcupacion">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let ocupacion of ocupaciones" value={{ocupacion.id}}>{{ocupacion.descripcion}}</option>
+            </select>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -274,7 +292,10 @@
             <label class="col-form-label">Tipo de Discapacidad</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="idTipoDiscapacidad" placeholder="Tipo de Discapacidad" [(ngModel)]="personaLogeada.idTipoDiscapacidad">
+            <select class="form-control" id="idTipoDiscapacidad" name="idTipoDiscapacidad" [(ngModel)]="personaLogeada.idTipoDiscapacidad">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let tipoDiscapacidad of tiposDiscapacidad" value={{tipoDiscapacidad.id}}>{{tipoDiscapacidad.descripcion}}</option>
+            </select>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -294,7 +315,10 @@
             <label class="col-form-label">Tipo de Institución</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="idTipoInstitucion" placeholder="Tipo de Institución de Procedencia">
+            <!--<select class="form-control" id="idTipoInstitucion" name="idTipoInstitucion" [(ngModel)]="personaLogeada.idTipoInstitucion">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let tipoInstitucionProcedencia of tiposInstitucionProcedencia" value={{tipoInstitucionProcedencia.id}}>{{tipoInstitucionProcedencia.descripcion}}</option>
+            </select>-->
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -354,7 +378,10 @@
             <label class="col-form-label">Nivel de Estudios del Padre</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="estudiosPadre" placeholder="Nivel de Estudios del Padre" [(ngModel)]="personaLogeada.idNivelEstudioPadre">
+            <select class="form-control" id="estudiosPadre" name="estudiosPadre" [(ngModel)]="personaLogeada.idNivelEstudioPadre">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let nivelTitulo of nivelesTitulo" value={{nivelTitulo.id}}>{{nivelTitulo.descripcion}}</option>
+            </select>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -384,7 +411,10 @@
             <label class="col-form-label">Nivel de Estudios de la Madre</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="text" class="form-control" id="estudiosMadre" placeholder="Nivel de Estudios de la Madre" [(ngModel)]="personaLogeada.idNivelEstudioMadre">
+            <select class="form-control" id="estudiosMadre" name="estudiosMadre" [(ngModel)]="personaLogeada.idNivelEstudioMadre">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let nivelTitulo of nivelesTitulo" value={{nivelTitulo.id}}>{{nivelTitulo.descripcion}}</option>
+            </select>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
@@ -402,7 +432,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
             <img src="https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.iconhot.com%2Ficon%2Fpng%2Fglossy%2F256%2Fuser-male-3.png&f=1" class="img-circle" alt="Foto" width="150px">
         </div>
-    </div>   
+    </div>
     <div class="form-group row">
         <div style="width: 100%; text-align:center;">
             <div>
@@ -414,5 +444,5 @@
                 </button>
             </div>
         </div>
-    </div>   
+    </div>
 </div>
