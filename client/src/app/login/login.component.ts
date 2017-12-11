@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
     busy: Promise<any>;
     loginEntidad: LoginRequest;
-    
+
     constructor(public router: Router, vcr: ViewContainerRef, public toastr: ToastsManager, private dataService: LoginService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
 
     crearEntidad(): LoginRequest {
         const loginEntidad = new LoginRequest();
-        loginEntidad.email = "";
-        loginEntidad.clave = "";
+        loginEntidad.email = '';
+        loginEntidad.clave = '';
         return loginEntidad;
     }
 
@@ -45,11 +45,11 @@ export class LoginComponent implements OnInit {
     login(datosLogin: LoginRequest): void {
         this.busy = this.dataService.cuenta(datosLogin)
         .then(respuesta => {
-            if(respuesta.idRol===0){
-                this.toastr.warning('Credenciales Incorrectos', 'Autenticar');     
+            if (respuesta.idRol === 0) {
+                this.toastr.warning('Credenciales Incorrectos', 'Autenticar');
                 localStorage.setItem('isLoggedin', 'false');
                 this.router.navigate(['/login']);
-            }else{
+            }else {
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('logedResult', JSON.stringify(respuesta));
                 this.router.navigate(['/yavirac']);
