@@ -165,7 +165,7 @@ export class PerfilComponent implements OnInit {
         if (this.personaLogeada.carnetConadis === 'true') {
             this.tieneDiscapacidad = true;
             document.getElementById('panelDiscapacidad').style.display = 'block';
-        }else {
+        } else {
             this.tieneDiscapacidad = false;
             document.getElementById('panelDiscapacidad').style.display = 'none';
         }
@@ -178,7 +178,7 @@ export class PerfilComponent implements OnInit {
             .catch(error => {
                 // Error
             });
-        }else {
+        } else {
             document.getElementById('panelEstudiante').style.display = 'none';
         }
     }
@@ -242,7 +242,7 @@ export class PerfilComponent implements OnInit {
             this.tieneDiscapacidad = false;
             this.personaLogeada.carnetConadis = 'false';
             document.getElementById('panelDiscapacidad').style.display = 'none';
-        }else {
+        } else {
             this.tieneDiscapacidad = true;
             this.personaLogeada.carnetConadis = 'true';
             document.getElementById('panelDiscapacidad').style.display = 'block';
@@ -259,7 +259,7 @@ export class PerfilComponent implements OnInit {
                 newLogResult.idRol = this.rol;
                 newLogResult.persona = personaParaActualizar;
                 localStorage.setItem('logedResult', JSON.stringify(newLogResult));
-            }else {
+            } else {
                 this.toastr.warning('Se produjo un error', 'Actualización');
             }
             this.ngOnInit();
