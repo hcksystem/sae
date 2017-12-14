@@ -5,4 +5,8 @@ sudo npm install npm@latest -g
 sudo npm i -g npm
 sudo npm install -g n
 sudo n stable
+sudo chmod 777 -R /usr/lib/node_modules/
 sudo npm install -g @angular/cli@latest
+sudo apt-get install scratch
+sudo npm install -g cordova
+sudo npm install -g ionic
