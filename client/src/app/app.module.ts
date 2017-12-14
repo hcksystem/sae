@@ -41,13 +41,12 @@ export function createTranslateLoader(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        ToastModule.forRoot(),
         AppRoutingModule
     ],
     declarations: [AppComponent],
     providers: [AuthGuard,
-        PersonaService,
-        ToastsManager,
-        ToastOptions],
+        PersonaService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
