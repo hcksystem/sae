@@ -1,6 +1,6 @@
 import { DatosCupo } from './../../entidades/especifico/Datos-Cupo';
 import { DatosInstituto } from './../../entidades/especifico/Datos-Instituto';
-import { PeriodoLectivoActual } from './../../entidades/especifico/Periodo-Academico-Actual';
+import { PeriodoLectivoActual } from './../../entidades/especifico/Periodo-Lectivo-Actual';
 import { Asignatura } from './../../entidades/CRUD/Asignatura';
 
 import { Injectable } from '@angular/core';

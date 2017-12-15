@@ -8,7 +8,9 @@ import { MatriculacionService } from 'app/layout/matriculacion/matriculacion.ser
 import { DatosCupo } from 'app/entidades/especifico/Datos-Cupo';
 import { DatosInstituto } from 'app/entidades/especifico/Datos-Instituto';
 import { Asignatura } from 'app/entidades/CRUD/Asignatura';
-import { PeriodoLectivoActual } from 'app/entidades/especifico/Periodo-Academico-Actual';
+import { PeriodoLectivoActual } from 'app/entidades/especifico/Periodo-Lectivo-Actual';
+import { SolicitudMatricula } from 'app/entidades/CRUD/SolicitudMatricula';
+import { SolicitudMatriculaService } from 'app/CRUD/solicitudmatricula/solicitudmatricula.service';
 
 @Component({
     selector: 'app-solicitud-matricula',
@@ -27,9 +29,11 @@ export class SolicitudMatriculaComponent implements OnInit {
     logo: String;
     fechaActual: Date;
     barcode: String;
+    solicitudMatricula: SolicitudMatricula;
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private personaDataService: PersonaService,
         private matriculacionDataService: MatriculacionService,
+        private solicitudMatriculaDataService: SolicitudMatriculaService,
         ) {
             this.toastr.setRootViewContainerRef(vcr);
             const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
@@ -39,6 +43,7 @@ export class SolicitudMatriculaComponent implements OnInit {
             this.datosInstituto = new DatosInstituto();
             this.periodoLectivoActual = new PeriodoLectivoActual();
             this.fechaActual = new Date();
+            this.solicitudMatricula = new SolicitudMatricula();
     }
 
     ngOnInit() {
@@ -92,4 +97,29 @@ export class SolicitudMatriculaComponent implements OnInit {
 
         });
     }
+
+    imprimir(): void {
+        this.solicitudMatricula.id = 0;
+        this.solicitudMatricula.codigo = this.barcode.toString();
+        this.solicitudMatricula.fecha = this.fechaActual.getFullYear() + '-' + this.fechaActual.getMonth() + '-' + this.fechaActual.getDay() + ' ' + this.fechaActual.getHours() + ':' + this.fechaActual.getMinutes() + ':' + this.fechaActual.getSeconds();
+        this.solicitudMatricula.idCarrera = this.datosCupo.idCarrera;
+        this.solicitudMatricula.idEstadoSolicitud = 1;
+        this.solicitudMatricula.idPeriodoLectivo = this.periodoLectivoActual.id;
+        this.solicitudMatricula.idPersona = this.personaLogeada.id;
+        this.guardar(this.solicitudMatricula);
+    }
+
+    guardar(solicitudMatricula: SolicitudMatricula): void {
+        this.busy = this.solicitudMatriculaDataService.create(solicitudMatricula)
+        .then(respuesta => {
+           if ( respuesta ) {
+              this.toastr.success('Solicitud de matrícula receptada', 'Matriculación');
+           } else {
+              this.toastr.warning('Se produjo un error', 'Matriculación');
+           }
+        })
+        .catch(error => {
+           this.toastr.warning('Se produjo un error', 'Matriculación');
+        });
+     }
 }

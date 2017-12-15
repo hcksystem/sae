@@ -5,7 +5,7 @@ class ControladorPeriodoLectivoActual extends ControladorBase
 {
    function consultar()
    { 
-        $sql = "SELECT descripcion FROM PeriodoLectivo ORDER BY id DESC LIMIT 1;";
+        $sql = "SELECT id, descripcion FROM PeriodoLectivo WHERE matriculable='1';";
         $parametros = array($idCarrera);
         $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
         if(is_null($respuesta[0])||$respuesta[0]==0){
