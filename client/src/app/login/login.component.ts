@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
                 this.toastr.warning('Credenciales Incorrectos', 'Autenticar');
                 localStorage.setItem('isLoggedin', 'false');
                 this.router.navigate(['/login']);
-            }else {
+            } else {
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('logedResult', JSON.stringify(respuesta));
                 this.router.navigate(['/yavirac']);

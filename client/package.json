@@ -28,6 +28,7 @@
         "chart.js": "^2.7.1",
         "core-js": "^2.5.3",
         "font-awesome": "^4.7.0",
+        "ng-barcode": "^1.0.8",
         "ng2-charts": "^1.6.0",
         "ng2-toastr": "^4.1.2",
         "rxjs": "^5.5.5",
