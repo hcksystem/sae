@@ -26,7 +26,7 @@ export class SolicitudMatriculaComponent implements OnInit {
     periodoLectivoActual: PeriodoLectivoActual;
     logo: String;
     fechaActual: Date;
-
+    barcode: String;
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private personaDataService: PersonaService,
         private matriculacionDataService: MatriculacionService,
@@ -39,6 +39,7 @@ export class SolicitudMatriculaComponent implements OnInit {
             this.datosInstituto = new DatosInstituto();
             this.periodoLectivoActual = new PeriodoLectivoActual();
             this.fechaActual = new Date();
+            this.barcode = 'codigo de barras de prueba';
     }
 
     ngOnInit() {
