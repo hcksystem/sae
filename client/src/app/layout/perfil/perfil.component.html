@@ -61,7 +61,7 @@
             <label class="col-form-label">Fecha de Nacimiento</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="date" class="form-control" id="fechaNacimiento" placeholder="Fecha de Nacimiento" [(ngModel)]="personaLogeada.fechaNacimiento">
+            <input type="date" class="form-control" id="fechaNacimiento" [ngModel]="personaLogeada.fechaNacimiento | date:'y-MM-dd'" (ngModelChange)="personaLogeada.fechaNacimiento = $event">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
