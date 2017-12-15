@@ -39,7 +39,6 @@ export class SolicitudMatriculaComponent implements OnInit {
             this.datosInstituto = new DatosInstituto();
             this.periodoLectivoActual = new PeriodoLectivoActual();
             this.fechaActual = new Date();
-            this.barcode = 'codigo de barras de prueba';
     }
 
     ngOnInit() {
@@ -86,6 +85,8 @@ export class SolicitudMatriculaComponent implements OnInit {
             this.datosCupo = respuesta;
             this.getDatosInstituto(this.datosCupo.idCarrera);
             this.getAsignaturasMatriculables(this.datosCupo.idCarrera, 1);
+            const meses = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+            this.barcode = this.fechaActual.getFullYear().toString() + '-' + meses[this.fechaActual.getMonth()] + '-' + this.datosCupo.idCarrera.toString() + '-' + this.datosCupo.identificacion;
         })
         .catch(error => {
 
