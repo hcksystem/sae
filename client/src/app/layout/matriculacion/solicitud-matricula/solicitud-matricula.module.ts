@@ -6,6 +6,7 @@ import { NgxBarcodeModule } from 'ngx-barcode';
 import { MatriculacionService } from './../matriculacion.service';
 import { PersonaService } from 'app/CRUD/persona/persona.service';
 import { SolicitudMatriculaService } from 'app/CRUD/solicitudmatricula/solicitudmatricula.service';
+import { AsignaturaSolicitudMatriculaService } from 'app/CRUD/asignaturasolicitudmatricula/asignaturasolicitudmatricula.service';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { SolicitudMatriculaService } from 'app/CRUD/solicitudmatricula/solicitud
   ],
   providers: [MatriculacionService,
     PersonaService,
-    SolicitudMatriculaService],
+    SolicitudMatriculaService,
+    AsignaturaSolicitudMatriculaService],
   declarations: [SolicitudMatriculaComponent]
 })
 export class SolicitudMatriculaModule { }

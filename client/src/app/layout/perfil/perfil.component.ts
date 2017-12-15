@@ -71,12 +71,12 @@ export class PerfilComponent implements OnInit {
         private nivelTituloDataService: NivelTituloService,
         private estudianteDataService: EstudianteService,
         private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService) {
-            this.estudiante = new Estudiante();
-            this.tieneDiscapacidad = false;
             this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
+        this.estudiante = new Estudiante();
+        this.tieneDiscapacidad = false;
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;

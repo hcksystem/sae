@@ -11,6 +11,8 @@ import { Asignatura } from 'app/entidades/CRUD/Asignatura';
 import { PeriodoLectivoActual } from 'app/entidades/especifico/Periodo-Lectivo-Actual';
 import { SolicitudMatricula } from 'app/entidades/CRUD/SolicitudMatricula';
 import { SolicitudMatriculaService } from 'app/CRUD/solicitudmatricula/solicitudmatricula.service';
+import { AsignaturaSolicitudMatricula } from 'app/entidades/CRUD/AsignaturaSolicitudMatricula';
+import { AsignaturaSolicitudMatriculaService } from 'app/CRUD/asignaturasolicitudmatricula/asignaturasolicitudmatricula.service';
 
 @Component({
     selector: 'app-solicitud-matricula',
@@ -34,19 +36,20 @@ export class SolicitudMatriculaComponent implements OnInit {
         private personaDataService: PersonaService,
         private matriculacionDataService: MatriculacionService,
         private solicitudMatriculaDataService: SolicitudMatriculaService,
+        private asignaturaSolicitudMatriculaDataService: AsignaturaSolicitudMatriculaService
         ) {
             this.toastr.setRootViewContainerRef(vcr);
-            const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
-            this.personaLogeada = logedResult.persona;
-            this.rol = logedResult.idRol;
-            this.datosCupo = new DatosCupo();
-            this.datosInstituto = new DatosInstituto();
-            this.periodoLectivoActual = new PeriodoLectivoActual();
-            this.fechaActual = new Date();
-            this.solicitudMatricula = new SolicitudMatricula();
     }
 
     ngOnInit() {
+        const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
+        this.personaLogeada = logedResult.persona;
+        this.rol = logedResult.idRol;
+        this.datosCupo = new DatosCupo();
+        this.datosInstituto = new DatosInstituto();
+        this.periodoLectivoActual = new PeriodoLectivoActual();
+        this.fechaActual = new Date();
+        this.solicitudMatricula = new SolicitudMatricula();
         this.getPeriodoLectivoActual();
         this.getDatosCupo(this.personaLogeada.id);
     }
@@ -114,6 +117,7 @@ export class SolicitudMatriculaComponent implements OnInit {
         .then(respuesta => {
            if ( respuesta ) {
               this.toastr.success('Solicitud de matrícula receptada', 'Matriculación');
+              this.leerSolicitudMatriculaCreada(solicitudMatricula.codigo);
            } else {
               this.toastr.warning('Se produjo un error', 'Matriculación');
            }
@@ -121,5 +125,27 @@ export class SolicitudMatriculaComponent implements OnInit {
         .catch(error => {
            this.toastr.warning('Se produjo un error', 'Matriculación');
         });
-     }
+    }
+
+    leerSolicitudMatriculaCreada(codigoSolicitudMatricula: string) {
+        this.busy = this.solicitudMatriculaDataService.getFiltrado( 'codigo', 'coincide', codigoSolicitudMatricula)
+        .then(respuesta => {
+            const id = respuesta[0].id;
+            this.asignaturasMatriculables.forEach(asignatura => {
+                const asignaturaSolicitudMatricula = new AsignaturaSolicitudMatricula();
+                asignaturaSolicitudMatricula.idAsignatura = asignatura.id;
+                asignaturaSolicitudMatricula.idSolicitudMatricula = id;
+                this.guardarAsignaturaSolicitudMatricula(asignaturaSolicitudMatricula);
+            });
+        })
+        .catch(error => {
+
+        });
+    }
+
+    guardarAsignaturaSolicitudMatricula(asignaturaSolicitudMatricula: AsignaturaSolicitudMatricula) {
+        this.busy = this.asignaturaSolicitudMatriculaDataService.create(asignaturaSolicitudMatricula)
+        .then(respuesta => {})
+        .catch(error => {});
+    }
 }
