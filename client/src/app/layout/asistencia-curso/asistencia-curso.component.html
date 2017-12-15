@@ -5,22 +5,31 @@
     </div>
   </div>
   <div class="form-group row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <label for="asignatura" class="col-sm-2 col-form-label">Asignatura</label>
-        <div class="col-sm-10">
-          <select id="asignatura" class="form-control" [ngModel]="asignaturaActual" (change)="onChangeAsignatura($event.target.value)">
-            <option *ngFor='let asignatura of asignaturas' [ngValue]="asignatura">{{asignatura.nombre}}</option>
-          </select>
-        </div>
-      <div class="btn-toolbar">
-        <div>
-          <button type="button" class="btn btn-default" (click)="refresh()">
-            <span class="fa fa-refresh"></span>&nbsp;Leer
-          </button>
-          <button type="button" class="btn btn-primary" (click)="update()">
-            <span class="fa fa-save"></span>&nbsp;Guardar
-          </button>
-        </div>
+    <label for="asignatura" class="col-sm-2 col-form-label">Asignatura</label>
+    <div class="col-sm-10">
+      <select id="asignatura" class="form-control" [ngModel]="asignaturaActual" (change)="onChangeAsignatura($event.target.value)">
+        <option *ngFor='let asignatura of asignaturas' [ngValue]="asignatura">{{asignatura.descripcion}}</option>
+      </select>
+    </div>
+    
+    <label for="dia" class="col-sm-2 col-form-label">Día</label>
+    <div class="col-sm-10">
+      <input id="dia" class="form-control" type="date" [ngModel]="dia" (change)="onChangeDia($event.target.value)" />
+    </div>
+
+    <label for="horas" class="col-sm-2 col-form-label">Horas</label>
+    <div class="col-sm-10">
+      <input id="horas" class="form-control" type="number" [ngModel]="horas" (change)="onChangeHoras($event.target.value)" />
+    </div>
+
+    <div class="btn-toolbar">
+      <div>
+        <button type="button" class="btn btn-default" (click)="refresh()">
+          <span class="fa fa-refresh"></span>&nbsp;Leer
+        </button>
+        <button type="button" class="btn btn-primary" (click)="update()">
+          <span class="fa fa-save"></span>&nbsp;Guardar
+        </button>
       </div>
     </div>
   </div>
