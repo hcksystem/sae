@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Toast } from 'ng2-toastr';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',

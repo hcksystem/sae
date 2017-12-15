@@ -9,7 +9,7 @@ class SolicitudMatricula
    public $idPersona;
    public $idCarrera;
 
-   function __construct(int $id,string $codigo,DateTime $fecha,int $idPeriodoLectivo,int $idEstadoSolicitud,int $idPersona,int $idCarrera){
+   function __construct($id,$codigo,$fecha,$idPeriodoLectivo,$idEstadoSolicitud,$idPersona,$idCarrera){
       $this->id = $id;
       $this->codigo = $codigo;
       $this->fecha = $fecha;

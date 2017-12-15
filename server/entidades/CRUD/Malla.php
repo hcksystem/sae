@@ -7,7 +7,7 @@ class Malla
    public $idCarrera;
    public $idDocResolucion;
 
-   function __construct(int $id,DateTime $fechaMallaInicio,DateTime $fechaMallaFin,int $idCarrera,int $idDocResolucion){
+   function __construct($id,$fechaMallaInicio,$fechaMallaFin,$idCarrera,$idDocResolucion){
       $this->id = $id;
       $this->fechaMallaInicio = $fechaMallaInicio;
       $this->fechaMallaFin = $fechaMallaFin;

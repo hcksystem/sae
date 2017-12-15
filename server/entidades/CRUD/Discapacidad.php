@@ -6,7 +6,7 @@ class Discapacidad
    public $idTipoDiscapacidad;
    public $porcentaje;
 
-   function __construct(int $id,int $idPersona,string $idTipoDiscapacidad,float $porcentaje){
+   function __construct($id,$idPersona,$idTipoDiscapacidad,$porcentaje){
       $this->id = $id;
       $this->idPersona = $idPersona;
       $this->idTipoDiscapacidad = $idTipoDiscapacidad;

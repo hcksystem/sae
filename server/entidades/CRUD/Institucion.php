@@ -6,7 +6,7 @@ class Institucion
    public $idUbicacion;
    public $tipo;
 
-   function __construct(int $id,int $nombre,int $idUbicacion,string $tipo){
+   function __construct($id,$nombre,$idUbicacion,$tipo){
       $this->id = $id;
       $this->nombre = $nombre;
       $this->idUbicacion = $idUbicacion;

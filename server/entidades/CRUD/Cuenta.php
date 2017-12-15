@@ -5,7 +5,7 @@ class Cuenta
    public $idRol;
    public $idPersona;
 
-   function __construct(int $id,int $idRol,int $idPersona){
+   function __construct($id,$idRol,$idPersona){
       $this->id = $id;
       $this->idRol = $idRol;
       $this->idPersona = $idPersona;

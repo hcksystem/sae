@@ -1,4 +1,5 @@
+import { Persona } from '../CRUD/Persona';
 export class LoginResult {
-    idPersona: number;
+    persona: Persona;
     idRol: number; 
 }

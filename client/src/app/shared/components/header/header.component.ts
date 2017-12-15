@@ -1,7 +1,11 @@
+import { UsePipeTransformInterfaceRule } from 'codelyzer';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService } from 'app/login/user.service';
+import { LoginResult } from 'app/entidades/especifico/Login-Result';
+import { stringify } from '@angular/core/src/util';
+import { PersonaService } from 'app/CRUD/persona/persona.service';
+import { Persona } from 'app/entidades/CRUD/Persona';
 
 @Component({
     selector: 'app-header',
@@ -11,9 +15,9 @@ import { UserService } from 'app/login/user.service';
 export class HeaderComponent implements OnInit {
 
     pushRightClass: string = 'push-right';
-    usuario: any = {};
+    username: string;
 
-    constructor(private translate: TranslateService, public router: Router, private _userService: UserService) {
+    constructor(private translate: TranslateService, public router: Router, private personaService: PersonaService) {
         this.router.events.subscribe((val) => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
                 this.toggleSidebar();
@@ -22,7 +26,9 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.usuario.nombre = this._userService.getUserName();
+        let logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
+        let personaLogeada = logedResult.persona;
+        this.username = personaLogeada.nombre1 + ' ' + personaLogeada.nombre2 + ' ' + personaLogeada.apellido1 + ' ' + personaLogeada.apellido2;
     }
 
     isToggled(): boolean {

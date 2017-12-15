@@ -5,7 +5,7 @@ class Notas
    public $idParcial;
    public $idMatriculaAsignatura;
 
-   function __construct(int $id,int $idParcial,int $idMatriculaAsignatura){
+   function __construct($id,$idParcial,$idMatriculaAsignatura){
       $this->id = $id;
       $this->idParcial = $idParcial;
       $this->idMatriculaAsignatura = $idMatriculaAsignatura;

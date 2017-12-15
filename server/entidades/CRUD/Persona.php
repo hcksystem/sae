@@ -37,7 +37,7 @@ class Persona
    public $paisOrigenMadre;
    public $idNivelEstudioMadre;
 
-   function __construct(int $id,string $identificacion,string $nombre1,string $nombre2,string $apellido1,string $apellido2,DateTime $fechaNacimiento,string $telefonoCelular,string $telefonoDomicilio,string $correoElectronico,int $idGenero,string $idUbicacionDomicilioPais,string $idUbicacionDomicilioProvincia,string $idUbicacionDomicilioCanton,string $idUbicacionDomicilioParroquia,string $direccionDomicilio,int $idEstadoCivil,string $idUbicacionNacimientoPais,string $idUbicacionNacimientoProvincia,string $idUbicacionNacimientoCanton,string $idUbicacionNacimientoParroquia,float $idIngresos,int $idEtnia,int $idTipoSangre,int $numeroHijos,int $idOcupacion,string $carnetConadis,int $idTipoDiscapacidad,float $porcentajeDiscapacidad,string $nombrePadre,int $paisOrigenPadre,int $idNivelEstudioPadre,string $nombreMadre,int $paisOrigenMadre,int $idNivelEstudioMadre){
+   function __construct($id,$identificacion,$nombre1,$nombre2,$apellido1,$apellido2,$fechaNacimiento,$telefonoCelular,$telefonoDomicilio,$correoElectronico,$idGenero,$idUbicacionDomicilioPais,$idUbicacionDomicilioProvincia,$idUbicacionDomicilioCanton,$idUbicacionDomicilioParroquia,$direccionDomicilio,$idEstadoCivil,$idUbicacionNacimientoPais,$idUbicacionNacimientoProvincia,$idUbicacionNacimientoCanton,$idUbicacionNacimientoParroquia,$idIngresos,$idEtnia,$idTipoSangre,$numeroHijos,$idOcupacion,$carnetConadis,$idTipoDiscapacidad,$porcentajeDiscapacidad,$nombrePadre,$paisOrigenPadre,$idNivelEstudioPadre,$nombreMadre,$paisOrigenMadre,$idNivelEstudioMadre){
       $this->id = $id;
       $this->identificacion = $identificacion;
       $this->nombre1 = $nombre1;

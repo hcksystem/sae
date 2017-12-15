@@ -12,7 +12,7 @@ class Asignatura
    public $horasDocente;
    public $horasAutonomas;
 
-   function __construct(int $id,int $idMalla,string $codigo,string $nombre,int $nivel,int $idDocumentoPea,int $horasSemana,int $horasPractica,int $horasDocente,int $horasAutonomas){
+   function __construct($id,$idMalla,$codigo,$nombre,$nivel,$idDocumentoPea,$horasSemana,$horasPractica,$horasDocente,$horasAutonomas){
       $this->id = $id;
       $this->idMalla = $idMalla;
       $this->codigo = $codigo;

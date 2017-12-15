@@ -7,7 +7,7 @@ class EstadoPersona
    public $edicionDeDatos;
    public $encuestaFactoresAsociados;
 
-   function __construct(int $id,int $idPersona,tinyint $datosCompletos,string $edicionDeDatos,tinyint $encuestaFactoresAsociados){
+   function __construct($id,$idPersona,$datosCompletos,$edicionDeDatos,$encuestaFactoresAsociados){
       $this->id = $id;
       $this->idPersona = $idPersona;
       $this->datosCompletos = $datosCompletos;
