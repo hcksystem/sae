@@ -101,7 +101,7 @@ export class SolicitudMatriculaComponent implements OnInit {
     imprimir(): void {
         this.solicitudMatricula.id = 0;
         this.solicitudMatricula.codigo = this.barcode.toString();
-        this.solicitudMatricula.fecha = this.fechaActual.getFullYear() + '-' + this.fechaActual.getMonth() + '-' + this.fechaActual.getDay() + ' ' + this.fechaActual.getHours() + ':' + this.fechaActual.getMinutes() + ':' + this.fechaActual.getSeconds();
+        this.solicitudMatricula.fecha = this.fechaActual;
         this.solicitudMatricula.idCarrera = this.datosCupo.idCarrera;
         this.solicitudMatricula.idEstadoSolicitud = 1;
         this.solicitudMatricula.idPeriodoLectivo = this.periodoLectivoActual.id;
