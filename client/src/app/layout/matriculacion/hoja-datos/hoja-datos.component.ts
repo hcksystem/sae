@@ -214,8 +214,10 @@ export class HojaDatosComponent implements OnInit {
             .catch(error => {
                 // ERROR
             });
-        }else {
+        } else {
             document.getElementById('panelEstudiante').style.display = 'none';
         }
     }
+
+    imprimir() {}
 }
