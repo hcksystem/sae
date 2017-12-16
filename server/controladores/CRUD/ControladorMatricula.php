@@ -6,7 +6,9 @@ class ControladorMatricula extends ControladorBase
    function crear(Matricula $matricula)
    {
       $sql = "INSERT INTO Matricula (codigo,fecha,idPeriodoLectivo,idPersona,idCarrera,numeroMatricula,folio,idJornada) VALUES (?,?,?,?,?,?,?,?);";
-      $parametros = array($matricula->codigo,$matricula->fecha,$matricula->idPeriodoLectivo,$matricula->idPersona,$matricula->idCarrera,$matricula->numeroMatricula,$matricula->folio,$matricula->idJornada);
+      $time = strtotime($matricula->fecha);
+      $dateInLocal = date("Y-m-d H:i:s", $time);
+      $parametros = array($matricula->codigo,$dateInLocal,$matricula->idPeriodoLectivo,$matricula->idPersona,$matricula->idCarrera,$matricula->numeroMatricula,$matricula->folio,$matricula->idJornada);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -17,8 +19,10 @@ class ControladorMatricula extends ControladorBase
 
    function actualizar(Matricula $matricula)
    {
-      $parametros = array($matricula->codigo,$matricula->fecha,$matricula->idPeriodoLectivo,$matricula->idPersona,$matricula->idCarrera,$matricula->numeroMatricula,$matricula->folio,$matricula->idJornada,$matricula->id);
       $sql = "UPDATE Matricula SET codigo = ?,fecha = ?,idPeriodoLectivo = ?,idPersona = ?,idCarrera = ?,numeroMatricula = ?,folio = ?,idJornada = ? WHERE id = ?;";
+      $time = strtotime($matricula->fecha);
+      $dateInLocal = date("Y-m-d H:i:s", $time);
+      $parametros = array($matricula->codigo,$dateInLocal,$matricula->idPeriodoLectivo,$matricula->idPersona,$matricula->idCarrera,$matricula->numeroMatricula,$matricula->folio,$matricula->idJornada,$matricula->id);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

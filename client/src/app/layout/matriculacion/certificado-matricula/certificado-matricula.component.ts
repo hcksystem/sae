@@ -13,6 +13,10 @@ import { LoginResult } from 'app/entidades/especifico/Login-Result';
 import { PeriodoLectivoService } from 'app/CRUD/periodolectivo/periodolectivo.service';
 import { AsignaturaService } from 'app/CRUD/asignatura/asignatura.service';
 import { Jsonp } from '@angular/http/src/http';
+import { Matricula } from 'app/entidades/CRUD/Matricula';
+import { MatriculaService } from 'app/CRUD/matricula/matricula.service';
+import { MatriculaAsignatura } from 'app/entidades/CRUD/MatriculaAsignatura';
+import { MatriculaAsignaturaService } from 'app/CRUD/matriculaasignatura/matriculaasignatura.service';
 
 @Component({
     selector: 'app-certificado-matricula',
@@ -34,12 +38,14 @@ export class CertificadoMatriculaComponent implements OnInit {
     nivel: String;
     numeroMatricula: String;
     numeroFolio: String;
-
+    matricula: Matricula;
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private matriculacionDataService: MatriculacionService,
         private solicitudMatriculaDataService: SolicitudMatriculaService,
         private periodoLectivoDataService: PeriodoLectivoService,
         private asignaturaDataService: AsignaturaService,
+        private matriculaDataService: MatriculaService,
+        private matriculaAsignaturaDataService: MatriculaAsignaturaService,
         private asignaturaSolicitudMatriculaDataService: AsignaturaSolicitudMatriculaService
         ) {
             this.toastr.setRootViewContainerRef(vcr);
@@ -54,6 +60,7 @@ export class CertificadoMatriculaComponent implements OnInit {
         this.periodoLectivo = new PeriodoLectivo();
         this.fechaActual = new Date();
         this.solicitudMatricula = new SolicitudMatricula();
+        this.matricula = new Matricula();
         this.asignaturasMatriculables = [];
         this.getSolicitudMatricula(2);
     }
@@ -135,4 +142,53 @@ export class CertificadoMatriculaComponent implements OnInit {
         });
     }
 
+    imprimir(): void {
+        this.matricula.id = 0;
+        this.matricula.codigo = this.barcode.toString();
+        this.matricula.fecha = this.fechaActual;
+        this.matricula.idCarrera = this.datosCupo.idCarrera;
+        this.matricula.idJornada = this.datosCupo.idJornada;
+        this.matricula.idPeriodoLectivo = this.periodoLectivo.id;
+        this.matricula.idPersona = this.personaLogeada.id;
+        this.matricula.folio = this.numeroFolio.toString();
+        this.matricula.numeroMatricula = this.numeroMatricula.toString();
+        this.guardar(this.matricula);
+    }
+
+    guardar(matricula: Matricula): void {
+        this.busy = this.matriculaDataService.create(matricula)
+        .then(respuesta => {
+           if ( respuesta ) {
+              this.toastr.success('Alumno Matriculado', 'Matriculación');
+              this.leerMatriculaRegistrada(matricula.codigo);
+           } else {
+              this.toastr.warning('Se produjo un error', 'Matriculación');
+           }
+        })
+        .catch(error => {
+           this.toastr.warning('Se produjo un error', 'Matriculación');
+        });
+    }
+
+    leerMatriculaRegistrada(codigoMatricula: string): void {
+        this.busy = this.matriculaDataService.getFiltrado( 'codigo', 'coincide', codigoMatricula)
+        .then(respuesta => {
+            const id = respuesta[0].id;
+            this.asignaturasMatriculables.forEach(asignatura => {
+                const asignaturaMatricula = new MatriculaAsignatura();
+                asignaturaMatricula.idAsignatura = asignatura.id;
+                asignaturaMatricula.idMatricula = id;
+                this.guardarAsignaturaMatricula(asignaturaMatricula);
+            });
+        })
+        .catch(error => {
+
+        });
+    }
+
+    guardarAsignaturaMatricula(asignaturaMatricula: MatriculaAsignatura): void {
+        this.busy = this.matriculaAsignaturaDataService.create(asignaturaMatricula)
+        .then(respuesta => {})
+        .catch(error => {});
+    }
 }

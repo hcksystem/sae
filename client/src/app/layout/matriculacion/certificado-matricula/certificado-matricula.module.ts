@@ -9,6 +9,8 @@ import { SolicitudMatriculaService } from 'app/CRUD/solicitudmatricula/solicitud
 import { AsignaturaSolicitudMatriculaService } from 'app/CRUD/asignaturasolicitudmatricula/asignaturasolicitudmatricula.service';
 import { PeriodoLectivoService } from 'app/CRUD/periodolectivo/periodolectivo.service';
 import { AsignaturaService } from 'app/CRUD/asignatura/asignatura.service';
+import { MatriculaService } from 'app/CRUD/matricula/matricula.service';
+import { MatriculaAsignaturaService } from 'app/CRUD/matriculaasignatura/matriculaasignatura.service';
 
 @NgModule({
   imports: [
@@ -20,6 +22,8 @@ import { AsignaturaService } from 'app/CRUD/asignatura/asignatura.service';
     SolicitudMatriculaService,
     PeriodoLectivoService,
     AsignaturaService,
+    MatriculaService,
+    MatriculaAsignaturaService,
     AsignaturaSolicitudMatriculaService
   ],
   declarations: [CertificadoMatriculaComponent]
