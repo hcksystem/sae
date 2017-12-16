@@ -30,6 +30,7 @@ export class SolicitudMatriculaComponent implements OnInit {
     fechaActual: Date;
     barcode: String;
     solicitudMatricula: SolicitudMatricula;
+    solicitudEmitida: Boolean;
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private matriculacionDataService: MatriculacionService,
         private solicitudMatriculaDataService: SolicitudMatriculaService,
@@ -92,6 +93,7 @@ export class SolicitudMatriculaComponent implements OnInit {
             this.getAsignaturasMatriculables(this.datosCupo.idCarrera, 1);
             const meses = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
             this.barcode = this.fechaActual.getFullYear().toString() + '-' + meses[this.fechaActual.getMonth()] + '-' + this.datosCupo.siglasCarrera + '-' + this.datosCupo.identificacion;
+            this.checkSolicitudEmitida(this.barcode.toString());
         })
         .catch(error => {
 
@@ -99,14 +101,21 @@ export class SolicitudMatriculaComponent implements OnInit {
     }
 
     imprimir(): void {
-        this.solicitudMatricula.id = 0;
-        this.solicitudMatricula.codigo = this.barcode.toString();
-        this.solicitudMatricula.fecha = this.fechaActual;
-        this.solicitudMatricula.idCarrera = this.datosCupo.idCarrera;
-        this.solicitudMatricula.idEstadoSolicitud = 1;
-        this.solicitudMatricula.idPeriodoLectivo = this.periodoLectivoActual.id;
-        this.solicitudMatricula.idPersona = this.personaLogeada.id;
-        this.guardar(this.solicitudMatricula);
+
+    }
+
+    aceptar(): void {
+        if ( this.solicitudEmitida === false ) {
+            this.solicitudEmitida = true;
+            this.solicitudMatricula.id = 0;
+            this.solicitudMatricula.codigo = this.barcode.toString();
+            this.solicitudMatricula.fecha = this.fechaActual;
+            this.solicitudMatricula.idCarrera = this.datosCupo.idCarrera;
+            this.solicitudMatricula.idEstadoSolicitud = 1;
+            this.solicitudMatricula.idPeriodoLectivo = this.periodoLectivoActual.id;
+            this.solicitudMatricula.idPersona = this.personaLogeada.id;
+            this.guardar(this.solicitudMatricula);
+        }
     }
 
     guardar(solicitudMatricula: SolicitudMatricula): void {
@@ -134,6 +143,20 @@ export class SolicitudMatriculaComponent implements OnInit {
                 asignaturaSolicitudMatricula.idSolicitudMatricula = id;
                 this.guardarAsignaturaSolicitudMatricula(asignaturaSolicitudMatricula);
             });
+        })
+        .catch(error => {
+
+        });
+    }
+
+    checkSolicitudEmitida(codigoSolicitudMatricula: string) {
+        this.busy = this.solicitudMatriculaDataService.getFiltrado( 'codigo', 'coincide', codigoSolicitudMatricula)
+        .then(respuesta => {
+            if (JSON.stringify(respuesta) === '[0]') {
+                this.solicitudEmitida = false;
+            } else {
+                this.solicitudEmitida = true;
+            }
         })
         .catch(error => {
 

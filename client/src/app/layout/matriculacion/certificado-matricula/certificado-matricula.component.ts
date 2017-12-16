@@ -63,7 +63,6 @@ export class CertificadoMatriculaComponent implements OnInit {
         this.solicitudMatricula = new SolicitudMatricula();
         this.matricula = new Matricula();
         this.asignaturasMatriculables = [];
-        this.matriculado = false;
         this.getSolicitudMatricula(2);
     }
 
@@ -87,6 +86,7 @@ export class CertificadoMatriculaComponent implements OnInit {
             this.barcode = this.fechaActual.getFullYear().toString() + '-' + meses[this.fechaActual.getMonth()] + '-' + this.datosCupo.siglasCarrera + '-' + this.datosCupo.identificacion;
             this.numeroFolio = this.fechaActual.getFullYear().toString() + '-' + meses[this.fechaActual.getMonth()] + '-' + this.datosCupo.siglasCarrera;
             this.numeroMatricula = this.datosCupo.identificacion;
+            this.checkMatriculado(this.barcode.toString());
         })
         .catch(error => {
 
@@ -146,6 +146,20 @@ export class CertificadoMatriculaComponent implements OnInit {
 
     imprimir(): void {
 
+    }
+
+    checkMatriculado(codigoMatricula: string) {
+        this.busy = this.matriculaDataService.getFiltrado( 'codigo', 'coincide', codigoMatricula)
+        .then(respuesta => {
+            if (JSON.stringify(respuesta) === '[0]') {
+                this.matriculado = false;
+            } else {
+                this.matriculado = true;
+            }
+        })
+        .catch(error => {
+
+        });
     }
 
     aceptar(): void {
