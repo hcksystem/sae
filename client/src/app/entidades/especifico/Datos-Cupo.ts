@@ -3,5 +3,6 @@ export class DatosCupo {
     identificacion: String;
     carrera: String;
     idCarrera: number;
+    siglasCarrera: String;
     jornada: String;
 }

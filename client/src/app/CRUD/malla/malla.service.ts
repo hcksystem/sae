@@ -37,7 +37,7 @@ export class MallaService {
 
    get(id: number): Promise<Malla> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Malla).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Malla[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

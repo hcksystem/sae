@@ -2,7 +2,6 @@ import { LoginResult } from './../../../entidades/especifico/Login-Result';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
-import { PersonaService } from 'app/CRUD/persona/persona.service';
 import { Persona } from 'app/entidades/CRUD/Persona';
 import { MatriculacionService } from 'app/layout/matriculacion/matriculacion.service';
 import { DatosCupo } from 'app/entidades/especifico/Datos-Cupo';
@@ -23,7 +22,6 @@ export class SolicitudMatriculaComponent implements OnInit {
     busy: Promise<any>;
     personaLogeada: Persona;
     rol: number;
-    nombreCompleto: String;
     datosCupo: DatosCupo;
     datosInstituto: DatosInstituto;
     asignaturasMatriculables: Asignatura[];
@@ -33,7 +31,6 @@ export class SolicitudMatriculaComponent implements OnInit {
     barcode: String;
     solicitudMatricula: SolicitudMatricula;
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
-        private personaDataService: PersonaService,
         private matriculacionDataService: MatriculacionService,
         private solicitudMatriculaDataService: SolicitudMatriculaService,
         private asignaturaSolicitudMatriculaDataService: AsignaturaSolicitudMatriculaService
@@ -94,7 +91,7 @@ export class SolicitudMatriculaComponent implements OnInit {
             this.getDatosInstituto(this.datosCupo.idCarrera);
             this.getAsignaturasMatriculables(this.datosCupo.idCarrera, 1);
             const meses = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-            this.barcode = this.fechaActual.getFullYear().toString() + '-' + meses[this.fechaActual.getMonth()] + '-' + this.datosCupo.idCarrera.toString() + '-' + this.datosCupo.identificacion;
+            this.barcode = this.fechaActual.getFullYear().toString() + '-' + meses[this.fechaActual.getMonth()] + '-' + this.datosCupo.siglasCarrera + '-' + this.datosCupo.identificacion;
         })
         .catch(error => {
 

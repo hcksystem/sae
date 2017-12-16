@@ -37,7 +37,7 @@ export class AulaService {
 
    get(id: number): Promise<Aula> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Aula).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Aula[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

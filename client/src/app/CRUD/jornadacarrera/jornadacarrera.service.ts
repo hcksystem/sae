@@ -37,7 +37,7 @@ export class JornadaCarreraService {
 
    get(id: number): Promise<JornadaCarrera> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as JornadaCarrera).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as JornadaCarrera[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

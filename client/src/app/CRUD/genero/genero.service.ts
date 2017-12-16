@@ -37,7 +37,7 @@ export class GeneroService {
 
    get(id: number): Promise<Genero> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Genero).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Genero[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

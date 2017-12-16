@@ -15,7 +15,6 @@ import { AsignaturaSolicitudMatriculaService } from 'app/CRUD/asignaturasolicitu
     NgxBarcodeModule
   ],
   providers: [MatriculacionService,
-    PersonaService,
     SolicitudMatriculaService,
     AsignaturaSolicitudMatriculaService],
   declarations: [SolicitudMatriculaComponent]

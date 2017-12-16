@@ -1,101 +1,76 @@
 <div class="container-fluid">
     <div class="form-group row">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
-            <img alt="BARCODE" width="150px" src="https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.nationwidebarcode.com%2Fwp-content%2Fuploads%2F2011%2F09%2Fcodabar.jpg&f=1" />
+            <ngx-barcode [bc-value]="barcode" [bc-display-value]="true"></ngx-barcode>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-            <img alt="YAVIRAC" width="150px" src="http://www.yavirac.edu.ec/ignug/images/logoYavirac.png" />
+            <img alt="{{datosInstituto.nombre}}" height="100px" src="{{logo}}" />
         </div>
     </div>
     <div class="form-group row">
+        <div style="width:100%;height:40px;"></div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h2 class="text-center">Certificado de Matrícula</h2>
         </div>
     </div>
     <div class="form-group row">
+        <div style="width:100%;height:40px;"></div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-            <span>Quito, 22 de noviembre del 2017</span>
+            <span>{{fechaActual | date:'medium'}}</span>
         </div>
     </div>
     <div class="form-group row">
+        <div style="width:100%;height:40px;"></div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
-            <h4><strong>MATRÍCULA:</strong><br/><label>12</label></h4>
+            <h4><strong>MATRÍCULA:</strong><br/><label>{{numeroMatricula}}</label></h4>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
-            <h4><strong>FOLIO:</strong><br/><label>12</label></h4>
+            <h4><strong>FOLIO:</strong><br/><label>{{numeroFolio}}</label></h4>
         </div>
     </div>
     <div class="form-group row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
             <div style="width:100%;height:20px;"></div>
-            <p align="justify"><strong>CERTIFICO</strong> que el estudiante <strong>Luis Alfonso Salazar Vaca</strong> con documento de identidad <strong>1720364049</strong>, previo los requisitos legales se encuentra matriculado en el <strong>PRIMER NIVEL</strong>, de la carrera de <strong>Tecnología Superior en Desarrollo de Software</strong>, en la jornada <strong>VESPERTINA</strong>, en las siguientes asignaturas:</p>
+            <p align="justify"><strong>CERTIFICO</strong> que <strong>{{datosCupo.nombreCompleto}}</strong> con documento de identidad <strong>{{datosCupo.identificacion}}</strong>, previo cumplimiento de los requisitos legales se encuentra matriculado en <strong>{{nivel}}</strong>, de la carrera de <strong>{{datosCupo.carrera}}</strong>, en la jornada <strong>{{datosCupo.jornada}}</strong>, para el período lectivo <strong>{{periodoLectivo.descripcion}}</strong>, en las siguientes asignaturas:</p>
         </div>
     </div>
     <div class="form-group row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            id
-                        </th>
-                        <th>
-                            Asignatura
-                        </th>
-                        <th>
-                            Horas
-                        </th>
-                        <th>
-                            Período Académico
-                        </th>
-                    </tr>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                   <tr>
+                      <th scope="col">
+                         <span>
+                            <strong>Código</strong>
+                         </span>
+                      </th>
+                      <th scope="col">
+                         <span>
+                            <strong>Asignatura</strong>
+                         </span>
+                      </th>
+                      <th scope="col">
+                         <span>
+                            <strong>Nivel</strong>
+                         </span>
+                      </th>
+                      <th scope="col">
+                         <span>
+                            <strong>Horas a la Semana</strong>
+                         </span>
+                      </th>
+                   </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            Matemáticas
-                        </td>
-                        <td>
-                            12
-                        </td>
-                        <td>
-                            Primero
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            Programación Orientada a Objetos
-                        </td>
-                        <td>
-                            13
-                        </td>
-                        <td>
-                            Primero
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            3
-                        </td>
-                        <td>
-                            Programación I
-                        </td>
-                        <td>
-                            4
-                        </td>
-                        <td>
-                            Segundo
-                        </td>
-                    </tr>
+                   <tr *ngFor="let actual of asignaturasMatriculables">
+                      <td>{{actual.codigo}}</td>
+                      <td>{{actual.nombre}}</td>
+                      <td>{{actual.nivel}}</td>
+                      <td>{{actual.horasSemana}}</td>
+                   </tr>
                 </tbody>
-            </table>
+             </table>
         </div>
     </div>
     <div class="form-group row">
@@ -109,7 +84,8 @@
     <div class="form-group row">
         <div class="col-md-12">
             <div style="float:left; padding-right:50px; border-style: solid none none none; border-width:1px;">
-                <strong>SECRETARÍA ACADÉMICA</strong>
+                <strong>SECRETARÍA ACADÉMICA</strong><br/>
+                <strong>{{datosInstituto.nombre}}</strong>
             </div>
         </div>
     </div>
@@ -121,5 +97,5 @@
                 </button>
             </div>
         </div>
-    </div>  
+    </div>
 </div>

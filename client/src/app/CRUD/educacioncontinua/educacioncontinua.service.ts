@@ -37,7 +37,7 @@ export class EducacionContinuaService {
 
    get(id: number): Promise<EducacionContinua> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as EducacionContinua).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as EducacionContinua[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

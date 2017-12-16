@@ -37,7 +37,7 @@ export class MotivoSalidaService {
 
    get(id: number): Promise<MotivoSalida> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as MotivoSalida).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as MotivoSalida[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

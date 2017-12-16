@@ -37,7 +37,7 @@ export class MatriculaService {
 
    get(id: number): Promise<Matricula> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Matricula).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Matricula[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

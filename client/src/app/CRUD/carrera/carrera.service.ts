@@ -37,7 +37,7 @@ export class CarreraService {
 
    get(id: number): Promise<Carrera> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Carrera).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Carrera[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

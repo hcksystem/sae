@@ -37,7 +37,7 @@ export class PonderacionService {
 
    get(id: number): Promise<Ponderacion> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Ponderacion).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Ponderacion[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {
