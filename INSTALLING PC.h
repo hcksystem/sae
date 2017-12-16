@@ -10,3 +10,14 @@ sudo npm install -g @angular/cli@latest
 sudo apt-get install scratch
 sudo npm install -g cordova
 sudo npm install -g ionic
+sudo a2enmod rewrite
+
+#Agregar esto a /etc/apache2/sites-enabled/000default.conf
+    <Directory /var/www/html>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+
+sudo service apache2 restart
