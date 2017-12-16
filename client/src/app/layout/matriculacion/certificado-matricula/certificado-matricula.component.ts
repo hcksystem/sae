@@ -39,6 +39,7 @@ export class CertificadoMatriculaComponent implements OnInit {
     numeroMatricula: String;
     numeroFolio: String;
     matricula: Matricula;
+    matriculado: Boolean;
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private matriculacionDataService: MatriculacionService,
         private solicitudMatriculaDataService: SolicitudMatriculaService,
@@ -62,6 +63,7 @@ export class CertificadoMatriculaComponent implements OnInit {
         this.solicitudMatricula = new SolicitudMatricula();
         this.matricula = new Matricula();
         this.asignaturasMatriculables = [];
+        this.matriculado = false;
         this.getSolicitudMatricula(2);
     }
 
@@ -143,16 +145,23 @@ export class CertificadoMatriculaComponent implements OnInit {
     }
 
     imprimir(): void {
-        this.matricula.id = 0;
-        this.matricula.codigo = this.barcode.toString();
-        this.matricula.fecha = this.fechaActual;
-        this.matricula.idCarrera = this.datosCupo.idCarrera;
-        this.matricula.idJornada = this.datosCupo.idJornada;
-        this.matricula.idPeriodoLectivo = this.periodoLectivo.id;
-        this.matricula.idPersona = this.personaLogeada.id;
-        this.matricula.folio = this.numeroFolio.toString();
-        this.matricula.numeroMatricula = this.numeroMatricula.toString();
-        this.guardar(this.matricula);
+
+    }
+
+    aceptar(): void {
+        if ( this.matriculado === false ) {
+            this.matriculado = true;
+            this.matricula.id = 0;
+            this.matricula.codigo = this.barcode.toString();
+            this.matricula.fecha = this.fechaActual;
+            this.matricula.idCarrera = this.datosCupo.idCarrera;
+            this.matricula.idJornada = this.datosCupo.idJornada;
+            this.matricula.idPeriodoLectivo = this.periodoLectivo.id;
+            this.matricula.idPersona = this.personaLogeada.id;
+            this.matricula.folio = this.numeroFolio.toString();
+            this.matricula.numeroMatricula = this.numeroMatricula.toString();
+            this.guardar(this.matricula);
+        }
     }
 
     guardar(matricula: Matricula): void {
@@ -163,10 +172,12 @@ export class CertificadoMatriculaComponent implements OnInit {
               this.leerMatriculaRegistrada(matricula.codigo);
            } else {
               this.toastr.warning('Se produjo un error', 'Matriculación');
+              this.matriculado = false;
            }
         })
         .catch(error => {
            this.toastr.warning('Se produjo un error', 'Matriculación');
+           this.matriculado = false;
         });
     }
 
