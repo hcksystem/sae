@@ -21,7 +21,17 @@ import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionproce
     CommonModule,
     HojaDatosRoutingModule
   ],
-  providers: [GeneroService, EtniaService, TipoIngresosService, OcupacionService, TipoDiscapacidadService, TipoSangreService, EstadoCivilService, UbicacionService, NivelTituloService, EstudianteService, TipoInstitucionProcedenciaService],
+  providers: [GeneroService,
+    EtniaService,
+    TipoIngresosService,
+    OcupacionService,
+    TipoDiscapacidadService,
+    TipoSangreService,
+    EstadoCivilService,
+    UbicacionService,
+    NivelTituloService,
+    EstudianteService,
+    TipoInstitucionProcedenciaService],
   declarations: [HojaDatosComponent]
 })
 export class HojaDatosModule { }
