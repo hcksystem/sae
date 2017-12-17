@@ -550,8 +550,11 @@ export class CertificadoMatriculaComponent implements OnInit {
         });
     }
 
+    imprimirCertificado(): void {
 
-    imprimir(): void {
+    }
+
+    imprimirHojaDatos(): void {
 
     }
 }
