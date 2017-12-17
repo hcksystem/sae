@@ -124,7 +124,7 @@ export class SecretariaAcademicaComponent implements OnInit {
         this.datosCupo = new DatosCupo();
         this.datosInstituto = new DatosInstituto();
         this.fechaActual = new Date();
-        this.solicitudMatriculaSeleccionada = new SolicitudMatricula();
+        this.solicitudMatriculaSeleccionada = null;
         this.seleccionado = false;
         this.carreraSeleccionadaCombo = 0;
         this.matricula = new Matricula();
@@ -163,7 +163,7 @@ export class SecretariaAcademicaComponent implements OnInit {
         this.datosCupo = new DatosCupo();
         this.datosInstituto = new DatosInstituto();
         this.fechaActual = new Date();
-        this.solicitudMatriculaSeleccionada = new SolicitudMatricula();
+        this.solicitudMatriculaSeleccionada = null;
         this.seleccionado = false;
         this.getSolicitudesMatriculas(this.carreraSeleccionadaCombo);
 
