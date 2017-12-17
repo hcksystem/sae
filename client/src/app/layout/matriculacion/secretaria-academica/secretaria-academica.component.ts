@@ -33,7 +33,7 @@ import { PeriodoLectivoService } from 'app/CRUD/periodolectivo/periodolectivo.se
 import { MatriculaAsignaturaService } from 'app/CRUD/matriculaasignatura/matriculaasignatura.service';
 import { PeriodoLectivo } from 'app/entidades/CRUD/PeriodoLectivo';
 import { MatriculaAsignatura } from 'app/entidades/CRUD/MatriculaAsignatura';
-
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-secretaria-academica',
     templateUrl: './secretaria-academica.component.html',
@@ -108,7 +108,8 @@ export class SecretariaAcademicaComponent implements OnInit {
         private estudianteDataService: EstudianteService,
         private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService,
         private asignaturaDataService: AsignaturaService,
-        private carreraDataService: CarreraService) {
+        private carreraDataService: CarreraService,
+        private router: Router) {
             this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -116,6 +117,9 @@ export class SecretariaAcademicaComponent implements OnInit {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
+        if (this.rol !== 5) {
+            this.router.navigate(['/login']);
+        }
         this.aspirante = new Persona();
         this.datosCupo = new DatosCupo();
         this.datosInstituto = new DatosInstituto();

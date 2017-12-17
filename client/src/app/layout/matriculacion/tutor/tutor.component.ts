@@ -28,7 +28,7 @@ import { AsignaturaService } from 'app/CRUD/asignatura/asignatura.service';
 import { getPackedSettings } from 'http2';
 import { Carrera } from 'app/entidades/CRUD/Carrera';
 import { CarreraService } from 'app/CRUD/carrera/carrera.service';
-
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-tutor',
     templateUrl: './tutor.component.html',
@@ -95,7 +95,8 @@ export class TutorComponent implements OnInit {
         private estudianteDataService: EstudianteService,
         private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService,
         private asignaturaDataService: AsignaturaService,
-        private carreraDataService: CarreraService) {
+        private carreraDataService: CarreraService,
+        private router: Router) {
             this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -103,6 +104,9 @@ export class TutorComponent implements OnInit {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
+        if (this.rol !== 4) {
+            this.router.navigate(['/login']);
+        }
         this.aspirante = new Persona();
         this.datosCupo = new DatosCupo();
         this.datosInstituto = new DatosInstituto();

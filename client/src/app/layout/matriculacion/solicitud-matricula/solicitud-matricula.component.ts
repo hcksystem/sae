@@ -12,7 +12,7 @@ import { SolicitudMatricula } from 'app/entidades/CRUD/SolicitudMatricula';
 import { SolicitudMatriculaService } from 'app/CRUD/solicitudmatricula/solicitudmatricula.service';
 import { AsignaturaSolicitudMatricula } from 'app/entidades/CRUD/AsignaturaSolicitudMatricula';
 import { AsignaturaSolicitudMatriculaService } from 'app/CRUD/asignaturasolicitudmatricula/asignaturasolicitudmatricula.service';
-
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-solicitud-matricula',
     templateUrl: './solicitud-matricula.component.html',
@@ -34,7 +34,8 @@ export class SolicitudMatriculaComponent implements OnInit {
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private matriculacionDataService: MatriculacionService,
         private solicitudMatriculaDataService: SolicitudMatriculaService,
-        private asignaturaSolicitudMatriculaDataService: AsignaturaSolicitudMatriculaService
+        private asignaturaSolicitudMatriculaDataService: AsignaturaSolicitudMatriculaService,
+        private router: Router
         ) {
             this.toastr.setRootViewContainerRef(vcr);
     }
@@ -43,6 +44,11 @@ export class SolicitudMatriculaComponent implements OnInit {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
+        if (this.rol === 2 || this.rol === 6) {
+
+        } else {
+            this.router.navigate(['/login']);
+        }
         this.datosCupo = new DatosCupo();
         this.datosInstituto = new DatosInstituto();
         this.periodoLectivoActual = new PeriodoLectivoActual();

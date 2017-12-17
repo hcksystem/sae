@@ -13,6 +13,7 @@ import { EstudianteService } from 'app/CRUD/estudiante/estudiante.service';
 import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionprocedencia/tipoinstitucionprocedencia.service';
 import { NivelTituloService } from '../../../CRUD/niveltitulo/niveltitulo.service';
 import { UbicacionService } from '../../../CRUD/ubicacion/ubicacion.service';
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-hoja-datos',
     templateUrl: './hoja-datos.component.html',
@@ -45,7 +46,7 @@ export class HojaDatosComponent implements OnInit {
     tipoInstitucionProcedencia: string;
     tituloBachiller: string;
     notaPostulacion: number;
-
+    esEstudiante: Boolean;
     constructor(private generoDataService: GeneroService,
         private estadoCivilDataService: EstadoCivilService,
         private etniaDataService: EtniaService,
@@ -56,10 +57,12 @@ export class HojaDatosComponent implements OnInit {
         private ubicacionDataService: UbicacionService,
         private nivelTituloDataService: NivelTituloService,
         private estudianteDataService: EstudianteService,
-        private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService) {
+        private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService,
+        private router: Router) {
     }
 
     ngOnInit() {
+        this.esEstudiante = false;
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
@@ -197,7 +200,7 @@ export class HojaDatosComponent implements OnInit {
 
         });
         if (this.rol === 2 || this.rol === 6) {
-            document.getElementById('panelEstudiante').style.display = 'block';
+            this.esEstudiante = true;
             this.busy = this.estudianteDataService.getFiltrado('idPersona', 'coincide', this.personaLogeada.id.toString())
             .then(respuesta => {
                 this.idTipoInstitucionProcedencia = respuesta[0].idTipoInstitucionProcedencia;
@@ -215,7 +218,7 @@ export class HojaDatosComponent implements OnInit {
                 // ERROR
             });
         } else {
-            document.getElementById('panelEstudiante').style.display = 'none';
+            this.esEstudiante = false;
         }
     }
 

@@ -141,7 +141,7 @@
             <label class="col-form-label">{{parroquiaNacimiento}}</label>
         </div>
     </div>
-    <div class="container-fluid" id="panelEstudiante">
+    <div class="container-fluid" [hidden]="!esEstudiante">
         <div class="form-group row" style="border-top: 1px solid black;">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
                 <strong><label class="col-form-label">Tipo de Colegio</label></strong><br/>

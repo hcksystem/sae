@@ -17,6 +17,7 @@ import { Matricula } from 'app/entidades/CRUD/Matricula';
 import { MatriculaService } from 'app/CRUD/matricula/matricula.service';
 import { MatriculaAsignatura } from 'app/entidades/CRUD/MatriculaAsignatura';
 import { MatriculaAsignaturaService } from 'app/CRUD/matriculaasignatura/matriculaasignatura.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-certificado-matricula',
@@ -47,7 +48,8 @@ export class CertificadoMatriculaComponent implements OnInit {
         private asignaturaDataService: AsignaturaService,
         private matriculaDataService: MatriculaService,
         private matriculaAsignaturaDataService: MatriculaAsignaturaService,
-        private asignaturaSolicitudMatriculaDataService: AsignaturaSolicitudMatriculaService
+        private asignaturaSolicitudMatriculaDataService: AsignaturaSolicitudMatriculaService,
+        private router: Router
         ) {
             this.toastr.setRootViewContainerRef(vcr);
     }
@@ -56,6 +58,9 @@ export class CertificadoMatriculaComponent implements OnInit {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
+        if (this.rol !== 5) {
+            this.router.navigate(['/login']);
+        }
         this.datosCupo = new DatosCupo();
         this.datosInstituto = new DatosInstituto();
         this.periodoLectivo = new PeriodoLectivo();
