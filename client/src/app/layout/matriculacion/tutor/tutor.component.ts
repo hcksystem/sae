@@ -129,6 +129,7 @@ export class TutorComponent implements OnInit {
 
         });
     }
+
     actualizar() {
         this.aspirante = new Persona();
         this.datosCupo = new DatosCupo();
