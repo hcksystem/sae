@@ -1,7 +1,7 @@
 <div class="container">
    <div class="row">
       <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Catálogo de TutorCarrera</h2>
+         <h2 style="margin-top:0px">Catálogo de RolSecundario</h2>
       </div>
    </div>
    <div class="row">
@@ -43,6 +43,11 @@
                   </th>
                   <th scope="col">
                      <span>
+                        <strong>idRol</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
                         <strong>idCarrera</strong>
                      </span>
                   </th>
@@ -55,6 +60,7 @@
                   </td>
                   <td>{{actual.id}}</td>
                   <td>{{actual.idPersona}}</td>
+                  <td>{{actual.idRol}}</td>
                   <td>{{actual.idCarrera}}</td>
                </tr>
             </tbody>
@@ -106,6 +112,12 @@
             <label for="idPersona" class="col-sm-4 col-form-label">idPersona</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="idPersona" name="idPersona" placeholder="idPersona" [(ngModel)]="entidadSeleccionada.idPersona">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="idRol" class="col-sm-4 col-form-label">idRol</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="idRol" name="idRol" placeholder="idRol" [(ngModel)]="entidadSeleccionada.idRol">
             </div>
          </div>
          <div class="form-group row">

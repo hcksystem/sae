@@ -86,7 +86,6 @@ const routes: Routes = [
             { path: 'tiporequisito', loadChildren: '../CRUD/tiporequisito/tiporequisito.module#TipoRequisitoModule' },
             { path: 'tiposangre', loadChildren: '../CRUD/tiposangre/tiposangre.module#TipoSangreModule' },
             { path: 'titulo', loadChildren: '../CRUD/titulo/titulo.module#TituloModule' },
-            { path: 'tutorcarrera', loadChildren: '../CRUD/tutorcarrera/tutorcarrera.module#TutorCarreraModule' },
             { path: 'ubicacion', loadChildren: '../CRUD/ubicacion/ubicacion.module#UbicacionModule' },
         ]
     }

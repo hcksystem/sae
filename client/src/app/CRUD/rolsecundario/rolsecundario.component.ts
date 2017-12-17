@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { TutorCarrera } from '../../entidades/CRUD/TutorCarrera';
-import { TutorCarreraService } from './tutorcarrera.service';
+import { RolSecundario } from '../../entidades/CRUD/RolSecundario';
+import { RolSecundarioService } from './rolsecundario.service';
 
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from 'app/layout/bs-component/components';
@@ -9,16 +9,16 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
-   selector: 'app-tutorcarrera',
-   templateUrl: './tutorcarrera.component.html',
-   styleUrls: ['./tutorcarrera.component.scss']
+   selector: 'app-rolsecundario',
+   templateUrl: './rolsecundario.component.html',
+   styleUrls: ['./rolsecundario.component.scss']
 })
 
-export class TutorCarreraComponent implements OnInit {
+export class RolSecundarioComponent implements OnInit {
 
    busy: Promise<any>;
-   entidades: TutorCarrera[];
-   entidadSeleccionada: TutorCarrera;
+   entidades: RolSecundario[];
+   entidadSeleccionada: RolSecundario;
    pagina: 1;
    tamanoPagina: 20;
    paginaActual: number;
@@ -26,7 +26,7 @@ export class TutorCarreraComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: TutorCarreraService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RolSecundarioService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -112,7 +112,7 @@ export class TutorCarreraComponent implements OnInit {
       });
    }
 
-   isValid(entidadPorEvaluar: TutorCarrera): boolean {
+   isValid(entidadPorEvaluar: RolSecundario): boolean {
       return true;
    }
 
@@ -126,13 +126,13 @@ export class TutorCarreraComponent implements OnInit {
       this.cerrarVentanaEdicion();
    }
 
-   crearEntidad(): TutorCarrera {
-      const nuevoTutorCarrera = new TutorCarrera();
-      nuevoTutorCarrera.id = 0;
-      return nuevoTutorCarrera;
+   crearEntidad(): RolSecundario {
+      const nuevoRolSecundario = new RolSecundario();
+      nuevoRolSecundario.id = 0;
+      return nuevoRolSecundario;
    }
 
-   add(entidadNueva: TutorCarrera): void {
+   add(entidadNueva: RolSecundario): void {
       this.busy = this.dataService.create(entidadNueva)
       .then(respuesta => {
          if(respuesta){
@@ -147,7 +147,7 @@ export class TutorCarreraComponent implements OnInit {
       });
    }
 
-   update(entidadParaActualizar: TutorCarrera): void {
+   update(entidadParaActualizar: RolSecundario): void {
       this.busy = this.dataService.update(entidadParaActualizar)
       .then(respuesta => {
          if(respuesta){
@@ -162,7 +162,7 @@ export class TutorCarreraComponent implements OnInit {
       });
    }
 
-   delete(entidadParaBorrar: TutorCarrera): void {
+   delete(entidadParaBorrar: RolSecundario): void {
       this.busy = this.dataService.remove(entidadParaBorrar.id)
       .then(respuesta => {
          if(respuesta){
@@ -180,7 +180,7 @@ export class TutorCarreraComponent implements OnInit {
    refresh(): void {
       this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = TutorCarrera[0];
+      this.entidades = RolSecundario[0];
       this.entidadSeleccionada = this.crearEntidad();
    }
 
@@ -214,7 +214,7 @@ export class TutorCarreraComponent implements OnInit {
       this.refresh();
    }
 
-   onSelect(entidadActual: TutorCarrera): void {
+   onSelect(entidadActual: RolSecundario): void {
       this.entidadSeleccionada = entidadActual;
    }
 }

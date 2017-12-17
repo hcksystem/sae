@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TutorCarreraComponent } from './tutorcarrera.component';
+import { RolSecundarioComponent } from './rolsecundario.component';
 
 const routes: Routes = [
-   { path: '', component: TutorCarreraComponent }
+   { path: '', component: RolSecundarioComponent }
 ];
 
 @NgModule({
    imports: [RouterModule.forChild(routes)],
    exports: [RouterModule]
 })
-export class TutorCarreraRoutingModule { }
+export class RolSecundarioRoutingModule { }

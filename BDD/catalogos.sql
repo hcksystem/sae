@@ -115,6 +115,11 @@ INSERT INTO `NivelTitulo` (`id`, `descripcion`) VALUES
 (5, 'INGENIERÍA'),
 (6, 'MAESTRÍA'),
 (7, 'DOCTORADO');
+INSERT INTO `CarreraInstituto` (`idCarrera`, `idInstituto`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4);
 INSERT INTO `Ocupacion` (`id`, `descripcion`) VALUES
 (1, 'DIRECTORES Y GERENTES'),
 (2, 'PROFESIONALES CIENTÍFICOS E INTELECTUALES'),

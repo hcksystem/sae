@@ -41,11 +41,6 @@
                         <strong>idPersona</strong>
                      </span>
                   </th>
-                  <th scope="col">
-                     <span>
-                        <strong>foto</strong>
-                     </span>
-                  </th>
                </tr>
             </thead>
             <tbody>
@@ -55,7 +50,6 @@
                   </td>
                   <td>{{actual.id}}</td>
                   <td>{{actual.idPersona}}</td>
-                  <td>{{actual.foto}}</td>
                </tr>
             </tbody>
          </table>
@@ -106,12 +100,6 @@
             <label for="idPersona" class="col-sm-4 col-form-label">idPersona</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="idPersona" name="idPersona" placeholder="idPersona" [(ngModel)]="entidadSeleccionada.idPersona">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="foto" class="col-sm-4 col-form-label">foto</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="foto" name="foto" placeholder="foto" [(ngModel)]="entidadSeleccionada.foto">
             </div>
          </div>
          </form>

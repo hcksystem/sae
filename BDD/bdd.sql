@@ -10,6 +10,12 @@ CREATE TABLE RolSecundario (
    PRIMARY KEY (id)
 );
 
+CREATE TABLE FotoPerfil (
+	id INT NOT NULL AUTO_INCREMENT,
+    idPersona INT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE HorasClase (
    id INT NOT NULL AUTO_INCREMENT,
    idAsignatura INT NULL,
@@ -26,9 +32,16 @@ CREATE TABLE Cuenta (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE CarreraInstituto (
+    id INT NOT NULL AUTO_INCREMENT,
+    idCarrera INT NULL,
+    idInstituto INT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE Roles (
 	id INT NOT NULL AUTO_INCREMENT,
-	descripcion VARCHAR(20) NULL,
+	descripcion VARCHAR(255) NULL,
 	acceso INT NULL,
 PRIMARY KEY (id));
 
