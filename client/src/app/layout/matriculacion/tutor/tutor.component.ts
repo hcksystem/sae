@@ -446,6 +446,14 @@ export class TutorComponent implements OnInit {
     }
 
     aceptar(): void {
-        this.actualizar();
+        this.solicitudMatriculaSeleccionada.idEstadoSolicitud = 2;
+        this.busy = this.solicitudMatriculaDataService.update(this.solicitudMatriculaSeleccionada)
+        .then(respuesta => {
+            this.toastr.success('Datos Confirmados Satisfactoriamente', 'Matriculación');
+            this.actualizar();
+        })
+        .catch(error => {
+            this.toastr.warning('Se produjo un error', 'Matriculación');
+        });
     }
 }
