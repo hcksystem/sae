@@ -58,6 +58,7 @@ export class PerfilComponent implements OnInit {
     ocupaciones: Ocupacion[];
     tiposDiscapacidad: TipoDiscapacidad[];
     tieneDiscapacidad: Boolean;
+    esEstudiante: Boolean;
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private personaDataService: PersonaService,
         private generoDataService: GeneroService,
@@ -75,6 +76,7 @@ export class PerfilComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.esEstudiante = false;
         this.estudiante = new Estudiante();
         this.tieneDiscapacidad = false;
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
@@ -164,13 +166,11 @@ export class PerfilComponent implements OnInit {
         });
         if (this.personaLogeada.carnetConadis === 'true') {
             this.tieneDiscapacidad = true;
-            document.getElementById('panelDiscapacidad').style.display = 'block';
         } else {
             this.tieneDiscapacidad = false;
-            document.getElementById('panelDiscapacidad').style.display = 'none';
         }
         if (this.rol === 2 || this.rol === 6) {
-            document.getElementById('panelEstudiante').style.display = 'block';
+            this.esEstudiante = true;
             this.busy = this.estudianteDataService.getFiltrado('idPersona', 'coincide', this.personaLogeada.id.toString())
             .then(respuesta => {
                 this.estudiante = respuesta[0];
@@ -179,7 +179,7 @@ export class PerfilComponent implements OnInit {
                 // Error
             });
         } else {
-            document.getElementById('panelEstudiante').style.display = 'none';
+            this.esEstudiante = false;
         }
     }
 
@@ -241,11 +241,9 @@ export class PerfilComponent implements OnInit {
         if (this.tieneDiscapacidad) {
             this.tieneDiscapacidad = false;
             this.personaLogeada.carnetConadis = 'false';
-            document.getElementById('panelDiscapacidad').style.display = 'none';
         } else {
             this.tieneDiscapacidad = true;
             this.personaLogeada.carnetConadis = 'true';
-            document.getElementById('panelDiscapacidad').style.display = 'block';
         }
 
     }
