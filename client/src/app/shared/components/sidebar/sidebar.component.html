@@ -23,7 +23,11 @@
                     </li>
                     <li>
                         <a [routerLink]="['/secretaria-academica']" [routerLinkActive]="['router-link-active']" class="list-group-item" [hidden]="!secretariaAcademica">
-                            {{ 'Secretaría Académica' | translate }} </a>
+                            {{ 'Generación de Certificados de Matrícula' | translate }} </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/certificado-matricula']" [routerLinkActive]="['router-link-active']" class="list-group-item" [hidden]="!secretariaAcademica">
+                            {{ 'Información de Estudiantes' | translate }} </a>
                     </li>
                     <li>
                         <a [routerLink]="['/tutor']" [routerLinkActive]="['router-link-active']" class="list-group-item" [hidden]="!tutor">

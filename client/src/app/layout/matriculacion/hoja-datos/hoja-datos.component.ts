@@ -14,6 +14,7 @@ import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionproce
 import { NivelTituloService } from '../../../CRUD/niveltitulo/niveltitulo.service';
 import { UbicacionService } from '../../../CRUD/ubicacion/ubicacion.service';
 import { Router } from '@angular/router';
+import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
 @Component({
     selector: 'app-hoja-datos',
     templateUrl: './hoja-datos.component.html',
@@ -47,6 +48,7 @@ export class HojaDatosComponent implements OnInit {
     tituloBachiller: string;
     notaPostulacion: number;
     esEstudiante: Boolean;
+    rolesSecundarios: RolSecundario[];
     constructor(private generoDataService: GeneroService,
         private estadoCivilDataService: EstadoCivilService,
         private etniaDataService: EtniaService,
