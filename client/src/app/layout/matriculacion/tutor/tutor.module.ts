@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TutorRoutingModule } from './tutor-routing.module';
@@ -19,11 +20,14 @@ import { NivelTituloService } from 'app/CRUD/niveltitulo/niveltitulo.service';
 import { EstudianteService } from 'app/CRUD/estudiante/estudiante.service';
 import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionprocedencia/tipoinstitucionprocedencia.service';
 import { PersonaService } from 'app/CRUD/persona/persona.service';
+import { AsignaturaService } from 'app/CRUD/asignatura/asignatura.service';
+import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 
 @NgModule({
   imports: [
     CommonModule,
     NgbModule,
+    FormsModule,
     TutorRoutingModule,
     NgxBarcodeModule,
   ],
@@ -41,7 +45,9 @@ import { PersonaService } from 'app/CRUD/persona/persona.service';
     UbicacionService,
     NivelTituloService,
     EstudianteService,
-    TipoInstitucionProcedenciaService
+    TipoInstitucionProcedenciaService,
+    AsignaturaService,
+    CarreraService
     ],
   declarations: [TutorComponent]
 })

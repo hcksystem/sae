@@ -4,16 +4,29 @@
           <h2 style="margin-top:0px">Matriculación - TUTOR</h2>
        </div>
     </div>
-    <div class="row">
-       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="btn-toolbar">
-             <div>
-                <button type="button" class="btn btn-default" (click)="refresh()">
-                   <span class="fa fa-refresh"></span>&nbsp;Actualizar
+    <div style="width:100%;height:60px;"></div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Mostrar por Carrera</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idCarrera" [(ngModel)]="carreraSeleccionadaCombo" (change)="carreraSeleccionada()">
+                <option value="0" selected>Todas</option>
+                <option *ngFor="let carrera of carreras" value={{carrera.id}}>{{carrera.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div style="width:100%;height:60px;"></div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="btn-toolbar">
+            <div>
+                <button type="button" class="btn btn-default" (click)="actualizar()">
+                    <span class="fa fa-refresh"></span>&nbsp;Actualizar
                 </button>
-             </div>
-          </div>
-       </div>
+            </div>
+        </div>
     </div>
     <div class="row" style="margin-top:15px">
        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -32,21 +45,15 @@
                             <strong>Fecha</strong>
                             </span>
                         </th>
-                        <th scope="col">
-                            <span>
-                            <strong>Período Lectivo</strong>
-                            </span>
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let actual of solicitudesMatriculas" (click)="onSelect(actual)">
+                    <tr *ngFor="let actual of solicitudesMatriculasPaginaVisible" (click)="onSelect(actual)">
                         <td>
                             <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                         </td>
                         <td>{{actual.codigo}}</td>
                         <td>{{actual.fecha}}</td>
-                        <td>{{actual.idPeriodoLectivo}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -72,9 +79,15 @@
        </div>
     </div>
 </div>
-<div class="container">
+<div class="container" [hidden]="!seleccionado">
     <div class="form-group row">
         <div style="width: 100%; text-align:center;">
+            <div style="width:100%;height:20px;"></div>
+            <div style="width: 100%; text-align:center;">
+                <button type="button" class="btn btn-success" (click)="aceptar()">
+                    <span class="fa fa-thumbs-o-up"></span>&nbsp;Datos Confirmados
+                </button>
+            </div>
             <div class="card-block">
                 <ngb-tabset>
                     <ngb-tab title="Hoja de Datos">

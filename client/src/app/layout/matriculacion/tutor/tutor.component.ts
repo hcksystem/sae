@@ -24,6 +24,10 @@ import { SolicitudMatriculaService } from 'app/CRUD/solicitudmatricula/solicitud
 import { AsignaturaSolicitudMatricula } from 'app/entidades/CRUD/AsignaturaSolicitudMatricula';
 import { AsignaturaSolicitudMatriculaService } from 'app/CRUD/asignaturasolicitudmatricula/asignaturasolicitudmatricula.service';
 import { PersonaService } from 'app/CRUD/persona/persona.service';
+import { AsignaturaService } from 'app/CRUD/asignatura/asignatura.service';
+import { getPackedSettings } from 'http2';
+import { Carrera } from 'app/entidades/CRUD/Carrera';
+import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 
 @Component({
     selector: 'app-tutor',
@@ -42,7 +46,6 @@ export class TutorComponent implements OnInit {
     fechaActual: Date;
     barcode: String;
     solicitudMatriculaSeleccionada: SolicitudMatricula;
-    solicitudMatricula: SolicitudMatricula;
     genero: string;
     estadoCivil: string;
     etnia: string;
@@ -67,7 +70,13 @@ export class TutorComponent implements OnInit {
     tituloBachiller: string;
     notaPostulacion: number;
     solicitudesMatriculas: SolicitudMatricula[];
+    solicitudesMatriculasPaginaVisible: SolicitudMatricula[];
     aspirante: Persona;
+    seleccionado: Boolean;
+    paginaActual: number;
+    paginaUltima: number;
+    carreraSeleccionadaCombo: number;
+    carreras: Carrera[];
     constructor(
         public toastr: ToastsManager, vcr: ViewContainerRef,
         private personaDataService: PersonaService,
@@ -84,7 +93,9 @@ export class TutorComponent implements OnInit {
         private ubicacionDataService: UbicacionService,
         private nivelTituloDataService: NivelTituloService,
         private estudianteDataService: EstudianteService,
-        private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService) {
+        private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService,
+        private asignaturaDataService: AsignaturaService,
+        private carreraDataService: CarreraService) {
             this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -97,14 +108,92 @@ export class TutorComponent implements OnInit {
         this.datosInstituto = new DatosInstituto();
         this.periodoLectivoActual = new PeriodoLectivoActual();
         this.fechaActual = new Date();
-        this.solicitudMatricula = new SolicitudMatricula();
-        this.getSolicitudesMatriculas();
+        this.solicitudMatriculaSeleccionada = new SolicitudMatricula();
+        this.seleccionado = false;
+        this.carreraSeleccionadaCombo = 0;
+        this.getSolicitudesMatriculas(0);
         this.getPeriodoLectivoActual();
+        this.getCarreras();
+    }
+
+    carreraSeleccionada() {
+        this.getSolicitudesMatriculas(this.carreraSeleccionadaCombo);
+    }
+
+    getCarreras() {
+        this.busy = this.carreraDataService.getAll()
+        .then(respuesta => {
+            this.carreras = respuesta;
+        })
+        .catch(error => {
+
+        });
+    }
+    actualizar() {
+        this.aspirante = new Persona();
+        this.datosCupo = new DatosCupo();
+        this.datosInstituto = new DatosInstituto();
+        this.periodoLectivoActual = new PeriodoLectivoActual();
+        this.fechaActual = new Date();
+        this.solicitudMatriculaSeleccionada = new SolicitudMatricula();
+        this.seleccionado = false;
+        this.getSolicitudesMatriculas(this.carreraSeleccionadaCombo);
+        this.getPeriodoLectivoActual();
+    }
+
+    getPaginaPrimera() {
+        this.seleccionado = false;
+        this.solicitudesMatriculasPaginaVisible = [];
+        for ( let i = 0; i < 5; i++ ) {
+            if ( i < this.solicitudesMatriculas.length ) {
+                this.solicitudesMatriculasPaginaVisible.push(this.solicitudesMatriculas[i]);
+            }
+        }
+        this.paginaActual = 1;
+        if ( Math.round( this.solicitudesMatriculas.length / 5 ) < this.solicitudesMatriculas.length / 5 ) {
+            this.paginaUltima = Math.round( this.solicitudesMatriculas.length / 5 ) + 1;
+        } else {
+            this.paginaUltima = Math.round( this.solicitudesMatriculas.length / 5 );
+        }
+        if ( this.paginaUltima == 0 ) {
+            this.paginaUltima = 1;
+        }
+    }
+
+    getPagina(pagina: number) {
+        this.seleccionado = false;
+        this.solicitudesMatriculasPaginaVisible = [];
+        const inicial = (pagina - 1) * 5;
+        for ( let i = 0; i < 5; i++ ) {
+            if ( inicial + i < this.solicitudesMatriculas.length ) {
+                this.solicitudesMatriculasPaginaVisible.push(this.solicitudesMatriculas[inicial + i]);
+            }
+        }
+    }
+
+    getPaginaAnterior() {
+        if ( this.paginaActual > 1) {
+            this.paginaActual = this.paginaActual - 1;
+            this.getPagina(this.paginaActual);
+        }
+    }
+
+    getPaginaSiguiente() {
+        if ( this.paginaActual < this.paginaUltima) {
+            this.paginaActual = this.paginaActual + 1;
+            this.getPagina(this.paginaActual);
+        }
+    }
+
+    getPaginaUltima() {
+        this.paginaActual = this.paginaUltima;
+        this.getPagina(this.paginaActual);
     }
 
     onSelect(entidadActual: SolicitudMatricula): void {
         this.solicitudMatriculaSeleccionada = entidadActual;
         this.getPersona(this.solicitudMatriculaSeleccionada.idPersona);
+        this.seleccionado = true;
     }
 
     estaSeleccionado(porVerificar): boolean {
@@ -114,10 +203,21 @@ export class TutorComponent implements OnInit {
         return porVerificar.id === this.solicitudMatriculaSeleccionada.id;
     }
 
-    getSolicitudesMatriculas(): void {
+    getSolicitudesMatriculas(idCarrera: number): void {
         this.busy = this.solicitudMatriculaDataService.getFiltrado('idEstadoSolicitud', 'coincide', '1')
         .then(respuesta => {
-            this.solicitudesMatriculas = respuesta
+            if ( idCarrera == 0) {
+                this.solicitudesMatriculas = respuesta;
+                this.getPaginaPrimera();
+            } else {
+                this.solicitudesMatriculas = [];
+                respuesta.forEach(element => {
+                    if ( element.idCarrera == idCarrera ) {
+                        this.solicitudesMatriculas.push(element);
+                    }
+                });
+                this.getPaginaPrimera();
+            }
         })
         .catch(error => {
 
@@ -288,16 +388,26 @@ export class TutorComponent implements OnInit {
         });
     }
 
-    getAsignaturasMatriculables(idCarrera: number, idNivel: number): void {
-        if ( idNivel === 1 ) {
-            this.busy = this.matriculacionDataService.getAsignaturasMatriculablesPrimerNivel(idCarrera)
-            .then(respuesta => {
-                this.asignaturasMatriculables = respuesta;
-            })
-            .catch(error => {
-
+    getAsignaturasMatriculables(idSolicitudMatricula: number): void {
+        this.busy = this.asignaturaSolicitudMatriculaDataService.getFiltrado('idSolicitudMatricula', 'coincide', idSolicitudMatricula.toString())
+        .then(respuesta => {
+            respuesta.forEach(asignaturaSolicitudMatricula => {
+                this.getAsignatura(asignaturaSolicitudMatricula.idAsignatura);
             });
-        }
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getAsignatura(idAsignatura: number): void {
+        this.busy = this.asignaturaDataService.get(idAsignatura)
+        .then(respuesta => {
+            this.asignaturasMatriculables.push(respuesta);
+        })
+        .catch(error => {
+
+        });
     }
 
     getDatosInstituto(idCarrera: number): void {
@@ -325,10 +435,10 @@ export class TutorComponent implements OnInit {
         this.busy = this.matriculacionDataService.getDatosCupo(idPersona)
         .then(respuesta => {
             this.datosCupo = respuesta;
+            this.asignaturasMatriculables = [];
             this.getDatosInstituto(this.datosCupo.idCarrera);
-            this.getAsignaturasMatriculables(this.datosCupo.idCarrera, 1);
-            const meses = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-            this.barcode = this.fechaActual.getFullYear().toString() + '-' + meses[this.fechaActual.getMonth()] + '-' + this.datosCupo.siglasCarrera + '-' + this.datosCupo.identificacion;
+            this.getAsignaturasMatriculables(this.solicitudMatriculaSeleccionada.id);
+            this.barcode = this.solicitudMatriculaSeleccionada.codigo;
         })
         .catch(error => {
 
@@ -336,6 +446,6 @@ export class TutorComponent implements OnInit {
     }
 
     aceptar(): void {
-
+        this.actualizar();
     }
 }
