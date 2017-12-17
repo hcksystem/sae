@@ -8,6 +8,7 @@ import { Headers, Http } from '@angular/http';
 import { environment } from './../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
+import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
 
 @Injectable()
 
@@ -16,6 +17,17 @@ export class MatriculacionService {
    private urlBase = environment.apiUrl;
 
    constructor(private http: Http) {
+   }
+
+   getPersonasMatriculadas(): Promise<PersonaCombo[]> {
+        const url = `${this.urlBase + 'estudiantes_matriculados/consultar'}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => {
+            const toReturn = response.json() as PersonaCombo[];
+            return toReturn;
+        })
+        .catch(this.handleError);
    }
 
    getDatosCupo(idPersona: number): Promise<DatosCupo> {

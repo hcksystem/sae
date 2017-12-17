@@ -37,6 +37,10 @@ function cargarRoutersEspecificos() {
             $routerAsignaturasMatriculablesPrimerNivel = new RouterAsignaturasMatriculablesPrimerNivel();
             return json_encode($routerAsignaturasMatriculablesPrimerNivel->route());
             break;
+          case "estudiantes_matriculados":
+            $routerEstudiantesMatriculados = new RouterEstudiantesMatriculados();
+            return json_encode($routerEstudiantesMatriculados->route());
+            break;
        }
     }
  }
