@@ -140,6 +140,7 @@ export class SecretariaAcademicaComponent implements OnInit {
     }
 
     carreraSeleccionada() {
+        this.solicitudMatriculaSeleccionada = null;
         this.getSolicitudesMatriculas(this.carreraSeleccionadaCombo);
     }
 

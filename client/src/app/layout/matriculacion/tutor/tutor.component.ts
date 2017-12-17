@@ -117,6 +117,7 @@ export class TutorComponent implements OnInit {
     }
 
     carreraSeleccionada() {
+        this.solicitudMatriculaSeleccionada = null;
         this.getSolicitudesMatriculas(this.carreraSeleccionadaCombo);
     }
 
