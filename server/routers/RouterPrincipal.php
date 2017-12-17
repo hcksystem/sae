@@ -118,6 +118,10 @@ class RouterPrincipal extends RouterBase
             $routerExperienciaLaboral = new RouterExperienciaLaboral();
             return json_encode($routerExperienciaLaboral->route());
             break;
+         case "fotoperfil":
+            $routerFotoPerfil = new RouterFotoPerfil();
+            return json_encode($routerFotoPerfil->route());
+            break;
          case "genero":
             $routerGenero = new RouterGenero();
             return json_encode($routerGenero->route());
@@ -206,6 +210,10 @@ class RouterPrincipal extends RouterBase
             $routerRequisito = new RouterRequisito();
             return json_encode($routerRequisito->route());
             break;
+         case "rolsecundario":
+            $routerRolSecundario = new RouterRolSecundario();
+            return json_encode($routerRolSecundario->route());
+            break;
          case "roles":
             $routerRoles = new RouterRoles();
             return json_encode($routerRoles->route());
@@ -245,10 +253,6 @@ class RouterPrincipal extends RouterBase
          case "titulo":
             $routerTitulo = new RouterTitulo();
             return json_encode($routerTitulo->route());
-            break;
-         case "tutorcarrera":
-            $routerTutorCarrera = new RouterTutorCarrera();
-            return json_encode($routerTutorCarrera->route());
             break;
          case "ubicacion":
             $routerUbicacion = new RouterUbicacion();

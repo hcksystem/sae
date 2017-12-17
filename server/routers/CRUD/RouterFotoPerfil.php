@@ -28,10 +28,10 @@ class RouterFotoPerfil extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new FotoPerfil($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["foto"]));
+            return $this->controlador->crear(new FotoPerfil($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new FotoPerfil($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["foto"]));
+            return $this->controlador->actualizar(new FotoPerfil($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"]));
             break;
       }
    }

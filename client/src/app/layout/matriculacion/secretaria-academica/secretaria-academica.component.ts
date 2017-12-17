@@ -34,6 +34,7 @@ import { MatriculaAsignaturaService } from 'app/CRUD/matriculaasignatura/matricu
 import { PeriodoLectivo } from 'app/entidades/CRUD/PeriodoLectivo';
 import { MatriculaAsignatura } from 'app/entidades/CRUD/MatriculaAsignatura';
 import { Router } from '@angular/router';
+import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
 @Component({
     selector: 'app-secretaria-academica',
     templateUrl: './secretaria-academica.component.html',
@@ -87,6 +88,7 @@ export class SecretariaAcademicaComponent implements OnInit {
     matricula: Matricula;
     matriculado: Boolean;
     periodoLectivo: PeriodoLectivo;
+    rolesSecundarios: RolSecundario[];
     constructor(
         private periodoLectivoDataService: PeriodoLectivoService,
         private matriculaDataService: MatriculaService,
@@ -117,7 +119,17 @@ export class SecretariaAcademicaComponent implements OnInit {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
-        if (this.rol !== 5) {
+        this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
+        let autorizado = false;
+        this.rolesSecundarios.forEach(rol => {
+            if ( rol.idRol == 5 ) {
+                autorizado = true;
+            }
+        });
+        if ( this.rol == 5 ) {
+            autorizado = true;
+        }
+        if (!autorizado) {
             this.router.navigate(['/login']);
         }
         this.aspirante = new Persona();

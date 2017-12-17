@@ -18,6 +18,7 @@ import { MatriculaService } from 'app/CRUD/matricula/matricula.service';
 import { MatriculaAsignatura } from 'app/entidades/CRUD/MatriculaAsignatura';
 import { MatriculaAsignaturaService } from 'app/CRUD/matriculaasignatura/matriculaasignatura.service';
 import { Router } from '@angular/router';
+import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
 
 @Component({
     selector: 'app-certificado-matricula',
@@ -41,6 +42,7 @@ export class CertificadoMatriculaComponent implements OnInit {
     numeroFolio: String;
     matricula: Matricula;
     matriculado: Boolean;
+    rolesSecundarios: RolSecundario[];
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private matriculacionDataService: MatriculacionService,
         private solicitudMatriculaDataService: SolicitudMatriculaService,
@@ -58,7 +60,17 @@ export class CertificadoMatriculaComponent implements OnInit {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
-        if (this.rol !== 5) {
+        this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
+        let autorizado = false;
+        this.rolesSecundarios.forEach(rol => {
+            if ( rol.idRol == 5 ) {
+                autorizado = true;
+            }
+        });
+        if ( this.rol == 5 ) {
+            autorizado = true;
+        }
+        if (!autorizado) {
             this.router.navigate(['/login']);
         }
         this.datosCupo = new DatosCupo();

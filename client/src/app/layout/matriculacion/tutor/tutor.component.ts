@@ -29,6 +29,7 @@ import { getPackedSettings } from 'http2';
 import { Carrera } from 'app/entidades/CRUD/Carrera';
 import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 import { Router } from '@angular/router';
+import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
 @Component({
     selector: 'app-tutor',
     templateUrl: './tutor.component.html',
@@ -77,6 +78,7 @@ export class TutorComponent implements OnInit {
     paginaUltima: number;
     carreraSeleccionadaCombo: number;
     carreras: Carrera[];
+    rolesSecundarios: RolSecundario[];
     constructor(
         public toastr: ToastsManager, vcr: ViewContainerRef,
         private personaDataService: PersonaService,
@@ -104,7 +106,17 @@ export class TutorComponent implements OnInit {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
-        if (this.rol !== 4) {
+        this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
+        let autorizado = false;
+        this.rolesSecundarios.forEach(rol => {
+            if ( rol.idRol == 4 ) {
+                autorizado = true;
+            }
+        });
+        if ( this.rol == 4 ) {
+            autorizado = true;
+        }
+        if (!autorizado) {
             this.router.navigate(['/login']);
         }
         this.aspirante = new Persona();

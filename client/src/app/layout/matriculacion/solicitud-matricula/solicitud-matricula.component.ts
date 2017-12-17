@@ -13,6 +13,7 @@ import { SolicitudMatriculaService } from 'app/CRUD/solicitudmatricula/solicitud
 import { AsignaturaSolicitudMatricula } from 'app/entidades/CRUD/AsignaturaSolicitudMatricula';
 import { AsignaturaSolicitudMatriculaService } from 'app/CRUD/asignaturasolicitudmatricula/asignaturasolicitudmatricula.service';
 import { Router } from '@angular/router';
+import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
 @Component({
     selector: 'app-solicitud-matricula',
     templateUrl: './solicitud-matricula.component.html',
@@ -31,6 +32,7 @@ export class SolicitudMatriculaComponent implements OnInit {
     barcode: String;
     solicitudMatricula: SolicitudMatricula;
     solicitudEmitida: Boolean;
+    rolesSecundarios: RolSecundario[];
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private matriculacionDataService: MatriculacionService,
         private solicitudMatriculaDataService: SolicitudMatriculaService,
@@ -44,9 +46,17 @@ export class SolicitudMatriculaComponent implements OnInit {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
-        if (this.rol === 2 || this.rol === 6) {
-
-        } else {
+        this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
+        let autorizado = false;
+        this.rolesSecundarios.forEach(rol => {
+            if ( rol.idRol == 2 || rol.idRol == 6 ) {
+                autorizado = true;
+            }
+        });
+        if ( this.rol == 2 || this.rol == 6 ) {
+            autorizado = true;
+        }
+        if (!autorizado) {
             this.router.navigate(['/login']);
         }
         this.datosCupo = new DatosCupo();

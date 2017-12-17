@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginResult } from 'app/entidades/especifico/Login-Result';
+import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
+import { Persona } from 'app/entidades/CRUD/Persona';
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -13,45 +15,55 @@ export class SidebarComponent implements OnInit {
     tutor: Boolean;
     sec: Boolean;
     rol: number;
+    personaLogeada: Persona;
     rolMatriculacion: Boolean;
+    rolesSecundarios: RolSecundario[];
     constructor() {}
 
     ngOnInit() {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.rol = logedResult.idRol;
+        this.personaLogeada = logedResult.persona;
+        this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
         this.estudiante = false;
         this.tutor = false;
         this.secretariaAcademica = false;
         this.rolMatriculacion = false;
-        switch (this.rol) {
-            case 1:
-                this.rolMatriculacion = false;
-                break;
-            case 2:
-                this.estudiante = true;
-                this.rolMatriculacion = true;
-                break;
-            case 3:
-                this.rolMatriculacion = false;
-                break;
-            case 4:
-                this.tutor = true;
-                this.rolMatriculacion = true;
-                break;
-            case 5:
-                this.rolMatriculacion = true;
-                this.secretariaAcademica = true;
-                break;
-            case 6:
-                this.rolMatriculacion = true;
-                this.estudiante = true;
-                break;
+        this.activarPrivilegiosRol(this.rol);
+        this.rolesSecundarios.forEach(rolSecundario => {
+            this.activarPrivilegiosRol(rolSecundario.idRol);
+        });
+    }
+
+    activarPrivilegiosRol(rol: number): void {
+        if (rol == 1) {
+            this.rolMatriculacion = false;
+        }
+        if (rol == 2) {
+            this.estudiante = true;
+            this.rolMatriculacion = true;
+        }
+        if (rol == 3) {
+            this.rolMatriculacion = false;
+        }
+        if (rol == 4) {
+            this.tutor = true;
+            this.rolMatriculacion = true;
+        }
+        if (rol == 5) {
+            this.rolMatriculacion = true;
+            this.secretariaAcademica = true;
+        }
+        if (rol == 6) {
+            this.rolMatriculacion = true;
+            this.estudiante = true;
         }
     }
 
     eventCalled() {
         this.isActive = !this.isActive;
     }
+
     addExpandClass(element: any) {
         if (element === this.showMenu) {
             this.showMenu = '0';

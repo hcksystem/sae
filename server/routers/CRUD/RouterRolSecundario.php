@@ -1,13 +1,13 @@
 <?php
 include_once('../routers/RouterBase.php');
-include_once('../controladores/CRUD/ControladorTutorCarrera.php');
-class RouterTutorCarrera extends RouterBase
+include_once('../controladores/CRUD/ControladorRolSecundario.php');
+class RouterRolSecundario extends RouterBase
 {
    public $controlador;
 
    function __construct(){
       parent::__construct();
-      $this->controlador = new ControladorTutorCarrera();
+      $this->controlador = new ControladorRolSecundario();
    }
    function route()
    {
@@ -28,10 +28,10 @@ class RouterTutorCarrera extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new TutorCarrera($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idCarrera"]));
+            return $this->controlador->crear(new RolSecundario($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idRol"],$this->datosURI->mensaje_body["idCarrera"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new TutorCarrera($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idCarrera"]));
+            return $this->controlador->actualizar(new RolSecundario($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idRol"],$this->datosURI->mensaje_body["idCarrera"]));
             break;
       }
    }
