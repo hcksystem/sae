@@ -35,6 +35,7 @@ import { PeriodoLectivo } from 'app/entidades/CRUD/PeriodoLectivo';
 import { MatriculaAsignatura } from 'app/entidades/CRUD/MatriculaAsignatura';
 import { Router } from '@angular/router';
 import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
+import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
 @Component({
     selector: 'app-secretaria-academica',
     templateUrl: './secretaria-academica.component.html',
@@ -89,6 +90,9 @@ export class SecretariaAcademicaComponent implements OnInit {
     matriculado: Boolean;
     periodoLectivo: PeriodoLectivo;
     rolesSecundarios: RolSecundario[];
+    personasPosibles: PersonaCombo[];
+    personasMostradas: PersonaCombo[];
+    estudianteSeleccionadoCombo: number;
     constructor(
         private periodoLectivoDataService: PeriodoLectivoService,
         private matriculaDataService: MatriculaService,
@@ -121,6 +125,7 @@ export class SecretariaAcademicaComponent implements OnInit {
         this.rol = logedResult.idRol;
         this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
         let autorizado = false;
+        this.getEstudiantesSolicitaron();
         this.rolesSecundarios.forEach(rol => {
             if ( rol.idRol == 5 ) {
                 autorizado = true;
@@ -143,6 +148,17 @@ export class SecretariaAcademicaComponent implements OnInit {
         this.periodoLectivo = new PeriodoLectivo();
         this.getSolicitudesMatriculas(0);
         this.getCarreras();
+    }
+
+    filtroPersonaSeleccionado(): void {
+        this.solicitudesMatriculasPaginaVisible = [];
+        this.solicitudesMatriculas.forEach(solicitudMatricula => {
+            if ( solicitudMatricula.idPersona == this.estudianteSeleccionadoCombo ) {
+                this.solicitudesMatriculasPaginaVisible.push(solicitudMatricula);
+            }
+        });
+        this.paginaActual = 1;
+        this.paginaUltima = 1;
     }
 
     getPeriodoLectivo(id: number): void {
@@ -182,21 +198,23 @@ export class SecretariaAcademicaComponent implements OnInit {
     }
 
     getPaginaPrimera() {
-        this.seleccionado = false;
-        this.solicitudesMatriculasPaginaVisible = [];
-        for ( let i = 0; i < 5; i++ ) {
-            if ( i < this.solicitudesMatriculas.length ) {
-                this.solicitudesMatriculasPaginaVisible.push(this.solicitudesMatriculas[i]);
+        if ( this.estudianteSeleccionadoCombo == 0 ) {
+            this.seleccionado = false;
+            this.solicitudesMatriculasPaginaVisible = [];
+            for ( let i = 0; i < 5; i++ ) {
+                if ( i < this.solicitudesMatriculas.length ) {
+                    this.solicitudesMatriculasPaginaVisible.push(this.solicitudesMatriculas[i]);
+                }
             }
-        }
-        this.paginaActual = 1;
-        if ( Math.round( this.solicitudesMatriculas.length / 5 ) < this.solicitudesMatriculas.length / 5 ) {
-            this.paginaUltima = Math.round( this.solicitudesMatriculas.length / 5 ) + 1;
-        } else {
-            this.paginaUltima = Math.round( this.solicitudesMatriculas.length / 5 );
-        }
-        if ( this.paginaUltima == 0 ) {
-            this.paginaUltima = 1;
+            this.paginaActual = 1;
+            if ( Math.round( this.solicitudesMatriculas.length / 5 ) < this.solicitudesMatriculas.length / 5 ) {
+                this.paginaUltima = Math.round( this.solicitudesMatriculas.length / 5 ) + 1;
+            } else {
+                this.paginaUltima = Math.round( this.solicitudesMatriculas.length / 5 );
+            }
+            if ( this.paginaUltima == 0 ) {
+                this.paginaUltima = 1;
+            }
         }
     }
 
@@ -226,8 +244,10 @@ export class SecretariaAcademicaComponent implements OnInit {
     }
 
     getPaginaUltima() {
-        this.paginaActual = this.paginaUltima;
-        this.getPagina(this.paginaActual);
+        if ( this.estudianteSeleccionadoCombo == 0 ) {
+           this.paginaActual = this.paginaUltima;
+           this.getPagina(this.paginaActual);
+        }
     }
 
     onSelect(entidadActual: SolicitudMatricula): void {
@@ -249,16 +269,44 @@ export class SecretariaAcademicaComponent implements OnInit {
         .then(respuesta => {
             if ( idCarrera == 0) {
                 this.solicitudesMatriculas = respuesta;
+                this.estudianteSeleccionadoCombo = 0;
+                this.getEstudiantesSolicitaron();
                 this.getPaginaPrimera();
             } else {
                 this.solicitudesMatriculas = [];
                 respuesta.forEach(element => {
                     if ( element.idCarrera == idCarrera ) {
                         this.solicitudesMatriculas.push(element);
+                        this.personasPosibles.forEach(personaMatriculada => {
+                            if ( element.idPersona == personaMatriculada.idPersona ) {
+                                this.personasMostradas.push(personaMatriculada);
+                            }
+                        });
                     }
+                });
+                this.estudianteSeleccionadoCombo = 0;
+                this.personasMostradas.sort((a, b) => {
+                    if ( a.nombreCompleto > b.nombreCompleto) {
+                        return 1;
+                    }
+                    if ( a.nombreCompleto < b.nombreCompleto) {
+                        return -1;
+                    }
+                    return 0;
                 });
                 this.getPaginaPrimera();
             }
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getEstudiantesSolicitaron(): void {
+        this.busy = this.matriculacionDataService.getPersonasSolicitudMatriculaRevisados()
+        .then(respuesta => {
+            this.personasPosibles = respuesta;
+            this.personasMostradas = respuesta;
         })
         .catch(error => {
 
@@ -512,7 +560,6 @@ export class SecretariaAcademicaComponent implements OnInit {
             this.matricula.idPersona = this.personaLogeada.id;
             this.matricula.folio = this.numeroFolio.toString();
             this.matricula.numeroMatricula = this.numeroMatricula.toString();
-            this.guardar(this.matricula);
             this.actualizarEstadoSolicitud();
         }
     }

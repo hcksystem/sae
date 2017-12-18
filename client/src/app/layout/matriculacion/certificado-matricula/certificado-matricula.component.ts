@@ -124,7 +124,6 @@ export class CertificadoMatriculaComponent implements OnInit {
         this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
         let autorizado = false;
         this.estudianteSeleccionadoCombo = 0;
-        this.getEstudiantesMatriculados();
         this.rolesSecundarios.forEach(rol => {
             if ( rol.idRol == 5 ) {
                 autorizado = true;
@@ -187,7 +186,6 @@ export class CertificadoMatriculaComponent implements OnInit {
         this.datosInstituto = new DatosInstituto();
         this.certificadoMatriculaSeleccionada = null;
         this.seleccionado = false;
-        this.getEstudiantesMatriculados();
         this.filtroSeleccionado();
         this.getCertificadosMatriculas(this.carreraSeleccionadaCombo);
 
@@ -267,7 +265,7 @@ export class CertificadoMatriculaComponent implements OnInit {
             if ( idCarrera == 0) {
                 this.certificadosMatriculas = respuesta;
                 this.estudianteSeleccionadoCombo = 0;
-                this.personasMostradas = this.personasMatriculadas;;
+                this.getEstudiantesMatriculados();
                 this.getPaginaPrimera();
             } else {
                 this.certificadosMatriculas = [];

@@ -46,6 +46,11 @@ function cargarRoutersEspecificos() {
             $routerEstudiantesSolicitud = new RouterEstudiantesSolicitudMatricula();
             return json_encode($routerEstudiantesSolicitud->route());
             break;
+          
+          case "estudiantes_solicitud_matricula_revisados":
+            $routerEstudiantesSolicitudRevisados = new RouterEstudiantesSolicitudMatriculaRevisados();
+            return json_encode($routerEstudiantesSolicitudRevisados->route());
+            break;
        }
     }
  }

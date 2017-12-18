@@ -30,6 +30,7 @@ import { Carrera } from 'app/entidades/CRUD/Carrera';
 import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 import { Router } from '@angular/router';
 import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
+import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
 @Component({
     selector: 'app-tutor',
     templateUrl: './tutor.component.html',
@@ -79,6 +80,9 @@ export class TutorComponent implements OnInit {
     carreraSeleccionadaCombo: number;
     carreras: Carrera[];
     rolesSecundarios: RolSecundario[];
+    personasPosibles: PersonaCombo[];
+    personasMostradas: PersonaCombo[];
+    estudianteSeleccionadoCombo: number;
     constructor(
         public toastr: ToastsManager, vcr: ViewContainerRef,
         private personaDataService: PersonaService,
@@ -132,6 +136,18 @@ export class TutorComponent implements OnInit {
         this.getCarreras();
     }
 
+
+    filtroPersonaSeleccionado(): void {
+        this.solicitudesMatriculasPaginaVisible = [];
+        this.solicitudesMatriculas.forEach(solicitudMatricula => {
+            if ( solicitudMatricula.idPersona == this.estudianteSeleccionadoCombo ) {
+                this.solicitudesMatriculasPaginaVisible.push(solicitudMatricula);
+            }
+        });
+        this.paginaActual = 1;
+        this.paginaUltima = 1;
+    }
+
     carreraSeleccionada() {
         this.solicitudMatriculaSeleccionada = null;
         this.getSolicitudesMatriculas(this.carreraSeleccionadaCombo);
@@ -157,24 +173,27 @@ export class TutorComponent implements OnInit {
         this.seleccionado = false;
         this.getSolicitudesMatriculas(this.carreraSeleccionadaCombo);
         this.getPeriodoLectivoActual();
+        this.getEstudiantesSolicitaron();
     }
 
     getPaginaPrimera() {
-        this.seleccionado = false;
-        this.solicitudesMatriculasPaginaVisible = [];
-        for ( let i = 0; i < 5; i++ ) {
-            if ( i < this.solicitudesMatriculas.length ) {
-                this.solicitudesMatriculasPaginaVisible.push(this.solicitudesMatriculas[i]);
+        if ( this.estudianteSeleccionadoCombo == 0 ) {
+            this.seleccionado = false;
+            this.solicitudesMatriculasPaginaVisible = [];
+            for ( let i = 0; i < 5; i++ ) {
+                if ( i < this.solicitudesMatriculas.length ) {
+                    this.solicitudesMatriculasPaginaVisible.push(this.solicitudesMatriculas[i]);
+                }
             }
-        }
-        this.paginaActual = 1;
-        if ( Math.round( this.solicitudesMatriculas.length / 5 ) < this.solicitudesMatriculas.length / 5 ) {
-            this.paginaUltima = Math.round( this.solicitudesMatriculas.length / 5 ) + 1;
-        } else {
-            this.paginaUltima = Math.round( this.solicitudesMatriculas.length / 5 );
-        }
-        if ( this.paginaUltima == 0 ) {
-            this.paginaUltima = 1;
+            this.paginaActual = 1;
+            if ( Math.round( this.solicitudesMatriculas.length / 5 ) < this.solicitudesMatriculas.length / 5 ) {
+                this.paginaUltima = Math.round( this.solicitudesMatriculas.length / 5 ) + 1;
+            } else {
+                this.paginaUltima = Math.round( this.solicitudesMatriculas.length / 5 );
+            }
+            if ( this.paginaUltima == 0 ) {
+                this.paginaUltima = 1;
+            }
         }
     }
 
@@ -204,8 +223,10 @@ export class TutorComponent implements OnInit {
     }
 
     getPaginaUltima() {
-        this.paginaActual = this.paginaUltima;
-        this.getPagina(this.paginaActual);
+        if ( this.estudianteSeleccionadoCombo == 0 ) {
+           this.paginaActual = this.paginaUltima;
+           this.getPagina(this.paginaActual);
+        }
     }
 
     onSelect(entidadActual: SolicitudMatricula): void {
@@ -226,13 +247,30 @@ export class TutorComponent implements OnInit {
         .then(respuesta => {
             if ( idCarrera == 0) {
                 this.solicitudesMatriculas = respuesta;
+                this.estudianteSeleccionadoCombo = 0;
+                this.getEstudiantesSolicitaron();
                 this.getPaginaPrimera();
             } else {
                 this.solicitudesMatriculas = [];
                 respuesta.forEach(element => {
                     if ( element.idCarrera == idCarrera ) {
                         this.solicitudesMatriculas.push(element);
+                        this.personasPosibles.forEach(personaMatriculada => {
+                            if ( element.idPersona == personaMatriculada.idPersona ) {
+                                this.personasMostradas.push(personaMatriculada);
+                            }
+                        });
                     }
+                });
+                this.estudianteSeleccionadoCombo = 0;
+                this.personasMostradas.sort((a, b) => {
+                    if ( a.nombreCompleto > b.nombreCompleto) {
+                        return 1;
+                    }
+                    if ( a.nombreCompleto < b.nombreCompleto) {
+                        return -1;
+                    }
+                    return 0;
                 });
                 this.getPaginaPrimera();
             }
@@ -248,6 +286,17 @@ export class TutorComponent implements OnInit {
             this.aspirante = respuesta;
             this.getHojaDatos(this.aspirante);
             this.getDatosCupo(this.aspirante.id);
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getEstudiantesSolicitaron(): void {
+        this.busy = this.matriculacionDataService.getPersonasSolicitudMatricula()
+        .then(respuesta => {
+            this.personasPosibles = respuesta;
+            this.personasMostradas = respuesta;
         })
         .catch(error => {
 

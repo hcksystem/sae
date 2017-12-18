@@ -19,6 +19,28 @@ export class MatriculacionService {
    constructor(private http: Http) {
    }
 
+   getPersonasSolicitudMatriculaRevisados(): Promise<PersonaCombo[]> {
+        const url = `${this.urlBase + 'estudiantes_solicitud_matricula_revisados/consultar'}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => {
+            const toReturn = response.json() as PersonaCombo[];
+            return toReturn;
+        })
+        .catch(this.handleError);
+    }
+
+   getPersonasSolicitudMatricula(): Promise<PersonaCombo[]> {
+        const url = `${this.urlBase + 'estudiantes_solicitud_matricula/consultar'}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => {
+            const toReturn = response.json() as PersonaCombo[];
+            return toReturn;
+        })
+        .catch(this.handleError);
+    }
+
    getPersonasMatriculadas(): Promise<PersonaCombo[]> {
         const url = `${this.urlBase + 'estudiantes_matriculados/consultar'}`;
         return this.http.get(url)
