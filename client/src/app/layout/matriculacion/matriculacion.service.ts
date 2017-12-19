@@ -19,6 +19,39 @@ export class MatriculacionService {
    constructor(private http: Http) {
    }
 
+   getRolesSecundariosRegistrados(): Promise<PersonaCombo[]> {
+        const url = `${this.urlBase + 'estudiantes_solicitud_matricula_revisados/consultar'}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => {
+            const toReturn = response.json() as PersonaCombo[];
+            return toReturn;
+        })
+        .catch(this.handleError);
+    }
+
+    getPersonasRolesSecundariosRegistrados(): Promise<PersonaCombo[]> {
+        const url = `${this.urlBase + 'estudiantes_solicitud_matricula_revisados/consultar'}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => {
+            const toReturn = response.json() as PersonaCombo[];
+            return toReturn;
+        })
+        .catch(this.handleError);
+    }
+
+    getPersonasRolesSecundariosAdmitidos(): Promise<PersonaCombo[]> {
+        const url = `${this.urlBase + 'estudiantes_solicitud_matricula_revisados/consultar'}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => {
+            const toReturn = response.json() as PersonaCombo[];
+            return toReturn;
+        })
+        .catch(this.handleError);
+    }
+
    getPersonasSolicitudMatriculaRevisados(): Promise<PersonaCombo[]> {
         const url = `${this.urlBase + 'estudiantes_solicitud_matricula_revisados/consultar'}`;
         return this.http.get(url)
