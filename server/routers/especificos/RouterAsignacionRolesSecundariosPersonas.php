@@ -13,7 +13,7 @@ class RouterAsignacionRolesSecundariosPersonas extends RouterBase
    {
       switch (strtolower($this->datosURI->accion)){
          case "consultar":
-            return  $this->controlador->consultar($this->datosURI->argumentos["idCarrera"]);
+            return  $this->controlador->consultar();
             break;
       }
    }
