@@ -57,9 +57,14 @@ function cargarRoutersEspecificos() {
             return json_encode($routerAsignacionRolesSecundariosRoles->route());
             break;
           
-            case "asignacion_roles_secundarios_personas":
+          case "asignacion_roles_secundarios_personas":
             $routerAsignacionRolesSecundariosPersonas = new RouterAsignacionRolesSecundariosPersonas();
             return json_encode($routerAsignacionRolesSecundariosPersonas->route());
+            break;
+          
+          case "asignacion_roles_secundarios_no_estudiantes":
+            $routerAsignacionRolesSecundariosNoEstudiantes = new RouterAsignacionRolesSecundariosNoEstudiantes();
+            return json_encode($routerAsignacionRolesSecundariosNoEstudiantes->route());
             break;
        }
     }
