@@ -28,10 +28,10 @@ class RouterRolSecundario extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new RolSecundario($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idRol"],$this->datosURI->mensaje_body["idCarrera"]));
+            return $this->controlador->crear(new RolSecundario($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idRol"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new RolSecundario($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idRol"],$this->datosURI->mensaje_body["idCarrera"]));
+            return $this->controlador->actualizar(new RolSecundario($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idPersona"],$this->datosURI->mensaje_body["idRol"]));
             break;
       }
    }

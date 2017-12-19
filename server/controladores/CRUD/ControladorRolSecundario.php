@@ -5,8 +5,8 @@ class ControladorRolSecundario extends ControladorBase
 {
    function crear(RolSecundario $rolsecundario)
    {
-      $sql = "INSERT INTO RolSecundario (idPersona,idRol,idCarrera) VALUES (?,?,?);";
-      $parametros = array($rolsecundario->idPersona,$rolsecundario->idRol,$rolsecundario->idCarrera);
+      $sql = "INSERT INTO RolSecundario (idPersona,idRol) VALUES (?,?);";
+      $parametros = array($rolsecundario->idPersona,$rolsecundario->idRol);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -17,8 +17,8 @@ class ControladorRolSecundario extends ControladorBase
 
    function actualizar(RolSecundario $rolsecundario)
    {
-      $parametros = array($rolsecundario->idPersona,$rolsecundario->idRol,$rolsecundario->idCarrera,$rolsecundario->id);
-      $sql = "UPDATE RolSecundario SET idPersona = ?,idRol = ?,idCarrera = ? WHERE id = ?;";
+      $parametros = array($rolsecundario->idPersona,$rolsecundario->idRol,$rolsecundario->id);
+      $sql = "UPDATE RolSecundario SET idPersona = ?,idRol = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

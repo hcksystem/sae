@@ -46,11 +46,6 @@
                         <strong>idRol</strong>
                      </span>
                   </th>
-                  <th scope="col">
-                     <span>
-                        <strong>idCarrera</strong>
-                     </span>
-                  </th>
                </tr>
             </thead>
             <tbody>
@@ -61,7 +56,6 @@
                   <td>{{actual.id}}</td>
                   <td>{{actual.idPersona}}</td>
                   <td>{{actual.idRol}}</td>
-                  <td>{{actual.idCarrera}}</td>
                </tr>
             </tbody>
          </table>
@@ -118,12 +112,6 @@
             <label for="idRol" class="col-sm-4 col-form-label">idRol</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="idRol" name="idRol" placeholder="idRol" [(ngModel)]="entidadSeleccionada.idRol">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="idCarrera" class="col-sm-4 col-form-label">idCarrera</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idCarrera" name="idCarrera" placeholder="idCarrera" [(ngModel)]="entidadSeleccionada.idCarrera">
             </div>
          </div>
          </form>

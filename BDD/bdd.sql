@@ -6,7 +6,6 @@ CREATE TABLE RolSecundario (
    id INT NOT NULL AUTO_INCREMENT,
    idPersona INT NULL,
    idRol INT NULL,
-   idCarrera INT NULL,
    PRIMARY KEY (id)
 );
 
