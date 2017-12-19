@@ -1,3 +1,4 @@
+USE ignug;
 INSERT INTO `AsignaturaSolicitudMatricula` (`id`, `idSolicitudMatricula`, `idAsignatura`) VALUES
 (1958, 262, 25),
 (1714, 230, 3),

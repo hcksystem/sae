@@ -1,3 +1,4 @@
+USE ignug;
 INSERT INTO `Cuenta` (`id`, `idRol`, `idPersona`) VALUES
 (1, 6, 81),
 (2, 2, 82),
