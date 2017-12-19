@@ -1,3 +1,5 @@
+USE ignug;
+
 INSERT INTO `Asignatura` (`id`, `idMalla`, `codigo`, `nombre`, `nivel`, `idDocumentoPea`, `horasSemana`, `horasPractica`, `horasDocente`, `horasAutonomas`) VALUES
 (1, 1, 'DS0101', 'MATEMÁTICA DISCRETA', 1, 1, 4, NULL, NULL, NULL),
 (2, 1, 'DS0201', 'INTRODUCCIÓN AL DESARROLLO DE SOFTWARE', 1, 2, 6, NULL, NULL, NULL),
