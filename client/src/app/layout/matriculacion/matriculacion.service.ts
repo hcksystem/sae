@@ -9,6 +9,7 @@ import { environment } from './../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
+import { Roles } from 'app/entidades/CRUD/Roles';
 
 @Injectable()
 
@@ -19,19 +20,19 @@ export class MatriculacionService {
    constructor(private http: Http) {
    }
 
-   getRolesSecundariosRegistrados(): Promise<PersonaCombo[]> {
-        const url = `${this.urlBase + 'estudiantes_solicitud_matricula_revisados/consultar'}`;
+   getRolesSecundariosRegistrados(): Promise<Roles[]> {
+        const url = `${this.urlBase + 'asignacion_roles_secundarios_roles/consultar'}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
-            const toReturn = response.json() as PersonaCombo[];
+            const toReturn = response.json() as Roles[];
             return toReturn;
         })
         .catch(this.handleError);
     }
 
     getPersonasRolesSecundariosRegistrados(): Promise<PersonaCombo[]> {
-        const url = `${this.urlBase + 'estudiantes_solicitud_matricula_revisados/consultar'}`;
+        const url = `${this.urlBase + 'asignacion_roles_secundarios_personas/consultar'}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
@@ -42,7 +43,7 @@ export class MatriculacionService {
     }
 
     getPersonasRolesSecundariosAdmitidos(): Promise<PersonaCombo[]> {
-        const url = `${this.urlBase + 'estudiantes_solicitud_matricula_revisados/consultar'}`;
+        const url = `${this.urlBase + 'asignacion_roles_secundarios_no_estudiantes/consultar'}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
