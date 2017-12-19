@@ -1,10 +1,38 @@
 <div class="container">
-   <div class="row">
-      <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Catálogo de RolSecundario</h2>
-      </div>
-   </div>
-   <div class="row">
+    <div class="row">
+    <div class="col-md-12 text-right">
+        <h2 style="margin-top:0px">Matriculación - Asignación de Roles</h2>
+    </div>
+    </div>
+    <div style="width:100%;height:60px;"></div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Mostrar por Rol Secundario</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" [(ngModel)]="rolSeleccionadoCombo" (change)="filtroRolSeleccionado()">
+                <option value="0" selected>Todas</option>
+                <option *ngFor="let rol of roles" value={{rol.id}}>{{rol.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Mostrar por Persona</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" [(ngModel)]="personaSeleccionadoCombo" (change)="filtroPersonaSeleccionado()">
+                <option value="0" selected>Todas</option>
+                <option *ngFor="let persona of personasMostradas" value={{persona.idPersona}}>{{persona.nombreCompleto}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div style="width:100%;height:60px;"></div>
+    <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
          <div class="btn-toolbar">
             <div>

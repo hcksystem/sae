@@ -51,6 +51,16 @@ function cargarRoutersEspecificos() {
             $routerEstudiantesSolicitudRevisados = new RouterEstudiantesSolicitudMatriculaRevisados();
             return json_encode($routerEstudiantesSolicitudRevisados->route());
             break;
+          
+          case "asignacion_roles_secundarios_roles":
+            $routerAsignacionRolesSecundariosRoles = new RouterAsignacionRolesSecundariosRoles();
+            return json_encode($routerAsignacionRolesSecundariosRoles->route());
+            break;
+          
+            case "asignacion_roles_secundarios_personas":
+            $routerAsignacionRolesSecundariosPersonas = new RouterAsignacionRolesSecundariosPersonas();
+            return json_encode($routerAsignacionRolesSecundariosPersonas->route());
+            break;
        }
     }
  }
