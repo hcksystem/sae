@@ -8,6 +8,9 @@ import { ModalComponent } from 'app/layout/bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { RolSecundarioService } from 'app/CRUD/rolsecundario/rolsecundario.service';
+import { Persona } from 'app/entidades/CRUD/Persona';
+import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
+import { Roles } from 'app/entidades/CRUD/Roles';
 
 @Component({
    selector: 'app-asignacion-roles',
@@ -26,11 +29,22 @@ export class AsignacionRolesComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-
+   personasMostradas: PersonaCombo;
+   personaSeleccionadoCombo: number;
+   roles: Roles[];
+   rolSeleccionadoCombo: number;
    constructor(public toastr: ToastsManager,
         vcr: ViewContainerRef,
         private dataService: RolSecundarioService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
+   }
+
+   filtroPersonaSeleccionado() {
+
+   }
+
+   filtroRolSeleccionado() {
+
    }
 
    open(content, nuevo){

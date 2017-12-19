@@ -192,6 +192,11 @@ export class PerfilComponent implements OnInit {
         });
     }
 
+    cancelar(): void {
+        this.toastr.warning('Los cambios fueron descartados', 'Actualización');
+        this.ngOnInit();
+    }
+
     getCantonesDomicilio() {
         this.cantonesDomicilio = [];
         this.ubicaciones.forEach(element => {
