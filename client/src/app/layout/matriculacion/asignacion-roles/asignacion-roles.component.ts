@@ -46,13 +46,49 @@ export class AsignacionRolesComponent implements OnInit {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
-   filtroPersonaSeleccionado() {
+    filtroPersonaSeleccionado() {
+        this.rolSeleccionadoCombo = 0;
+        if ( this.personaSeleccionadoCombo == 0 ) {
+            this.refresh();
+        } else {
+            this.getRolesSecundariosPorPersona(this.personaSeleccionadoCombo);
+        }
+    }
 
-   }
+    filtroRolSeleccionado() {
+        this.personaSeleccionadoCombo = 0;
+        if ( this.rolSeleccionadoCombo == 0 ) {
+            this.refresh();
+        } else {
+            this.getRolesSecundariosPorRol(this.rolSeleccionadoCombo);
+        }
+    }
 
-   filtroRolSeleccionado() {
+    getRolesSecundariosPorPersona(idPersona: number) {
+        this.paginaActual = 1;
+        this.paginaUltima = 1;
+        this.busy = this.dataService
+        .getFiltrado('idPersona', 'coincide', idPersona.toString())
+        .then(entidadesRecuperadas => {
+            this.entidades = entidadesRecuperadas;
+        })
+        .catch(error => {
 
-   }
+        });
+    }
+
+    getRolesSecundariosPorRol(idRol: number) {
+        this.paginaActual = 1;
+        this.paginaUltima = 1;
+        this.busy = this.dataService
+        .getFiltrado('idRol', 'coincide', idRol.toString())
+        .then(entidadesRecuperadas => {
+            this.entidades = entidadesRecuperadas;
+        })
+        .catch(error => {
+
+        });
+    }
 
    getRolesPosibles(): void {
         this.roles = [];
