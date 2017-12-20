@@ -33,6 +33,10 @@
                         <a [routerLink]="['/tutor']" [routerLinkActive]="['router-link-active']" class="list-group-item" [hidden]="!tutor">
                             {{ 'Tutor de Matriculación' | translate }} </a>
                     </li>
+                    <li>
+                        <a [routerLink]="['/asignacion-roles']" [routerLinkActive]="['router-link-active']" class="list-group-item" [hidden]="!vicerector">
+                            {{ 'Roles de Matriculación' | translate }} </a>
+                    </li>
                 </ul>
             </li>
         </div>

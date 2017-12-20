@@ -13,6 +13,7 @@ export class SidebarComponent implements OnInit {
     estudiante: Boolean;
     secretariaAcademica: Boolean;
     tutor: Boolean;
+    vicerector: Boolean;
     sec: Boolean;
     rol: number;
     personaLogeada: Persona;
@@ -57,6 +58,10 @@ export class SidebarComponent implements OnInit {
         if (rol == 6) {
             this.rolMatriculacion = true;
             this.estudiante = true;
+        }
+        if (rol == 8) {
+            this.rolMatriculacion = true;
+            this.vicerector = true;
         }
     }
 
