@@ -11,6 +11,8 @@ import { RolSecundarioService } from 'app/CRUD/rolsecundario/rolsecundario.servi
 import { Persona } from 'app/entidades/CRUD/Persona';
 import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
 import { Roles } from 'app/entidades/CRUD/Roles';
+import { MatriculacionService } from 'app/layout/matriculacion/matriculacion.service';
+import { RolesService } from 'app/CRUD/roles/roles.service';
 
 @Component({
    selector: 'app-asignacion-roles',
@@ -29,13 +31,18 @@ export class AsignacionRolesComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-   personasMostradas: PersonaCombo;
+   personasRolesAsignados: PersonaCombo[];
+   personasRolesPosiblesAsignar: PersonaCombo[];
    personaSeleccionadoCombo: number;
    roles: Roles[];
+   rolesPosibles: Roles[];
    rolSeleccionadoCombo: number;
    constructor(public toastr: ToastsManager,
         vcr: ViewContainerRef,
-        private dataService: RolSecundarioService, private modalService: NgbModal) {
+        private dataService: RolSecundarioService,
+        private modalService: NgbModal,
+        private matriculacionDataService: MatriculacionService,
+        private rolesDataService: RolesService) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -46,6 +53,60 @@ export class AsignacionRolesComponent implements OnInit {
    filtroRolSeleccionado() {
 
    }
+
+   getRolesPosibles(): void {
+        this.roles = [];
+        this.busy = this.rolesDataService
+        .getAll()
+        .then(entidadesRecuperadas => {
+            this.rolesPosibles = [];
+            entidadesRecuperadas.forEach(element => {
+                if ( element.id == 1 || element.id == 3 || element.id == 7 || element.id == 8 || element.id == 9 ) {
+
+                } else {
+                    this.rolesPosibles.push(element);
+                }
+            });
+        })
+        .catch(error => {
+
+        });
+    }
+   getRolesAsignados(): void {
+        this.roles = [];
+        this.busy = this.matriculacionDataService
+        .getRolesSecundariosRegistrados()
+        .then(entidadesRecuperadas => {
+            this.roles = entidadesRecuperadas;
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getPersonasConRolesAsignados(): void {
+        this.personasRolesAsignados = [];
+        this.busy = this.matriculacionDataService
+        .getPersonasRolesSecundariosRegistrados()
+        .then(entidadesRecuperadas => {
+            this.personasRolesAsignados = entidadesRecuperadas;
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getPersonasPosiblesDeAsignar(): void {
+        this.personasRolesPosiblesAsignar = [];
+        this.busy = this.matriculacionDataService
+        .getPersonasRolesSecundariosAdmitidos()
+        .then(entidadesRecuperadas => {
+            this.personasRolesPosiblesAsignar = entidadesRecuperadas;
+        })
+        .catch(error => {
+
+        });
+    }
 
    open(content, nuevo){
       if(nuevo){
@@ -199,11 +260,19 @@ export class AsignacionRolesComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = RolSecundario[0];
       this.entidadSeleccionada = this.crearEntidad();
+      this.getRolesAsignados();
+      this.getPersonasConRolesAsignados();
+      this.getPersonasPosiblesDeAsignar();
+      this.getRolesPosibles();
+      this.personaSeleccionadoCombo = 0;
+      this.rolSeleccionadoCombo = 0;
    }
 
    getPaginaPrimera():void {
-      this.paginaActual = 1;
-      this.refresh();
+      if ( this.personaSeleccionadoCombo == 0 && this.rolSeleccionadoCombo == 0) {
+        this.paginaActual = 1;
+        this.refresh();
+      }
    }
 
    getPaginaAnterior():void {
@@ -221,8 +290,10 @@ export class AsignacionRolesComponent implements OnInit {
    }
 
    getPaginaUltima():void {
-      this.paginaActual = this.paginaUltima;
-      this.refresh();
+        if ( this.personaSeleccionadoCombo == 0 && this.rolSeleccionadoCombo == 0) {
+            this.paginaActual = this.paginaUltima;
+            this.refresh();
+        }
    }
 
    ngOnInit() {

@@ -6,6 +6,8 @@ import { AsignacionRolesRoutingModule } from './asignacion-roles-routing.module'
 import { AsignacionRolesComponent } from './asignacion-roles.component';
 import { AsignacionRolesService } from './asignacion-roles.service';
 import { RolSecundarioService } from 'app/CRUD/rolsecundario/rolsecundario.service';
+import { MatriculacionService } from 'app/layout/matriculacion/matriculacion.service';
+import { RolesService } from 'app/CRUD/roles/roles.service';
 
 @NgModule({
    imports: [
@@ -14,7 +16,9 @@ import { RolSecundarioService } from 'app/CRUD/rolsecundario/rolsecundario.servi
       AsignacionRolesRoutingModule
    ],
    providers: [AsignacionRolesService,
-    RolSecundarioService],
+    RolSecundarioService,
+    RolesService,
+    MatriculacionService],
    declarations: [AsignacionRolesComponent],
 })
 export class AsignacionRolesModule { }
