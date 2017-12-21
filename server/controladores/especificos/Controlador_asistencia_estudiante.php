@@ -1,11 +1,12 @@
 <?php
-/*
 include_once('../controladores/Controlador_Base.php');
 include_once('../entidades/especificos/AsistenciaEstudiante.php');
 class Controlador_asistencia_estudiante extends Controlador_Base
 {
-   function leer_asignatura(int $persona, int $periodoLectivo)
+   function leer_asignatura($args)
    { 
+        $persona = $args["persona"];
+        $periodoLectivo = $args["periodoLectivo"];
         $sql = "SELECT Persona.id AS idPersona, Docente.id AS idDocente, 
         Asignatura.id AS idAsignatura, concat(Asignatura.nombre, \"    Paralelo:\", Paralelo.descripcion) AS asignatura FROM DocenteAsignatura
         INNER JOIN (Docente INNER JOIN Persona ON Persona.id = Docente.idPersona) ON Docente.id = DocenteAsignatura.idDocente
