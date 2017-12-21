@@ -2,13 +2,13 @@
 class CarreraInstituto
 {
    public $id;
-   public $idInstituto;
    public $idCarrera;
+   public $idInstituto;
 
-   function __construct($id,$idInstituto,$idCarrera){
+   function __construct($id,$idCarrera,$idInstituto){
       $this->id = $id;
-      $this->idInstituto = $idInstituto;
       $this->idCarrera = $idCarrera;
+      $this->idInstituto = $idInstituto;
    }
 }
 ?>

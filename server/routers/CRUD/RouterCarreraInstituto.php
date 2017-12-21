@@ -1,13 +1,13 @@
 <?php
 include_once('../routers/RouterBase.php');
-include_once('../controladores/CRUD/ControladorCarreraInstituto.php');
+include_once('../controladores/CRUD/Controladorcarrerainstituto.php');
 class RouterCarreraInstituto extends RouterBase
 {
    public $controlador;
 
    function __construct(){
       parent::__construct();
-      $this->controlador = new ControladorCarreraInstituto();
+      $this->controlador = new Controladorcarrerainstituto();
    }
    function route()
    {
@@ -28,10 +28,10 @@ class RouterCarreraInstituto extends RouterBase
             return $this->controlador->leer_filtrado($this->datosURI->argumentos["columna"],$this->datosURI->argumentos["tipo_filtro"],$this->datosURI->argumentos["filtro"]);
             break;
          case "crear":
-            return $this->controlador->crear(new CarreraInstituto($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idInstituto"],$this->datosURI->mensaje_body["idCarrera"]));
+            return $this->controlador->crear(new CarreraInstituto($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idCarrera"],$this->datosURI->mensaje_body["idInstituto"]));
             break;
          case "actualizar":
-            return $this->controlador->actualizar(new CarreraInstituto($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idInstituto"],$this->datosURI->mensaje_body["idCarrera"]));
+            return $this->controlador->actualizar(new CarreraInstituto($this->datosURI->mensaje_body["id"],$this->datosURI->mensaje_body["idCarrera"],$this->datosURI->mensaje_body["idInstituto"]));
             break;
       }
    }

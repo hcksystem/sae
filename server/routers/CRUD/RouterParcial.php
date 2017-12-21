@@ -1,13 +1,13 @@
 <?php
 include_once('../routers/RouterBase.php');
-include_once('../controladores/CRUD/ControladorParcial.php');
+include_once('../controladores/CRUD/Controladorparcial.php');
 class RouterParcial extends RouterBase
 {
    public $controlador;
 
    function __construct(){
       parent::__construct();
-      $this->controlador = new ControladorParcial();
+      $this->controlador = new Controladorparcial();
    }
    function route()
    {

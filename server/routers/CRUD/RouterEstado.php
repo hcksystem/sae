@@ -1,13 +1,13 @@
 <?php
 include_once('../routers/RouterBase.php');
-include_once('../controladores/CRUD/ControladorEstado.php');
+include_once('../controladores/CRUD/Controladorestado.php');
 class RouterEstado extends RouterBase
 {
    public $controlador;
 
    function __construct(){
       parent::__construct();
-      $this->controlador = new ControladorEstado();
+      $this->controlador = new Controladorestado();
    }
    function route()
    {

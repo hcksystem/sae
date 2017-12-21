@@ -3,12 +3,10 @@ class FotoPerfil
 {
    public $id;
    public $idPersona;
-   public $foto;
 
-   function __construct($id,$idPersona,$foto){
+   function __construct($id,$idPersona){
       $this->id = $id;
       $this->idPersona = $idPersona;
-      $this->foto = $foto;
    }
 }
 ?>

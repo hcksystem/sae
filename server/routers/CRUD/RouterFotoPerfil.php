@@ -1,13 +1,13 @@
 <?php
 include_once('../routers/RouterBase.php');
-include_once('../controladores/CRUD/ControladorFotoPerfil.php');
+include_once('../controladores/CRUD/Controladorfotoperfil.php');
 class RouterFotoPerfil extends RouterBase
 {
    public $controlador;
 
    function __construct(){
       parent::__construct();
-      $this->controlador = new ControladorFotoPerfil();
+      $this->controlador = new Controladorfotoperfil();
    }
    function route()
    {
