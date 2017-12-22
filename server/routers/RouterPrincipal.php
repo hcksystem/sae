@@ -1,6 +1,6 @@
 <?php
 include_once('../routers/RouterBase.php');
-
+/*
 function cargarControladores() {
    define("controladoresPath", "../controladores/");
    $files = glob(controladoresPath."CRUD/*.php");
@@ -14,13 +14,15 @@ function cargarControladores() {
 }
 
 cargarControladores(); 
-
+*/
 class RouterPrincipal extends RouterBase
 {
    public $controlador;
 
    function route(){
       $NombreControlador = "Controlador_".$this->datosURI->controlador; 
+      include_once('../controladores/especificos/'.$NombreControlador.'.php');
+      include_once('../controladores/CRUD/'.$NombreControlador.'.php');
       $this->controlador = new $NombreControlador();
       $NombreAccion = $this->datosURI->accion;
       $cabecera = $this->datosURI->mensaje_header;
