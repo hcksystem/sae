@@ -1,20 +1,6 @@
 <?php
 include_once('../routers/RouterBase.php');
-/*
-function cargarControladores() {
-   define("controladoresPath", "../controladores/");
-   $files = glob(controladoresPath."CRUD/*.php");
-   foreach ($files as $filename) {
-      include_once($filename);
-   }
-   $files = glob(controladoresPath."especificos/*.php");
-   foreach ($files as $filename) {
-      include_once($filename);
-   }
-}
 
-cargarControladores(); 
-*/
 class RouterPrincipal extends RouterBase
 {
    public $controlador;
