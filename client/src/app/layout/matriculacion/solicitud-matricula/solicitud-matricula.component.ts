@@ -1,7 +1,7 @@
 import { LoginResult } from './../../../entidades/especifico/Login-Result';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-
 import { Persona } from 'app/entidades/CRUD/Persona';
 import { MatriculacionService } from 'app/layout/matriculacion/matriculacion.service';
 import { DatosCupo } from 'app/entidades/especifico/Datos-Cupo';
@@ -14,12 +14,15 @@ import { AsignaturaSolicitudMatricula } from 'app/entidades/CRUD/AsignaturaSolic
 import { AsignaturaSolicitudMatriculaService } from 'app/CRUD/asignaturasolicitudmatricula/asignaturasolicitudmatricula.service';
 import { Router } from '@angular/router';
 import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
+import jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 @Component({
     selector: 'app-solicitud-matricula',
     templateUrl: './solicitud-matricula.component.html',
     styleUrls: ['./solicitud-matricula.component.scss']
 })
 export class SolicitudMatriculaComponent implements OnInit {
+    @ViewChild('reporte') el: ElementRef;
     busy: Promise<any>;
     personaLogeada: Persona;
     rol: number;
@@ -37,7 +40,8 @@ export class SolicitudMatriculaComponent implements OnInit {
         private matriculacionDataService: MatriculacionService,
         private solicitudMatriculaDataService: SolicitudMatriculaService,
         private asignaturaSolicitudMatriculaDataService: AsignaturaSolicitudMatriculaService,
-        private router: Router
+        private router: Router,
+        private rd: Renderer2
         ) {
             this.toastr.setRootViewContainerRef(vcr);
     }
@@ -117,7 +121,12 @@ export class SolicitudMatriculaComponent implements OnInit {
     }
 
     imprimir(): void {
-
+        html2canvas(this.el.nativeElement).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const doc = new jsPDF();
+            doc.addImage(imgData, 'PNG', 15, 40, 180, 160)
+            doc.save('Solicitud-Matricula' + this.personaLogeada.identificacion + '.pdf');
+        });
     }
 
     aceptar(): void {

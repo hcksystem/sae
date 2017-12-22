@@ -1,101 +1,103 @@
 <div class="container-fluid">
-    <div class="form-group row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
-            <ngx-barcode [bc-value]="barcode" [bc-display-value]="true"></ngx-barcode>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-            <img alt="{{datosInstituto.nombre}}" height="100px" src="{{logo}}" />
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h2 class="text-center">Solicitud de Matrícula</h2>
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-            <span>{{fechaActual | date:'medium'}}</span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
-            {{datosInstituto.rector}}<br/>{{datosInstituto.nombre}}<br/>RECTOR.-
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
-            <div style="width:100%;height:20px;"></div>
-            <p align="justify">Yo, <strong>{{datosCupo.nombreCompleto}}</strong> con documento de identidad Nº <strong>{{datosCupo.identificacion}}</strong>, hago uso de mi cupo en la carrera <strong>{{datosCupo.carrera}}</strong> para la jornada <strong>{{datosCupo.jornada}}</strong> y para el período lectivo <strong>{{periodoLectivoActual.descripcion}}</strong>, con la inscripción en las siguientes asignaturas:</p>
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
-                   <tr>
-                      <th scope="col">
-                         <span>
-                            <strong>Código</strong>
-                         </span>
-                      </th>
-                      <th scope="col">
-                         <span>
-                            <strong>Asignatura</strong>
-                         </span>
-                      </th>
-                      <th scope="col">
-                         <span>
-                            <strong>Nivel</strong>
-                         </span>
-                      </th>
-                      <th scope="col">
-                         <span>
-                            <strong>Horas a la Semana</strong>
-                         </span>
-                      </th>
-                   </tr>
-                </thead>
-                <tbody>
-                   <tr *ngFor="let actual of asignaturasMatriculables">
-                      <td>{{actual.codigo}}</td>
-                      <td>{{actual.nombre}}</td>
-                      <td>{{actual.nivel}}</td>
-                      <td>{{actual.horasSemana}}</td>
-                   </tr>
-                </tbody>
-             </table>
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
-            <p align="left">Con sentimientos de distinguida consideración.</p>
-            <div style="width:100%;height:20px;"></div>
-            <p align="left">Atentamente,</p>
-            <div style="width:100%;height:60px;"></div>
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-md-12">
-            <div style="float:left; padding-right:50px; border-style: solid none none none; border-width:1px;">
-                <strong>{{datosCupo.nombreCompleto}}</strong><br/>
-                <strong>{{datosCupo.identificacion}}</strong>
+    <div #reporte>
+        <div class="form-group row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+                <ngx-barcode [bc-value]="barcode" [bc-display-value]="true"></ngx-barcode>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                <img alt="{{datosInstituto.nombre}}" height="100px" src="{{logo}}" />
             </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
-            <div style="float:left; width:100%; height:20px; border-style: dotted none none none; border-width:1px;"></div>
-            <h5>REQUISITOS:</h5>
-            <ul class="a">
-                <li>2 copias a color del documento de identidad y de la papeleta de votación vigente</li>
-                <li>2 copas a color del Tipo de Sangre (Cruz Roja Ecuatoriana)</li>
-                <li>Copia del título de bachiller notarizado o el Acta de Grado notarizada</li>
-                <li>2 fotos tamaño carné</li>
-                <li>Hoja de datos personales impresa</li>
-                <li>Solicitud de matrícula impresa</li>
-                <li>Carpeta de sobre plástica de color <strong>{{datosInstituto.colorCarpeta}}</strong></li>
-            </ul>
+        <div class="form-group row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2 class="text-center">Solicitud de Matrícula</h2>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                <span>{{fechaActual | date:'medium'}}</span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
+                {{datosInstituto.rector}}<br/>{{datosInstituto.nombre}}<br/>RECTOR.-
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
+                <div style="width:100%;height:20px;"></div>
+                <p align="justify">Yo, <strong>{{datosCupo.nombreCompleto}}</strong> con documento de identidad Nº <strong>{{datosCupo.identificacion}}</strong>, hago uso de mi cupo en la carrera <strong>{{datosCupo.carrera}}</strong> para la jornada <strong>{{datosCupo.jornada}}</strong> y para el período lectivo <strong>{{periodoLectivoActual.descripcion}}</strong>, con la inscripción en las siguientes asignaturas:</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">
+                            <span>
+                                <strong>Código</strong>
+                            </span>
+                        </th>
+                        <th scope="col">
+                            <span>
+                                <strong>Asignatura</strong>
+                            </span>
+                        </th>
+                        <th scope="col">
+                            <span>
+                                <strong>Nivel</strong>
+                            </span>
+                        </th>
+                        <th scope="col">
+                            <span>
+                                <strong>Horas a la Semana</strong>
+                            </span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let actual of asignaturasMatriculables">
+                        <td>{{actual.codigo}}</td>
+                        <td>{{actual.nombre}}</td>
+                        <td>{{actual.nivel}}</td>
+                        <td>{{actual.horasSemana}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
+                <p align="left">Con sentimientos de distinguida consideración.</p>
+                <div style="width:100%;height:20px;"></div>
+                <p align="left">Atentamente,</p>
+                <div style="width:100%;height:60px;"></div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-12">
+                <div style="float:left; padding-right:50px; border-style: solid none none none; border-width:1px;">
+                    <strong>{{datosCupo.nombreCompleto}}</strong><br/>
+                    <strong>{{datosCupo.identificacion}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
+                <div style="float:left; width:100%; height:20px; border-style: dotted none none none; border-width:1px;"></div>
+                <h5>REQUISITOS:</h5>
+                <ul class="a">
+                    <li>2 copias a color del documento de identidad y de la papeleta de votación vigente</li>
+                    <li>2 copas a color del Tipo de Sangre (Cruz Roja Ecuatoriana)</li>
+                    <li>Copia del título de bachiller notarizado o el Acta de Grado notarizada</li>
+                    <li>2 fotos tamaño carné</li>
+                    <li>Hoja de datos personales impresa</li>
+                    <li>Solicitud de matrícula impresa</li>
+                    <li>Carpeta de sobre plástica de color <strong>{{datosInstituto.colorCarpeta}}</strong></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="form-group row">
