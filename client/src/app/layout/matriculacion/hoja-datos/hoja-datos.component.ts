@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginResult } from 'app/entidades/especifico/Login-Result';
 import { Persona } from 'app/entidades/CRUD/Persona';
 import { GeneroService } from 'app/CRUD/genero/genero.service';
@@ -16,8 +15,11 @@ import { NivelTituloService } from '../../../CRUD/niveltitulo/niveltitulo.servic
 import { UbicacionService } from '../../../CRUD/ubicacion/ubicacion.service';
 import { Router } from '@angular/router';
 import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
+
+import { ViewChild } from '@angular/core';
 import jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
+import { ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
     selector: 'app-hoja-datos',
@@ -25,7 +27,6 @@ import * as html2canvas from 'html2canvas';
     styleUrls: ['./hoja-datos.component.scss']
 })
 export class HojaDatosComponent implements OnInit {
-    @ViewChild('reporte') el: ElementRef;
     busy: Promise<any>;
     personaLogeada: Persona;
     rol: number;
@@ -54,6 +55,9 @@ export class HojaDatosComponent implements OnInit {
     notaPostulacion: number;
     esEstudiante: Boolean;
     rolesSecundarios: RolSecundario[];
+    @ViewChild('encabezadoHojaDatos') encabezadoHojaDatos: ElementRef;
+    @ViewChild('cuerpoHojaDatos') cuerpoHojaDatos: ElementRef;
+    @ViewChild('pieHojaDatos') pieHojaDatos: ElementRef;
     constructor(
         private generoDataService: GeneroService,
         private estadoCivilDataService: EstadoCivilService,
@@ -69,6 +73,23 @@ export class HojaDatosComponent implements OnInit {
         private router: Router,
         private rd: Renderer2
     ) {}
+
+    imprimir() {
+        html2canvas(this.encabezadoHojaDatos.nativeElement).then(canvasEncabezado => {
+            const encabezadoHojaDatosImg = canvasEncabezado.toDataURL('image/png');
+            html2canvas(this.cuerpoHojaDatos.nativeElement).then(canvasCuerpo => {
+                const cuerpoHojaDatosImg = canvasCuerpo.toDataURL('image/png');
+                html2canvas(this.pieHojaDatos.nativeElement).then(canvasPie => {
+                    const pieHojaDatosImg = canvasPie.toDataURL('image/png');
+                    const doc = new jsPDF();
+                    doc.addImage(encabezadoHojaDatosImg, 'PNG', 10, 10, 190, 30);
+                    doc.addImage(cuerpoHojaDatosImg, 'PNG', 30, 40, 160, 217);
+                    doc.addImage(pieHojaDatosImg, 'PNG', 10, 257, 190, 30);
+                    doc.save('HojaDatos' + this.personaLogeada.identificacion + '.pdf');
+                });
+            });
+        });
+    }
 
     ngOnInit() {
         this.esEstudiante = false;
@@ -298,14 +319,5 @@ export class HojaDatosComponent implements OnInit {
         } else {
             this.esEstudiante = false;
         }
-    }
-
-    imprimir() {
-        html2canvas(this.el.nativeElement).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const doc = new jsPDF();
-            doc.addImage(imgData, 'PNG', 30, 20, 170, 260);
-            doc.save('HojaDatos' + this.personaLogeada.identificacion + '.pdf');
-        });
     }
 }

@@ -22,7 +22,9 @@ import * as html2canvas from 'html2canvas';
     styleUrls: ['./solicitud-matricula.component.scss']
 })
 export class SolicitudMatriculaComponent implements OnInit {
-    @ViewChild('reporte') el: ElementRef;
+    @ViewChild('encabezadoSolicitudMatricula') encabezadoSolicitudMatricula: ElementRef;
+    @ViewChild('cuerpoSolicitudMatricula') cuerpoSolicitudMatricula: ElementRef;
+    @ViewChild('pieSolicitudMatricula') pieSolicitudMatricula: ElementRef;
     busy: Promise<any>;
     personaLogeada: Persona;
     rol: number;
@@ -121,11 +123,19 @@ export class SolicitudMatriculaComponent implements OnInit {
     }
 
     imprimir(): void {
-        html2canvas(this.el.nativeElement).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const doc = new jsPDF();
-            doc.addImage(imgData, 'PNG', 30, 20, 170, 260);
-            doc.save('Solicitud-Matricula' + this.personaLogeada.identificacion + '.pdf');
+        html2canvas(this.encabezadoSolicitudMatricula.nativeElement).then(canvasEncabezado => {
+            const encabezadoSolicitudMatriculaImg = canvasEncabezado.toDataURL('image/png');
+            html2canvas(this.cuerpoSolicitudMatricula.nativeElement).then(canvasCuerpo => {
+                const cuerpoSolicitudMatriculaImg = canvasCuerpo.toDataURL('image/png');
+                html2canvas(this.pieSolicitudMatricula.nativeElement).then(canvasPie => {
+                    const pieSolicitudMatriculaImg = canvasPie.toDataURL('image/png');
+                    const doc = new jsPDF();
+                    doc.addImage(encabezadoSolicitudMatriculaImg, 'PNG', 10, 10, 190, 30);
+                    doc.addImage(cuerpoSolicitudMatriculaImg, 'PNG', 30, 40, 160, 217);
+                    doc.addImage(pieSolicitudMatriculaImg, 'PNG', 10, 257, 190, 30);
+                    doc.save('SolicitudMatricula' + this.personaLogeada.identificacion + '.pdf');
+                });
+            });
         });
     }
 

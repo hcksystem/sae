@@ -46,8 +46,12 @@ import * as html2canvas from 'html2canvas';
 })
 export class CertificadoMatriculaComponent implements OnInit {
     busy: Promise<any>;
-    @ViewChild('hojaDatosReporteImprimir') hojaDatosReporte: ElementRef;
-    @ViewChild('certificadoMatriculaReporteImprimir') certificadoMatriculaReporte: ElementRef;
+    @ViewChild('encabezadoHojaDatos') encabezadoHojaDatos: ElementRef;
+    @ViewChild('cuerpoHojaDatos') cuerpoHojaDatos: ElementRef;
+    @ViewChild('pieHojaDatos') pieHojaDatos: ElementRef;
+    @ViewChild('encabezadoCertificadoMatricula') encabezadoCertificadoMatricula: ElementRef;
+    @ViewChild('cuerpoCertificadoMatricula') cuerpoCertificadoMatricula: ElementRef;
+    @ViewChild('pieCertificadoMatricula') pieCertificadoMatricula: ElementRef;
     personaLogeada: Persona;
     rol: number;
     datosInstituto: DatosInstituto;
@@ -555,20 +559,36 @@ export class CertificadoMatriculaComponent implements OnInit {
     }
 
     imprimirCertificado(): void {
-        html2canvas(this.certificadoMatriculaReporte.nativeElement).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const doc = new jsPDF();
-            doc.addImage(imgData, 'PNG', 30, 20, 170, 260);
-            doc.save('Certificado-Matricula' + this.certificadoMatriculaSeleccionada.codigo + '.pdf');
+        html2canvas(this.encabezadoCertificadoMatricula.nativeElement).then(canvasEncabezado => {
+            const encabezadoCertificadoMatriculaImg = canvasEncabezado.toDataURL('image/png');
+            html2canvas(this.cuerpoCertificadoMatricula.nativeElement).then(canvasCuerpo => {
+                const cuerpoCertificadoMatriculaImg = canvasCuerpo.toDataURL('image/png');
+                html2canvas(this.pieCertificadoMatricula.nativeElement).then(canvasPie => {
+                    const pieCertificadoMatriculaImg = canvasPie.toDataURL('image/png');
+                    const doc = new jsPDF();
+                    doc.addImage(encabezadoCertificadoMatriculaImg, 'PNG', 10, 10, 190, 30);
+                    doc.addImage(cuerpoCertificadoMatriculaImg, 'PNG', 30, 40, 160, 217);
+                    doc.addImage(pieCertificadoMatriculaImg, 'PNG', 10, 257, 190, 30);
+                    doc.save('CertificadoMatricula' + this.certificadoMatriculaSeleccionada.codigo + '.pdf');
+                });
+            });
         });
     }
 
     imprimirHojaDatos(): void {
-        html2canvas(this.hojaDatosReporte.nativeElement).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const doc = new jsPDF();
-            doc.addImage(imgData, 'PNG', 30, 20, 170, 260);
-            doc.save('Hoja-Datos' + this.certificadoMatriculaSeleccionada.codigo + '.pdf');
+        html2canvas(this.encabezadoHojaDatos.nativeElement).then(canvasEncabezado => {
+            const encabezadoHojaDatosImg = canvasEncabezado.toDataURL('image/png');
+            html2canvas(this.cuerpoHojaDatos.nativeElement).then(canvasCuerpo => {
+                const cuerpoHojaDatosImg = canvasCuerpo.toDataURL('image/png');
+                html2canvas(this.pieHojaDatos.nativeElement).then(canvasPie => {
+                    const pieHojaDatosImg = canvasPie.toDataURL('image/png');
+                    const doc = new jsPDF();
+                    doc.addImage(encabezadoHojaDatosImg, 'PNG', 10, 10, 190, 30);
+                    doc.addImage(cuerpoHojaDatosImg, 'PNG', 30, 40, 160, 217);
+                    doc.addImage(pieHojaDatosImg, 'PNG', 10, 257, 190, 30);
+                    doc.save('HojaDatos' + this.certificadoMatriculaSeleccionada.codigo + '.pdf');
+                });
+            });
         });
     }
 }
