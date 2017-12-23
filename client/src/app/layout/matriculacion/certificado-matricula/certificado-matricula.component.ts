@@ -1,3 +1,4 @@
+import { ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { LoginResult } from 'app/entidades/especifico/Login-Result';
@@ -36,6 +37,8 @@ import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
 import { JornadaService } from 'app/CRUD/jornada/jornada.service';
 import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
 import { forEach } from '@angular/router/src/utils/collection';
+import jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 @Component({
     selector: 'app-certificado-matricula',
     templateUrl: './certificado-matricula.component.html',
@@ -43,6 +46,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class CertificadoMatriculaComponent implements OnInit {
     busy: Promise<any>;
+    @ViewChild('hojaDatosReporteImprimir') hojaDatosReporte: ElementRef;
+    @ViewChild('certificadoMatriculaReporteImprimir') certificadoMatriculaReporte: ElementRef;
     personaLogeada: Persona;
     rol: number;
     datosInstituto: DatosInstituto;
@@ -113,6 +118,7 @@ export class CertificadoMatriculaComponent implements OnInit {
         private asignaturaDataService: AsignaturaService,
         private carreraDataService: CarreraService,
         private router: Router,
+        private rd: Renderer2,
         private jornadaDataService: JornadaService) {
             this.toastr.setRootViewContainerRef(vcr);
     }
@@ -549,10 +555,20 @@ export class CertificadoMatriculaComponent implements OnInit {
     }
 
     imprimirCertificado(): void {
-
+        html2canvas(this.certificadoMatriculaReporte.nativeElement).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const doc = new jsPDF();
+            doc.addImage(imgData, 'PNG', 30, 20, 170, 260);
+            doc.save('Certificado-Matricula' + this.certificadoMatriculaSeleccionada.codigo + '.pdf');
+        });
     }
 
     imprimirHojaDatos(): void {
-
+        html2canvas(this.hojaDatosReporte.nativeElement).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const doc = new jsPDF();
+            doc.addImage(imgData, 'PNG', 30, 20, 170, 260);
+            doc.save('Hoja-Datos' + this.certificadoMatriculaSeleccionada.codigo + '.pdf');
+        });
     }
 }

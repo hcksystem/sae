@@ -124,7 +124,7 @@ export class SolicitudMatriculaComponent implements OnInit {
         html2canvas(this.el.nativeElement).then(canvas => {
             const imgData = canvas.toDataURL('image/png');
             const doc = new jsPDF();
-            doc.addImage(imgData, 'PNG', 15, 40, 180, 160)
+            doc.addImage(imgData, 'PNG', 30, 20, 170, 260);
             doc.save('Solicitud-Matricula' + this.personaLogeada.identificacion + '.pdf');
         });
     }
