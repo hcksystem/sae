@@ -2,6 +2,7 @@
 include_once('../libs/PHPMailer/PHPMailer.php');
 include_once('../libs/PHPMailer/POP3.php');
 include_once('../libs/PHPMailer/SMTP.php');
+include_once('../entidades/CRUD/LogMailSender.php');
 include_once('../controladores/Controlador_Base.php');
 use PHPMailer\PHPMailer\POP3;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -31,6 +32,15 @@ class Controlador_mail_sender extends Controlador_Base
         $mail->addAddress($ToEmail, $ToAlias);
         $mail->Subject = $Asunto;
         $mail->msgHTML($Mensaje);
-        return $mail->send();
+        $EstadoEnvio = $mail->send();
+        $fecha = date("Y-m-d H:i:s");
+        $sql = "INSERT INTO LogMailSender (fecha,FromEmail,FromAlias,ReplyEmail,ReplyAlias,ToEmail,ToAlias,Asunto,Mensaje,EstadoEnvio) VALUES (?,?,?,?,?,?,?,?,?,?);";
+        $parametros = array($fecha,$FromEmail,$FromAlias,$ReplyEmail,$ReplyAlias,$ToEmail,$ToAlias,$Asunto,$Mensaje,$EstadoEnvio);
+        $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+        if(is_null($respuesta[0])){
+            return $EstadoEnvio;
+        }else{
+            return false;
+        } 
    }
 }
