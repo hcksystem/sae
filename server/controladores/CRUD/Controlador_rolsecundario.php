@@ -6,7 +6,7 @@ class Controlador_rolsecundario extends Controlador_Base
    function crear($args)
    {
       $rolsecundario = new RolSecundario($args["id"],$args["idPersona"],$args["idRol"]);
-      $sql = "INSERT INTO RolSecundario (idPersona,idRol,) VALUES (?,?,);";
+      $sql = "INSERT INTO RolSecundario (idPersona,idRol) VALUES (?,?);";
       $parametros = array($rolsecundario->idPersona,$rolsecundario->idRol);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
