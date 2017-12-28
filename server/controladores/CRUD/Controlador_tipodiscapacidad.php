@@ -6,7 +6,7 @@ class Controlador_tipodiscapacidad extends Controlador_Base
    function crear($args)
    {
       $tipodiscapacidad = new TipoDiscapacidad($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO TipoDiscapacidad (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO TipoDiscapacidad (descripcion) VALUES (?);";
       $parametros = array($tipodiscapacidad->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

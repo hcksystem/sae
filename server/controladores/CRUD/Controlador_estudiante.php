@@ -6,7 +6,7 @@ class Controlador_estudiante extends Controlador_Base
    function crear($args)
    {
       $estudiante = new Estudiante($args["id"],$args["idPersona"],$args["notaPostulacion"],$args["tituloBachiller"],$args["idTipoInstitucionProcedencia"]);
-      $sql = "INSERT INTO Estudiante (idPersona,notaPostulacion,tituloBachiller,idTipoInstitucionProcedencia,) VALUES (?,?,?,?,);";
+      $sql = "INSERT INTO Estudiante (idPersona,notaPostulacion,tituloBachiller,idTipoInstitucionProcedencia) VALUES (?,?,?,?);";
       $parametros = array($estudiante->idPersona,$estudiante->notaPostulacion,$estudiante->tituloBachiller,$estudiante->idTipoInstitucionProcedencia);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

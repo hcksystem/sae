@@ -6,7 +6,7 @@ class Controlador_hobbies extends Controlador_Base
    function crear($args)
    {
       $hobbies = new Hobbies($args["id"],$args["idPersona"],$args["descripcion"]);
-      $sql = "INSERT INTO Hobbies (idPersona,descripcion,) VALUES (?,?,);";
+      $sql = "INSERT INTO Hobbies (idPersona,descripcion) VALUES (?,?);";
       $parametros = array($hobbies->idPersona,$hobbies->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

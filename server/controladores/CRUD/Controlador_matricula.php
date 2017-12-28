@@ -6,7 +6,7 @@ class Controlador_matricula extends Controlador_Base
    function crear($args)
    {
       $matricula = new Matricula($args["id"],$args["codigo"],$args["fecha"],$args["idPeriodoLectivo"],$args["idPersona"],$args["idCarrera"],$args["numeroMatricula"],$args["folio"],$args["idJornada"]);
-      $sql = "INSERT INTO Matricula (codigo,fecha,idPeriodoLectivo,idPersona,idCarrera,numeroMatricula,folio,idJornada,) VALUES (?,?,?,?,?,?,?,?,);";
+      $sql = "INSERT INTO Matricula (codigo,fecha,idPeriodoLectivo,idPersona,idCarrera,numeroMatricula,folio,idJornada) VALUES (?,?,?,?,?,?,?,?);";
       $fechaNoSQLTime = strtotime($matricula->fecha);
       $fechaSQLTime = date("Y-m-d H:i:s", $fechaNoSQLTime);
       $matricula->fecha = $fechaSQLTime;

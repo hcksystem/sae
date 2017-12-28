@@ -6,7 +6,7 @@ class Controlador_malla extends Controlador_Base
    function crear($args)
    {
       $malla = new Malla($args["id"],$args["fechaMallaInicio"],$args["fechaMallaFin"],$args["idCarrera"],$args["idDocResolucion"]);
-      $sql = "INSERT INTO Malla (fechaMallaInicio,fechaMallaFin,idCarrera,idDocResolucion,) VALUES (?,?,?,?,);";
+      $sql = "INSERT INTO Malla (fechaMallaInicio,fechaMallaFin,idCarrera,idDocResolucion) VALUES (?,?,?,?);";
       $fechaMallaInicioNoSQLTime = strtotime($malla->fechaMallaInicio);
       $fechaMallaInicioSQLTime = date("Y-m-d H:i:s", $fechaMallaInicioNoSQLTime);
       $malla->fechaMallaInicio = $fechaMallaInicioSQLTime;

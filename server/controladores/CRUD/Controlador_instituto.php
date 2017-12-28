@@ -6,7 +6,7 @@ class Controlador_instituto extends Controlador_Base
    function crear($args)
    {
       $instituto = new Instituto($args["id"],$args["descripcion"],$args["rector"],$args["vicerector"],$args["color"]);
-      $sql = "INSERT INTO Instituto (descripcion,rector,vicerector,color,) VALUES (?,?,?,?,);";
+      $sql = "INSERT INTO Instituto (descripcion,rector,vicerector,color) VALUES (?,?,?,?);";
       $parametros = array($instituto->descripcion,$instituto->rector,$instituto->vicerector,$instituto->color);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

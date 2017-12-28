@@ -6,7 +6,7 @@ class Controlador_cuenta extends Controlador_Base
    function crear($args)
    {
       $cuenta = new Cuenta($args["id"],$args["idRol"],$args["idPersona"]);
-      $sql = "INSERT INTO Cuenta (idRol,idPersona,) VALUES (?,?,);";
+      $sql = "INSERT INTO Cuenta (idRol,idPersona) VALUES (?,?);";
       $parametros = array($cuenta->idRol,$cuenta->idPersona);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

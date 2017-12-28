@@ -6,7 +6,7 @@ class Controlador_periodoacademico extends Controlador_Base
    function crear($args)
    {
       $periodoacademico = new PeriodoAcademico($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO PeriodoAcademico (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO PeriodoAcademico (descripcion) VALUES (?);";
       $parametros = array($periodoacademico->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

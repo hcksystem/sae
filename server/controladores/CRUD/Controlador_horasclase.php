@@ -6,7 +6,7 @@ class Controlador_horasclase extends Controlador_Base
    function crear($args)
    {
       $horasclase = new HorasClase($args["id"],$args["idAsignatura"],$args["idParalelo"],$args["fecha"],$args["horas"]);
-      $sql = "INSERT INTO HorasClase (idAsignatura,idParalelo,fecha,horas,) VALUES (?,?,?,?,);";
+      $sql = "INSERT INTO HorasClase (idAsignatura,idParalelo,fecha,horas) VALUES (?,?,?,?);";
       $fechaNoSQLTime = strtotime($horasclase->fecha);
       $fechaSQLTime = date("Y-m-d H:i:s", $fechaNoSQLTime);
       $horasclase->fecha = $fechaSQLTime;

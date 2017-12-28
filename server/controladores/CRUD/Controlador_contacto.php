@@ -6,7 +6,7 @@ class Controlador_contacto extends Controlador_Base
    function crear($args)
    {
       $contacto = new Contacto($args["id"],$args["idPersona"],$args["descripcion"],$args["contacto"]);
-      $sql = "INSERT INTO Contacto (idPersona,descripcion,contacto,) VALUES (?,?,?,);";
+      $sql = "INSERT INTO Contacto (idPersona,descripcion,contacto) VALUES (?,?,?);";
       $parametros = array($contacto->idPersona,$contacto->descripcion,$contacto->contacto);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

@@ -6,7 +6,7 @@ class Controlador_modalidad extends Controlador_Base
    function crear($args)
    {
       $modalidad = new Modalidad($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO Modalidad (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO Modalidad (descripcion) VALUES (?);";
       $parametros = array($modalidad->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

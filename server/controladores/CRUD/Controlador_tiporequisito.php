@@ -6,7 +6,7 @@ class Controlador_tiporequisito extends Controlador_Base
    function crear($args)
    {
       $tiporequisito = new TipoRequisito($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO TipoRequisito (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO TipoRequisito (descripcion) VALUES (?);";
       $parametros = array($tiporequisito->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

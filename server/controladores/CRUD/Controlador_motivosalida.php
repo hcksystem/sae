@@ -6,7 +6,7 @@ class Controlador_motivosalida extends Controlador_Base
    function crear($args)
    {
       $motivosalida = new MotivoSalida($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO MotivoSalida (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO MotivoSalida (descripcion) VALUES (?);";
       $parametros = array($motivosalida->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

@@ -6,7 +6,7 @@ class Controlador_etnia extends Controlador_Base
    function crear($args)
    {
       $etnia = new Etnia($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO Etnia (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO Etnia (descripcion) VALUES (?);";
       $parametros = array($etnia->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

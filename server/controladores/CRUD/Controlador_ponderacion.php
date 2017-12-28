@@ -6,7 +6,7 @@ class Controlador_ponderacion extends Controlador_Base
    function crear($args)
    {
       $ponderacion = new Ponderacion($args["id"],$args["idCategoria"],$args["idParcial"],$args["porcentaje"]);
-      $sql = "INSERT INTO Ponderacion (idCategoria,idParcial,porcentaje,) VALUES (?,?,?,);";
+      $sql = "INSERT INTO Ponderacion (idCategoria,idParcial,porcentaje) VALUES (?,?,?);";
       $parametros = array($ponderacion->idCategoria,$ponderacion->idParcial,$ponderacion->porcentaje);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

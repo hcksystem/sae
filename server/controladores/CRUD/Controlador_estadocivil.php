@@ -6,7 +6,7 @@ class Controlador_estadocivil extends Controlador_Base
    function crear($args)
    {
       $estadocivil = new EstadoCivil($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO EstadoCivil (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO EstadoCivil (descripcion) VALUES (?);";
       $parametros = array($estadocivil->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

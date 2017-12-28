@@ -6,7 +6,7 @@ class Controlador_estadocupo extends Controlador_Base
    function crear($args)
    {
       $estadocupo = new EstadoCupo($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO EstadoCupo (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO EstadoCupo (descripcion) VALUES (?);";
       $parametros = array($estadocupo->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

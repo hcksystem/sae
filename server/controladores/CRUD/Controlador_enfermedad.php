@@ -6,7 +6,7 @@ class Controlador_enfermedad extends Controlador_Base
    function crear($args)
    {
       $enfermedad = new Enfermedad($args["id"],$args["descripcion"],$args["observaciones"],$args["tratamiento"]);
-      $sql = "INSERT INTO Enfermedad (descripcion,observaciones,tratamiento,) VALUES (?,?,?,);";
+      $sql = "INSERT INTO Enfermedad (descripcion,observaciones,tratamiento) VALUES (?,?,?);";
       $parametros = array($enfermedad->descripcion,$enfermedad->observaciones,$enfermedad->tratamiento);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

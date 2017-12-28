@@ -6,7 +6,7 @@ class Controlador_tipoingresos extends Controlador_Base
    function crear($args)
    {
       $tipoingresos = new TipoIngresos($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO TipoIngresos (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO TipoIngresos (descripcion) VALUES (?);";
       $parametros = array($tipoingresos->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

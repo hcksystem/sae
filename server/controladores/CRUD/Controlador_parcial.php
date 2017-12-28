@@ -6,7 +6,7 @@ class Controlador_parcial extends Controlador_Base
    function crear($args)
    {
       $parcial = new Parcial($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO Parcial (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO Parcial (descripcion) VALUES (?);";
       $parametros = array($parcial->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

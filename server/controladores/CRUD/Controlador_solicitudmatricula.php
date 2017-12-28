@@ -6,7 +6,7 @@ class Controlador_solicitudmatricula extends Controlador_Base
    function crear($args)
    {
       $solicitudmatricula = new SolicitudMatricula($args["id"],$args["codigo"],$args["fecha"],$args["idPeriodoLectivo"],$args["idEstadoSolicitud"],$args["idPersona"],$args["idCarrera"]);
-      $sql = "INSERT INTO SolicitudMatricula (codigo,fecha,idPeriodoLectivo,idEstadoSolicitud,idPersona,idCarrera,) VALUES (?,?,?,?,?,?,);";
+      $sql = "INSERT INTO SolicitudMatricula (codigo,fecha,idPeriodoLectivo,idEstadoSolicitud,idPersona,idCarrera) VALUES (?,?,?,?,?,?);";
       $fechaNoSQLTime = strtotime($solicitudmatricula->fecha);
       $fechaSQLTime = date("Y-m-d H:i:s", $fechaNoSQLTime);
       $solicitudmatricula->fecha = $fechaSQLTime;

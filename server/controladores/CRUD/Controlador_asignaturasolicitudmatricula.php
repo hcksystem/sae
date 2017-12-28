@@ -6,7 +6,7 @@ class Controlador_asignaturasolicitudmatricula extends Controlador_Base
    function crear($args)
    {
       $asignaturasolicitudmatricula = new AsignaturaSolicitudMatricula($args["id"],$args["idSolicitudMatricula"],$args["idAsignatura"]);
-      $sql = "INSERT INTO AsignaturaSolicitudMatricula (idSolicitudMatricula,idAsignatura,) VALUES (?,?,);";
+      $sql = "INSERT INTO AsignaturaSolicitudMatricula (idSolicitudMatricula,idAsignatura) VALUES (?,?);";
       $parametros = array($asignaturasolicitudmatricula->idSolicitudMatricula,$asignaturasolicitudmatricula->idAsignatura);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

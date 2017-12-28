@@ -6,7 +6,7 @@ class Controlador_experiencialaboral extends Controlador_Base
    function crear($args)
    {
       $experiencialaboral = new ExperienciaLaboral($args["id"],$args["idPersona"],$args["fechaInicio"],$args["fechaFin"],$args["descripcionCargo"],$args["descripcionFunciones"],$args["nombreEmpresa"],$args["idMotivoSalida"]);
-      $sql = "INSERT INTO ExperienciaLaboral (idPersona,fechaInicio,fechaFin,descripcionCargo,descripcionFunciones,nombreEmpresa,idMotivoSalida,) VALUES (?,?,?,?,?,?,?,);";
+      $sql = "INSERT INTO ExperienciaLaboral (idPersona,fechaInicio,fechaFin,descripcionCargo,descripcionFunciones,nombreEmpresa,idMotivoSalida) VALUES (?,?,?,?,?,?,?);";
       $fechaInicioNoSQLTime = strtotime($experiencialaboral->fechaInicio);
       $fechaInicioSQLTime = date("Y-m-d H:i:s", $fechaInicioNoSQLTime);
       $experiencialaboral->fechaInicio = $fechaInicioSQLTime;

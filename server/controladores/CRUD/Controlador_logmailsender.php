@@ -6,7 +6,7 @@ class Controlador_logmailsender extends Controlador_Base
    function crear($args)
    {
       $logmailsender = new LogMailSender($args["id"],$args["fecha"],$args["FromEmail"],$args["FromAlias"],$args["ReplyEmail"],$args["ReplyAlias"],$args["ToEmail"],$args["ToAlias"],$args["Asunto"],$args["Mensaje"],$args["EstadoEnvio"]);
-      $sql = "INSERT INTO LogMailSender (fecha,FromEmail,FromAlias,ReplyEmail,ReplyAlias,ToEmail,ToAlias,Asunto,Mensaje,EstadoEnvio,) VALUES (?,?,?,?,?,?,?,?,?,?,);";
+      $sql = "INSERT INTO LogMailSender (fecha,FromEmail,FromAlias,ReplyEmail,ReplyAlias,ToEmail,ToAlias,Asunto,Mensaje,EstadoEnvio) VALUES (?,?,?,?,?,?,?,?,?,?);";
       $fechaNoSQLTime = strtotime($logmailsender->fecha);
       $fechaSQLTime = date("Y-m-d H:i:s", $fechaNoSQLTime);
       $logmailsender->fecha = $fechaSQLTime;

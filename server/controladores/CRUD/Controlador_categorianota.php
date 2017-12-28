@@ -6,7 +6,7 @@ class Controlador_categorianota extends Controlador_Base
    function crear($args)
    {
       $categorianota = new CategoriaNota($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO CategoriaNota (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO CategoriaNota (descripcion) VALUES (?);";
       $parametros = array($categorianota->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

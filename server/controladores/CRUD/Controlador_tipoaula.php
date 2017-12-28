@@ -6,7 +6,7 @@ class Controlador_tipoaula extends Controlador_Base
    function crear($args)
    {
       $tipoaula = new TipoAula($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO TipoAula (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO TipoAula (descripcion) VALUES (?);";
       $parametros = array($tipoaula->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

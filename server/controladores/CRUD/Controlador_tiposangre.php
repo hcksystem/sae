@@ -6,7 +6,7 @@ class Controlador_tiposangre extends Controlador_Base
    function crear($args)
    {
       $tiposangre = new TipoSangre($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO TipoSangre (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO TipoSangre (descripcion) VALUES (?);";
       $parametros = array($tiposangre->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

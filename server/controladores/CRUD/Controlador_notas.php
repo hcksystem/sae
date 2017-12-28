@@ -6,7 +6,7 @@ class Controlador_notas extends Controlador_Base
    function crear($args)
    {
       $notas = new Notas($args["id"],$args["idParcial"],$args["idMatriculaAsignatura"]);
-      $sql = "INSERT INTO Notas (idParcial,idMatriculaAsignatura,) VALUES (?,?,);";
+      $sql = "INSERT INTO Notas (idParcial,idMatriculaAsignatura) VALUES (?,?);";
       $parametros = array($notas->idParcial,$notas->idMatriculaAsignatura);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

@@ -6,7 +6,7 @@ class Controlador_docente extends Controlador_Base
    function crear($args)
    {
       $docente = new Docente($args["id"],$args["idPersona"],$args["fechaInicio"],$args["idEstado"]);
-      $sql = "INSERT INTO Docente (idPersona,fechaInicio,idEstado,) VALUES (?,?,?,);";
+      $sql = "INSERT INTO Docente (idPersona,fechaInicio,idEstado) VALUES (?,?,?);";
       $fechaInicioNoSQLTime = strtotime($docente->fechaInicio);
       $fechaInicioSQLTime = date("Y-m-d H:i:s", $fechaInicioNoSQLTime);
       $docente->fechaInicio = $fechaInicioSQLTime;

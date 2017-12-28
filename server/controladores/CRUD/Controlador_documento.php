@@ -6,7 +6,7 @@ class Controlador_documento extends Controlador_Base
    function crear($args)
    {
       $documento = new Documento($args["id"],$args["documento"],$args["descripcion"]);
-      $sql = "INSERT INTO Documento (documento,descripcion,) VALUES (?,?,);";
+      $sql = "INSERT INTO Documento (documento,descripcion) VALUES (?,?);";
       $parametros = array($documento->documento,$documento->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

@@ -6,7 +6,7 @@ class Controlador_ubicacion extends Controlador_Base
    function crear($args)
    {
       $ubicacion = new Ubicacion($args["id"],$args["codigo"],$args["descripcion"],$args["codigoPadre"]);
-      $sql = "INSERT INTO Ubicacion (codigo,descripcion,codigoPadre,) VALUES (?,?,?,);";
+      $sql = "INSERT INTO Ubicacion (codigo,descripcion,codigoPadre) VALUES (?,?,?);";
       $parametros = array($ubicacion->codigo,$ubicacion->descripcion,$ubicacion->codigoPadre);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

@@ -6,7 +6,7 @@ class Controlador_genero extends Controlador_Base
    function crear($args)
    {
       $genero = new Genero($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO Genero (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO Genero (descripcion) VALUES (?);";
       $parametros = array($genero->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

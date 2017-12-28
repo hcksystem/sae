@@ -6,7 +6,7 @@ class Controlador_requisito extends Controlador_Base
    function crear($args)
    {
       $requisito = new Requisito($args["id"],$args["idAsignaturaDependiente"],$args["idAsignaturaIndependiente"],$args["idTipoRequisito"]);
-      $sql = "INSERT INTO Requisito (idAsignaturaDependiente,idAsignaturaIndependiente,idTipoRequisito,) VALUES (?,?,?,);";
+      $sql = "INSERT INTO Requisito (idAsignaturaDependiente,idAsignaturaIndependiente,idTipoRequisito) VALUES (?,?,?);";
       $parametros = array($requisito->idAsignaturaDependiente,$requisito->idAsignaturaIndependiente,$requisito->idTipoRequisito);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

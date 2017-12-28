@@ -6,7 +6,7 @@ class Controlador_cupo extends Controlador_Base
    function crear($args)
    {
       $cupo = new Cupo($args["id"],$args["idJornadaCarrera"],$args["idPersona"],$args["idEstadoCupo"],$args["fecha"]);
-      $sql = "INSERT INTO Cupo (idJornadaCarrera,idPersona,idEstadoCupo,fecha,) VALUES (?,?,?,?,);";
+      $sql = "INSERT INTO Cupo (idJornadaCarrera,idPersona,idEstadoCupo,fecha) VALUES (?,?,?,?);";
       $fechaNoSQLTime = strtotime($cupo->fecha);
       $fechaSQLTime = date("Y-m-d", $fechaNoSQLTime);
       $cupo->fecha = $fechaSQLTime;

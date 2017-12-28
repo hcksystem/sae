@@ -6,7 +6,7 @@ class Controlador_estadosolicitud extends Controlador_Base
    function crear($args)
    {
       $estadosolicitud = new EstadoSolicitud($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO EstadoSolicitud (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO EstadoSolicitud (descripcion) VALUES (?);";
       $parametros = array($estadosolicitud->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

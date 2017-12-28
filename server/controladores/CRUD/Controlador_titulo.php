@@ -6,7 +6,7 @@ class Controlador_titulo extends Controlador_Base
    function crear($args)
    {
       $titulo = new Titulo($args["id"],$args["idPersona"],$args["idInstitucion"],$args["codigoRegistro"],$args["idNivelTitulo"]);
-      $sql = "INSERT INTO Titulo (idPersona,idInstitucion,codigoRegistro,idNivelTitulo,) VALUES (?,?,?,?,);";
+      $sql = "INSERT INTO Titulo (idPersona,idInstitucion,codigoRegistro,idNivelTitulo) VALUES (?,?,?,?);";
       $parametros = array($titulo->idPersona,$titulo->idInstitucion,$titulo->codigoRegistro,$titulo->idNivelTitulo);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

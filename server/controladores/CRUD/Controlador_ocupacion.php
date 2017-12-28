@@ -6,7 +6,7 @@ class Controlador_ocupacion extends Controlador_Base
    function crear($args)
    {
       $ocupacion = new Ocupacion($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO Ocupacion (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO Ocupacion (descripcion) VALUES (?);";
       $parametros = array($ocupacion->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

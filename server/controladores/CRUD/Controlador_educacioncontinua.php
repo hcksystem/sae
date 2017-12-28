@@ -6,7 +6,7 @@ class Controlador_educacioncontinua extends Controlador_Base
    function crear($args)
    {
       $educacioncontinua = new EducacionContinua($args["id"],$args["descripcion"],$args["horas"],$args["fechaInicio"],$args["fechaFin"],$args["idTipoEducacionContinua"],$args["lugar"]);
-      $sql = "INSERT INTO EducacionContinua (descripcion,horas,fechaInicio,fechaFin,idTipoEducacionContinua,lugar,) VALUES (?,?,?,?,?,?,);";
+      $sql = "INSERT INTO EducacionContinua (descripcion,horas,fechaInicio,fechaFin,idTipoEducacionContinua,lugar) VALUES (?,?,?,?,?,?);";
       $fechaInicioNoSQLTime = strtotime($educacioncontinua->fechaInicio);
       $fechaInicioSQLTime = date("Y-m-d H:i:s", $fechaInicioNoSQLTime);
       $educacioncontinua->fechaInicio = $fechaInicioSQLTime;

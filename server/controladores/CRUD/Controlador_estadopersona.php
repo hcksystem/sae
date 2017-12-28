@@ -6,7 +6,7 @@ class Controlador_estadopersona extends Controlador_Base
    function crear($args)
    {
       $estadopersona = new EstadoPersona($args["id"],$args["idPersona"],$args["datosCompletos"],$args["edicionDeDatos"],$args["encuestaFactoresAsociados"]);
-      $sql = "INSERT INTO EstadoPersona (idPersona,datosCompletos,edicionDeDatos,encuestaFactoresAsociados,) VALUES (?,?,?,?,);";
+      $sql = "INSERT INTO EstadoPersona (idPersona,datosCompletos,edicionDeDatos,encuestaFactoresAsociados) VALUES (?,?,?,?);";
       $parametros = array($estadopersona->idPersona,$estadopersona->datosCompletos,$estadopersona->edicionDeDatos,$estadopersona->encuestaFactoresAsociados);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

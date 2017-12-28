@@ -6,7 +6,7 @@ class Controlador_periodolectivo extends Controlador_Base
    function crear($args)
    {
       $periodolectivo = new PeriodoLectivo($args["id"],$args["descripcion"],$args["fechaInicio"],$args["fechaFin"],$args["matriculable"],$args["codigo"]);
-      $sql = "INSERT INTO PeriodoLectivo (descripcion,fechaInicio,fechaFin,matriculable,codigo,) VALUES (?,?,?,?,?,);";
+      $sql = "INSERT INTO PeriodoLectivo (descripcion,fechaInicio,fechaFin,matriculable,codigo) VALUES (?,?,?,?,?);";
       $fechaInicioNoSQLTime = strtotime($periodolectivo->fechaInicio);
       $fechaInicioSQLTime = date("Y-m-d H:i:s", $fechaInicioNoSQLTime);
       $periodolectivo->fechaInicio = $fechaInicioSQLTime;

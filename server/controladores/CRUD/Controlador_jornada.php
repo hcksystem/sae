@@ -6,7 +6,7 @@ class Controlador_jornada extends Controlador_Base
    function crear($args)
    {
       $jornada = new Jornada($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO Jornada (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO Jornada (descripcion) VALUES (?);";
       $parametros = array($jornada->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

@@ -6,7 +6,7 @@ class Controlador_carrerainstituto extends Controlador_Base
    function crear($args)
    {
       $carrerainstituto = new CarreraInstituto($args["id"],$args["idCarrera"],$args["idInstituto"]);
-      $sql = "INSERT INTO CarreraInstituto (idCarrera,idInstituto,) VALUES (?,?,);";
+      $sql = "INSERT INTO CarreraInstituto (idCarrera,idInstituto) VALUES (?,?);";
       $parametros = array($carrerainstituto->idCarrera,$carrerainstituto->idInstituto);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

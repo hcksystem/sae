@@ -6,7 +6,7 @@ class Controlador_jornadacarrera extends Controlador_Base
    function crear($args)
    {
       $jornadacarrera = new JornadaCarrera($args["id"],$args["idJornada"],$args["idCarrera"]);
-      $sql = "INSERT INTO JornadaCarrera (idJornada,idCarrera,) VALUES (?,?,);";
+      $sql = "INSERT INTO JornadaCarrera (idJornada,idCarrera) VALUES (?,?);";
       $parametros = array($jornadacarrera->idJornada,$jornadacarrera->idCarrera);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

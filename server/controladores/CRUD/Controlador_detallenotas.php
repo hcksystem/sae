@@ -6,7 +6,7 @@ class Controlador_detallenotas extends Controlador_Base
    function crear($args)
    {
       $detallenotas = new DetalleNotas($args["id"],$args["descripcion"],$args["nota"],$args["idCateogiraNota"],$args["idNota"]);
-      $sql = "INSERT INTO DetalleNotas (descripcion,nota,idCateogiraNota,idNota,) VALUES (?,?,?,?,);";
+      $sql = "INSERT INTO DetalleNotas (descripcion,nota,idCateogiraNota,idNota) VALUES (?,?,?,?);";
       $parametros = array($detallenotas->descripcion,$detallenotas->nota,$detallenotas->idCateogiraNota,$detallenotas->idNota);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

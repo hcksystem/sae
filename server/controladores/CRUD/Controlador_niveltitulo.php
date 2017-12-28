@@ -6,7 +6,7 @@ class Controlador_niveltitulo extends Controlador_Base
    function crear($args)
    {
       $niveltitulo = new NivelTitulo($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO NivelTitulo (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO NivelTitulo (descripcion) VALUES (?);";
       $parametros = array($niveltitulo->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

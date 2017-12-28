@@ -6,7 +6,7 @@ class Controlador_asistencia extends Controlador_Base
    function crear($args)
    {
       $asistencia = new Asistencia($args["id"],$args["idMatriculaAsignatura"],$args["fecha"],$args["horas"]);
-      $sql = "INSERT INTO Asistencia (idMatriculaAsignatura,fecha,horas,) VALUES (?,?,?,);";
+      $sql = "INSERT INTO Asistencia (idMatriculaAsignatura,fecha,horas) VALUES (?,?,?);";
       $fechaNoSQLTime = strtotime($asistencia->fecha);
       $fechaSQLTime = date("Y-m-d H:i:s", $fechaNoSQLTime);
       $asistencia->fecha = $fechaSQLTime;

@@ -6,7 +6,7 @@ class Controlador_institucion extends Controlador_Base
    function crear($args)
    {
       $institucion = new Institucion($args["id"],$args["nombre"],$args["idUbicacion"],$args["tipo"]);
-      $sql = "INSERT INTO Institucion (nombre,idUbicacion,tipo,) VALUES (?,?,?,);";
+      $sql = "INSERT INTO Institucion (nombre,idUbicacion,tipo) VALUES (?,?,?);";
       $parametros = array($institucion->nombre,$institucion->idUbicacion,$institucion->tipo);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

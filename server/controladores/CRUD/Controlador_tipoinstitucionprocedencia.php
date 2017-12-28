@@ -6,7 +6,7 @@ class Controlador_tipoinstitucionprocedencia extends Controlador_Base
    function crear($args)
    {
       $tipoinstitucionprocedencia = new TipoInstitucionProcedencia($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO TipoInstitucionProcedencia (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO TipoInstitucionProcedencia (descripcion) VALUES (?);";
       $parametros = array($tipoinstitucionprocedencia->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

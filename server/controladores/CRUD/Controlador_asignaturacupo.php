@@ -6,7 +6,7 @@ class Controlador_asignaturacupo extends Controlador_Base
    function crear($args)
    {
       $asignaturacupo = new AsignaturaCupo($args["id"],$args["idCupo"],$args["idAsignatura"]);
-      $sql = "INSERT INTO AsignaturaCupo (idCupo,idAsignatura,) VALUES (?,?,);";
+      $sql = "INSERT INTO AsignaturaCupo (idCupo,idAsignatura) VALUES (?,?);";
       $parametros = array($asignaturacupo->idCupo,$asignaturacupo->idAsignatura);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

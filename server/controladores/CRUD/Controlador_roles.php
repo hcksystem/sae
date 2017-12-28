@@ -6,7 +6,7 @@ class Controlador_roles extends Controlador_Base
    function crear($args)
    {
       $roles = new Roles($args["id"],$args["descripcion"],$args["acceso"]);
-      $sql = "INSERT INTO Roles (descripcion,acceso,) VALUES (?,?,);";
+      $sql = "INSERT INTO Roles (descripcion,acceso) VALUES (?,?);";
       $parametros = array($roles->descripcion,$roles->acceso);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

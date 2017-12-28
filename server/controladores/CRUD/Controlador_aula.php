@@ -6,7 +6,7 @@ class Controlador_aula extends Controlador_Base
    function crear($args)
    {
       $aula = new Aula($args["id"],$args["capacidad"],$args["descripcion"],$args["idTipoAula"]);
-      $sql = "INSERT INTO Aula (capacidad,descripcion,idTipoAula,) VALUES (?,?,?,);";
+      $sql = "INSERT INTO Aula (capacidad,descripcion,idTipoAula) VALUES (?,?,?);";
       $parametros = array($aula->capacidad,$aula->descripcion,$aula->idTipoAula);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

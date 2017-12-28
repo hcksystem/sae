@@ -6,7 +6,7 @@ class Controlador_fotoperfil extends Controlador_Base
    function crear($args)
    {
       $fotoperfil = new FotoPerfil($args["id"],$args["idPersona"]);
-      $sql = "INSERT INTO FotoPerfil (idPersona,) VALUES (?,);";
+      $sql = "INSERT INTO FotoPerfil (idPersona) VALUES (?);";
       $parametros = array($fotoperfil->idPersona);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

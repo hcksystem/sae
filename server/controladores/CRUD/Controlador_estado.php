@@ -6,7 +6,7 @@ class Controlador_estado extends Controlador_Base
    function crear($args)
    {
       $estado = new Estado($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO Estado (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO Estado (descripcion) VALUES (?);";
       $parametros = array($estado->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

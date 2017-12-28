@@ -6,7 +6,7 @@ class Controlador_docenteasignatura extends Controlador_Base
    function crear($args)
    {
       $docenteasignatura = new DocenteAsignatura($args["id"],$args["idDocente"],$args["idPeriodoLectivo"],$args["idAsignatura"],$args["idParalelo"]);
-      $sql = "INSERT INTO DocenteAsignatura (idDocente,idPeriodoLectivo,idAsignatura,idParalelo,) VALUES (?,?,?,?,);";
+      $sql = "INSERT INTO DocenteAsignatura (idDocente,idPeriodoLectivo,idAsignatura,idParalelo) VALUES (?,?,?,?);";
       $parametros = array($docenteasignatura->idDocente,$docenteasignatura->idPeriodoLectivo,$docenteasignatura->idAsignatura,$docenteasignatura->idParalelo);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

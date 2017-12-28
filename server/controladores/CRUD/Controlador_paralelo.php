@@ -6,7 +6,7 @@ class Controlador_paralelo extends Controlador_Base
    function crear($args)
    {
       $paralelo = new Paralelo($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO Paralelo (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO Paralelo (descripcion) VALUES (?);";
       $parametros = array($paralelo->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){

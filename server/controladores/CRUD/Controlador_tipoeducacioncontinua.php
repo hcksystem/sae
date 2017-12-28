@@ -6,7 +6,7 @@ class Controlador_tipoeducacioncontinua extends Controlador_Base
    function crear($args)
    {
       $tipoeducacioncontinua = new TipoEducacionContinua($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO TipoEducacionContinua (descripcion,) VALUES (?,);";
+      $sql = "INSERT INTO TipoEducacionContinua (descripcion) VALUES (?);";
       $parametros = array($tipoeducacioncontinua->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
