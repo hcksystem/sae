@@ -39,6 +39,9 @@ INSERT INTO `Carrera` (`id`, `resolucion`, `nombre`, `descripcion`, `idModalidad
 INSERT INTO `Estado` (`id`, `descripcion`) VALUES
 (1, 'ACTIVO'),
 (2, 'INACTIVO');
+INSERT INTO `EstadoCupo` (`id`, `descripcion`) VALUES
+(1, 'NO USADO'),
+(2, 'USADO');
 INSERT INTO `EstadoCivil` (`id`, `descripcion`) VALUES
 (1, 'SOLTERO/A'),
 (2, 'CASADO/A'),

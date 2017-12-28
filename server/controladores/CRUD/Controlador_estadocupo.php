@@ -1,16 +1,13 @@
 <?php
 include_once('../controladores/Controlador_Base.php');
-include_once('../entidades/CRUD/Cupo.php');
-class Controlador_cupo extends Controlador_Base
+include_once('../entidades/CRUD/EstadoCupo.php');
+class Controlador_estadocupo extends Controlador_Base
 {
    function crear($args)
    {
-      $cupo = new Cupo($args["id"],$args["idJornadaCarrera"],$args["idPersona"],$args["idEstadoCupo"],$args["fecha"]);
-      $sql = "INSERT INTO Cupo (idJornadaCarrera,idPersona,idEstadoCupo,fecha,) VALUES (?,?,?,?,);";
-      $fechaNoSQLTime = strtotime($cupo->fecha);
-      $fechaSQLTime = date("Y-m-d", $fechaNoSQLTime);
-      $cupo->fecha = $fechaSQLTime;
-      $parametros = array($cupo->idJornadaCarrera,$cupo->idPersona,$cupo->idEstadoCupo,$cupo->fecha);
+      $estadocupo = new EstadoCupo($args["id"],$args["descripcion"]);
+      $sql = "INSERT INTO EstadoCupo (descripcion,) VALUES (?,);";
+      $parametros = array($estadocupo->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -21,12 +18,9 @@ class Controlador_cupo extends Controlador_Base
 
    function actualizar($args)
    {
-      $cupo = new Cupo($args["id"],$args["idJornadaCarrera"],$args["idPersona"],$args["idEstadoCupo"],$args["fecha"]);
-      $parametros = array($cupo->idJornadaCarrera,$cupo->idPersona,$cupo->idEstadoCupo,$cupo->fecha,$cupo->id);
-      $sql = "UPDATE Cupo SET idJornadaCarrera = ?,idPersona = ?,idEstadoCupo = ?,fecha = ? WHERE id = ?;";
-      $fechaNoSQLTime = strtotime($cupo->fecha);
-      $fechaSQLTime = date("Y-m-d", $fechaNoSQLTime);
-      $cupo->fecha = $fechaSQLTime;
+      $estadocupo = new EstadoCupo($args["id"],$args["descripcion"]);
+      $parametros = array($estadocupo->descripcion,$estadocupo->id);
+      $sql = "UPDATE EstadoCupo SET descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -39,7 +33,7 @@ class Controlador_cupo extends Controlador_Base
    {
       $id = $args["id"];
       $parametros = array($id);
-      $sql = "DELETE FROM Cupo WHERE id = ?;";
+      $sql = "DELETE FROM EstadoCupo WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -52,10 +46,10 @@ class Controlador_cupo extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM Cupo;";
+         $sql = "SELECT * FROM EstadoCupo;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM Cupo WHERE id = ?;";
+         $sql = "SELECT * FROM EstadoCupo WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -66,7 +60,7 @@ class Controlador_cupo extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Cupo LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM EstadoCupo LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -74,7 +68,7 @@ class Controlador_cupo extends Controlador_Base
    function numero_paginas($args)
    {
       $registrosPorPagina = $args["registros_por_pagina"];
-      $sql ="SELECT IF(ceil(count(*)/$registrosPorPagina)>0,ceil(count(*)/$registrosPorPagina),1) as 'paginas' FROM Cupo;";
+      $sql ="SELECT IF(ceil(count(*)/$registrosPorPagina)>0,ceil(count(*)/$registrosPorPagina),1) as 'paginas' FROM EstadoCupo;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta[0];
    }
@@ -87,16 +81,16 @@ class Controlador_cupo extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Cupo WHERE $nombreColumna = ?;";
+            $sql = "SELECT * FROM EstadoCupo WHERE $nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Cupo WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT * FROM EstadoCupo WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Cupo WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT * FROM EstadoCupo WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Cupo WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT * FROM EstadoCupo WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

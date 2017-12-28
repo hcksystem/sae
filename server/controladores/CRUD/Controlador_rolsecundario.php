@@ -46,10 +46,10 @@ class Controlador_rolsecundario extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT RolSecundario.*, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto', Roles.descripcion as 'rol' FROM RolSecundario INNER JOIN Roles ON Roles.id = RolSecundario.idRol INNER JOIN Persona ON Persona.id = RolSecundario.idPersona;";
+         $sql = "SELECT * FROM RolSecundario;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT RolSecundario.*, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto', Roles.descripcion as 'rol' FROM RolSecundario INNER JOIN Roles ON Roles.id = RolSecundario.idRol INNER JOIN Persona ON Persona.id = RolSecundario.idPersona WHERE id = ?;";
+         $sql = "SELECT * FROM RolSecundario WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -60,7 +60,7 @@ class Controlador_rolsecundario extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT RolSecundario.*, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto', Roles.descripcion as 'rol' FROM RolSecundario INNER JOIN Roles ON Roles.id = RolSecundario.idRol INNER JOIN Persona ON Persona.id = RolSecundario.idPersona LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM RolSecundario LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -81,16 +81,16 @@ class Controlador_rolsecundario extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT RolSecundario.*, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto', Roles.descripcion as 'rol' FROM RolSecundario INNER JOIN Roles ON Roles.id = RolSecundario.idRol INNER JOIN Persona ON Persona.id = RolSecundario.idPersona WHERE $nombreColumna = ?;";
+            $sql = "SELECT * FROM RolSecundario WHERE $nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT RolSecundario.*, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto', Roles.descripcion as 'rol' FROM RolSecundario INNER JOIN Roles ON Roles.id = RolSecundario.idRol INNER JOIN Persona ON Persona.id = RolSecundario.idPersona LIKE '$filtro%';";
+            $sql = "SELECT * FROM RolSecundario WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT RolSecundario.*, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto', Roles.descripcion as 'rol' FROM RolSecundario INNER JOIN Roles ON Roles.id = RolSecundario.idRol INNER JOIN Persona ON Persona.id = RolSecundario.idPersona LIKE '%$filtro';";
+            $sql = "SELECT * FROM RolSecundario WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT RolSecundario.*, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto', Roles.descripcion as 'rol' FROM RolSecundario INNER JOIN Roles ON Roles.id = RolSecundario.idRol INNER JOIN Persona ON Persona.id = RolSecundario.idPersona LIKE '%$filtro%';";
+            $sql = "SELECT * FROM RolSecundario WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

@@ -282,6 +282,13 @@ CREATE TABLE Cupo(
 	id 	INT NOT NULL AUTO_INCREMENT,
     idJornadaCarrera INT NULL,
     idPersona INT NULL,
+    idEstadoCupo INT NULL,
+    fecha DATE NULL,
+PRIMARY KEY (id));
+
+CREATE TABLE EstadoCupo(
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(255) NULL,
 PRIMARY KEY (id));
 
 CREATE TABLE Modalidad(
@@ -352,6 +359,13 @@ CREATE TABLE SolicitudMatricula(
 CREATE TABLE AsignaturaSolicitudMatricula(
 	id INT NOT NULL AUTO_INCREMENT,
     idSolicitudMatricula INT NULL,
+    idAsignatura INT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE AsignaturaCupo(
+	id INT NOT NULL AUTO_INCREMENT,
+    idCupo INT NULL,
     idAsignatura INT NULL,
     PRIMARY KEY (id)
 );
