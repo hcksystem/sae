@@ -84,16 +84,7 @@
                                         <div class="card-block">
                                             <div class="form-group row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                    <label class="col-form-label">HTML</label>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                    <textarea class="form-control" rows="5" id="Body" placeholder="Cuerpo" [(ngModel)]="mailData.Mensaje"></textarea>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                    <label class="col-form-label">Vista Previa</label>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                    <textarea class="form-control" rows="5" id="BodyPreview" placeholder="Cuerpo" readonly></textarea>
+                                                    <textarea class="form-control" rows="20" id="Body" placeholder="Cuerpo" [(ngModel)]="mailData.Mensaje"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -138,16 +129,16 @@
                 <div class="card-block">
                     <div class="form-group row">
                         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                            <button type="button" class="btn btn-info" (click)="sendMails()">
+                            <button type="button" [ngClass]='{disabled: enviando}' class="btn btn-info" (click)="sendMails()">
                                 <span class="fa fa-send"></span>&nbsp;Iniciar
                             </button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <ngb-progressbar type="success" [value]="75" [striped]="true" [animated]="true"><i>Enviados 5 de 10</i></ngb-progressbar>
+                                <ngb-progressbar type="success" [value]="progresoPorcentaje" [striped]="true" [animated]="true"><i>{{mensajeBarra}}</i></ngb-progressbar>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <label class="col-form-label">Tiempo Requerido: 1h 20m 12s</label>
+                                <label class="col-form-label">{{tiempoRequerido}}</label>
                             </div>
                         </div>
                     </div>
