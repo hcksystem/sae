@@ -1,0 +1,153 @@
+<div class="container">
+    <div class="row">
+       <div class="col-md-12 text-right">
+          <h2 style="margin-top:0px">Envio de Correos Electrónicos</h2>
+       </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-header">Remitente</div>
+                <div class="card-block">
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label class="col-form-label">Alias</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <input type="text" class="form-control" id="FromAlias" placeholder="Alias">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label class="col-form-label">Correo Electrónico</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <input type="mail" class="form-control" id="FromMail" placeholder="Correo Electrónico">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label class="col-form-label">Contraseña</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <input type="password" class="form-control" id="FromClave" placeholder="Contraseña">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-header">Responder a</div>
+                <div class="card-block">
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label class="col-form-label">Alias</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <input type="text" class="form-control" id="ReplyAlias" placeholder="Alias">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label class="col-form-label">Correo Electrónico</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <input type="mail" class="form-control" id="ReplyMail" placeholder="Correo Electrónico">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-header">Mensaje</div>
+                <div class="card-block">
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label class="col-form-label">Asunto</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <input type="text" class="form-control" id="Asunto" placeholder="Asunto">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card mb-3">
+                                        <div class="card-header">Cuerpo</div>
+                                        <div class="card-block">
+                                            <div class="form-group row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <label class="col-form-label">HTML</label>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <textarea class="form-control" rows="5" id="Body" placeholder="Cuerpo"></textarea>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <label class="col-form-label">Vista Previa</label>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <textarea class="form-control" rows="5" id="BodyPreview" placeholder="Cuerpo" readonly></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-header">Destino</div>
+                <div class="card-block">
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label class="col-form-label">Alias</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <input type="text" class="form-control" id="ReplyAlias" placeholder="Alias">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label class="col-form-label">Correo Electrónico</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <input type="mail" class="form-control" id="ReplyMail" placeholder="Correo Electrónico">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-header">Enviar</div>
+                <div class="card-block">
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                            <button type="button" class="btn btn-info">
+                                <span class="fa fa-send"></span>&nbsp;Iniciar
+                            </button>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+                            <ngb-progressbar type="success" [value]="75" [striped]="true" [animated]="true"><i>Enviados 5 de 10</i></ngb-progressbar>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

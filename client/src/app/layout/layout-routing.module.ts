@@ -14,6 +14,7 @@ const routes: Routes = [
             { path: 'solicitud-matricula', loadChildren: './matriculacion/solicitud-matricula/solicitud-matricula.module#SolicitudMatriculaModule' },
             { path: 'encuesta-factores-asociados', loadChildren: './encuesta-factores-asociados/encuesta-factores-asociados.module#EncuestaFactoresAsociadosModule' },
             { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
+            { path: 'mail-sender', loadChildren: './mail-sender/mail-sender.module#MailSenderModule' },
             { path: 'yavirac', loadChildren: './yavirac/yavirac.module#YaviracModule' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
