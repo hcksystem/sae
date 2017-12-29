@@ -40,6 +40,6 @@ class Controlador_mail_sender extends Controlador_Base
             return $EstadoEnvio;
         }else{
             return false;
-        } 
+        }
    }
 }
