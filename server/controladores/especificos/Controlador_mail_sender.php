@@ -2,7 +2,6 @@
 include_once('../libs/PHPMailer/PHPMailer.php');
 include_once('../libs/PHPMailer/POP3.php');
 include_once('../libs/PHPMailer/SMTP.php');
-include_once('../entidades/CRUD/LogMailSender.php');
 include_once('../controladores/Controlador_Base.php');
 use PHPMailer\PHPMailer\POP3;
 use PHPMailer\PHPMailer\PHPMailer;
