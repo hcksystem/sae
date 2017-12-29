@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MailSenderRoutingModule } from './mail-sender-routing.module';
 import { MailSenderComponent } from './mail-sender.component';
+import { MailSenderService } from 'app/layout/mail-sender/mail-sender.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -12,6 +13,7 @@ import { MailSenderComponent } from './mail-sender.component';
     NgbModule,
     FormsModule
   ],
+  providers: [MailSenderService],
   declarations: [MailSenderComponent]
 })
 export class MailSenderModule { }
