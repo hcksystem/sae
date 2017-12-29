@@ -1,7 +1,7 @@
 <div class="container">
    <div class="row">
       <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Catálogo de Cupo</h2>
+         <h2 style="margin-top:0px">Catálogo de LogMailSender</h2>
       </div>
    </div>
    <div class="row">
@@ -38,22 +38,52 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idJornadaCarrera</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>idPersona</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>idEstadoCupo</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
                         <strong>fecha</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>FromEmail</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>FromAlias</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>ReplyEmail</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>ReplyAlias</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>ToEmail</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>ToAlias</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>Asunto</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>Mensaje</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>EstadoEnvio</strong>
                      </span>
                   </th>
                </tr>
@@ -64,10 +94,16 @@
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
                   <td>{{actual.id}}</td>
-                  <td>{{actual.idJornadaCarrera}}</td>
-                  <td>{{actual.idPersona}}</td>
-                  <td>{{actual.idEstadoCupo}}</td>
                   <td>{{actual.fecha}}</td>
+                  <td>{{actual.FromEmail}}</td>
+                  <td>{{actual.FromAlias}}</td>
+                  <td>{{actual.ReplyEmail}}</td>
+                  <td>{{actual.ReplyAlias}}</td>
+                  <td>{{actual.ToEmail}}</td>
+                  <td>{{actual.ToAlias}}</td>
+                  <td>{{actual.Asunto}}</td>
+                  <td>{{actual.Mensaje}}</td>
+                  <td>{{actual.EstadoEnvio}}</td>
                </tr>
             </tbody>
          </table>
@@ -115,27 +151,63 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="idJornadaCarrera" class="col-sm-4 col-form-label">idJornadaCarrera</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idJornadaCarrera" name="idJornadaCarrera" placeholder="idJornadaCarrera" [(ngModel)]="entidadSeleccionada.idJornadaCarrera">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="idPersona" class="col-sm-4 col-form-label">idPersona</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idPersona" name="idPersona" placeholder="idPersona" [(ngModel)]="entidadSeleccionada.idPersona">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="idEstadoCupo" class="col-sm-4 col-form-label">idEstadoCupo</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idEstadoCupo" name="idEstadoCupo" placeholder="idEstadoCupo" [(ngModel)]="entidadSeleccionada.idEstadoCupo">
-            </div>
-         </div>
-         <div class="form-group row">
             <label for="fecha" class="col-sm-4 col-form-label">fecha</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="fecha" name="fecha" placeholder="fecha" [(ngModel)]="entidadSeleccionada.fecha">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="FromEmail" class="col-sm-4 col-form-label">FromEmail</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="FromEmail" name="FromEmail" placeholder="FromEmail" [(ngModel)]="entidadSeleccionada.FromEmail">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="FromAlias" class="col-sm-4 col-form-label">FromAlias</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="FromAlias" name="FromAlias" placeholder="FromAlias" [(ngModel)]="entidadSeleccionada.FromAlias">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="ReplyEmail" class="col-sm-4 col-form-label">ReplyEmail</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="ReplyEmail" name="ReplyEmail" placeholder="ReplyEmail" [(ngModel)]="entidadSeleccionada.ReplyEmail">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="ReplyAlias" class="col-sm-4 col-form-label">ReplyAlias</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="ReplyAlias" name="ReplyAlias" placeholder="ReplyAlias" [(ngModel)]="entidadSeleccionada.ReplyAlias">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="ToEmail" class="col-sm-4 col-form-label">ToEmail</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="ToEmail" name="ToEmail" placeholder="ToEmail" [(ngModel)]="entidadSeleccionada.ToEmail">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="ToAlias" class="col-sm-4 col-form-label">ToAlias</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="ToAlias" name="ToAlias" placeholder="ToAlias" [(ngModel)]="entidadSeleccionada.ToAlias">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="Asunto" class="col-sm-4 col-form-label">Asunto</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="Asunto" name="Asunto" placeholder="Asunto" [(ngModel)]="entidadSeleccionada.Asunto">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="Mensaje" class="col-sm-4 col-form-label">Mensaje</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="Mensaje" name="Mensaje" placeholder="Mensaje" [(ngModel)]="entidadSeleccionada.Mensaje">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="EstadoEnvio" class="col-sm-4 col-form-label">EstadoEnvio</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="EstadoEnvio" name="EstadoEnvio" placeholder="EstadoEnvio" [(ngModel)]="entidadSeleccionada.EstadoEnvio">
             </div>
          </div>
          </form>

@@ -29,11 +29,14 @@ const routes: Routes = [
             { path: 'asistencia-registro', loadChildren: './asistencia-registro/asistencia-registro.module#AsistenciaRegistroModule' },
             { path: 'carrerainstituto', loadChildren: '../CRUD/carrerainstituto/carrerainstituto.module#CarreraInstitutoModule' },
             { path: 'rolsecundario', loadChildren: '../CRUD/rolsecundario/rolsecundario.module#RolSecundarioModule' },
+            { path: 'logmailsender', loadChildren: '../CRUD/logmailsender/logmailsender.module#LogMailSenderModule' },
             /*{
                 path: 'asistencia-justificacion',
                 loadChildren: './asistencia-justificacion/asistencia-justificacion.module#AsistenciaJustificacionModule'
             },*/
             { path: 'aula', loadChildren: '../CRUD/aula/aula.module#AulaModule' },
+            { path: 'asignaturacupo', loadChildren: '../CRUD/asignaturacupo/asignaturacupo.module#AsignaturaCupoModule' },
+            { path: 'estadocupo', loadChildren: '../CRUD/estadocupo/estadocupo.module#EstadoCupoModule' },
             { path: 'aulasasignaturas', loadChildren: '../CRUD/aulasasignaturas/aulasasignaturas.module#AulasAsignaturasModule' },
             { path: 'carrera', loadChildren: '../CRUD/carrera/carrera.module#CarreraModule' },
             { path: 'categorianota', loadChildren: '../CRUD/categorianota/categorianota.module#CategoriaNotaModule' },
