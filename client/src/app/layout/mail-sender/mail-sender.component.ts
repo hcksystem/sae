@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MailData } from 'app/entidades/especifico/MailData';
 import { MailSenderService } from './mail-sender.service';
+import { DestinoMail } from 'app/entidades/especifico/DestinoMail';
 
 @Component({
     selector: 'app-mail-sender',
@@ -17,6 +18,8 @@ export class MailSenderComponent implements OnInit {
     tiempoRequerido: string;
     mensajeBarra: string;
     enviando: boolean;
+    posiblesDestinos: DestinoMail[];
+    destinos: DestinoMail[];
     constructor(private mailSenderDataService: MailSenderService) {
     }
 
