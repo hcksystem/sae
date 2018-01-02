@@ -6,6 +6,7 @@ const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
+            { path: 'cupo-asignatura', loadChildren: './cupo-asignatura/cupo-asignatura.module#CupoAsignaturaModule' },
             { path: 'contacto-estudiantes-nuevos', loadChildren: './contacto-estudiantes-nuevos/contacto-estudiantes-nuevos.module#ContactoEstudiantesNuevosModule' },
             { path: 'certificado-matricula', loadChildren: './matriculacion/certificado-matricula/certificado-matricula.module#CertificadoMatriculaModule' },
             { path: 'asignacion-roles', loadChildren: './matriculacion/asignacion-roles/asignacion-roles.module#AsignacionRolesModule' },
