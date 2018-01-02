@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef} from '@angular/core';
 import { MailData } from 'app/entidades/especifico/MailData';
 import { MailSenderService } from './mail-sender.service';
 import { DestinoMail } from 'app/entidades/especifico/DestinoMail';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'app-mail-sender',
@@ -20,7 +21,8 @@ export class MailSenderComponent implements OnInit {
     enviando: boolean;
     posiblesDestinos: DestinoMail[];
     destinos: DestinoMail[];
-    constructor(private mailSenderDataService: MailSenderService) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private mailSenderDataService: MailSenderService) {
+        this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
@@ -31,6 +33,22 @@ export class MailSenderComponent implements OnInit {
         this.tiempoRequerido = '';
         this.mensajeBarra = '';
         this.enviando = false;
+    }
+
+    cuentaEnvios(mensajesPorEnviar: number) {
+        this.busy = this.mailSenderDataService.cuentaEnvios()
+        .then(respuesta => {
+            if ( (respuesta + mensajesPorEnviar) <= 499 ) {
+                this.iniciarEnvio();
+            } else {
+                this.toastr.warning('El límite diario es de 500 correos electrónicos.', 'Error de envío');
+                this.mensajesEnviados = 0;
+                this.enviando = false;
+            }
+        })
+        .catch(error => {
+
+        });
     }
 
     enviarEmail() {
@@ -46,14 +64,14 @@ export class MailSenderComponent implements OnInit {
     sendMails() {
         if ( !this.enviando ) {
             this.total = 4;
-            if ( this.total >= 400 ) {
-                this.tickTime = 8000;
-            } else {
+            if ( this.total >= 100 ) {
                 this.tickTime = 4000;
+            } else {
+                this.tickTime = 2000;
             }
             this.mensajesEnviados = 0;
             this.enviando = true;
-            this.iniciarEnvio();
+            this.cuentaEnvios(this.total);
         }
     }
 

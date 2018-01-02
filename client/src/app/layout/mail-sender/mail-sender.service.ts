@@ -13,6 +13,14 @@ export class MailSenderService {
     constructor(private http: Http) {
     }
 
+    cuentaEnvios(): Promise<number> {
+        const url = `${this.urlBase + 'mail_sender/cuentaEnvios'}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => response.json() as number)
+        .catch(this.handleError);
+    }
+
     sendMail(MailData): Promise<any[]> {
         const url = `${this.urlBase + 'mail_sender/enviar'}`;
         return this.http.post(url, JSON.stringify(MailData))
