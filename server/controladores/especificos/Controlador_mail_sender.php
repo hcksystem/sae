@@ -9,7 +9,7 @@ class Controlador_mail_sender extends Controlador_Base
 {
    public function enviar($args)
    {
-       $cuenta = $this->puedeEnviar();
+       $cuenta = $this->cuentaEnvios();
        if( $cuenta <= 499 ){
             $FromEmail = $args["FromEmail"];
             $FromAlias = $args["FromAlias"];
@@ -66,7 +66,7 @@ class Controlador_mail_sender extends Controlador_Base
         }
    }
 
-   public function puedeEnviar(){
+   public function cuentaEnvios(){
         $fecha = date("Y-m-d");
         $sql = "SELECT Count(id) as 'cuenta' FROM LogMailSender WHERE fecha > ?;";
         $parametros = array($fecha);
