@@ -92,10 +92,10 @@ export class AsignacionRolesComponent implements OnInit {
 
    getRolesPosibles(): void {
         this.roles = [];
+        this.rolesPosibles = [];
         this.busy = this.rolesDataService
         .getAll()
         .then(entidadesRecuperadas => {
-            this.rolesPosibles = [];
             entidadesRecuperadas.forEach(element => {
                 if ( element.id == 1 || element.id == 3 || element.id == 7 || element.id == 8 || element.id == 9 ) {
 

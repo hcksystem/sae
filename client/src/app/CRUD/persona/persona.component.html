@@ -78,7 +78,12 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>correoElectronico</strong>
+                        <strong>correoElectronicoInstitucional</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>correoElectronicoPersonal</strong>
                      </span>
                   </th>
                   <th scope="col">
@@ -222,7 +227,8 @@
                   <td>{{actual.fechaNacimiento}}</td>
                   <td>{{actual.telefonoCelular}}</td>
                   <td>{{actual.telefonoDomicilio}}</td>
-                  <td>{{actual.correoElectronico}}</td>
+                  <td>{{actual.correoElectronicoInstitucional}}</td>
+                  <td>{{actual.correoElectronicoPersonal}}</td>
                   <td>{{actual.idGenero}}</td>
                   <td>{{actual.idUbicacionDomicilioPais}}</td>
                   <td>{{actual.idUbicacionDomicilioProvincia}}</td>
@@ -343,9 +349,15 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="correoElectronico" class="col-sm-4 col-form-label">correoElectronico</label>
+            <label for="correoElectronicoInstitucional" class="col-sm-4 col-form-label">correoElectronicoInstitucional</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="correoElectronico" name="correoElectronico" placeholder="correoElectronico" [(ngModel)]="entidadSeleccionada.correoElectronico">
+              <input type="text" class="form-control" id="correoElectronicoInstitucional" name="correoElectronicoInstitucional" placeholder="correoElectronicoInstitucional" [(ngModel)]="entidadSeleccionada.correoElectronicoInstitucional">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="correoElectronicoPersonal" class="col-sm-4 col-form-label">correoElectronicoPersonal</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="correoElectronicoPersonal" name="correoElectronicoPersonal" placeholder="correoElectronicoPersonal" [(ngModel)]="entidadSeleccionada.correoElectronicoPersonal">
             </div>
          </div>
          <div class="form-group row">
@@ -502,7 +514,7 @@
       </div>
       <div class="modal-footer">
          <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('save')">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+            <span class="fa fa-save"></span>&nbsp;Guardar
          </button>
          <button type="button" class="btn btn-default" (click)="c('close')">Cerrar</button>
       </div>

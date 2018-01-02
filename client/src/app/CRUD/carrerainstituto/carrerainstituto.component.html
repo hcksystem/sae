@@ -38,12 +38,12 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idInstituto</strong>
+                        <strong>idCarrera</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idCarrera</strong>
+                        <strong>idInstituto</strong>
                      </span>
                   </th>
                </tr>
@@ -54,8 +54,8 @@
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
                   <td>{{actual.id}}</td>
-                  <td>{{actual.idInstituto}}</td>
                   <td>{{actual.idCarrera}}</td>
+                  <td>{{actual.idInstituto}}</td>
                </tr>
             </tbody>
          </table>
@@ -103,22 +103,22 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="idInstituto" class="col-sm-4 col-form-label">idInstituto</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idInstituto" name="idInstituto" placeholder="idInstituto" [(ngModel)]="entidadSeleccionada.idInstituto">
-            </div>
-         </div>
-         <div class="form-group row">
             <label for="idCarrera" class="col-sm-4 col-form-label">idCarrera</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="idCarrera" name="idCarrera" placeholder="idCarrera" [(ngModel)]="entidadSeleccionada.idCarrera">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="idInstituto" class="col-sm-4 col-form-label">idInstituto</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="idInstituto" name="idInstituto" placeholder="idInstituto" [(ngModel)]="entidadSeleccionada.idInstituto">
             </div>
          </div>
          </form>
       </div>
       <div class="modal-footer">
          <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('save')">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+            <span class="fa fa-save"></span>&nbsp;Guardar
          </button>
          <button type="button" class="btn btn-default" (click)="c('close')">Cerrar</button>
       </div>

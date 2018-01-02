@@ -468,7 +468,7 @@ CREATE TABLE Matricula(
     idPeriodoLectivo INT NULL,
     idPersona INT NULL,
     idCarrera INT NULL,
-    numeroMatricula INT NULL,
+    numeroMatricula VARCHAR(255) NULL,
     folio VARCHAR(255) NULL,
     idJornada INT NULL,
 PRIMARY KEY (id));

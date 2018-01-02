@@ -10,7 +10,8 @@ class Persona
    public $fechaNacimiento;
    public $telefonoCelular;
    public $telefonoDomicilio;
-   public $correoElectronico;
+   public $correoElectronicoInstitucional;
+   public $correoElectronicoPersonal;
    public $idGenero;
    public $idUbicacionDomicilioPais;
    public $idUbicacionDomicilioProvincia;
@@ -37,7 +38,7 @@ class Persona
    public $paisOrigenMadre;
    public $idNivelEstudioMadre;
 
-   function __construct($id,$identificacion,$nombre1,$nombre2,$apellido1,$apellido2,$fechaNacimiento,$telefonoCelular,$telefonoDomicilio,$correoElectronico,$idGenero,$idUbicacionDomicilioPais,$idUbicacionDomicilioProvincia,$idUbicacionDomicilioCanton,$idUbicacionDomicilioParroquia,$direccionDomicilio,$idEstadoCivil,$idUbicacionNacimientoPais,$idUbicacionNacimientoProvincia,$idUbicacionNacimientoCanton,$idUbicacionNacimientoParroquia,$idIngresos,$idEtnia,$idTipoSangre,$numeroHijos,$idOcupacion,$carnetConadis,$idTipoDiscapacidad,$porcentajeDiscapacidad,$nombrePadre,$paisOrigenPadre,$idNivelEstudioPadre,$nombreMadre,$paisOrigenMadre,$idNivelEstudioMadre){
+   function __construct($id,$identificacion,$nombre1,$nombre2,$apellido1,$apellido2,$fechaNacimiento,$telefonoCelular,$telefonoDomicilio,$correoElectronicoInstitucional,$correoElectronicoPersonal,$idGenero,$idUbicacionDomicilioPais,$idUbicacionDomicilioProvincia,$idUbicacionDomicilioCanton,$idUbicacionDomicilioParroquia,$direccionDomicilio,$idEstadoCivil,$idUbicacionNacimientoPais,$idUbicacionNacimientoProvincia,$idUbicacionNacimientoCanton,$idUbicacionNacimientoParroquia,$idIngresos,$idEtnia,$idTipoSangre,$numeroHijos,$idOcupacion,$carnetConadis,$idTipoDiscapacidad,$porcentajeDiscapacidad,$nombrePadre,$paisOrigenPadre,$idNivelEstudioPadre,$nombreMadre,$paisOrigenMadre,$idNivelEstudioMadre){
       $this->id = $id;
       $this->identificacion = $identificacion;
       $this->nombre1 = $nombre1;
@@ -47,7 +48,8 @@ class Persona
       $this->fechaNacimiento = $fechaNacimiento;
       $this->telefonoCelular = $telefonoCelular;
       $this->telefonoDomicilio = $telefonoDomicilio;
-      $this->correoElectronico = $correoElectronico;
+      $this->correoElectronicoInstitucional = $correoElectronicoInstitucional;
+      $this->correoElectronicoPersonal = $correoElectronicoPersonal;
       $this->idGenero = $idGenero;
       $this->idUbicacionDomicilioPais = $idUbicacionDomicilioPais;
       $this->idUbicacionDomicilioProvincia = $idUbicacionDomicilioProvincia;
