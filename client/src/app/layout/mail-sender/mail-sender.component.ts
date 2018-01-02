@@ -45,7 +45,7 @@ export class MailSenderComponent implements OnInit {
 
     sendMails() {
         if ( !this.enviando ) {
-            this.total = 11;
+            this.total = 4;
             if ( this.total >= 400 ) {
                 this.tickTime = 8000;
             } else {
