@@ -56,7 +56,7 @@ export class SecretariaAcademicaComponent implements OnInit {
     rol: number;
     datosCupo: DatosCupo;
     datosInstituto: DatosInstituto;
-    asignaturasMatriculables: Asignatura[];
+    asignaturasMatriculables: Asignatura[] = [];
     logo: String;
     fechaActual: Date;
     nivel: String;
@@ -85,22 +85,22 @@ export class SecretariaAcademicaComponent implements OnInit {
     tipoInstitucionProcedencia: string;
     tituloBachiller: string;
     notaPostulacion: number;
-    solicitudesMatriculas: SolicitudMatricula[];
-    solicitudesMatriculasPaginaVisible: SolicitudMatricula[];
+    solicitudesMatriculas: SolicitudMatricula[] = [];
+    solicitudesMatriculasPaginaVisible: SolicitudMatricula[] = [];
     aspirante: Persona;
     seleccionado: Boolean;
     paginaActual: number;
     paginaUltima: number;
     carreraSeleccionadaCombo: number;
-    carreras: Carrera[];
+    carreras: Carrera[] = [];
     numeroMatricula: String;
     numeroFolio: String;
     matricula: Matricula;
     matriculado: Boolean;
     periodoLectivo: PeriodoLectivo;
-    rolesSecundarios: RolSecundario[];
-    personasPosibles: PersonaCombo[];
-    personasMostradas: PersonaCombo[];
+    rolesSecundarios: RolSecundario[] = [];
+    personasPosibles: PersonaCombo[] = [];
+    personasMostradas: PersonaCombo[] = [];
     estudianteSeleccionadoCombo: number;
     constructor(
         private periodoLectivoDataService: PeriodoLectivoService,
@@ -189,6 +189,9 @@ export class SecretariaAcademicaComponent implements OnInit {
     getCarreras() {
         this.busy = this.carreraDataService.getAll()
         .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
             this.carreras = respuesta;
         })
         .catch(error => {
@@ -277,6 +280,9 @@ export class SecretariaAcademicaComponent implements OnInit {
     getSolicitudesMatriculas(idCarrera: number): void {
         this.busy = this.solicitudMatriculaDataService.getFiltrado('idEstadoSolicitud', 'coincide', '2')
         .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
             if ( idCarrera == 0) {
                 this.solicitudesMatriculas = respuesta;
                 this.estudianteSeleccionadoCombo = 0;
@@ -315,6 +321,9 @@ export class SecretariaAcademicaComponent implements OnInit {
     getEstudiantesSolicitaron(): void {
         this.busy = this.matriculacionDataService.getPersonasSolicitudMatriculaRevisados()
         .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
             this.personasPosibles = respuesta;
             this.personasMostradas = respuesta;
         })

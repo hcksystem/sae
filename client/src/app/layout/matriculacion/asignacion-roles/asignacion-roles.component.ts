@@ -23,7 +23,7 @@ import { RolesService } from 'app/CRUD/roles/roles.service';
 export class AsignacionRolesComponent implements OnInit {
 
    busy: Promise<any>;
-   entidades: RolSecundario[];
+   entidades: RolSecundario[] = [];
    entidadSeleccionada: RolSecundario;
    pagina: 1;
    tamanoPagina: 20;
@@ -31,11 +31,11 @@ export class AsignacionRolesComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-   personasRolesAsignados: PersonaCombo[];
-   personasRolesPosiblesAsignar: PersonaCombo[];
+   personasRolesAsignados: PersonaCombo[] = [];
+   personasRolesPosiblesAsignar: PersonaCombo[] = [];
    personaSeleccionadoCombo: number;
-   roles: Roles[];
-   rolesPosibles: Roles[];
+   roles: Roles[] = [];
+   rolesPosibles: Roles[] = [];
    rolSeleccionadoCombo: number;
    constructor(public toastr: ToastsManager,
         vcr: ViewContainerRef,
@@ -219,6 +219,9 @@ export class AsignacionRolesComponent implements OnInit {
       this.busy = this.dataService
       .getNumeroPaginas(tamanoPagina)
       .then(respuesta => {
+         if ( JSON.stringify(respuesta) == 'false' ) {
+             return;
+         }
          this.paginaUltima = respuesta.paginas;
       })
       .catch(error => {

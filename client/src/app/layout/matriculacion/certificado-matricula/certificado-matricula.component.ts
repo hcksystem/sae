@@ -55,7 +55,7 @@ export class CertificadoMatriculaComponent implements OnInit {
     personaLogeada: Persona;
     rol: number;
     datosInstituto: DatosInstituto;
-    asignaturasMatricula: Asignatura[];
+    asignaturasMatricula: Asignatura[] = [];
     logo: String;
     fechaCertificado: Date;
     nivel: String;
@@ -84,8 +84,8 @@ export class CertificadoMatriculaComponent implements OnInit {
     tipoInstitucionProcedencia: string;
     tituloBachiller: string;
     notaPostulacion: number;
-    certificadosMatriculas: Matricula[];
-    certificadosMatriculasPaginaVisible: Matricula[];
+    certificadosMatriculas: Matricula[] = [];
+    certificadosMatriculasPaginaVisible: Matricula[] = [];
     estudiante: Persona;
     seleccionado: Boolean;
     paginaActual: number;
@@ -98,8 +98,8 @@ export class CertificadoMatriculaComponent implements OnInit {
     periodoLectivo: PeriodoLectivo;
     rolesSecundarios: RolSecundario[];
     datosCupo: DatosCupo;
-    personasMatriculadas: PersonaCombo[];
-    personasMostradas: PersonaCombo[];
+    personasMatriculadas: PersonaCombo[] = [];
+    personasMostradas: PersonaCombo[] = [];
     constructor(
         private periodoLectivoDataService: PeriodoLectivoService,
         private matriculaDataService: MatriculaService,
@@ -158,6 +158,9 @@ export class CertificadoMatriculaComponent implements OnInit {
     getPeriodoLectivo(id: number): void {
         this.busy = this.periodoLectivoDataService.get(id)
         .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
             this.periodoLectivo = respuesta;
         })
         .catch(error => {
@@ -173,6 +176,9 @@ export class CertificadoMatriculaComponent implements OnInit {
     getCarreras() {
         this.busy = this.carreraDataService.getAll()
         .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
             this.carreras = respuesta;
         })
         .catch(error => {
@@ -183,6 +189,9 @@ export class CertificadoMatriculaComponent implements OnInit {
     getEstudiantesMatriculados(): void {
         this.busy = this.matriculacionDataService.getPersonasMatriculadas()
         .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
             this.personasMatriculadas = respuesta;
             this.personasMostradas = respuesta;
         })
@@ -272,6 +281,9 @@ export class CertificadoMatriculaComponent implements OnInit {
     getCertificadosMatriculas(idCarrera: number): void {
         this.busy = this.matriculaDataService.getAll()
         .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
             if ( idCarrera == 0) {
                 this.certificadosMatriculas = respuesta;
                 this.estudianteSeleccionadoCombo = 0;
@@ -322,6 +334,9 @@ export class CertificadoMatriculaComponent implements OnInit {
     getPersona(idPersona: number): void {
         this.busy = this.personaDataService.get(idPersona)
         .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
             this.estudiante = respuesta;
             this.getHojaDatos(this.estudiante);
             this.getDatosCupo(this.estudiante.id);
@@ -486,6 +501,9 @@ export class CertificadoMatriculaComponent implements OnInit {
     getAsignaturasMatricula(idMatricula: number): void {
         this.busy = this.asignaturaMatriculaDataService.getFiltrado('idMatricula', 'coincide', idMatricula.toString())
         .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
             respuesta.forEach(asignaturaMatricula => {
                 this.getAsignatura(asignaturaMatricula.idAsignatura);
             });
