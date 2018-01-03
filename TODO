@@ -4,3 +4,4 @@
 - Mail sender con lista de destinatarios personalizados
 - Contacto a estudiantes nuevos - Datos confirmados -> Persona
 - Reportes personalizados
+- Errores al inicializar arrays con []
