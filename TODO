@@ -2,6 +2,6 @@
 - Interfaz para coordinador para subir cupos de estudiantes con asignaturas de la malla
 - Tomar materias de los cupos creados
 - Mail sender con lista de destinatarios personalizados
-- Contacto a estudiantes nuevos - Datos confirmados -> Persona
+- Contacto a estudiantes nuevos - no contactados
 - Reportes personalizados
 - Errores al inicializar arrays con []
