@@ -570,6 +570,7 @@ export class SecretariaAcademicaComponent implements OnInit {
             this.matricula.idPersona = this.personaLogeada.id;
             this.matricula.folio = this.numeroFolio.toString();
             this.matricula.numeroMatricula = this.numeroMatricula.toString();
+            this.guardar(this.matricula);
             this.actualizarEstadoSolicitud();
         }
     }
