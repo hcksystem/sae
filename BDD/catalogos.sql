@@ -40,8 +40,7 @@ INSERT INTO `Estado` (`id`, `descripcion`) VALUES
 (1, 'ACTIVO'),
 (2, 'INACTIVO');
 INSERT INTO `EstadoCupo` (`id`, `descripcion`) VALUES
-(1, 'NO USADO'),
-(2, 'USADO');
+(1, 'POR CONTACTAR'),(2, 'CONTACTADO'),(3, 'NO USADO'),(4, 'USADO');
 INSERT INTO `EstadoCivil` (`id`, `descripcion`) VALUES
 (1, 'SOLTERO/A'),
 (2, 'CASADO/A'),
