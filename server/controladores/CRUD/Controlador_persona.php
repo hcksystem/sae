@@ -54,7 +54,7 @@ class Controlador_persona extends Controlador_Base
       if ($id==""){
          $sql = "SELECT * FROM Persona;";
       }else{
-      $parametros = array($id);
+         $parametros = array($id);
          $sql = "SELECT * FROM Persona WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

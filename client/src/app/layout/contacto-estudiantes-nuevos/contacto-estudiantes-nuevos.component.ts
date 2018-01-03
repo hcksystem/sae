@@ -9,6 +9,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Carrera } from 'app/entidades/CRUD/Carrera';
 import { CarreraService } from 'app/CRUD/carrera/carrera.service';
+import { ContactoEstudiantesNuevosService } from 'app/layout/contacto-estudiantes-nuevos/contacto-estudiantes-nuevos.service';
 
 @Component({
    selector: 'app-contacto-estudiantes-nuevos',
@@ -33,7 +34,8 @@ export class ContactoEstudiantesNuevosComponent implements OnInit {
     vcr: ViewContainerRef,
     private dataService: PersonaService,
     private modalService: NgbModal,
-    private carreraDataService: CarreraService) {
+    private carreraDataService: CarreraService,
+    private noContactadosDataService: ContactoEstudiantesNuevosService) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -87,9 +89,12 @@ export class ContactoEstudiantesNuevosComponent implements OnInit {
    }
 
    getAll(): void {
-      this.busy = this.dataService
-      .getAll()
+      this.busy = this.noContactadosDataService
+      .getAll(this.carreraSeleccionadaCombo)
       .then(entidadesRecuperadas => {
+         if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+            return;
+         }
          this.entidades = entidadesRecuperadas
          if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
             this.toastr.success('¡No hay datos!', 'Consulta');
@@ -103,9 +108,12 @@ export class ContactoEstudiantesNuevosComponent implements OnInit {
    }
 
    getPagina(pagina: number, tamanoPagina: number): void {
-      this.busy = this.dataService
-      .getPagina(pagina, tamanoPagina)
+      this.busy = this.noContactadosDataService
+      .getPagina(pagina, tamanoPagina, this.carreraSeleccionadaCombo)
       .then(entidadesRecuperadas => {
+         if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+            return;
+         }
          this.entidades = entidadesRecuperadas
          if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
             this.toastr.success('¡No hay datos!', 'Consulta');
@@ -119,10 +127,13 @@ export class ContactoEstudiantesNuevosComponent implements OnInit {
    }
 
    getNumeroPaginas(tamanoPagina: number): void{
-      this.busy = this.dataService
-      .getNumeroPaginas(tamanoPagina)
+      this.busy = this.noContactadosDataService
+      .getNumeroPaginas(tamanoPagina, this.carreraSeleccionadaCombo)
       .then(respuesta => {
-         this.paginaUltima = respuesta.paginas;
+          if ( JSON.stringify(respuesta) == 'false' ) {
+            return;
+          }
+          this.paginaUltima = respuesta.paginas;
       })
       .catch(error => {
          //Error al leer las paginas
@@ -143,25 +154,25 @@ export class ContactoEstudiantesNuevosComponent implements OnInit {
       this.cerrarVentanaEdicion();
    }
 
+    add(entidadNueva: Persona): void {
+        this.busy = this.dataService.create(entidadNueva)
+        .then(respuesta => {
+        if(respuesta){
+            this.toastr.success('La creación fue exitosa', 'Creación');
+        }else{
+            this.toastr.warning('Se produjo un error', 'Creación');
+        }
+        this.refresh();
+        })
+        .catch(error => {
+        this.toastr.warning('Se produjo un error', 'Creación');
+        });
+    }
+
    crearEntidad(): Persona {
       const nuevoPersona = new Persona();
       nuevoPersona.id = 0;
       return nuevoPersona;
-   }
-
-   add(entidadNueva: Persona): void {
-      this.busy = this.dataService.create(entidadNueva)
-      .then(respuesta => {
-         if(respuesta){
-            this.toastr.success('La creación fue exitosa', 'Creación');
-         }else{
-            this.toastr.warning('Se produjo un error', 'Creación');
-         }
-         this.refresh();
-      })
-      .catch(error => {
-         this.toastr.warning('Se produjo un error', 'Creación');
-      });
    }
 
    update(entidadParaActualizar: Persona): void {
@@ -179,23 +190,8 @@ export class ContactoEstudiantesNuevosComponent implements OnInit {
       });
    }
 
-   delete(entidadParaBorrar: Persona): void {
-      this.busy = this.dataService.remove(entidadParaBorrar.id)
-      .then(respuesta => {
-         if(respuesta){
-            this.toastr.success('La eliminación fue exitosa', 'Eliminación');
-         }else{
-            this.toastr.warning('Se produjo un error', 'Eliminación');
-         }
-         this.refresh();
-      })
-      .catch(error => {
-         this.toastr.success('Se produjo un error', 'Eliminación');
-      });
-   }
-
    filtroSeleccionado() {
-
+    this.refresh();
    }
 
    refresh(): void {
