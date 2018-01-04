@@ -21,16 +21,13 @@
             "prefix": "app",
             "styles": [
                 "styles/app.scss",
-                "../node_modules/font-awesome/css/font-awesome.css",
-                "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
-                "../node_modules/froala-editor/css/froala_style.min.css"
+                "../node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
                 "../node_modules/chart.js/dist/Chart.js",
                 "../node_modules/jspdf/dist/jspdf.min.js",
                 "../node_modules/html2canvas/dist/html2canvas.min.js",
-                "../node_modules/jquery/dist/jquery.min.js",
-                "../node_modules/froala-editor/js/froala_editor.pkgd.min.js"
+                "../node_modules/jquery/dist/jquery.min.js"
             ],
             "environmentSource": "environments/environment.ts",
             "environments": {

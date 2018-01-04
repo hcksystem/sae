@@ -25,7 +25,6 @@
         "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.7",
         "@ngx-translate/core": "^8.0.0",
         "@ngx-translate/http-loader": "^2.0.1",
-        "angular-froala-wysiwyg": "^2.7.3",
         "chart.js": "^2.7.1",
         "core-js": "^2.5.3",
         "font-awesome": "^4.7.0",

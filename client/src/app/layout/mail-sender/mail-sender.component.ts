@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewContainerRef} from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { MailData } from 'app/entidades/especifico/MailData';
 import { MailSenderService } from './mail-sender.service';
 import { DestinoMail } from 'app/entidades/especifico/DestinoMail';
@@ -34,6 +33,10 @@ export class MailSenderComponent implements OnInit {
         this.tiempoRequerido = '';
         this.mensajeBarra = '';
         this.enviando = false;
+    }
+
+    cambioCuerpo() {
+        document.getElementById('previewBody').innerHTML = this.mailData.Mensaje;
     }
 
     cuentaEnvios(mensajesPorEnviar: number) {

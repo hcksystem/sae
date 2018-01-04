@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,9 +12,7 @@ import { MailSenderService } from 'app/layout/mail-sender/mail-sender.service';
     CommonModule,
     MailSenderRoutingModule,
     NgbModule,
-    FormsModule,
-    FroalaEditorModule,
-    FroalaViewModule
+    FormsModule
   ],
   providers: [MailSenderService],
   declarations: [MailSenderComponent]
