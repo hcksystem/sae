@@ -16,6 +16,7 @@ import { Http, HttpModule } from '@angular/http';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastOptions } from 'ng2-toastr/src/toast-options';
 import { ToastContainer } from 'ng2-toastr/src/toast-container.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -42,6 +43,8 @@ export function createTranslateLoader(http: HttpClient) {
             }
         }),
         ToastModule.forRoot(),
+        FroalaEditorModule.forRoot(),
+        FroalaViewModule.forRoot(),
         AppRoutingModule
     ],
     declarations: [AppComponent],

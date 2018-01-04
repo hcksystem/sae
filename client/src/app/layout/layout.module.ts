@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent, SidebarComponent } from '../shared';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
     imports: [
@@ -14,7 +15,9 @@ import { HeaderComponent, SidebarComponent } from '../shared';
         FormsModule,
         NgbDropdownModule.forRoot(),
         LayoutRoutingModule,
-        TranslateModule
+        TranslateModule,
+        FroalaEditorModule,
+        FroalaViewModule
     ],
     declarations: [
         LayoutComponent,
