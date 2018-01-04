@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewContainerRef} from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { MailData } from 'app/entidades/especifico/MailData';
 import { MailSenderService } from './mail-sender.service';
 import { DestinoMail } from 'app/entidades/especifico/DestinoMail';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'app-mail-sender',
