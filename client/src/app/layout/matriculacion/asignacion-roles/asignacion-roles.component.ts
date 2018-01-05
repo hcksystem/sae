@@ -70,6 +70,9 @@ export class AsignacionRolesComponent implements OnInit {
         this.busy = this.dataService
         .getFiltrado('idPersona', 'coincide', idPersona.toString())
         .then(entidadesRecuperadas => {
+            if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+                return;
+            }
             this.entidades = entidadesRecuperadas;
         })
         .catch(error => {
@@ -83,6 +86,9 @@ export class AsignacionRolesComponent implements OnInit {
         this.busy = this.dataService
         .getFiltrado('idRol', 'coincide', idRol.toString())
         .then(entidadesRecuperadas => {
+            if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+                return;
+            }
             this.entidades = entidadesRecuperadas;
         })
         .catch(error => {
@@ -96,6 +102,9 @@ export class AsignacionRolesComponent implements OnInit {
         this.busy = this.rolesDataService
         .getAll()
         .then(entidadesRecuperadas => {
+            if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+                return;
+            }
             entidadesRecuperadas.forEach(element => {
                 if ( element.id == 1 || element.id == 3 || element.id == 7 || element.id == 8 || element.id == 9 ) {
 
@@ -113,6 +122,9 @@ export class AsignacionRolesComponent implements OnInit {
         this.busy = this.matriculacionDataService
         .getRolesSecundariosRegistrados()
         .then(entidadesRecuperadas => {
+            if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+                return;
+            }
             this.roles = entidadesRecuperadas;
         })
         .catch(error => {
@@ -125,6 +137,9 @@ export class AsignacionRolesComponent implements OnInit {
         this.busy = this.matriculacionDataService
         .getPersonasRolesSecundariosRegistrados()
         .then(entidadesRecuperadas => {
+            if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+                return;
+            }
             this.personasRolesAsignados = entidadesRecuperadas;
         })
         .catch(error => {
@@ -137,6 +152,9 @@ export class AsignacionRolesComponent implements OnInit {
         this.busy = this.matriculacionDataService
         .getPersonasRolesSecundariosAdmitidos()
         .then(entidadesRecuperadas => {
+            if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+                return;
+            }
             this.personasRolesPosiblesAsignar = entidadesRecuperadas;
         })
         .catch(error => {
@@ -187,6 +205,9 @@ export class AsignacionRolesComponent implements OnInit {
       this.busy = this.dataService
       .getAll()
       .then(entidadesRecuperadas => {
+         if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+             return;
+         }
          this.entidades = entidadesRecuperadas
          if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
             this.toastr.success('¡No hay datos!', 'Consulta');
