@@ -26,8 +26,7 @@
             "scripts": [
                 "../node_modules/chart.js/dist/Chart.js",
                 "../node_modules/jspdf/dist/jspdf.min.js",
-                "../node_modules/html2canvas/dist/html2canvas.min.js",
-                "../node_modules/jquery/dist/jquery.min.js"
+                "../node_modules/html2canvas/dist/html2canvas.min.js"
             ],
             "environmentSource": "environments/environment.ts",
             "environments": {
