@@ -22,8 +22,8 @@ export class MailSenderService {
         .catch(this.handleError);
     }
 
-    getDestinatarios(nivel: number, idCarrera: number): Promise<DestinoMail[]> {
-        const url = `${this.urlBase + 'destinos_mail/consultar?nivel=' + nivel.toString() + '&idCarrera=' + idCarrera.toString()}`;
+    getDestinatarios(nivel: number, idCarrera: number, idEstado: number): Promise<DestinoMail[]> {
+        const url = `${this.urlBase + 'destinos_mail/consultar?idEstado=' + idEstado.toString() + '&nivel=' + nivel.toString() + '&idCarrera=' + idCarrera.toString()}`;
         return this.http.get(url)
         .toPromise()
         .then(response => response.json() as DestinoMail[])

@@ -27,6 +27,7 @@ export class MailSenderComponent implements OnInit {
     carreraSeleccionadaCombo: number;
     nivelSeleccionadoCombo: number;
     enviosRealizados: number;
+    estadoSeleccionadoCombo: number;
     Comodines = [
         '#nombre1',
         '#nombre2',
@@ -63,6 +64,7 @@ export class MailSenderComponent implements OnInit {
         this.enviando = false;
         this.carreraSeleccionadaCombo = 0;
         this.nivelSeleccionadoCombo = 0;
+        this.estadoSeleccionadoCombo = 0;
         this.getCarreras();
     }
 
@@ -71,7 +73,7 @@ export class MailSenderComponent implements OnInit {
     }
 
     getDestinatarios() {
-        this.busy = this.mailSenderDataService.getDestinatarios(this.nivelSeleccionadoCombo, this.carreraSeleccionadaCombo)
+        this.busy = this.mailSenderDataService.getDestinatarios(this.nivelSeleccionadoCombo, this.carreraSeleccionadaCombo, this.estadoSeleccionadoCombo)
         .then(respuesta => {
             if ( JSON.stringify(respuesta) == 'false') {
                 this.destinos = [];
