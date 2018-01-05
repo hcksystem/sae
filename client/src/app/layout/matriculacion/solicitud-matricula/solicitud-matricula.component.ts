@@ -14,7 +14,7 @@ import { AsignaturaSolicitudMatricula } from 'app/entidades/CRUD/AsignaturaSolic
 import { AsignaturaSolicitudMatriculaService } from 'app/CRUD/asignaturasolicitudmatricula/asignaturasolicitudmatricula.service';
 import { Router } from '@angular/router';
 import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
-import jsPDF from 'jspdf';
+import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 @Component({
     selector: 'app-solicitud-matricula',

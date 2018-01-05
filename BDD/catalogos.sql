@@ -88,7 +88,7 @@ INSERT INTO `Instituto` (`id`, `descripcion`, `rector`, `vicerector`, `color`) V
 (1, 'INSTITUTO TECNOLÓGICO SUPERIOR BENITO JUÁREZ', 'Magister, Iván Óscar Borja Carrera', 'Magister, Héctor Fabián Arevalo Mosquera', 'verde'),
 (2, 'INSTITUTO TECNOLÓGICO SUPERIOR 24 DE MAYO', 'Magister, Iván Óscar Borja Carrera', 'Magister, Héctor Fabián Arevalo Mosquera', 'rojo'),
 (3, 'INSTITUTO TECNOLÓGICO SUPERIOR GRAN COLOMBIA', 'Magister, Iván Óscar Borja Carrera', 'Magister, Héctor Fabián Arevalo Mosquera', 'amarillo'),
-(4, 'INSTITUTO TECNOLÓGICO SUPERIOR YAVIRAC DE TURISMO Y PATRIMONIO', 'Magister, Iván Óscar Borja Carrera', 'Magister, Héctor Fabián Arevalo Mosquera', 'azul');
+(4, 'INSTITUTO TECNOLÓGICO SUPERIOR DE TURISMO Y PATRIMONIO YAVIRAC', 'Magister, Iván Óscar Borja Carrera', 'Magister, Héctor Fabián Arevalo Mosquera', 'azul');
 INSERT INTO `Jornada` (`id`, `descripcion`) VALUES
 (1, 'MATUTINA'),
 (2, 'VESPERTINA'),

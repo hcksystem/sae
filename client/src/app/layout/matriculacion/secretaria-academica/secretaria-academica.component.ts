@@ -37,7 +37,7 @@ import { MatriculaAsignatura } from 'app/entidades/CRUD/MatriculaAsignatura';
 import { Router } from '@angular/router';
 import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
 import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
-import jsPDF from 'jspdf';
+import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 @Component({
     selector: 'app-secretaria-academica',

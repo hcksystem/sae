@@ -37,7 +37,7 @@ import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
 import { JornadaService } from 'app/CRUD/jornada/jornada.service';
 import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
 import { forEach } from '@angular/router/src/utils/collection';
-import jsPDF from 'jspdf';
+import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 @Component({
     selector: 'app-certificado-matricula',
