@@ -26,6 +26,22 @@ export class MailSenderComponent implements OnInit {
     carreras: Carrera[];
     carreraSeleccionadaCombo: number;
     nivelSeleccionadoCombo: number;
+    enviosRealizados: number;
+    Comodines = [
+        '#nombre1',
+        '#nombre2',
+        '#apellido1',
+        '#apellido2',
+        '#carrera',
+        '#coordinadorCarrera',
+        '#identificacion',
+        '#instituto',
+        '#nivel',
+        '#telefonoCelular',
+        '#telefonoDomicilio',
+        '<img src="url">',
+        '<h1></h1>',
+        '<strong></strong>'];
     constructor(public toastr: ToastsManager,
         vcr: ViewContainerRef,
         private mailSenderDataService: MailSenderService,
@@ -39,9 +55,9 @@ export class MailSenderComponent implements OnInit {
 
     refresh() {
         this.mailData = new MailData();
+        this.mailData.Mensaje = '';
         this.progresoPorcentaje = 0;
         this.mensajesEnviados = 0;
-        this.total = 0;
         this.tiempoRequerido = '';
         this.mensajeBarra = '';
         this.enviando = false;
@@ -55,13 +71,27 @@ export class MailSenderComponent implements OnInit {
     }
 
     getDestinatarios() {
+        this.busy = this.mailSenderDataService.getDestinatarios(this.nivelSeleccionadoCombo, this.carreraSeleccionadaCombo)
+        .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false') {
+                this.destinos = [];
+                this.total = 0;
+                return;
+            }
+            this.destinos = respuesta;
+            this.total = this.destinos.length;
+        })
+        .catch(error => {
 
+        });
     }
 
     getCarreras() {
         this.busy = this.carreraDataService.getAll()
         .then(respuesta => {
             this.carreras = respuesta;
+            this.cuentaMensajesEnviados();
+            this.filtroSeleccionado();
         })
         .catch(error => {
 
@@ -75,7 +105,7 @@ export class MailSenderComponent implements OnInit {
     cuentaEnvios(mensajesPorEnviar: number) {
         this.busy = this.mailSenderDataService.cuentaEnvios()
         .then(respuesta => {
-            if ( (respuesta + mensajesPorEnviar) <= 499 ) {
+            if ( ((respuesta * 1) + (mensajesPorEnviar * 1)) <= 499 ) {
                 this.iniciarEnvio();
             } else {
                 this.toastr.warning('El límite diario es de 500 correos electrónicos.', 'Error de envío');
@@ -86,6 +116,41 @@ export class MailSenderComponent implements OnInit {
         .catch(error => {
 
         });
+    }
+
+    cuentaMensajesEnviados() {
+        this.busy = this.mailSenderDataService.cuentaEnvios()
+        .then(respuesta => {
+            this.enviosRealizados = respuesta;
+        })
+        .catch(error => {
+
+        });
+    }
+
+    insertarComodin(comodin: string) {
+        this.mailData.Mensaje += comodin;
+    }
+
+    buildMailData(cuenta: number) {
+        const destino = this.destinos[cuenta - 1];
+        this.mailData.ToEmail = destino.correoElectronico;
+        this.mailData.ToAlias = destino.nombre1 + ' ' + destino.nombre2 + ' ' + destino.apellido1 + ' ' + destino.apellido2;
+        let messageBody = this.mailData.Mensaje;
+        messageBody = messageBody.replace('#nombre1', destino.nombre1);
+        messageBody = messageBody.replace('#nombre2', destino.nombre2);
+        messageBody = messageBody.replace('#apellido1', destino.apellido1);
+        messageBody = messageBody.replace('#apellido2', destino.apellido2);
+        messageBody = messageBody.replace('#carrera', destino.carrera);
+        messageBody = messageBody.replace('#coordinadorCarrera', destino.coordinadorCarrera);
+        messageBody = messageBody.replace('#identificacion', destino.identificacion);
+        messageBody = messageBody.replace('#instituto', destino.instituto);
+        const niveles = ['Primer Nivel', 'Segundo Nivel', 'Tercer Nivel', 'Cuarto Nivel', 'Quinto Nivel', 'Sexto Nivel'];
+        messageBody = messageBody.replace('#nivel', niveles[destino.nivel - 1]);
+        messageBody = messageBody.replace('#telefonoCelular', destino.telefonoCelular);
+        messageBody = messageBody.replace('#telefonoDomicilio', destino.telefonoDomicilio);
+        this.mailData.Mensaje = messageBody;
+        this.enviarEmail();
     }
 
     enviarEmail() {
@@ -100,7 +165,6 @@ export class MailSenderComponent implements OnInit {
 
     sendMails() {
         if ( !this.enviando ) {
-            this.total = 4;
             if ( this.total >= 100 ) {
                 this.tickTime = 4000;
             } else {
@@ -144,7 +208,7 @@ export class MailSenderComponent implements OnInit {
                 this.mensajesEnviados++;
                 this.setProgressBar();
                 this.setTiempoRequerido();
-                this.enviarEmail();
+                this.buildMailData(this.mensajesEnviados);
                 this.iniciarEnvio();
             }, this.tickTime);
         } else {

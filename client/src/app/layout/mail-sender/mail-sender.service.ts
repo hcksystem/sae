@@ -3,6 +3,7 @@ import { Headers, Http } from '@angular/http';
 import { environment } from './../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
+import { DestinoMail } from 'app/entidades/especifico/DestinoMail';
 
 @Injectable()
 
@@ -18,6 +19,14 @@ export class MailSenderService {
         return this.http.get(url)
         .toPromise()
         .then(response => response.json() as number)
+        .catch(this.handleError);
+    }
+
+    getDestinatarios(nivel: number, idCarrera: number): Promise<DestinoMail[]> {
+        const url = `${this.urlBase + 'destinos_mail/consultar?nivel=' + nivel.toString() + '&idCarrera=' + idCarrera.toString()}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => response.json() as DestinoMail[])
         .catch(this.handleError);
     }
 
