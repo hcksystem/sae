@@ -299,6 +299,7 @@ CREATE TABLE Cupo(
     idJornadaCarrera INT NULL,
     idPersona INT NULL,
     idEstadoCupo INT NULL,
+    idPeriodoLectivo INT NULL,
     fecha DATE NULL,
 PRIMARY KEY (id));
 
