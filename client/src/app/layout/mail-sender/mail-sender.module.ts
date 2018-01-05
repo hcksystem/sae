@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MailSenderRoutingModule } from './mail-sender-routing.module';
 import { MailSenderComponent } from './mail-sender.component';
 import { MailSenderService } from 'app/layout/mail-sender/mail-sender.service';
+import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { MailSenderService } from 'app/layout/mail-sender/mail-sender.service';
     NgbModule,
     FormsModule
   ],
-  providers: [MailSenderService],
+  providers: [MailSenderService,
+    CarreraService],
   declarations: [MailSenderComponent]
 })
 export class MailSenderModule { }

@@ -121,20 +121,45 @@
                 <div class="card-header">Destino</div>
                 <div class="card-block">
                     <div class="form-group row">
-                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
-                            <label class="col-form-label">Alias</label>
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+                        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                            <label class="col-form-label">Enviar por Carrera</label>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
-                            <input type="text" class="form-control" id="ToAlias" placeholder="Alias" [(ngModel)]="mailData.ToAlias">
+                        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                            <select class="form-control" id="idCarrera" [(ngModel)]="carreraSeleccionadaCombo" (change)="filtroSeleccionado()">
+                                <option value="0" selected>Todas</option>
+                                <option *ngFor="let carrera of carreras" value={{carrera.id}}>{{carrera.descripcion}}</option>
+                            </select>
                         </div>
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
-                            <label class="col-form-label">Correo Electrónico</label>
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+                        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                            <label class="col-form-label">Enviar por Nivel</label>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
-                            <input type="mail" class="form-control" id="ToEmail" placeholder="Correo Electrónico" [(ngModel)]="mailData.ToEmail">
+                        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                            <select class="form-control" id="idNivel" [(ngModel)]="nivelSeleccionadoCombo" (change)="filtroSeleccionado()">
+                                <option value="0" selected>Todos</option>
+                                <option value="1" selected>Primer Nivel</option>
+                                <option value="2" selected>Segundo Nivel</option>
+                                <option value="3" selected>Tercer Nivel</option>
+                                <option value="4" selected>Cuarto Nivel</option>
+                                <option value="5" selected>Quinto Nivel</option>
+                                <option value="6" selected>Sexto Nivel</option>
+                            </select>
                         </div>
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+                        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                            <label class="col-form-label">DESTINATARIOS:</label>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                            <h2>{{total}}</h2>Máximo 500 envíos por día.
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
                     </div>
                 </div>
             </div>

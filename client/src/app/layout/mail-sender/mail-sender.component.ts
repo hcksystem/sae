@@ -3,6 +3,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { MailData } from 'app/entidades/especifico/MailData';
 import { MailSenderService } from './mail-sender.service';
 import { DestinoMail } from 'app/entidades/especifico/DestinoMail';
+import { Carrera } from 'app/entidades/CRUD/Carrera';
+import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 
 @Component({
     selector: 'app-mail-sender',
@@ -21,11 +23,21 @@ export class MailSenderComponent implements OnInit {
     enviando: boolean;
     posiblesDestinos: DestinoMail[];
     destinos: DestinoMail[];
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private mailSenderDataService: MailSenderService) {
+    carreras: Carrera[];
+    carreraSeleccionadaCombo: number;
+    nivelSeleccionadoCombo: number;
+    constructor(public toastr: ToastsManager,
+        vcr: ViewContainerRef,
+        private mailSenderDataService: MailSenderService,
+        private carreraDataService: CarreraService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
+        this.refresh();
+    }
+
+    refresh() {
         this.mailData = new MailData();
         this.progresoPorcentaje = 0;
         this.mensajesEnviados = 0;
@@ -33,6 +45,27 @@ export class MailSenderComponent implements OnInit {
         this.tiempoRequerido = '';
         this.mensajeBarra = '';
         this.enviando = false;
+        this.carreraSeleccionadaCombo = 0;
+        this.nivelSeleccionadoCombo = 0;
+        this.getCarreras();
+    }
+
+    filtroSeleccionado() {
+        this.getDestinatarios();
+    }
+
+    getDestinatarios() {
+
+    }
+
+    getCarreras() {
+        this.busy = this.carreraDataService.getAll()
+        .then(respuesta => {
+            this.carreras = respuesta;
+        })
+        .catch(error => {
+
+        });
     }
 
     cambioCuerpo() {
