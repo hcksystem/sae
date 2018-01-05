@@ -70,6 +70,10 @@ export class MailSenderComponent implements OnInit {
 
     filtroSeleccionado() {
         this.getDestinatarios();
+        this.mensajesEnviados = 0;
+        this.progresoPorcentaje = 0;
+        this.tiempoRequerido = '';
+        this.enviando = false;
     }
 
     getDestinatarios() {
@@ -112,6 +116,9 @@ export class MailSenderComponent implements OnInit {
             } else {
                 this.toastr.warning('El límite diario es de 500 correos electrónicos.', 'Error de envío');
                 this.mensajesEnviados = 0;
+                this.mensajesEnviados = 0;
+                this.progresoPorcentaje = 0;
+                this.tiempoRequerido = '';
                 this.enviando = false;
             }
         })
@@ -171,9 +178,9 @@ export class MailSenderComponent implements OnInit {
     sendMails() {
         if ( !this.enviando ) {
             if ( this.total >= 100 ) {
-                this.tickTime = 4000;
-            } else {
                 this.tickTime = 2000;
+            } else {
+                this.tickTime = 1000;
             }
             this.mensajesEnviados = 0;
             this.enviando = true;
@@ -191,24 +198,26 @@ export class MailSenderComponent implements OnInit {
         let horas = 0;
         let minutos = 0;
         let segundos = 0;
-        if ( totalSegundos > 3600) {
-            horas = Math.round(totalSegundos / 3600);
-        } else {
-            horas = 0;
+        horas = Math.floor(totalSegundos / 3600);
+        minutos = Math.floor((totalSegundos - (horas * 3600)) / 60);
+        segundos = totalSegundos - (horas * 3600) - (minutos * 60);
+        let toReturn = '';
+        if (horas > 0 ) {
+            toReturn = toReturn + horas.toString() + 'H ';
         }
-        if ( totalSegundos > 60 ) {
-            minutos = Math.round(((totalSegundos / 3600 - horas) * 3600) / 60);
-        } else {
-            minutos = 0;
+        if (minutos > 0 ) {
+            toReturn = toReturn + minutos + 'm ';
         }
-        segundos = totalSegundos - ((horas * 3600) + (minutos * 60));
-        this.tiempoRequerido = 'Tiempo Requerido: ' + horas + 'H ' + minutos + 'm ' + segundos + 's';
+        if (segundos > 0 ) {
+            toReturn = toReturn + segundos + 's';
+        }
+        this.tiempoRequerido = 'Tiempo Requerido: ' + toReturn;
     }
 
     iniciarEnvio() {
         this.setTiempoRequerido();
         this.setProgressBar();
-        if ( this.mensajesEnviados < this.total ) {
+        if ( this.mensajesEnviados < this.total && this.enviando ) {
             setTimeout(() => {
                 this.mensajesEnviados++;
                 this.setProgressBar();
@@ -217,7 +226,11 @@ export class MailSenderComponent implements OnInit {
                 this.iniciarEnvio();
             }, this.tickTime);
         } else {
-            this.tiempoRequerido = 'Tarea Finalizada Satisfactoriamente';
+            this.toastr.success('Tarea terminada satisfactoriamente.', 'Envio de mensajes');
+            this.mensajesEnviados = 0;
+            this.mensajesEnviados = 0;
+            this.progresoPorcentaje = 0;
+            this.tiempoRequerido = '';
             this.enviando = false;
         }
     }
