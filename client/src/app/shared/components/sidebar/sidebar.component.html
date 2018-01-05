@@ -18,6 +18,10 @@
                             {{ 'Contacto a Estudiantes Nuevos' | translate }} </a>
                     </li>
                     <li>
+                        <a [routerLink]="['/mail-sender']" [routerLinkActive]="['router-link-active']" class="list-group-item" [hidden]="!tutor">
+                            {{ 'Envio Correos Electrónicos' | translate }} </a>
+                    </li>
+                    <li>
                         <a [routerLink]="['/solicitud-matricula']" [routerLinkActive]="['router-link-active']" class="list-group-item" [hidden]="!estudiante">
                             {{ 'Solicitud de Matrícula' | translate }} </a>
                     </li>
