@@ -118,8 +118,8 @@ export class MatriculacionService {
       .catch(this.handleError);
    }
 
-   getAsignaturasMatriculablesPrimerNivel(idCarrera: number): Promise<Asignatura[]> {
-      const url = `${this.urlBase + 'asignaturas_matriculables_primer_nivel/consultar?idCarrera=' + idCarrera.toString()}`;
+   getAsignaturasMatriculables(identificacion: string): Promise<Asignatura[]> {
+      const url = `${this.urlBase + 'asignaturas_matriculables/consultar?identificacion=' + identificacion.toString()}`;
       return this.http.get(url)
       .toPromise()
       .then(response => {

@@ -74,16 +74,14 @@ export class SolicitudMatriculaComponent implements OnInit {
         this.getDatosCupo(this.personaLogeada.id);
     }
 
-    getAsignaturasMatriculables(idCarrera: number, idNivel: number): void {
-        if ( idNivel === 1 ) {
-            this.busy = this.matriculacionDataService.getAsignaturasMatriculablesPrimerNivel(idCarrera)
-            .then(respuesta => {
-                this.asignaturasMatriculables = respuesta;
-            })
-            .catch(error => {
+    getAsignaturasMatriculables(identificacion: string): void {
+        this.busy = this.matriculacionDataService.getAsignaturasMatriculables(identificacion)
+        .then(respuesta => {
+            this.asignaturasMatriculables = respuesta;
+        })
+        .catch(error => {
 
-            });
-        }
+        });
     }
 
     getDatosInstituto(idCarrera: number): void {
@@ -112,7 +110,7 @@ export class SolicitudMatriculaComponent implements OnInit {
         .then(respuesta => {
             this.datosCupo = respuesta;
             this.getDatosInstituto(this.datosCupo.idCarrera);
-            this.getAsignaturasMatriculables(this.datosCupo.idCarrera, 1);
+            this.getAsignaturasMatriculables(this.personaLogeada.identificacion);
             const meses = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
             this.barcode = this.fechaActual.getFullYear().toString() + '-' + meses[this.fechaActual.getMonth()] + '-' + this.datosCupo.siglasCarrera + '-' + this.datosCupo.identificacion;
             this.checkSolicitudEmitida(this.barcode.toString());
