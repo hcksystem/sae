@@ -5,9 +5,9 @@ import { CommonModule } from '@angular/common';
 import { AsignacionAsignaturasCupoRoutingModule } from './asignacion-asignaturas-cupo-routing.module';
 import { AsignacionAsignaturasCupoComponent } from './asignacion-asignaturas-cupo.component';
 import { AsignacionAsignaturasCupoService } from './asignacion-asignaturas-cupo.service';
-import { RolSecundarioService } from 'app/CRUD/rolsecundario/rolsecundario.service';
+import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 import { MatriculacionService } from 'app/layout/matriculacion/matriculacion.service';
-import { RolesService } from 'app/CRUD/roles/roles.service';
+import { PersonaService } from 'app/CRUD/persona/persona.service';
 
 @NgModule({
    imports: [
@@ -16,8 +16,8 @@ import { RolesService } from 'app/CRUD/roles/roles.service';
       AsignacionAsignaturasCupoRoutingModule
    ],
    providers: [AsignacionAsignaturasCupoService,
-    RolSecundarioService,
-    RolesService,
+    CarreraService,
+    PersonaService,
     MatriculacionService],
    declarations: [AsignacionAsignaturasCupoComponent],
 })

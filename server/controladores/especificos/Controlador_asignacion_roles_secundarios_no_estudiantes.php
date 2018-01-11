@@ -4,7 +4,6 @@ class Controlador_asignacion_roles_secundarios_no_estudiantes extends Controlado
 {
    function consultar()
    { 
-        // CIFRAR LA CLAVE
         $sql = "SELECT id as 'idPersona', CONCAT(apellido1,' ',apellido2,' ', nombre1,' ',nombre2) as 'nombreCompleto' FROM Persona WHERE id NOT IN (SELECT DISTINCT(idPersona) FROM Cuenta WHERE Cuenta.idRol = '2') ORDER BY nombreCompleto ASC;";
         $parametros = array($idCarrera);
         $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
