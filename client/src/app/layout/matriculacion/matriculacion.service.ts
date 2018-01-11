@@ -19,6 +19,17 @@ export class MatriculacionService {
    constructor(private http: Http) {
    }
 
+   getAlumnosMatriculados(idCarrera: number, idJornada: number): Promise<PersonaCombo[]>{
+        const url = `${this.urlBase + 'alumnos_matriculados/consultar'}`;
+        return this.http.get(url + '?idCarrera=' + idCarrera + '&idJornada=' + idJornada)
+        .toPromise()
+        .then(response => {
+            const toReturn = response.json() as PersonaCombo[];
+            return toReturn;
+        })
+        .catch(this.handleError);
+   }
+
    getRolesSecundariosRegistrados(): Promise<Roles[]> {
         const url = `${this.urlBase + 'asignacion_roles_secundarios_roles/consultar'}`;
         return this.http.get(url)

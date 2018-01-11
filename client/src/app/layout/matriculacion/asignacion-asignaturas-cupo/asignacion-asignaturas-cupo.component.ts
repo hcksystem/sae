@@ -7,10 +7,12 @@ import { ModalComponent } from 'app/layout/bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Carrera } from 'app/entidades/CRUD/Carrera';
+import { Jornada } from 'app/entidades/CRUD/Jornada';
 import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
 import { MatriculacionService } from 'app/layout/matriculacion/matriculacion.service';
 import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 import { PersonaService } from 'app/CRUD/persona/persona.service';
+import { JornadaService } from 'app/CRUD/jornada/jornada.service';
 
 @Component({
    selector: 'app-asignacion-asignaturas-cupo',
@@ -26,9 +28,10 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-   nivelSeleccionadoCombo: number;
+   jornadaSeleccionadaCombo: number;
    carreraSeleccionadaCombo: number;
    carreras: Carrera[] = [];
+   jornadas: Jornada[] = [];
    personasMostradas: PersonaCombo[] = [];
    estudianteSeleccionadoCombo: number;
    constructor(public toastr: ToastsManager,
@@ -36,17 +39,32 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         private dataService: PersonaService,
         private modalService: NgbModal,
         private matriculacionDataService: MatriculacionService,
-        private carreraDataService: CarreraService) {
+        private carreraDataService: CarreraService,
+        private jornadaDataService: JornadaService
+    ) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
     filtroSeleccionado() {
-/*        this.rolSeleccionadoCombo = 0;
-        if ( this.personaSeleccionadoCombo == 0 ) {
-            this.refresh();
-        } else {
-            this.getRolesSecundariosPorPersona(this.personaSeleccionadoCombo);
-        }*/
+        this.getAlumnosMatriculados(this.carreraSeleccionadaCombo, this.jornadaSeleccionadaCombo);
+    }
+
+    filtroPersonaSeleccionado() {
+
+    }
+
+    getJornadas() {
+        this.busy = this.jornadaDataService
+        .getAll()
+        .then(entidadesRecuperadas => {
+            if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+                return;
+            }
+            this.jornadas = entidadesRecuperadas;
+        })
+        .catch(error => {
+
+        });
     }
 
     getCarreras() {
@@ -63,13 +81,30 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         });
     }
 
+    getAlumnosMatriculados(idCarrera: number, idJornada: number) {
+        this.personasMostradas = [];
+        this.busy = this.matriculacionDataService
+        .getAlumnosMatriculados(idCarrera, idJornada)
+        .then(entidadesRecuperadas => {
+            if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+                return;
+            }
+            this.personasMostradas = entidadesRecuperadas;
+        })
+        .catch(error => {
+
+        });
+    }
+
     refresh(): void {
         this.getCarreras();
+        this.getJornadas();
+        this.getAlumnosMatriculados(this.carreraSeleccionadaCombo, this.jornadaSeleccionadaCombo);
     }
 
     ngOnInit() {
         this.carreraSeleccionadaCombo = 0;
-        this.nivelSeleccionadoCombo = 0;
+        this.jornadaSeleccionadaCombo = 0;
         this.estudianteSeleccionadoCombo = 0;
         this.paginaActual = 1;
         this.registrosPorPagina = 5;
