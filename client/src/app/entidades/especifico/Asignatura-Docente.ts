@@ -1,4 +1,4 @@
 export class AsignaturaDocente {
     idMatriculaAsignatura: number;
-    nombre: string
+    nombre: string;
 }
