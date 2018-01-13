@@ -86,7 +86,7 @@ export class MatriculacionService {
     }
 
    getPersonasMatriculadas(): Promise<PersonaCombo[]> {
-        const url = `${this.urlBase + 'estudiantes_matriculados/consultar'}`;
+        const url = `${this.urlBase + 'alumnos_matriculados/consultar?idEstadoCupo=4'}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
