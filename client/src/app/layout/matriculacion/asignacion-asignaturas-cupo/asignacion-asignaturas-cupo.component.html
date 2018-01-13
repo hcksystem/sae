@@ -52,7 +52,7 @@
                  <button type="button" class="btn btn-default" (click)="refresh()">
                     <span class="fa fa-refresh"></span>&nbsp;Leer
                  </button>
-                 <!--<button type="button" class="btn btn-success" (click)="open(content,false)" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
+                 <button type="button" class="btn btn-success" (click)="open(content,false)" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
                     <span class="fa fa-edit"></span>&nbsp;Editar
                  </button>
                  <button type="button" class="btn btn-info" (click)="open(content,true)">
@@ -74,12 +74,22 @@
                     </th>
                     <th scope="col">
                        <span>
-                          <strong>Identificador</strong>
+                          <strong>Nivel</strong>
                        </span>
                     </th>
                     <th scope="col">
                        <span>
-                          <strong>Estudiante</strong>
+                          <strong>Carrera</strong>
+                       </span>
+                    </th>
+                    <th scope="col">
+                       <span>
+                          <strong>Jornada</strong>
+                       </span>
+                    </th>
+                    <th scope="col">
+                       <span>
+                          <strong>Nombre Completo</strong>
                        </span>
                     </th>
                     <th scope="col">
@@ -88,8 +98,13 @@
                        </span>
                     </th>
                     <th scope="col">
+                       <span>
+                          <strong>Nombre Asignatura</strong>
+                       </span>
+                    </th>
+                    <th scope="col">
                         <span>
-                           <strong>Nombre Asignatura</strong>
+                           <strong>Horas Semana</strong>
                         </span>
                      </th>
                  </tr>
@@ -99,10 +114,13 @@
                     <td>
                        <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                     </td>
-                    <td>{{actual.id}}</td>
-                    <td>{{actual.nombreCompletoEstudiante}}</td>
+                    <td>{{actual.nivel}}</td>
+                    <td>{{actual.carrera}}</td>
+                    <td>{{actual.jornada}}</td>
+                    <td>{{actual.nombreCompleto}}</td>
                     <td>{{actual.codigoAsignatura}}</td>
                     <td>{{actual.nombreAsignatura}}</td>
+                    <td>{{actual.horasSemana}}</td>
                  </tr>
               </tbody>
            </table>
@@ -127,7 +145,7 @@
            </div>
         </div>
      </div>
-     <ng-template #content let-c="close" let-d="dismiss">
+     <!--<ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
            <h4 class="modal-title">
               <span *ngIf="entidadSeleccionada.id != 0">
