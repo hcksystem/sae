@@ -1,3 +1,5 @@
 // MATRICULACION
 - Interfaz para coordinador para subir cupos de estudiantes con asignaturas de la malla
+- Paginar las consultas de matriculacion (Secretaria academica, infomacion de estudiantes, tutores)
+- Secretaria academica debe poder filtrar por periodo lectivo
 - Reportes personalizados
