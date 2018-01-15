@@ -124,6 +124,7 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         this.estudianteSeleccionadoCombo = 0;
         this.paginaActual = 1;
         this.registrosPorPagina = 5;
+        this.entidadSeleccionada = new AsignaturaCupo();
         this.getCarreras();
         this.getJornadas();
         this.getAlumnosMatriculados();
@@ -132,18 +133,18 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
 
     open(content, nuevo){
         if(nuevo){
-        this.resetEntidadSeleccionada();
+           this.resetEntidadSeleccionada();
         }
         this.modalService.open(content)
         .result
         .then((result => {
-        if(result=="save"){
-            this.aceptar();
-        }
+           if(result=="save"){
+              this.aceptar();
+           }
         }),(result => {
-        //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
+           //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
         }));
-    }
+     }
 
     estaSeleccionado(porVerificar): boolean {
         if (this.entidadSeleccionada == null) {
@@ -277,7 +278,28 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         this.refresh();
     }
 
-    onSelect(entidadActual: AsignaturaCupo): void {
-        this.entidadSeleccionada = entidadActual;
+    onSelect(entidadActual: AsignacionAsignaturaCupo): void {
+        this.busy = this.dataService.get(entidadActual.id)
+        .then(respuesta => {
+            this.entidadSeleccionada = respuesta;
+        })
+        .catch(error => {
+
+        });
     }
+
+    delete(entidadParaBorrar: AsignaturaCupo): void {
+        this.busy = this.dataService.remove(entidadParaBorrar.id)
+        .then(respuesta => {
+           if(respuesta){
+              this.toastr.success('La eliminación fue exitosa', 'Eliminación');
+           }else{
+              this.toastr.warning('Se produjo un error', 'Eliminación');
+           }
+           this.refresh();
+        })
+        .catch(error => {
+           this.toastr.success('Se produjo un error', 'Eliminación');
+        });
+     }
 }

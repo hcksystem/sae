@@ -1,4 +1,5 @@
 export class AsignacionAsignaturaCupo {
+    id: number;
     idPersona: number;
     nombreCompleto: string;
     idAsignatura: number;
