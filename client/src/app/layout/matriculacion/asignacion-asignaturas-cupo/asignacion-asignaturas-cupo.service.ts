@@ -27,8 +27,8 @@ export class AsignacionAsignaturasCupoService {
       return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina + '&idCarrera=' + idCarrera + '&idJornada=' + idJornada + '&idPersona=' + idPersona).toPromise().then(response=>response.json() as AsignacionAsignaturaCupo[]).catch(this.handleError);
    }
 
-   getNumeroPaginas(tamanoPagina: number): Promise<any> {
-      return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json()).catch(this.handleError);
+   getNumeroPaginas(tamanoPagina: number, idJornada: number, idCarrera: number, idPersona: number): Promise<any> {
+      return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina + '&idCarrera=' + idCarrera + '&idJornada=' + idJornada + '&idPersona=' + idPersona).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 
    handleError(error: any): Promise<any> {

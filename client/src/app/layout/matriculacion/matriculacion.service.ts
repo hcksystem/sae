@@ -19,9 +19,9 @@ export class MatriculacionService {
    constructor(private http: Http) {
    }
 
-   getAlumnosMatriculados(idCarrera: number, idJornada: number): Promise<PersonaCombo[]>{
+   getAlumnosMatriculados(idCarrera: number, idJornada: number, idEstadoCupo: number): Promise<PersonaCombo[]> {
         const url = `${this.urlBase + 'alumnos_matriculados/consultar'}`;
-        return this.http.get(url + '?idCarrera=' + idCarrera + '&idJornada=' + idJornada)
+        return this.http.get(url + '?idCarrera=' + idCarrera + '&idJornada=' + idJornada + '&idEstadoCupo=' + idEstadoCupo)
         .toPromise()
         .then(response => {
             const toReturn = response.json() as PersonaCombo[];

@@ -11,7 +11,7 @@
             <label class="col-form-label">Mostrar por Carrera</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" id="idCarrera" [(ngModel)]="carreraSeleccionadaCombo" (change)="filtroSeleccionado()">
+            <select class="form-control" id="idCarrera" [(ngModel)]="carreraSeleccionadaCombo" (change)="filtroCarreraSeleccionado()">
                 <option value="0" selected>Seleccione...</option>
                 <option *ngFor="let carrera of carreras" value={{carrera.id}}>{{carrera.descripcion}}</option>
             </select>
@@ -24,7 +24,7 @@
             <label class="col-form-label">Mostrar por Jornada</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" id="idJornada" [(ngModel)]="jornadaSeleccionadaCombo" (change)="filtroSeleccionado()">
+            <select class="form-control" id="idJornada" [(ngModel)]="jornadaSeleccionadaCombo" (change)="filtroJornadaSeleccionado()">
                 <option value="0" selected>Seleccione...</option>
                 <option *ngFor="let jornada of jornadas" value={{jornada.id}}>{{jornada.descripcion}}</option>
             </select>
@@ -37,7 +37,7 @@
             <label class="col-form-label">Mostrar por Estudiante</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" [(ngModel)]="estudianteSeleccionadoCombo" (change)="filtroPersonaSeleccionado()">
+            <select class="form-control" [(ngModel)]="estudianteSeleccionadoCombo" (change)="filtroEstudianteSeleccionado()">
                 <option value="0" selected>Seleccione...</option>
                 <option *ngFor="let persona of personasMostradas" value={{persona.idPersona}}>{{persona.nombreCompleto}}</option>
             </select>
@@ -52,7 +52,7 @@
                  <button type="button" class="btn btn-default" (click)="refresh()">
                     <span class="fa fa-refresh"></span>&nbsp;Leer
                  </button>
-                 <button type="button" class="btn btn-success" (click)="open(content,false)" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
+                 <!--<button type="button" class="btn btn-success" (click)="open(content,false)" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
                     <span class="fa fa-edit"></span>&nbsp;Editar
                  </button>
                  <button type="button" class="btn btn-info" (click)="open(content,true)">
@@ -60,7 +60,7 @@
                  </button>
                  <button type="button" class="btn btn-danger" (click)="delete(entidadSeleccionada); $event.stopPropagation();" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
                     <span class="fa fa-remove"></span>&nbsp;Borrar
-                 </button>
+                 </button>-->
               </div>
            </div>
         </div>

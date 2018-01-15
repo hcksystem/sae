@@ -23,8 +23,8 @@ import { AsignaturaCupo } from 'app/entidades/CRUD/AsignaturaCupo';
 
 export class AsignacionAsignaturasCupoComponent implements OnInit {
    busy: Promise<any>;
-   pagina: 1;
-   tamanoPagina: 20;
+   entidades: AsignacionAsignaturaCupo[] = [];
+   entidadSeleccionada: AsignaturaCupo;
    paginaActual: number;
    paginaUltima: number;
    registrosPorPagina: number;
@@ -35,33 +35,45 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
    jornadas: Jornada[] = [];
    personasMostradas: PersonaCombo[] = [];
    estudianteSeleccionadoCombo: number;
-   entidadSeleccionada: AsignaturaCupo;
    constructor(public toastr: ToastsManager,
         vcr: ViewContainerRef,
         private dataService: AsignaturaCupoService,
         private modalService: NgbModal,
         private matriculacionDataService: MatriculacionService,
         private carreraDataService: CarreraService,
-        private jornadaDataService: JornadaService
+        private jornadaDataService: JornadaService,
+        private asignacionAsignaturaCupoService: AsignacionAsignaturasCupoService
     ) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
-    filtroSeleccionado() {
-        this.getAlumnosMatriculados(this.carreraSeleccionadaCombo, this.jornadaSeleccionadaCombo);
+    filtroCarreraSeleccionado() {
+        this.paginaActual = 1;
+        this.getJornadas();
+        this.getAlumnosMatriculados();
+        this.refresh();
     }
 
-    filtroPersonaSeleccionado() {
+    filtroJornadaSeleccionado() {
+        this.paginaActual = 1;
+        this.getAlumnosMatriculados();
+        this.refresh();
+    }
 
+    filtroEstudianteSeleccionado() {
+        this.paginaActual = 1;
+        this.refresh();
     }
 
     getJornadas() {
+        this.jornadas = [];
         this.busy = this.jornadaDataService
         .getAll()
         .then(entidadesRecuperadas => {
             if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
                 return;
             }
+            this.jornadaSeleccionadaCombo = 0;
             this.jornadas = entidadesRecuperadas;
         })
         .catch(error => {
@@ -70,6 +82,7 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
     }
 
     getCarreras() {
+        this.carreras = [];
         this.busy = this.carreraDataService
         .getAll()
         .then(entidadesRecuperadas => {
@@ -77,21 +90,23 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
                 return;
             }
             this.carreras = entidadesRecuperadas;
+            this.carreraSeleccionadaCombo = 0;
         })
         .catch(error => {
 
         });
     }
 
-    getAlumnosMatriculados(idCarrera: number, idJornada: number) {
+    getAlumnosMatriculados() {
         this.personasMostradas = [];
         this.busy = this.matriculacionDataService
-        .getAlumnosMatriculados(idCarrera, idJornada)
+        .getAlumnosMatriculados(this.carreraSeleccionadaCombo, this.jornadaSeleccionadaCombo, 0)
         .then(entidadesRecuperadas => {
             if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
                 return;
             }
             this.personasMostradas = entidadesRecuperadas;
+            this.estudianteSeleccionadoCombo = 0;
         })
         .catch(error => {
 
@@ -99,9 +114,8 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
     }
 
     refresh(): void {
-        this.getCarreras();
-        this.getJornadas();
-        this.getAlumnosMatriculados(this.carreraSeleccionadaCombo, this.jornadaSeleccionadaCombo);
+        this.getNumeroPaginas();
+        this.getPagina(this.paginaActual, this.registrosPorPagina);
     }
 
     ngOnInit() {
@@ -110,6 +124,9 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         this.estudianteSeleccionadoCombo = 0;
         this.paginaActual = 1;
         this.registrosPorPagina = 5;
+        this.getCarreras();
+        this.getJornadas();
+        this.getAlumnosMatriculados();
         this.refresh();
     }
 
@@ -152,28 +169,10 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         this.entidadSeleccionada = this.crearEntidad();
     }
 
-    getAll(): void {
-        /*this.busy = this.noContactadosDataService
-        .getAll(this.carreraSeleccionadaCombo)
-        .then(entidadesRecuperadas => {
-        if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
-            return;
-        }
-        this.entidades = entidadesRecuperadas
-        if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
-            this.toastr.success('¡No hay datos!', 'Consulta');
-        } else {
-            this.toastr.success('La consulta fue exitosa', 'Consulta');
-        }
-        })
-        .catch(error => {
-        this.toastr.success('Se produjo un error', 'Consulta');
-        });*/
-    }
-
     getPagina(pagina: number, tamanoPagina: number): void {
-        /*this.busy = this.noContactadosDataService
-        .getPagina(pagina, tamanoPagina, this.carreraSeleccionadaCombo)
+        this.entidades = [];
+        this.busy = this.asignacionAsignaturaCupoService
+        .getPagina(this.jornadaSeleccionadaCombo, this.carreraSeleccionadaCombo, this.estudianteSeleccionadoCombo, pagina, tamanoPagina)
         .then(entidadesRecuperadas => {
         if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
             return;
@@ -187,12 +186,12 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         })
         .catch(error => {
         this.toastr.success('Se produjo un error', 'Consulta');
-        });*/
+        });
     }
 
-    getNumeroPaginas(tamanoPagina: number): void{
-        /*this.busy = this.noContactadosDataService
-        .getNumeroPaginas(tamanoPagina, this.carreraSeleccionadaCombo)
+    getNumeroPaginas(): void {
+        this.busy = this.asignacionAsignaturaCupoService
+        .getNumeroPaginas(this.registrosPorPagina, this.jornadaSeleccionadaCombo, this.carreraSeleccionadaCombo, this.estudianteSeleccionadoCombo)
         .then(respuesta => {
             if ( JSON.stringify(respuesta) == 'false' ) {
             return;
@@ -201,7 +200,7 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         })
         .catch(error => {
         //Error al leer las paginas
-        });*/
+        });
     }
 
     isValid(entidadPorEvaluar: AsignaturaCupo): boolean {

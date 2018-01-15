@@ -25,8 +25,7 @@ export class AsignacionRolesComponent implements OnInit {
    busy: Promise<any>;
    entidades: RolSecundario[] = [];
    entidadSeleccionada: RolSecundario;
-   pagina: 1;
-   tamanoPagina: 20;
+   tamanoPagina: number;
    paginaActual: number;
    paginaUltima: number;
    registrosPorPagina: number;
@@ -43,7 +42,7 @@ export class AsignacionRolesComponent implements OnInit {
         private modalService: NgbModal,
         private matriculacionDataService: MatriculacionService,
         private rolesDataService: RolesService) {
-      this.toastr.setRootViewContainerRef(vcr);
+        this.toastr.setRootViewContainerRef(vcr);
    }
 
     filtroPersonaSeleccionado() {
@@ -244,6 +243,7 @@ export class AsignacionRolesComponent implements OnInit {
              return;
          }
          this.paginaUltima = respuesta.paginas;
+         this.paginaActual = 1;
       })
       .catch(error => {
          //Error al leer las paginas
@@ -316,16 +316,16 @@ export class AsignacionRolesComponent implements OnInit {
    }
 
    refresh(): void {
-      this.getNumeroPaginas(this.registrosPorPagina);
-      this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = RolSecundario[0];
-      this.entidadSeleccionada = this.crearEntidad();
-      this.getRolesAsignados();
-      this.getPersonasConRolesAsignados();
-      this.getPersonasPosiblesDeAsignar();
-      this.getRolesPosibles();
-      this.personaSeleccionadoCombo = 0;
-      this.rolSeleccionadoCombo = 0;
+        this.entidades = [];
+        this.entidadSeleccionada = this.crearEntidad();
+        this.getNumeroPaginas(this.registrosPorPagina);
+        this.getPagina(this.paginaActual, this.registrosPorPagina);
+        this.getRolesAsignados();
+        this.getPersonasConRolesAsignados();
+        this.getPersonasPosiblesDeAsignar();
+        this.getRolesPosibles();
+        this.personaSeleccionadoCombo = 0;
+        this.rolSeleccionadoCombo = 0;
    }
 
    getPaginaPrimera():void {
@@ -357,7 +357,8 @@ export class AsignacionRolesComponent implements OnInit {
    }
 
    ngOnInit() {
-      this.paginaActual=1;
+      this.tamanoPagina = 20;
+      this.paginaActual = 1;
       this.registrosPorPagina = 5;
       this.refresh();
    }
