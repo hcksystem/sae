@@ -19,12 +19,12 @@ export class AsignacionAsignaturasCupoService {
        return this.urlBase;
    }
 
-   getAll(): Promise<AsignacionAsignaturaCupo[]> {
-      return this.http.get(this.urlBase + '/leer').toPromise().then(response => response.json() as AsignacionAsignaturaCupo[]).catch(this.handleError);
+   getAll(idJornada: number, idCarrera: number, idPersona: number): Promise<AsignacionAsignaturaCupo[]> {
+        return this.http.get(this.urlBase+'/leer' + '?idCarrera=' + idCarrera + '&idJornada=' + idJornada + '&idPersona=' + idPersona).toPromise().then(response=>response.json() as AsignacionAsignaturaCupo[]).catch(this.handleError);
    }
 
-   getPagina(pagina: number, tamanoPagina: number): Promise<AsignacionAsignaturaCupo[]> {
-      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as AsignacionAsignaturaCupo[]).catch(this.handleError);
+   getPagina(idJornada: number, idCarrera: number, idPersona: number, pagina: number, tamanoPagina: number): Promise<AsignacionAsignaturaCupo[]> {
+      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina + '&idCarrera=' + idCarrera + '&idJornada=' + idJornada + '&idPersona=' + idPersona).toPromise().then(response=>response.json() as AsignacionAsignaturaCupo[]).catch(this.handleError);
    }
 
    getNumeroPaginas(tamanoPagina: number): Promise<any> {
