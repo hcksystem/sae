@@ -4,13 +4,13 @@ import { environment } from '../../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
+import { AsignacionAsignaturaCupo } from 'app/entidades/especifico/Asignacion_Asignatura_Cupo';
 
 @Injectable()
 
 export class AsignacionAsignaturasCupoService {
    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-   private urlBase = environment.apiUrl + 'rolsecundario';
+   private urlBase = environment.apiUrl + 'asignacion_asignaturas_cupo';
 
    constructor(private http: Http) {
    }
@@ -19,40 +19,16 @@ export class AsignacionAsignaturasCupoService {
        return this.urlBase;
    }
 
-   getAll(): Promise<RolSecundario[]> {
-      return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as RolSecundario[]).catch(this.handleError);
+   getAll(): Promise<AsignacionAsignaturaCupo[]> {
+      return this.http.get(this.urlBase + '/leer').toPromise().then(response => response.json() as AsignacionAsignaturaCupo[]).catch(this.handleError);
    }
 
-   getPagina(pagina: number, tamanoPagina: number): Promise<RolSecundario[]> {
-      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as RolSecundario[]).catch(this.handleError);
-   }
-
-   getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<RolSecundario[]> {
-      return this.http.get(this.urlBase+'/leer_filtrado' + '?columna=' + columna + '&tipo_filtro=' + tipoFiltro + '&filtro=' + filtro).toPromise().then(response=>response.json() as RolSecundario[]).catch(this.handleError);
+   getPagina(pagina: number, tamanoPagina: number): Promise<AsignacionAsignaturaCupo[]> {
+      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as AsignacionAsignaturaCupo[]).catch(this.handleError);
    }
 
    getNumeroPaginas(tamanoPagina: number): Promise<any> {
       return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json()).catch(this.handleError);
-   }
-
-   get(id: number): Promise<RolSecundario> {
-      const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>(response.json() as RolSecundario[])[0]).catch(this.handleError);
-   }
-
-   remove(id: number): Promise<boolean> {
-      const url = `${this.urlBase+'/borrar'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as RolSecundario).catch(this.handleError);
-   }
-
-   create(entidadTransporte: RolSecundario): Promise<boolean> {
-      const url = `${this.urlBase+'/crear'}`;
-      return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json()).catch(this.handleError);
-   }
-
-   update(entidadTransporte: RolSecundario): Promise<boolean> {
-      const url = `${this.urlBase+'/actualizar'}`;
-      return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 
    handleError(error: any): Promise<any> {
