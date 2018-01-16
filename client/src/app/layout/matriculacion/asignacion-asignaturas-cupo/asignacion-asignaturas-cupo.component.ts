@@ -35,6 +35,8 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
    jornadas: Jornada[] = [];
    personasMostradas: PersonaCombo[] = [];
    estudianteSeleccionadoCombo: number;
+   estudianteDialogoSeleccionadoCombo: number;
+   mallaDialogoSeleccionadoCombo: number;
    constructor(public toastr: ToastsManager,
         vcr: ViewContainerRef,
         private dataService: AsignaturaCupoService,
