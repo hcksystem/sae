@@ -15,6 +15,10 @@ import { JornadaService } from 'app/CRUD/jornada/jornada.service';
 import { AsignacionAsignaturaCupo } from 'app/entidades/especifico/Asignacion_Asignatura_Cupo';
 import { AsignaturaCupoService } from 'app/CRUD/asignaturacupo/asignaturacupo.service';
 import { AsignaturaCupo } from 'app/entidades/CRUD/AsignaturaCupo';
+import { Malla } from 'app/entidades/CRUD/Malla';
+import { MallaService } from 'app/CRUD/malla/malla.service';
+import { AsignaturaService } from 'app/CRUD/asignatura/asignatura.service';
+import { Asignatura } from 'app/entidades/CRUD/Asignatura';
 @Component({
    selector: 'app-asignacion-asignaturas-cupo',
    templateUrl: './asignacion-asignaturas-cupo.component.html',
@@ -33,10 +37,14 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
    carreraSeleccionadaCombo: number;
    carreras: Carrera[] = [];
    jornadas: Jornada[] = [];
+   mallas: Malla[] = [];
+   asignaturas: Asignatura[] = [];
    personasMostradas: PersonaCombo[] = [];
    estudianteSeleccionadoCombo: number;
    estudianteDialogoSeleccionadoCombo: number;
    mallaDialogoSeleccionadoCombo: number;
+   carreraDialogoSeleccionadoCombo: number;
+   asignaturaDialogoSeleccionadoCombo: number;
    constructor(public toastr: ToastsManager,
         vcr: ViewContainerRef,
         private dataService: AsignaturaCupoService,
@@ -44,6 +52,8 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         private matriculacionDataService: MatriculacionService,
         private carreraDataService: CarreraService,
         private jornadaDataService: JornadaService,
+        private mallaDataService: MallaService,
+        private asignaturaDataService: AsignaturaService,
         private asignacionAsignaturaCupoService: AsignacionAsignaturasCupoService
     ) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -99,6 +109,38 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         });
     }
 
+    getAsignaturas(idMalla: number) {
+        this.asignaturas = [];
+        this.busy = this.asignaturaDataService
+        .getFiltrado('idMalla', 'coincide', idMalla.toString())
+        .then(entidadesRecuperadas => {
+            if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+                return;
+            }
+            this.asignaturas = entidadesRecuperadas;
+            this.asignaturaDialogoSeleccionadoCombo = 0;
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getMallas(idCarrera: number) {
+        this.mallas = [];
+        this.busy = this.mallaDataService
+        .getFiltrado('idCarrera', 'coincide', idCarrera.toString())
+        .then(entidadesRecuperadas => {
+            if ( JSON.stringify(entidadesRecuperadas) == 'false' ) {
+                return;
+            }
+            this.mallas = entidadesRecuperadas;
+            this.mallaDialogoSeleccionadoCombo = 0;
+        })
+        .catch(error => {
+
+        });
+    }
+
     getAlumnosMatriculados() {
         this.personasMostradas = [];
         this.busy = this.matriculacionDataService
@@ -121,6 +163,9 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.carreraDialogoSeleccionadoCombo = 0;
+        this.estudianteDialogoSeleccionadoCombo = 0;
+        this.mallaDialogoSeleccionadoCombo = 0;
         this.carreraSeleccionadaCombo = 0;
         this.jornadaSeleccionadaCombo = 0;
         this.estudianteSeleccionadoCombo = 0;

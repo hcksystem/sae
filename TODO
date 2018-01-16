@@ -1,5 +1,4 @@
 // MATRICULACION
-- Crear Servicio para leer asignaturas filtradas por malla.
 - Crear Dialogos para agregar nuevas asignaturas a un cupo.
 - Paginar las consultas de matriculacion (Secretaria academica, infomacion de estudiantes, tutores)
 - Secretaria academica debe poder filtrar por periodo lectivo

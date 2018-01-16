@@ -10,6 +10,8 @@ import { MatriculacionService } from 'app/layout/matriculacion/matriculacion.ser
 import { PersonaService } from 'app/CRUD/persona/persona.service';
 import { JornadaService } from 'app/CRUD/jornada/jornada.service';
 import { AsignaturaCupoService } from 'app/CRUD/asignaturacupo/asignaturacupo.service';
+import { MallaService } from 'app/CRUD/malla/malla.service';
+import { AsignaturaService } from 'app/CRUD/asignatura/asignatura.service';
 
 @NgModule({
    imports: [
@@ -21,6 +23,8 @@ import { AsignaturaCupoService } from 'app/CRUD/asignaturacupo/asignaturacupo.se
     CarreraService,
     AsignaturaCupoService,
     JornadaService,
+    MallaService,
+    AsignaturaService,
     MatriculacionService],
    declarations: [AsignacionAsignaturasCupoComponent],
 })
