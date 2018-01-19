@@ -8,6 +8,19 @@
     <div class="form-group row">
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
         <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Mostrar por Período Lectivo</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idPeriodoLectivo" [(ngModel)]="periodoLectivoSeleccionado" (change)="filtroSeleccionado()">
+                <option value="0" selected>Todos</option>
+                <option *ngFor="let periodo of periodosLectivos" value={{periodo.id}}>{{periodo.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
             <label class="col-form-label">Mostrar por Carrera</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
@@ -24,7 +37,7 @@
             <label class="col-form-label">Mostrar por Estudiante</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <select class="form-control" [(ngModel)]="estudianteSeleccionadoCombo" (change)="filtroPersonaSeleccionado()">
+            <select class="form-control" [(ngModel)]="estudianteSeleccionadoCombo" (change)="filtroSeleccionado()">
                 <option value="0" selected>Todas</option>
                 <option *ngFor="let persona of personasMostradas" value={{persona.idPersona}}>{{persona.nombreCompleto}}</option>
             </select>

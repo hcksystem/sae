@@ -100,6 +100,8 @@ export class CertificadoMatriculaComponent implements OnInit {
     datosCupo: DatosCupo;
     personasMatriculadas: PersonaCombo[] = [];
     personasMostradas: PersonaCombo[] = [];
+    periodosLectivos: PeriodoLectivo[] = [];
+    periodoLectivoSeleccionado: number;
     constructor(
         private periodoLectivoDataService: PeriodoLectivoService,
         private matriculaDataService: MatriculaService,
@@ -127,13 +129,32 @@ export class CertificadoMatriculaComponent implements OnInit {
             this.toastr.setRootViewContainerRef(vcr);
     }
 
+    actualizar() {
+        this.estudiante = new Persona();
+        this.datosInstituto = new DatosInstituto();
+        this.certificadoMatriculaSeleccionada = null;
+        this.seleccionado = false;
+        this.filtroSeleccionado();
+        this.getCertificadosMatriculas();
+        this.estudiante = new Persona();
+        this.datosInstituto = new DatosInstituto();
+        this.certificadoMatriculaSeleccionada = null;
+        this.seleccionado = false;
+        this.periodoLectivo = new PeriodoLectivo();
+        this.paginaActual = 1;
+        this.getEstudiantesMatriculados();
+        this.getCarreras();
+        this.getPeriodosLectivos();
+        this.filtroSeleccionado();
+        this.getCuentaPaginas();
+    }
+
     ngOnInit() {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
         this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
         let autorizado = false;
-        this.estudianteSeleccionadoCombo = 0;
         this.rolesSecundarios.forEach(rol => {
             if ( rol.idRol == 5 ) {
                 autorizado = true;
@@ -145,14 +166,36 @@ export class CertificadoMatriculaComponent implements OnInit {
         if (!autorizado) {
             this.router.navigate(['/login']);
         }
-        this.estudiante = new Persona();
-        this.datosInstituto = new DatosInstituto();
-        this.certificadoMatriculaSeleccionada = null;
-        this.seleccionado = false;
+        this.estudianteSeleccionadoCombo = 0;
+        this.periodoLectivoSeleccionado = 0;
         this.carreraSeleccionadaCombo = 0;
-        this.periodoLectivo = new PeriodoLectivo();
-        this.getCertificadosMatriculas(0);
-        this.getCarreras();
+        this.actualizar();
+    }
+
+    getCuentaPaginas() {
+        this.busy = this.matriculacionDataService.getPaginasMatriculaFiltrado(this.estudianteSeleccionadoCombo, this.carreraSeleccionadaCombo, this.periodoLectivoSeleccionado, 5)
+        .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
+            this.paginaUltima = respuesta;
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getPeriodosLectivos() {
+        this.busy = this.periodoLectivoDataService.getAll()
+        .then(respuesta => {
+            if ( JSON.stringify(respuesta) == 'false' ) {
+                return;
+            }
+            this.periodosLectivos = respuesta;
+        })
+        .catch(error => {
+
+        });
     }
 
     getPeriodoLectivo(id: number): void {
@@ -170,7 +213,10 @@ export class CertificadoMatriculaComponent implements OnInit {
 
     filtroSeleccionado() {
         this.certificadoMatriculaSeleccionada = null;
-        this.getCertificadosMatriculas(this.carreraSeleccionadaCombo);
+        this.paginaActual = 1;
+        this.getCertificadosMatriculas();
+        this.getEstudiantesMatriculados();
+        this.getCuentaPaginas();
     }
 
     getCarreras() {
@@ -187,7 +233,9 @@ export class CertificadoMatriculaComponent implements OnInit {
     }
 
     getEstudiantesMatriculados(): void {
-        this.busy = this.matriculacionDataService.getPersonasMatriculadas()
+        this.personasMostradas = [];
+        this.personasMatriculadas = [];
+        this.busy = this.matriculacionDataService.getPersonasMatriculadas(this.carreraSeleccionadaCombo, this.periodoLectivoSeleccionado, 4)
         .then(respuesta => {
             if ( JSON.stringify(respuesta) == 'false' ) {
                 return;
@@ -200,46 +248,16 @@ export class CertificadoMatriculaComponent implements OnInit {
         });
     }
 
-    actualizar() {
-        this.estudiante = new Persona();
-        this.datosInstituto = new DatosInstituto();
-        this.certificadoMatriculaSeleccionada = null;
-        this.seleccionado = false;
-        this.filtroSeleccionado();
-        this.getCertificadosMatriculas(this.carreraSeleccionadaCombo);
-
-    }
-
     getPaginaPrimera() {
-        if ( this.estudianteSeleccionadoCombo == 0 ) {
-            this.seleccionado = false;
-            this.certificadosMatriculasPaginaVisible = [];
-            for ( let i = 0; i < 5; i++ ) {
-                if ( i < this.certificadosMatriculas.length ) {
-                    this.certificadosMatriculasPaginaVisible.push(this.certificadosMatriculas[i]);
-                }
-            }
+        if ( this.paginaActual > 1 ) {
             this.paginaActual = 1;
-            if ( Math.round( this.certificadosMatriculas.length / 5 ) < this.certificadosMatriculas.length / 5 ) {
-                this.paginaUltima = Math.round( this.certificadosMatriculas.length / 5 ) + 1;
-            } else {
-                this.paginaUltima = Math.round( this.certificadosMatriculas.length / 5 );
-            }
-            if ( this.paginaUltima == 0 ) {
-                this.paginaUltima = 1;
-            }
+            this.getPagina(this.paginaActual);
         }
     }
 
     getPagina(pagina: number) {
         this.seleccionado = false;
-        this.certificadosMatriculasPaginaVisible = [];
-        const inicial = (pagina - 1) * 5;
-        for ( let i = 0; i < 5; i++ ) {
-            if ( inicial + i < this.certificadosMatriculas.length ) {
-                this.certificadosMatriculasPaginaVisible.push(this.certificadosMatriculas[inicial + i]);
-            }
-        }
+        this.getCertificadosMatriculas();
     }
 
     getPaginaAnterior() {
@@ -257,9 +275,9 @@ export class CertificadoMatriculaComponent implements OnInit {
     }
 
     getPaginaUltima() {
-        if ( this.estudianteSeleccionadoCombo == 0 ) {
-           this.paginaActual = this.paginaUltima;
-           this.getPagina(this.paginaActual);
+        if ( this.paginaActual < this.paginaUltima ) {
+            this.paginaActual = this.paginaUltima;
+            this.getPagina(this.paginaActual);
         }
     }
 
@@ -278,57 +296,18 @@ export class CertificadoMatriculaComponent implements OnInit {
         return porVerificar.id === this.certificadoMatriculaSeleccionada.id;
     }
 
-    getCertificadosMatriculas(idCarrera: number): void {
-        this.busy = this.matriculaDataService.getAll()
+    getCertificadosMatriculas(): void {
+        this.certificadosMatriculasPaginaVisible = [];
+        this.busy = this.matriculacionDataService.getMatriculaFiltrado(this.estudianteSeleccionadoCombo, this.carreraSeleccionadaCombo, this.periodoLectivoSeleccionado, this.paginaActual, 5)
         .then(respuesta => {
             if ( JSON.stringify(respuesta) == 'false' ) {
                 return;
             }
-            if ( idCarrera == 0) {
-                this.certificadosMatriculas = respuesta;
-                this.estudianteSeleccionadoCombo = 0;
-                this.getEstudiantesMatriculados();
-                this.getPaginaPrimera();
-            } else {
-                this.certificadosMatriculas = [];
-                this.personasMostradas = [];
-                respuesta.forEach(element => {
-                    if ( element.idCarrera == idCarrera ) {
-                        this.certificadosMatriculas.push(element);
-                        this.personasMatriculadas.forEach(personaMatriculada => {
-                            if ( element.idPersona == personaMatriculada.idPersona ) {
-                                this.personasMostradas.push(personaMatriculada);
-                            }
-                        });
-                    }
-                });
-                this.estudianteSeleccionadoCombo = 0;
-                this.personasMostradas.sort((a, b) => {
-                    if ( a.nombreCompleto > b.nombreCompleto) {
-                        return 1;
-                    }
-                    if ( a.nombreCompleto < b.nombreCompleto) {
-                        return -1;
-                    }
-                    return 0;
-                });
-                this.getPaginaPrimera();
-            }
+            this.certificadosMatriculasPaginaVisible = respuesta;
         })
         .catch(error => {
 
         });
-    }
-
-    filtroPersonaSeleccionado(): void {
-        this.certificadosMatriculasPaginaVisible = [];
-        this.certificadosMatriculas.forEach(certificadoMatricula => {
-            if ( certificadoMatricula.idPersona == this.estudianteSeleccionadoCombo ) {
-                this.certificadosMatriculasPaginaVisible.push(certificadoMatricula);
-            }
-        });
-        this.paginaActual = 1;
-        this.paginaUltima = 1;
     }
 
     getPersona(idPersona: number): void {

@@ -192,6 +192,10 @@ export class PerfilComponent implements OnInit {
         });
     }
 
+    getPicture() {
+        alert("hola");
+    }
+
     cancelar(): void {
         this.toastr.warning('Los cambios fueron descartados', 'Actualización');
         this.ngOnInit();

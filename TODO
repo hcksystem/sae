@@ -1,5 +1,3 @@
 // MATRICULACION
-- Crear Dialogos para agregar nuevas asignaturas a un cupo.
-- Paginar las consultas de matriculacion (Secretaria academica, infomacion de estudiantes, tutores)
-- Secretaria academica debe poder filtrar por periodo lectivo
+- Crear y actualizar a traves de  Dialogos para agregar nuevas asignaturas a un cupo.
 - Reportes personalizados

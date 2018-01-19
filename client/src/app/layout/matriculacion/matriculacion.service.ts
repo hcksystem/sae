@@ -10,6 +10,7 @@ import { environment } from './../../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
 import { Roles } from 'app/entidades/CRUD/Roles';
+import { Matricula } from 'app/entidades/CRUD/Matricula';
 @Injectable()
 
 export class MatriculacionService {
@@ -85,8 +86,30 @@ export class MatriculacionService {
         .catch(this.handleError);
     }
 
-   getPersonasMatriculadas(): Promise<PersonaCombo[]> {
-        const url = `${this.urlBase + 'alumnos_matriculados/consultar?idEstadoCupo=4'}`;
+    getPaginasMatriculaFiltrado(idPersona: number, idCarrera: number, idPeriodoLectivo: number, registros_por_pagina: number): Promise<number> {
+        const url = `${this.urlBase + 'datos_estudiantes_matricula/numero_paginas?idPeriodoLectivo= ' + idPeriodoLectivo + '&registros_por_pagina=' + registros_por_pagina + '&idPersona=' + idPersona + '&idCarrera=' + idCarrera}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => {
+            const toReturn = response.json();
+            return toReturn[0].paginas;
+        })
+        .catch(this.handleError);
+    }
+
+    getMatriculaFiltrado(idPersona: number, idCarrera: number, idPeriodoLectivo: number, pagina: number, registros_por_pagina: number): Promise<Matricula[]> {
+        const url = `${this.urlBase + 'datos_estudiantes_matricula/leer_paginado?idPersona=' + idPersona + '&idCarrera=' + idCarrera + '&idPeriodoLectivo=' + idPeriodoLectivo + '&registros_por_pagina=' + registros_por_pagina + '&pagina=' + pagina}`;
+        return this.http.get(url)
+        .toPromise()
+        .then(response => {
+            const toReturn = response.json() as PersonaCombo[];
+            return toReturn;
+        })
+        .catch(this.handleError);
+    }
+
+   getPersonasMatriculadas(idCarrera: number, idPeriodoLectivo: number, idEstadoCupo: number): Promise<PersonaCombo[]> {
+        const url = `${this.urlBase + 'alumnos_matriculados/consultar?idEstadoCupo=' + idEstadoCupo + '&idCarrera=' + idCarrera + '&idPeriodoLectivo=' + idPeriodoLectivo}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
