@@ -163,6 +163,7 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.asignaturaDialogoSeleccionadoCombo = 0;
         this.carreraDialogoSeleccionadoCombo = 0;
         this.estudianteDialogoSeleccionadoCombo = 0;
         this.mallaDialogoSeleccionadoCombo = 0;
