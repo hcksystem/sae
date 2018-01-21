@@ -458,13 +458,13 @@
             <label class="col-form-label">Fotografía</label>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <input type="file" class="form-control" id="foto" placeholder="Fotografía">
+            <input type="file" class="form-control" id="foto" placeholder="Fotografía" #fileInput (change)="CodificarArchivo($event)">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
     </div>
     <div class="form-group row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
-            <img src="https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.iconhot.com%2Ficon%2Fpng%2Fglossy%2F256%2Fuser-male-3.png&f=1" class="img-circle" alt="Foto" width="150px" (click)="getPicture()">
+            <img src="data:{{fotoType}};base64,{{fotoFile}}" class="img-circle" width="150px" (click)="fileInput.click()">
         </div>
     </div>
     <div class="form-group row">

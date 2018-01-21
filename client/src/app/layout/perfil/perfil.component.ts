@@ -1,5 +1,5 @@
 import { LoginResult } from '../../entidades/especifico/Login-Result';
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // SERVICIOS
 import { PersonaService } from 'app/CRUD/persona/persona.service';
@@ -35,6 +35,7 @@ import { Estudiante } from 'app/entidades/CRUD/Estudiante';
     styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
+    @ViewChild('fileInput') fileInput;
     busy: Promise<any>;
     personaLogeada: Persona;
     rol: number;
@@ -59,6 +60,9 @@ export class PerfilComponent implements OnInit {
     tiposDiscapacidad: TipoDiscapacidad[] = [];
     tieneDiscapacidad: Boolean;
     esEstudiante: Boolean;
+    fotoNombre: string;
+    fotoType: string;
+    fotoFile: string;
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
         private personaDataService: PersonaService,
         private generoDataService: GeneroService,
@@ -73,6 +77,23 @@ export class PerfilComponent implements OnInit {
         private estudianteDataService: EstudianteService,
         private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService) {
             this.toastr.setRootViewContainerRef(vcr);
+    }
+
+    fileChange() {
+        //this.fileInput.nativeElement.value = '' vacia el archivo seleccionado;
+    }
+
+    CodificarArchivo(event) {
+        const reader = new FileReader();
+        if (event.target.files && event.target.files.length > 0) {
+            const file = event.target.files[0];
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                this.fotoNombre = file.name;
+                this.fotoType = file.type;
+                this.fotoFile = reader.result.split(',')[1];
+            };
+        }
     }
 
     ngOnInit() {
