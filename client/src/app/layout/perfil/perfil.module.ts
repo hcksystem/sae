@@ -18,6 +18,7 @@ import { EstudianteService } from 'app/CRUD/estudiante/estudiante.service';
 import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionprocedencia/tipoinstitucionprocedencia.service';
 import { NivelTituloService } from 'app/CRUD/niveltitulo/niveltitulo.service';
 import { UbicacionService } from 'app/CRUD/ubicacion/ubicacion.service';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,19 @@ import { UbicacionService } from 'app/CRUD/ubicacion/ubicacion.service';
     FormsModule,
     PerfilRoutingModule
   ],
-  providers: [GeneroService, EtniaService, TipoIngresosService, OcupacionService, TipoDiscapacidadService, TipoSangreService, EstadoCivilService, TituloService, EstudianteService, TipoInstitucionProcedenciaService, NivelTituloService, UbicacionService],
+  providers: [GeneroService,
+              EtniaService,
+              TipoIngresosService,
+              OcupacionService,
+              TipoDiscapacidadService,
+              TipoSangreService,
+              EstadoCivilService,
+              TituloService,
+              EstudianteService,
+              TipoInstitucionProcedenciaService,
+              NivelTituloService,
+              FotoPerfilService,
+              UbicacionService],
   declarations: [PerfilComponent]
 })
 export class PerfilModule { }

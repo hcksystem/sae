@@ -29,6 +29,8 @@ import { TipoInstitucionProcedencia } from 'app/entidades/CRUD/TipoInstitucionPr
 import { NivelTitulo } from 'app/entidades/CRUD/NivelTitulo';
 import { Ubicacion } from 'app/entidades/CRUD/Ubicacion';
 import { Estudiante } from 'app/entidades/CRUD/Estudiante';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
+import { FotoPerfil } from 'app/entidades/CRUD/FotoPerfil';
 @Component({
     selector: 'app-perfil',
     templateUrl: './perfil.component.html',
@@ -75,12 +77,9 @@ export class PerfilComponent implements OnInit {
         private ubicacionDataService: UbicacionService,
         private nivelTituloDataService: NivelTituloService,
         private estudianteDataService: EstudianteService,
-        private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService) {
+        private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService,
+        private fotoPerfilDataService: FotoPerfilService) {
             this.toastr.setRootViewContainerRef(vcr);
-    }
-
-    fileChange() {
-        //this.fileInput.nativeElement.value = '' vacia el archivo seleccionado;
     }
 
     CodificarArchivo(event) {
@@ -202,6 +201,7 @@ export class PerfilComponent implements OnInit {
         } else {
             this.esEstudiante = false;
         }
+        this.getFotoPerfil();
     }
 
     getProvinciasDomicilio() {
@@ -211,10 +211,6 @@ export class PerfilComponent implements OnInit {
                 this.provinciasDomicilio.push(element);
             }
         });
-    }
-
-    getPicture() {
-        alert("hola");
     }
 
     cancelar(): void {
@@ -278,8 +274,28 @@ export class PerfilComponent implements OnInit {
 
     }
 
-   update(personaParaActualizar: Persona): void {
-        this.busy = this.personaDataService.update(personaParaActualizar)
+    getFotoPerfil() {
+        this.busy = this.fotoPerfilDataService.getFiltrado('idPersona', 'coincide' , this.personaLogeada.id.toString())
+        .then(respuesta => {
+            if ( JSON.stringify(respuesta) == '[0]' ) {
+                return;
+            }
+            this.fotoFile = respuesta[0].adjunto;
+            this.fotoNombre = respuesta[0].nombreArchivo;
+            this.fotoType = respuesta[0].tipoArchivo;
+        })
+        .catch(error => {
+            this.toastr.warning('Se produjo un error', 'Actualización');
+        });
+    }
+
+    actualizarFoto(personaParaActualizar: Persona) {
+        const fotoPerfil = new FotoPerfil();
+        fotoPerfil.adjunto = this.fotoFile;
+        fotoPerfil.nombreArchivo = this.fotoNombre;
+        fotoPerfil.tipoArchivo = this.fotoType;
+        fotoPerfil.idPersona = personaParaActualizar.id;
+        this.busy = this.fotoPerfilDataService.update(fotoPerfil)
         .then(respuesta => {
             if (respuesta) {
                 this.toastr.success('La actualización fue exitosa', 'Actualización');
@@ -288,9 +304,24 @@ export class PerfilComponent implements OnInit {
                 newLogResult.persona = personaParaActualizar;
                 localStorage.setItem('logedResult', JSON.stringify(newLogResult));
             } else {
+                alert('hola');
                 this.toastr.warning('Se produjo un error', 'Actualización');
             }
             this.ngOnInit();
+        })
+        .catch(error => {
+            this.toastr.warning('Se produjo un error', 'Actualización');
+        });
+    }
+
+   update(personaParaActualizar: Persona): void {
+        this.busy = this.personaDataService.update(personaParaActualizar)
+        .then(respuesta => {
+            if (respuesta) {
+                this.actualizarFoto(personaParaActualizar);
+            } else {
+                this.toastr.warning('Se produjo un error', 'Actualización');
+            }
         })
         .catch(error => {
             this.toastr.warning('Se produjo un error', 'Actualización');

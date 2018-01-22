@@ -27,6 +27,9 @@ CREATE TABLE RolSecundario (
 CREATE TABLE FotoPerfil (
 	id INT NOT NULL AUTO_INCREMENT,
     idPersona INT NULL,
+    tipoArchivo VARCHAR(255) NULL,
+    nombreArchivo VARCHAR(255) NULL,
+    adjunto LONGBLOB NULL,
     PRIMARY KEY (id)
 );
 

@@ -41,6 +41,21 @@
                         <strong>idPersona</strong>
                      </span>
                   </th>
+                  <th scope="col">
+                     <span>
+                        <strong>tipoArchivo</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>nombreArchivo</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>adjunto</strong>
+                     </span>
+                  </th>
                </tr>
             </thead>
             <tbody>
@@ -50,6 +65,9 @@
                   </td>
                   <td>{{actual.id}}</td>
                   <td>{{actual.idPersona}}</td>
+                  <td>{{actual.tipoArchivo}}</td>
+                  <td>{{actual.nombreArchivo}}</td>
+                  <td>{{actual.adjunto}}</td>
                </tr>
             </tbody>
          </table>
@@ -100,6 +118,24 @@
             <label for="idPersona" class="col-sm-4 col-form-label">idPersona</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="idPersona" name="idPersona" placeholder="idPersona" [(ngModel)]="entidadSeleccionada.idPersona">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="tipoArchivo" class="col-sm-4 col-form-label">tipoArchivo</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="tipoArchivo" name="tipoArchivo" placeholder="tipoArchivo" [(ngModel)]="entidadSeleccionada.tipoArchivo">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="nombreArchivo" class="col-sm-4 col-form-label">nombreArchivo</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="nombreArchivo" name="nombreArchivo" placeholder="nombreArchivo" [(ngModel)]="entidadSeleccionada.nombreArchivo">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="adjunto" class="col-sm-4 col-form-label">adjunto</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="adjunto" name="adjunto" placeholder="adjunto" [(ngModel)]="entidadSeleccionada.adjunto">
             </div>
          </div>
          </form>
