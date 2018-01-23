@@ -1,11 +1,16 @@
 <?php
 include_once('../controladores/Controlador_Base.php');
 include_once('../entidades/CRUD/AsignaturaCupo.php');
+include_once('../controladores/CRUD/Controlador_cupo.php');
 class Controlador_asignaturacupo extends Controlador_Base
 {
    function crear($args)
    {
-      $asignaturacupo = new AsignaturaCupo($args["id"],$args["idCupo"],$args["idAsignatura"]);
+      $controladorCupo = new Controlador_cupo();
+      $filtros = ["columna"=>"idPersona","tipo_filtro"=>"coincide","filtro"=>$args["idPersona"]];
+      $respuesta = $controladorCupo->leer_filtrado($filtros);
+      $idCupo = $respuesta[0]['id'];
+      $asignaturacupo = new AsignaturaCupo($args["id"],$idCupo,$args["idAsignatura"]);
       $sql = "INSERT INTO AsignaturaCupo (idCupo,idAsignatura) VALUES (?,?);";
       $parametros = array($asignaturacupo->idCupo,$asignaturacupo->idAsignatura);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
