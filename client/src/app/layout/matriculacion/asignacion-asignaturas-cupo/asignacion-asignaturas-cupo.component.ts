@@ -153,6 +153,7 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
     }
 
     refresh(): void {
+        this.paginaActual = 1;
         this.getNumeroPaginas();
         this.getPagina(this.paginaActual, this.registrosPorPagina);
     }
