@@ -20,11 +20,14 @@ class Controlador_fotoperfil extends Controlador_Base
       $idFotoPerfil = 0;
       $filtros = ["columna"=>"idPersona","tipo_filtro"=>"coincide","filtro"=>$args["idPersona"]];
       $respuesta = $this->leer_filtrado($filtros);
-      if($respuesta->id == 0 || $respuesta->id == null){
+      $idFotoPerfil = $respuesta[0]['id'];
+      if($idFotoPerfil == 0 || $idFotoPerfil == null){
             $this->crear($args);
+            return true;
       }else{
-            $args["id"]=$respuesta->id;
+            $args["id"]=$idFotoPerfil;
             $this->actualizar($args);
+            return true;
       }
    }
 

@@ -16,6 +16,8 @@ sudo apt-get install openjdk-8-jdk openjdk-8-jre
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export PATH=${PATH}:~/Android/Sdk/tools
 export PATH=${PATH}:~/Android/Sdk/platform-tools
+export PATH=$PATH:/opt/gradle/gradle-4.4.1/bin
+
 sudo update-alternatives --config javac /// Y SELECCIONAS EL 1.8
 sudo apt install gradle
 sudo a2enmod rewrite
