@@ -14,6 +14,7 @@ export class SidebarComponent implements OnInit {
     secretariaAcademica: Boolean;
     tutor: Boolean;
     vicerector: Boolean;
+    coordinador: Boolean;
     sec: Boolean;
     rol: number;
     personaLogeada: Persona;
@@ -30,6 +31,7 @@ export class SidebarComponent implements OnInit {
         this.tutor = false;
         this.secretariaAcademica = false;
         this.rolMatriculacion = false;
+        this.coordinador = false;
         this.activarPrivilegiosRol(this.rol);
         this.rolesSecundarios.forEach(rolSecundario => {
             this.activarPrivilegiosRol(rolSecundario.idRol);
@@ -62,6 +64,10 @@ export class SidebarComponent implements OnInit {
         if (rol == 8) {
             this.rolMatriculacion = true;
             this.vicerector = true;
+        }
+        if (rol == 9) {
+            this.rolMatriculacion = true;
+            this.coordinador = true;
         }
     }
 
