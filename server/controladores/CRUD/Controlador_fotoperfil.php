@@ -61,10 +61,10 @@ class Controlador_fotoperfil extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM FotoPerfil;";
+         $sql = "SELECT FotoPerfil.id, FotoPerfil.idPersona, FotoPerfil.tipoArchivo, FotoPerfil.nombreArchivo, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto' FROM FotoPerfil INNER JOIN Persona ON FotoPerfil.idPersona = Persona.id;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM FotoPerfil WHERE id = ?;";
+         $sql = "SELECT CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto', FotoPerfil.id, FotoPerfil.idPersona, FotoPerfil.tipoArchivo, FotoPerfil.nombreArchivo, FotoPerfil.adjunto FROM FotoPerfil INNER JOIN Persona ON FotoPerfil.idPersona = Persona.id WHERE FotoPerfil.id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -75,7 +75,7 @@ class Controlador_fotoperfil extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM FotoPerfil LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT FotoPerfil.id, FotoPerfil.idPersona, FotoPerfil.tipoArchivo, FotoPerfil.nombreArchivo, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto' FROM FotoPerfil INNER JOIN Persona ON FotoPerfil.idPersona = Persona.id LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
