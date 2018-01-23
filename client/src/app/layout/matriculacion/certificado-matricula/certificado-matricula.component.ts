@@ -39,6 +39,7 @@ import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
 import { forEach } from '@angular/router/src/utils/collection';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
 @Component({
     selector: 'app-certificado-matricula',
     templateUrl: './certificado-matricula.component.html',
@@ -102,6 +103,11 @@ export class CertificadoMatriculaComponent implements OnInit {
     personasMostradas: PersonaCombo[] = [];
     periodosLectivos: PeriodoLectivo[] = [];
     periodoLectivoSeleccionado: number;
+    srcFoto: string;
+    fotoType: string;
+    fotoNombre: string;
+    fotoFile: string;
+
     constructor(
         private periodoLectivoDataService: PeriodoLectivoService,
         private matriculaDataService: MatriculaService,
@@ -125,8 +131,25 @@ export class CertificadoMatriculaComponent implements OnInit {
         private carreraDataService: CarreraService,
         private router: Router,
         private rd: Renderer2,
+        private fotoPerfilDataService: FotoPerfilService,
         private jornadaDataService: JornadaService) {
             this.toastr.setRootViewContainerRef(vcr);
+    }
+
+    getFotoPerfil() {
+        this.srcFoto = './../../../../assets/images/user.png';
+        this.busy = this.fotoPerfilDataService.getFiltrado('idPersona', 'coincide' , this.certificadoMatriculaSeleccionada.idPersona.toString())
+        .then(respuesta => {
+            if ( JSON.stringify(respuesta) == '[0]' ) {
+                return;
+            }
+            this.fotoFile = respuesta[0].adjunto;
+            this.fotoNombre = respuesta[0].nombreArchivo;
+            this.fotoType = respuesta[0].tipoArchivo;
+            this.srcFoto = 'data:' + this.fotoType + ';base64,' + this.fotoFile;
+        })
+        .catch(error => {
+        });
     }
 
     actualizar() {
@@ -155,6 +178,7 @@ export class CertificadoMatriculaComponent implements OnInit {
         this.rol = logedResult.idRol;
         this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
         let autorizado = false;
+        this.srcFoto = './../../../../assets/images/user.png';
         this.rolesSecundarios.forEach(rol => {
             if ( rol.idRol == 5 ) {
                 autorizado = true;
@@ -319,6 +343,7 @@ export class CertificadoMatriculaComponent implements OnInit {
             this.estudiante = respuesta;
             this.getHojaDatos(this.estudiante);
             this.getDatosCupo(this.estudiante.id);
+            this.getFotoPerfil();
         })
         .catch(error => {
 

@@ -39,6 +39,7 @@ import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
 import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
 @Component({
     selector: 'app-secretaria-academica',
     templateUrl: './secretaria-academica.component.html',
@@ -102,6 +103,11 @@ export class SecretariaAcademicaComponent implements OnInit {
     personasPosibles: PersonaCombo[] = [];
     personasMostradas: PersonaCombo[] = [];
     estudianteSeleccionadoCombo: number;
+    srcFoto: string;
+    fotoType: string;
+    fotoNombre: string;
+    fotoFile: string;
+
     constructor(
         private periodoLectivoDataService: PeriodoLectivoService,
         private matriculaDataService: MatriculaService,
@@ -125,6 +131,7 @@ export class SecretariaAcademicaComponent implements OnInit {
         private asignaturaDataService: AsignaturaService,
         private carreraDataService: CarreraService,
         private rd: Renderer2,
+        private fotoPerfilDataService: FotoPerfilService,
         private router: Router) {
             this.toastr.setRootViewContainerRef(vcr);
     }
@@ -136,6 +143,7 @@ export class SecretariaAcademicaComponent implements OnInit {
         this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
         let autorizado = false;
         this.getEstudiantesSolicitaron();
+        this.srcFoto = './../../../../assets/images/user.png';
         this.rolesSecundarios.forEach(rol => {
             if ( rol.idRol == 5 ) {
                 autorizado = true;
@@ -184,6 +192,22 @@ export class SecretariaAcademicaComponent implements OnInit {
     carreraSeleccionada() {
         this.solicitudMatriculaSeleccionada = null;
         this.getSolicitudesMatriculas(this.carreraSeleccionadaCombo);
+    }
+
+    getFotoPerfil() {
+        this.srcFoto = './../../../../assets/images/user.png';
+        this.busy = this.fotoPerfilDataService.getFiltrado('idPersona', 'coincide' , this.solicitudMatriculaSeleccionada.idPersona.toString())
+        .then(respuesta => {
+            if ( JSON.stringify(respuesta) == '[0]' ) {
+                return;
+            }
+            this.fotoFile = respuesta[0].adjunto;
+            this.fotoNombre = respuesta[0].nombreArchivo;
+            this.fotoType = respuesta[0].tipoArchivo;
+            this.srcFoto = 'data:' + this.fotoType + ';base64,' + this.fotoFile;
+        })
+        .catch(error => {
+        });
     }
 
     getCarreras() {
@@ -338,6 +362,7 @@ export class SecretariaAcademicaComponent implements OnInit {
             this.aspirante = respuesta;
             this.getHojaDatos(this.aspirante);
             this.getDatosCupo(this.aspirante.id);
+            this.getFotoPerfil();
         })
         .catch(error => {
 

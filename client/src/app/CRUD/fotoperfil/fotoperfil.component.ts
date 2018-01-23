@@ -34,9 +34,8 @@ export class FotoPerfilComponent implements OnInit {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
-
     getFotoPerfil() {
-        this.srcFoto = 'http://www.free-icons-download.net/images/male-user-icon-50726.png';
+        this.srcFoto = './../../../../assets/images/user.png';
         this.busy = this.dataService.get(this.entidadSeleccionada.id)
         .then(respuesta => {
             if ( JSON.stringify(respuesta) == '[0]' ) {
@@ -234,7 +233,7 @@ export class FotoPerfilComponent implements OnInit {
    ngOnInit() {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
-      this.srcFoto = 'http://www.free-icons-download.net/images/male-user-icon-50726.png';
+      this.srcFoto = './../../../../assets/images/user.png';
       this.refresh();
    }
 

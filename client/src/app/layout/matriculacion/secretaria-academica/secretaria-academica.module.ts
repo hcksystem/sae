@@ -25,6 +25,7 @@ import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 import { PeriodoLectivoService } from 'app/CRUD/periodolectivo/periodolectivo.service';
 import { MatriculaService } from 'app/CRUD/matricula/matricula.service';
 import { MatriculaAsignaturaService } from 'app/CRUD/matriculaasignatura/matriculaasignatura.service';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { MatriculaAsignaturaService } from 'app/CRUD/matriculaasignatura/matricu
     AsignaturaSolicitudMatriculaService,
     GeneroService,
     EtniaService,
+    FotoPerfilService,
     TipoIngresosService,
     OcupacionService,
     TipoDiscapacidadService,

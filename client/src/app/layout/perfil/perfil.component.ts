@@ -277,7 +277,7 @@ export class PerfilComponent implements OnInit {
     }
 
     getFotoPerfil() {
-        this.srcFoto = 'http://www.free-icons-download.net/images/male-user-icon-50726.png';
+        this.srcFoto = './../../../../assets/images/user.png';
         this.busy = this.fotoPerfilDataService.getFiltrado('idPersona', 'coincide' , this.personaLogeada.id.toString())
         .then(respuesta => {
             if ( JSON.stringify(respuesta) == '[0]' ) {

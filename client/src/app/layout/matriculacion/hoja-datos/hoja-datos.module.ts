@@ -15,6 +15,7 @@ import { TipoDiscapacidadService } from '../../../CRUD/tipodiscapacidad/tipodisc
 import { TipoSangreService } from '../../../CRUD/tiposangre/tiposangre.service';
 import { EstadoCivilService } from '../../../CRUD/estadocivil/estadocivil.service';
 import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionprocedencia/tipoinstitucionprocedencia.service';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionproce
     TipoDiscapacidadService,
     TipoSangreService,
     EstadoCivilService,
+    FotoPerfilService,
     UbicacionService,
     NivelTituloService,
     EstudianteService,

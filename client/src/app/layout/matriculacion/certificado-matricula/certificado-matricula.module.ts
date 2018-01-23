@@ -26,6 +26,7 @@ import { EstudianteService } from 'app/CRUD/estudiante/estudiante.service';
 import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionprocedencia/tipoinstitucionprocedencia.service';
 import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 import { JornadaService } from 'app/CRUD/jornada/jornada.service';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { JornadaService } from 'app/CRUD/jornada/jornada.service';
     SolicitudMatriculaService,
     AsignaturaSolicitudMatriculaService,
     GeneroService,
+    FotoPerfilService,
     EtniaService,
     TipoIngresosService,
     OcupacionService,
