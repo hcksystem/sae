@@ -41,10 +41,7 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
    asignaturas: Asignatura[] = [];
    personasMostradas: PersonaCombo[] = [];
    estudianteSeleccionadoCombo: number;
-   estudianteDialogoSeleccionadoCombo: number;
-   mallaDialogoSeleccionadoCombo: number;
-   carreraDialogoSeleccionadoCombo: number;
-   asignaturaDialogoSeleccionadoCombo: number;
+
    constructor(public toastr: ToastsManager,
         vcr: ViewContainerRef,
         private dataService: AsignaturaCupoService,
@@ -118,7 +115,6 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
                 return;
             }
             this.asignaturas = entidadesRecuperadas;
-            this.asignaturaDialogoSeleccionadoCombo = 0;
         })
         .catch(error => {
 
@@ -134,7 +130,6 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
                 return;
             }
             this.mallas = entidadesRecuperadas;
-            this.mallaDialogoSeleccionadoCombo = 0;
         })
         .catch(error => {
 
@@ -163,10 +158,6 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.asignaturaDialogoSeleccionadoCombo = 0;
-        this.carreraDialogoSeleccionadoCombo = 0;
-        this.estudianteDialogoSeleccionadoCombo = 0;
-        this.mallaDialogoSeleccionadoCombo = 0;
         this.carreraSeleccionadaCombo = 0;
         this.jornadaSeleccionadaCombo = 0;
         this.estudianteSeleccionadoCombo = 0;
@@ -259,9 +250,9 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
     aceptar(): void {
         if (!this.isValid(this.entidadSeleccionada)) {return;}
         if (this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
-        this.add(this.entidadSeleccionada);
+            this.add(this.entidadSeleccionada);
         } else {
-        this.update(this.entidadSeleccionada);
+            this.update(this.entidadSeleccionada);
         }
         this.cerrarVentanaEdicion();
     }
@@ -330,6 +321,8 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
         this.busy = this.dataService.get(entidadActual.id)
         .then(respuesta => {
             this.entidadSeleccionada = respuesta;
+            this.getMallas(this.entidadSeleccionada.idCarrera);
+            this.getAsignaturas(this.entidadSeleccionada.idMalla);
         })
         .catch(error => {
 
