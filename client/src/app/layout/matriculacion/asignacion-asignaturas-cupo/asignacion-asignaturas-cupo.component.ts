@@ -153,7 +153,6 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
     }
 
     refresh(): void {
-        this.paginaActual = 1;
         this.getNumeroPaginas();
         this.getPagina(this.paginaActual, this.registrosPorPagina);
     }
@@ -249,6 +248,7 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
     }
 
     aceptar(): void {
+        this.paginaActual = 1;
         if (!this.isValid(this.entidadSeleccionada)) {return;}
         if (this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
             this.add(this.entidadSeleccionada);
@@ -338,6 +338,7 @@ export class AsignacionAsignaturasCupoComponent implements OnInit {
            }else{
               this.toastr.warning('Se produjo un error', 'Eliminación');
            }
+           this.paginaActual = 1;
            this.refresh();
         })
         .catch(error => {
