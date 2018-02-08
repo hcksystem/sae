@@ -51,7 +51,7 @@ export class FotoPerfilService {
    }
 
    update(entidadTransporte: FotoPerfil): Promise<boolean> {
-      const url = `${this.urlBase+'/actualizar'}`;
+      const url = `${this.urlBase+'/update'}`;
       return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 

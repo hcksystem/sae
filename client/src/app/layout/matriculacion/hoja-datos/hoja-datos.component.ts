@@ -20,6 +20,7 @@ import { ViewChild } from '@angular/core';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import { ElementRef, Renderer2 } from '@angular/core';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
 
 @Component({
     selector: 'app-hoja-datos',
@@ -55,6 +56,11 @@ export class HojaDatosComponent implements OnInit {
     notaPostulacion: number;
     esEstudiante: Boolean;
     rolesSecundarios: RolSecundario[];
+    srcFoto: string;
+    fotoType: string;
+    fotoNombre: string;
+    fotoFile: string;
+
     @ViewChild('encabezadoHojaDatos') encabezadoHojaDatos: ElementRef;
     @ViewChild('cuerpoHojaDatos') cuerpoHojaDatos: ElementRef;
     @ViewChild('pieHojaDatos') pieHojaDatos: ElementRef;
@@ -71,8 +77,25 @@ export class HojaDatosComponent implements OnInit {
         private estudianteDataService: EstudianteService,
         private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService,
         private router: Router,
+        private fotoPerfilDataService: FotoPerfilService,
         private rd: Renderer2
     ) {}
+
+    getFotoPerfil() {
+        this.srcFoto = './../../../../assets/images/user.png';
+        this.busy = this.fotoPerfilDataService.getFiltrado('idPersona', 'coincide' , this.personaLogeada.id.toString())
+        .then(respuesta => {
+            if ( JSON.stringify(respuesta) == '[0]' ) {
+                return;
+            }
+            this.fotoFile = respuesta[0].adjunto;
+            this.fotoNombre = respuesta[0].nombreArchivo;
+            this.fotoType = respuesta[0].tipoArchivo;
+            this.srcFoto = 'data:' + this.fotoType + ';base64,' + this.fotoFile;
+        })
+        .catch(error => {
+        });
+    }
 
     imprimir() {
         html2canvas(this.encabezadoHojaDatos.nativeElement).then(canvasEncabezado => {
@@ -98,6 +121,8 @@ export class HojaDatosComponent implements OnInit {
         ) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
+        this.srcFoto = './../../../../assets/images/user.png';
+        this.getFotoPerfil();
         this.busy = this.generoDataService
             .getFiltrado(
                 'id',

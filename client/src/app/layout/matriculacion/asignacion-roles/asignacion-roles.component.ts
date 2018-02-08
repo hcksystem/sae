@@ -105,7 +105,7 @@ export class AsignacionRolesComponent implements OnInit {
                 return;
             }
             entidadesRecuperadas.forEach(element => {
-                if ( element.id == 1 || element.id == 3 || element.id == 7 || element.id == 8 || element.id == 9 ) {
+                if ( element.id == 1 || element.id == 3 || element.id == 7 || element.id == 8 ) {
 
                 } else {
                     this.rolesPosibles.push(element);

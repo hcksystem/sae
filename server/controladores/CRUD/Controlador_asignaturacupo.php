@@ -1,11 +1,16 @@
 <?php
 include_once('../controladores/Controlador_Base.php');
 include_once('../entidades/CRUD/AsignaturaCupo.php');
+include_once('../controladores/CRUD/Controlador_cupo.php');
 class Controlador_asignaturacupo extends Controlador_Base
 {
    function crear($args)
    {
-      $asignaturacupo = new AsignaturaCupo($args["id"],$args["idCupo"],$args["idAsignatura"]);
+      $controladorCupo = new Controlador_cupo();
+      $filtros = ["columna"=>"idPersona","tipo_filtro"=>"coincide","filtro"=>$args["idPersona"]];
+      $respuesta = $controladorCupo->leer_filtrado($filtros);
+      $idCupo = $respuesta[0]['id'];
+      $asignaturacupo = new AsignaturaCupo($args["id"],$idCupo,$args["idAsignatura"]);
       $sql = "INSERT INTO AsignaturaCupo (idCupo,idAsignatura) VALUES (?,?);";
       $parametros = array($asignaturacupo->idCupo,$asignaturacupo->idAsignatura);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
@@ -49,7 +54,7 @@ class Controlador_asignaturacupo extends Controlador_Base
          $sql = "SELECT * FROM AsignaturaCupo;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM AsignaturaCupo WHERE id = ?;";
+         $sql = "SELECT AsignaturaCupo.id, AsignaturaCupo.idCupo, AsignaturaCupo.idAsignatura, Malla.idCarrera as 'idCarrera',Persona.id as 'idPersona', Malla.id as 'idMalla' FROM AsignaturaCupo INNER JOIN Cupo ON AsignaturaCupo.idCupo = Cupo.id INNER JOIN Persona ON Cupo.idPersona = Persona.id INNER JOIN Asignatura ON AsignaturaCupo.idAsignatura = Asignatura.id INNER JOIN Malla ON Asignatura.idMalla = Malla.id WHERE AsignaturaCupo.id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;

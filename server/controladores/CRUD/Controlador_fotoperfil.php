@@ -5,9 +5,9 @@ class Controlador_fotoperfil extends Controlador_Base
 {
    function crear($args)
    {
-      $fotoperfil = new FotoPerfil($args["id"],$args["idPersona"]);
-      $sql = "INSERT INTO FotoPerfil (idPersona) VALUES (?);";
-      $parametros = array($fotoperfil->idPersona);
+      $fotoperfil = new FotoPerfil($args["id"],$args["idPersona"],$args["tipoArchivo"],$args["nombreArchivo"],$args["adjunto"]);
+      $sql = "INSERT INTO FotoPerfil (idPersona,tipoArchivo,nombreArchivo,adjunto) VALUES (?,?,?,?);";
+      $parametros = array($fotoperfil->idPersona,$fotoperfil->tipoArchivo,$fotoperfil->nombreArchivo,$fotoperfil->adjunto);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -16,11 +16,26 @@ class Controlador_fotoperfil extends Controlador_Base
       }
    }
 
+   function update($args) {
+      $idFotoPerfil = 0;
+      $filtros = ["columna"=>"idPersona","tipo_filtro"=>"coincide","filtro"=>$args["idPersona"]];
+      $respuesta = $this->leer_filtrado($filtros);
+      $idFotoPerfil = $respuesta[0]['id'];
+      if($idFotoPerfil == 0 || $idFotoPerfil == null){
+            $this->crear($args);
+            return true;
+      }else{
+            $args["id"]=$idFotoPerfil;
+            $this->actualizar($args);
+            return true;
+      }
+   }
+
    function actualizar($args)
    {
-      $fotoperfil = new FotoPerfil($args["id"],$args["idPersona"]);
-      $parametros = array($fotoperfil->idPersona,$fotoperfil->id);
-      $sql = "UPDATE FotoPerfil SET idPersona = ? WHERE id = ?;";
+      $fotoperfil = new FotoPerfil($args["id"],$args["idPersona"],$args["tipoArchivo"],$args["nombreArchivo"],$args["adjunto"]);
+      $parametros = array($fotoperfil->idPersona,$fotoperfil->tipoArchivo,$fotoperfil->nombreArchivo,$fotoperfil->adjunto,$fotoperfil->id);
+      $sql = "UPDATE FotoPerfil SET idPersona = ?,tipoArchivo = ?,nombreArchivo = ?,adjunto = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -46,10 +61,10 @@ class Controlador_fotoperfil extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM FotoPerfil;";
+         $sql = "SELECT FotoPerfil.id, FotoPerfil.idPersona, FotoPerfil.tipoArchivo, FotoPerfil.nombreArchivo, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto' FROM FotoPerfil INNER JOIN Persona ON FotoPerfil.idPersona = Persona.id;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM FotoPerfil WHERE id = ?;";
+         $sql = "SELECT CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto', FotoPerfil.id, FotoPerfil.idPersona, FotoPerfil.tipoArchivo, FotoPerfil.nombreArchivo, FotoPerfil.adjunto FROM FotoPerfil INNER JOIN Persona ON FotoPerfil.idPersona = Persona.id WHERE FotoPerfil.id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -60,7 +75,7 @@ class Controlador_fotoperfil extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM FotoPerfil LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT FotoPerfil.id, FotoPerfil.idPersona, FotoPerfil.tipoArchivo, FotoPerfil.nombreArchivo, CONCAT(Persona.apellido1, ' ', Persona.apellido2, ' ', Persona.nombre1, ' ', Persona.nombre2) as 'nombreCompleto' FROM FotoPerfil INNER JOIN Persona ON FotoPerfil.idPersona = Persona.id LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }

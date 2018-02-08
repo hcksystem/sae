@@ -22,6 +22,7 @@ import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionproce
 import { PersonaService } from 'app/CRUD/persona/persona.service';
 import { AsignaturaService } from 'app/CRUD/asignatura/asignatura.service';
 import { CarreraService } from 'app/CRUD/carrera/carrera.service';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { CarreraService } from 'app/CRUD/carrera/carrera.service';
     SolicitudMatriculaService,
     AsignaturaSolicitudMatriculaService,
     GeneroService,
+    FotoPerfilService,
     EtniaService,
     TipoIngresosService,
     OcupacionService,

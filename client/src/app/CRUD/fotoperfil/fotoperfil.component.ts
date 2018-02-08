@@ -25,12 +25,34 @@ export class FotoPerfilComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   srcFoto: string;
+   fotoFile: string;
+   fotoNombre: string;
+   fotoType: string;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: FotoPerfilService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
+    getFotoPerfil() {
+        this.srcFoto = './../../../../assets/images/user.png';
+        this.busy = this.dataService.get(this.entidadSeleccionada.id)
+        .then(respuesta => {
+            if ( JSON.stringify(respuesta) == '[0]' ) {
+                return;
+            }
+            this.fotoFile = respuesta.adjunto;
+            this.fotoNombre = respuesta.nombreArchivo;
+            this.fotoType = respuesta.tipoArchivo;
+            this.srcFoto = 'data:' + this.fotoType + ';base64,' + this.fotoFile;
+        })
+        .catch(error => {
+            this.toastr.warning('Se produjo un error', 'Lectura');
+        });
+    }
+
    open(content, nuevo){
+       this.getFotoPerfil();
       if(nuevo){
          this.resetEntidadSeleccionada();
       }
@@ -211,6 +233,7 @@ export class FotoPerfilComponent implements OnInit {
    ngOnInit() {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
+      this.srcFoto = './../../../../assets/images/user.png';
       this.refresh();
    }
 

@@ -28,11 +28,7 @@ class Controlador_persona extends Controlador_Base
       $fechaNacimientoSQLTime = date("Y-m-d H:i:s", $fechaNacimientoNoSQLTime);
       $persona->fechaNacimiento = $fechaNacimientoSQLTime;
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
-      if(is_null($respuesta[0])){
-         return true;
-      }else{
-         return false;
-      }
+      return true;
    }
 
    function borrar($args)

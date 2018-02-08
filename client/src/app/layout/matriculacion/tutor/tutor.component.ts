@@ -31,6 +31,7 @@ import { CarreraService } from 'app/CRUD/carrera/carrera.service';
 import { Router } from '@angular/router';
 import { RolSecundario } from 'app/entidades/CRUD/RolSecundario';
 import { PersonaCombo } from 'app/entidades/especifico/PersonaCombo';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
 @Component({
     selector: 'app-tutor',
     templateUrl: './tutor.component.html',
@@ -83,6 +84,11 @@ export class TutorComponent implements OnInit {
     personasPosibles: PersonaCombo[] = [];
     personasMostradas: PersonaCombo[] = [];
     estudianteSeleccionadoCombo: number;
+    srcFoto: string;
+    fotoType: string;
+    fotoNombre: string;
+    fotoFile: string;
+
     constructor(
         public toastr: ToastsManager, vcr: ViewContainerRef,
         private personaDataService: PersonaService,
@@ -102,6 +108,7 @@ export class TutorComponent implements OnInit {
         private tipoInstitucionProcedenciaService: TipoInstitucionProcedenciaService,
         private asignaturaDataService: AsignaturaService,
         private carreraDataService: CarreraService,
+        private fotoPerfilDataService: FotoPerfilService,
         private router: Router) {
             this.toastr.setRootViewContainerRef(vcr);
     }
@@ -112,6 +119,7 @@ export class TutorComponent implements OnInit {
         this.rol = logedResult.idRol;
         this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
         let autorizado = false;
+        this.srcFoto = './../../../../assets/images/user.png';
         this.rolesSecundarios.forEach(rol => {
             if ( rol.idRol == 4 ) {
                 autorizado = true;
@@ -242,6 +250,22 @@ export class TutorComponent implements OnInit {
         return porVerificar.id === this.solicitudMatriculaSeleccionada.id;
     }
 
+    getFotoPerfil() {
+        this.srcFoto = './../../../../assets/images/user.png';
+        this.busy = this.fotoPerfilDataService.getFiltrado('idPersona', 'coincide' , this.solicitudMatriculaSeleccionada.idPersona.toString())
+        .then(respuesta => {
+            if ( JSON.stringify(respuesta) == '[0]' ) {
+                return;
+            }
+            this.fotoFile = respuesta[0].adjunto;
+            this.fotoNombre = respuesta[0].nombreArchivo;
+            this.fotoType = respuesta[0].tipoArchivo;
+            this.srcFoto = 'data:' + this.fotoType + ';base64,' + this.fotoFile;
+        })
+        .catch(error => {
+        });
+    }
+
     getSolicitudesMatriculas(idCarrera: number): void {
         this.busy = this.solicitudMatriculaDataService.getFiltrado('idEstadoSolicitud', 'coincide', '1')
         .then(respuesta => {
@@ -292,6 +316,7 @@ export class TutorComponent implements OnInit {
             this.aspirante = respuesta;
             this.getHojaDatos(this.aspirante);
             this.getDatosCupo(this.aspirante.id);
+            this.getFotoPerfil();
         })
         .catch(error => {
 
