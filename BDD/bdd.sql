@@ -458,6 +458,7 @@ CREATE TABLE MatriculaAsignatura(
 	id 	INT NOT NULL AUTO_INCREMENT,
     idMatricula INT NULL,
     idAsignatura INT NULL,
+    idParalelo INT NULL,
 PRIMARY KEY (id));
 
 CREATE TABLE Paralelo(
@@ -491,3 +492,28 @@ CREATE TABLE EstadoPersona(
     edicionDeDatos VARCHAR(20) NULL,
     encuestaFactoresAsociados BOOLEAN NULL,
 PRIMARY KEY (id));
+
+CREATE TABLE HorasClaseDia (
+   id INT NOT NULL AUTO_INCREMENT,
+   idDocenteAsignatura INT NULL,
+   idDiaSemana INT NULL,
+   idTipoAula INT NULL,
+   numeroHoras INT NULL,
+   PRIMARY KEY (id)
+);
+
+CREATE TABLE DiaSemana (
+   id INT NOT NULL AUTO_INCREMENT,
+   detalle VARCHAR(10) NULL,
+   PRIMARY KEY (id)
+);
+
+CREATE TABLE fechaEvaluacionesParciales (
+   id INT NOT NULL AUTO_INCREMENT,
+   fechaParcial1 DATE NULL,
+   fechaEvaluacionParcial1 DATE NULL,
+   fechaEvaluacionParcial2 DATE NULL,
+   idMalla INT NULL,
+   idPeriodoLectivo INT NULL,
+   PRIMARY KEY (id)
+);
