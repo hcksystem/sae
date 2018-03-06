@@ -37,7 +37,7 @@ export class AsignaturaService {
 
    get(id: number): Promise<Asignatura> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Asignatura).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Asignatura[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

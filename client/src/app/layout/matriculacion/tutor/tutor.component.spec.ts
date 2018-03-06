@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TutorComponent } from './tutor.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('TutorComponent', () => {
   let component: TutorComponent;

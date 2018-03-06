@@ -37,7 +37,7 @@ export class TipoAulaService {
 
    get(id: number): Promise<TipoAula> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as TipoAula).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as TipoAula[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

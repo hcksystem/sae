@@ -15,13 +15,25 @@ import { TipoDiscapacidadService } from '../../../CRUD/tipodiscapacidad/tipodisc
 import { TipoSangreService } from '../../../CRUD/tiposangre/tiposangre.service';
 import { EstadoCivilService } from '../../../CRUD/estadocivil/estadocivil.service';
 import { TipoInstitucionProcedenciaService } from 'app/CRUD/tipoinstitucionprocedencia/tipoinstitucionprocedencia.service';
+import { FotoPerfilService } from 'app/CRUD/fotoperfil/fotoperfil.service';
 
 @NgModule({
   imports: [
     CommonModule,
     HojaDatosRoutingModule
   ],
-  providers: [GeneroService, EtniaService, TipoIngresosService, OcupacionService, TipoDiscapacidadService, TipoSangreService, EstadoCivilService, UbicacionService, NivelTituloService, EstudianteService, TipoInstitucionProcedenciaService],
+  providers: [GeneroService,
+    EtniaService,
+    TipoIngresosService,
+    OcupacionService,
+    TipoDiscapacidadService,
+    TipoSangreService,
+    EstadoCivilService,
+    FotoPerfilService,
+    UbicacionService,
+    NivelTituloService,
+    EstudianteService,
+    TipoInstitucionProcedenciaService],
   declarations: [HojaDatosComponent]
 })
 export class HojaDatosModule { }

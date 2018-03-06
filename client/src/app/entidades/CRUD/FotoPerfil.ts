@@ -1,5 +1,8 @@
 export class FotoPerfil {
    id: number;
    idPersona: number;
-   foto: Blob;
+   nombreCompleto: string;
+   tipoArchivo: string;
+   nombreArchivo: string;
+   adjunto: string;
 }

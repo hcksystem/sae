@@ -4,14 +4,14 @@ import { Aula } from '../../entidades/CRUD/Aula';
 import { AulaService } from './aula.service';
 
 import 'rxjs/add/operator/toPromise';
+import { ModalComponent } from 'app/layout/bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { ModalComponent } from 'app/layout/bs-component/components';
 
 @Component({
-    selector: 'app-aula',
-    templateUrl: './aula.component.html',
-    styleUrls: ['./aula.component.scss']
+   selector: 'app-aula',
+   templateUrl: './aula.component.html',
+   styleUrls: ['./aula.component.scss']
 })
 
 export class AulaComponent implements OnInit {

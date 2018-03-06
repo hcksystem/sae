@@ -37,7 +37,7 @@ export class ExperienciaLaboralService {
 
    get(id: number): Promise<ExperienciaLaboral> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as ExperienciaLaboral).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as ExperienciaLaboral[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

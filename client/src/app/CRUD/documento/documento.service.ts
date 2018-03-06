@@ -37,7 +37,7 @@ export class DocumentoService {
 
    get(id: number): Promise<Documento> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Documento).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Documento[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

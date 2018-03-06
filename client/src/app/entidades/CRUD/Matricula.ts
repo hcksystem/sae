@@ -5,7 +5,7 @@ export class Matricula {
    idPeriodoLectivo: number;
    idPersona: number;
    idCarrera: number;
-   numeroMatricula: number;
+   numeroMatricula: string;
    folio: string;
    idJornada: number;
 }

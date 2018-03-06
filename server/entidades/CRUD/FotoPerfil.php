@@ -3,12 +3,16 @@ class FotoPerfil
 {
    public $id;
    public $idPersona;
-   public $foto;
+   public $tipoArchivo;
+   public $nombreArchivo;
+   public $adjunto;
 
-   function __construct($id,$idPersona,$foto){
+   function __construct($id,$idPersona,$tipoArchivo,$nombreArchivo,$adjunto){
       $this->id = $id;
       $this->idPersona = $idPersona;
-      $this->foto = $foto;
+      $this->tipoArchivo = $tipoArchivo;
+      $this->nombreArchivo = $nombreArchivo;
+      $this->adjunto = $adjunto;
    }
 }
 ?>

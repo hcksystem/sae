@@ -37,7 +37,7 @@ export class TipoIngresosService {
 
    get(id: number): Promise<TipoIngresos> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as TipoIngresos).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as TipoIngresos[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

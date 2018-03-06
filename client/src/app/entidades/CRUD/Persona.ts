@@ -8,7 +8,8 @@ export class Persona {
    fechaNacimiento: Date;
    telefonoCelular: string;
    telefonoDomicilio: string;
-   correoElectronico: string;
+   correoElectronicoInstitucional: string;
+   correoElectronicoPersonal: string;
    idGenero: number;
    idUbicacionDomicilioPais: string;
    idUbicacionDomicilioProvincia: string;

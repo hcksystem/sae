@@ -37,7 +37,7 @@ export class ParaleloService {
 
    get(id: number): Promise<Paralelo> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Paralelo).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Paralelo[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

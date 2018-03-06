@@ -37,7 +37,7 @@ export class TipoDiscapacidadService {
 
    get(id: number): Promise<TipoDiscapacidad> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as TipoDiscapacidad).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as TipoDiscapacidad[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

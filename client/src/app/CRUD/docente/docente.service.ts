@@ -37,7 +37,7 @@ export class DocenteService {
 
    get(id: number): Promise<Docente> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Docente).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Docente[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

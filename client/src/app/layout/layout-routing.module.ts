@@ -6,14 +6,18 @@ const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
+            { path: 'asignacion-asignaturas-cupo', loadChildren: './matriculacion/asignacion-asignaturas-cupo/asignacion-asignaturas-cupo.module#AsignacionAsignaturasCupoModule' },
+            { path: 'cupo-asignatura', loadChildren: './cupo-asignatura/cupo-asignatura.module#CupoAsignaturaModule' },
+            { path: 'contacto-estudiantes-nuevos', loadChildren: './contacto-estudiantes-nuevos/contacto-estudiantes-nuevos.module#ContactoEstudiantesNuevosModule' },
             { path: 'certificado-matricula', loadChildren: './matriculacion/certificado-matricula/certificado-matricula.module#CertificadoMatriculaModule' },
-            { path: 'postulante', loadChildren: './matriculacion/postulante/postulante.module#PostulanteModule' },
+            { path: 'asignacion-roles', loadChildren: './matriculacion/asignacion-roles/asignacion-roles.module#AsignacionRolesModule' },
             { path: 'secretaria-academica', loadChildren: './matriculacion/secretaria-academica/secretaria-academica.module#SecretariaAcademicaModule' },
             { path: 'tutor', loadChildren: './matriculacion/tutor/tutor.module#TutorModule' },
             { path: 'hoja-datos', loadChildren: './matriculacion/hoja-datos/hoja-datos.module#HojaDatosModule' },
             { path: 'solicitud-matricula', loadChildren: './matriculacion/solicitud-matricula/solicitud-matricula.module#SolicitudMatriculaModule' },
             { path: 'encuesta-factores-asociados', loadChildren: './encuesta-factores-asociados/encuesta-factores-asociados.module#EncuestaFactoresAsociadosModule' },
             { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
+            { path: 'mail-sender', loadChildren: './mail-sender/mail-sender.module#MailSenderModule' },
             { path: 'yavirac', loadChildren: './yavirac/yavirac.module#YaviracModule' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
@@ -27,11 +31,17 @@ const routes: Routes = [
             { path: 'asignaturasolicitudmatricula', loadChildren: '../CRUD/asignaturasolicitudmatricula/asignaturasolicitudmatricula.module#AsignaturaSolicitudMatriculaModule' },
             { path: 'asistencia', loadChildren: '../CRUD/asistencia/asistencia.module#AsistenciaModule' },
             { path: 'asistencia-registro', loadChildren: './asistencia-registro/asistencia-registro.module#AsistenciaRegistroModule' },
+            { path: 'carrerainstituto', loadChildren: '../CRUD/carrerainstituto/carrerainstituto.module#CarreraInstitutoModule' },
+            { path: 'rolsecundario', loadChildren: '../CRUD/rolsecundario/rolsecundario.module#RolSecundarioModule' },
+            { path: 'logmailsender', loadChildren: '../CRUD/logmailsender/logmailsender.module#LogMailSenderModule' },
+	    { path: 'registro-asistencia', loadChildren: './asistencia-estudiante/registro-asistencia/registro-asistencia.module#RegistroAsistenciaModule' },
             /*{
                 path: 'asistencia-justificacion',
                 loadChildren: './asistencia-justificacion/asistencia-justificacion.module#AsistenciaJustificacionModule'
             },*/
             { path: 'aula', loadChildren: '../CRUD/aula/aula.module#AulaModule' },
+            { path: 'asignaturacupo', loadChildren: '../CRUD/asignaturacupo/asignaturacupo.module#AsignaturaCupoModule' },
+            { path: 'estadocupo', loadChildren: '../CRUD/estadocupo/estadocupo.module#EstadoCupoModule' },
             { path: 'aulasasignaturas', loadChildren: '../CRUD/aulasasignaturas/aulasasignaturas.module#AulasAsignaturasModule' },
             { path: 'carrera', loadChildren: '../CRUD/carrera/carrera.module#CarreraModule' },
             { path: 'categorianota', loadChildren: '../CRUD/categorianota/categorianota.module#CategoriaNotaModule' },
@@ -86,7 +96,6 @@ const routes: Routes = [
             { path: 'tiporequisito', loadChildren: '../CRUD/tiporequisito/tiporequisito.module#TipoRequisitoModule' },
             { path: 'tiposangre', loadChildren: '../CRUD/tiposangre/tiposangre.module#TipoSangreModule' },
             { path: 'titulo', loadChildren: '../CRUD/titulo/titulo.module#TituloModule' },
-            { path: 'tutorcarrera', loadChildren: '../CRUD/tutorcarrera/tutorcarrera.module#TutorCarreraModule' },
             { path: 'ubicacion', loadChildren: '../CRUD/ubicacion/ubicacion.module#UbicacionModule' },
         ]
     }

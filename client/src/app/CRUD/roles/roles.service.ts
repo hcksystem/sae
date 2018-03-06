@@ -37,7 +37,7 @@ export class RolesService {
 
    get(id: number): Promise<Roles> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Roles).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Roles[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

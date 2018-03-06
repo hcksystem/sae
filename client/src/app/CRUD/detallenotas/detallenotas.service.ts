@@ -37,7 +37,7 @@ export class DetalleNotasService {
 
    get(id: number): Promise<DetalleNotas> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as DetalleNotas).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as DetalleNotas[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

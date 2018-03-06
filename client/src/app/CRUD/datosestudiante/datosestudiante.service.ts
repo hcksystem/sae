@@ -37,7 +37,7 @@ export class DatosEstudianteService {
 
    get(id: number): Promise<DatosEstudiante> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as DatosEstudiante).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as DatosEstudiante[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {

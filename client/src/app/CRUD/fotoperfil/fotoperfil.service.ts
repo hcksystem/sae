@@ -37,7 +37,7 @@ export class FotoPerfilService {
 
    get(id: number): Promise<FotoPerfil> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as FotoPerfil).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as FotoPerfil[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {
@@ -51,7 +51,7 @@ export class FotoPerfilService {
    }
 
    update(entidadTransporte: FotoPerfil): Promise<boolean> {
-      const url = `${this.urlBase+'/actualizar'}`;
+      const url = `${this.urlBase+'/update'}`;
       return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 

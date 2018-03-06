@@ -46,6 +46,16 @@
                         <strong>idPersona</strong>
                      </span>
                   </th>
+                  <th scope="col">
+                     <span>
+                        <strong>idEstadoCupo</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>fecha</strong>
+                     </span>
+                  </th>
                </tr>
             </thead>
             <tbody>
@@ -56,6 +66,8 @@
                   <td>{{actual.id}}</td>
                   <td>{{actual.idJornadaCarrera}}</td>
                   <td>{{actual.idPersona}}</td>
+                  <td>{{actual.idEstadoCupo}}</td>
+                  <td>{{actual.fecha}}</td>
                </tr>
             </tbody>
          </table>
@@ -114,11 +126,23 @@
               <input type="text" class="form-control" id="idPersona" name="idPersona" placeholder="idPersona" [(ngModel)]="entidadSeleccionada.idPersona">
             </div>
          </div>
+         <div class="form-group row">
+            <label for="idEstadoCupo" class="col-sm-4 col-form-label">idEstadoCupo</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="idEstadoCupo" name="idEstadoCupo" placeholder="idEstadoCupo" [(ngModel)]="entidadSeleccionada.idEstadoCupo">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="fecha" class="col-sm-4 col-form-label">fecha</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="fecha" name="fecha" placeholder="fecha" [(ngModel)]="entidadSeleccionada.fecha">
+            </div>
+         </div>
          </form>
       </div>
       <div class="modal-footer">
          <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('save')">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+            <span class="fa fa-save"></span>&nbsp;Guardar
          </button>
          <button type="button" class="btn btn-default" (click)="c('close')">Cerrar</button>
       </div>
