@@ -791,3 +791,5 @@ CREATE TABLE PlanSemanaActividades (
     idPlanSemana INT NOT NULL,
     PRIMARY KEY(id)    
 );
+
+Actualizar tabla
