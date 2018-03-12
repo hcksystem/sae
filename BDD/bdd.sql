@@ -570,7 +570,7 @@ CREATE TABLE SilaboUnidades (
 CREATE TABLE SilaboElementos (
     id INT AUTO_INCREMENT NOT NULL,
     idSilaboUnidades INT NOT NULL,
-    verbo VARCHAR(255) NOT NULL,
+    IdVerboBloom INT NOT NULL,
     objeto TEXT NOT NULL,
     condicion TEXT NOT NULL,
     finalidad TEXT NOT NULL,
@@ -588,7 +588,7 @@ CREATE TABLE VerboBloom (                   //Tabla recursiba
 CREATE TABLE SilaboResultados (
     id INT AUTO_INCREMENT NOT NULL,
     idSilaboElementos INT NOT NULL,
-    verbo VARCHAR(255) NOT NULL,
+    IdVerboBloom INT NOT NULL,
     objeto TEXT NOT NULL,
     condicion TEXT NOT NULL,
     finalidad TEXT NOT NULL,
@@ -789,7 +789,4 @@ CREATE TABLE PlanSemanaActividades (
     id INT AUTO_INCREMENT NOT NULL,
     detalle TEXT NOT NULL,                        /* obtener de idSilaboEvidenciasRa */
     idPlanSemana INT NOT NULL,
-    PRIMARY KEY(id)    
-);
-
-Actualizar tabla
+    PRIMARY KEY(id)  
