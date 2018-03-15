@@ -7,7 +7,7 @@ class RouterPrincipal extends RouterBase
 
    function route(){
       $NombreControlador = "Controlador_".$this->datosURI->controlador; 
-      //include_once('../controladores/especificos/'.$NombreControlador.'.php');
+      include_once('../controladores/especificos/'.$NombreControlador.'.php');
       include_once('../controladores/CRUD/'.$NombreControlador.'.php');
       $this->controlador = new $NombreControlador();
       $NombreAccion = $this->datosURI->accion;
