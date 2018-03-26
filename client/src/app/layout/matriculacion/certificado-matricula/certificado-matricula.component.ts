@@ -522,8 +522,8 @@ export class CertificadoMatriculaComponent implements OnInit {
         const nivelToExport = ['PRIMER NIVEL', 'SEGUNDO NIVEL', 'TERCER NIVEL', 'CUARTO NIVEL', 'QUINTO NIVEL', 'SEXTO NIVEL'];
         this.busy = this.asignaturaDataService.get(id)
         .then(respuesta => {
-            if (menorNivel > respuesta.nivel) {
-                menorNivel = respuesta.nivel - 1;
+            if (menorNivel > respuesta.idPeriodoAcademico) {
+                menorNivel = respuesta.idPeriodoAcademico - 1;
             }
             this.asignaturasMatricula.push(respuesta);
             this.nivel = nivelToExport[menorNivel];

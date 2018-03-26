@@ -1,41 +1,67 @@
 USE ignug;
 
-INSERT INTO `Asignatura` (`id`, `idMalla`, `codigo`, `nombre`, `nivel`, `idDocumentoPea`, `horasSemana`, `horasPractica`, `horasDocente`, `horasAutonomas`) VALUES
-(1, 1, 'DS0101', 'MATEMÁTICA DISCRETA', 1, 1, 4, NULL, NULL, NULL),
-(2, 1, 'DS0201', 'INTRODUCCIÓN AL DESARROLLO DE SOFTWARE', 1, 2, 6, NULL, NULL, NULL),
-(3, 1, 'DS0301', 'FUNDAMENTOS DE PROGRAMACIÓN', 1, 3, 8, NULL, NULL, NULL),
-(4, 1, 'DS0401', 'ANÁLISIS Y DISEÑO DE SISTEMAS', 1, 4, 5, NULL, NULL, NULL),
-(5, 1, 'DS0501', 'DESARROLLO DEL PENSAMIENTO', 1, 5, 3, NULL, NULL, NULL),
-(6, 1, 'DS0601', 'INGLÉS A1 (BÁSICO)', 1, 6, 4, NULL, NULL, NULL),
-(7, 2, 'MK0101', 'MATEMÁTICAS BÁSICAS', 1, 7, 4, NULL, NULL, NULL),
-(8, 2, 'MK0201', 'INFORMÁTICA BÁSICA DE NEGOCIOS ', 1, 8, 3, NULL, NULL, NULL),
-(9, 2, 'MK0301', 'TÉCNICAS EXPRESIÓN ORAL Y ESCRITA', 1, 9, 3, NULL, NULL, NULL),
-(10, 2, 'MK0401', 'FUNDAMENTOS DE ADMINISTRACIÓN', 1, 10, 3, NULL, NULL, NULL),
-(11, 2, 'MK0501', 'CONTABILIDAD GENERAL I', 1, 11, 3, NULL, NULL, NULL),
-(12, 2, 'MK0601', 'FUNDAMENTOS DE MARKETING', 1, 12, 3, NULL, NULL, NULL),
-(13, 2, 'MK0701', 'INGLÉS', 1, 13, 3, NULL, NULL, NULL),
-(14, 2, 'MK0801', 'DERECHO SOCIETARIO Y MERCANTIL', 1, 14, 3, NULL, NULL, NULL),
-(15, 3, 'DM0101', 'HISTORIA DE LA MODA Y TEXTILES', 1, 15, 2, NULL, NULL, NULL),
-(16, 3, 'DM0201', 'METODOLOGÍA DE LA INVESTIGACIÓN', 1, 16, 2, NULL, NULL, NULL),
-(17, 3, 'DM0301', 'ILUSTRACIÓN BÁSICA DE MODA', 1, 17, 5, NULL, NULL, NULL),
-(18, 3, 'DM0401', 'PATRONAJE Y CONFECCIÓN FEMENINA', 1, 18, 6, NULL, NULL, NULL),
-(19, 3, 'DM0501', 'EXPRESIÓN ORAL Y ESCRITA', 1, 19, 2, NULL, NULL, NULL),
-(20, 4, '1GT1CH01', 'LENGUAJE ORAL Y ESCRITO', 1, 20, 2, NULL, NULL, NULL),
-(21, 4, '2GT1CD02', 'HISTORIA DEL ECUADOR', 1, 21, 4, NULL, NULL, NULL),
-(22, 4, '3GT1CD02', 'GEOGRAFÍA TURÍSTICA ECUATORIANA', 1, 22, 4, NULL, NULL, NULL),
-(23, 4, '4GT1CD02', 'ECOLOGÍA DEL ECUADOR', 1, 23, 4, NULL, NULL, NULL),
-(24, 4, '5GT1CH01', 'REALIDAD NACIONAL EN EL SISTEMA TURÍSTICO ECUATORIANO', 1, 24, 2, NULL, NULL, NULL),
-(25, 4, '6GT1CH01', 'ÉTICA PROFESIONAL EN EL TURISMO', 1, 25, 2, NULL, NULL, NULL),
-(26, 4, '7GT1PR03', 'SISTEMA TURÍSTICO', 1, 26, 10, NULL, NULL, NULL),
-(27, 4, '8GT1PR02', 'INTRODUCCIÓN AL TURISMO Y HOTELERÍA', 1, 27, 4, NULL, NULL, NULL),
-(28, 4, '9GT1PR01', 'LEGISLACIÓN TURÍSTICA', 1, 28, 2, NULL, NULL, NULL),
-(29, 4, '11GT1CI02', 'IDENTIFICACIÓN DESCRIPTIVA DESTINOS TURÍSTICOS ACTUALES', 1, 29, 2, NULL, NULL, NULL),
-(30, 4, '10GT1PR05', 'FUNCIONAMIENTO Y DINÁMICA DEL TURISMO', 1, 30, 6, NULL, NULL, NULL);
-INSERT INTO `Carrera` (`id`, `resolucion`, `nombre`, `descripcion`, `idModalidad`, `idInstituto`, `coordinador`, `siglas`) VALUES
-(1, '1', 'TECNOLOGÍA SUPERIOR EN DESARROLLO DE SOFTWARE ', 'TECNOLOGÍA SUPERIOR EN DESARROLLO DE SOFTWARE ', 1, 1, 'Cristhian David Pazmiño Flores', 'DS'),
+INSERT INTO Asignatura ( idMalla, codigo, nombre, idPeriodoAcademico, horasPractica, horasDocente, horasAutonomas) VALUES
+(2,'DS_MD_1','Matemática discreta','1','0','48','27'),
+(2,'DS_IDS_1','Introducción al desarrollo de software','1','12','60','27'),
+(2,'DS_DP_1','Desarrolo del pensamiento','1','0','36','36'),
+(2,'DS_FP_1','Fundamentos de programación','1','24','72','32'),
+(2,'DS_ADS_1','Análisis y diseño de sistemas','1','0','60','32'),
+(2,'DS_IA1_1','Ingles A1','1','0','48','36'),
+(2,'DS_AT_2','Álgebra y trigonometría','2','0','48','27'),
+(2,'DS_BD_2','Base de datos','2','24','60','25'),
+(2,'DS_POO_2','Programación orientada a objetos','2','24','72','32'),
+(2,'DS_MDS_2','Metodologías de desrrollo de software','2','12','60','20'),
+(2,'DS_LC_2','Lenguaje y comunicación','2','0','36','25'),
+(2,'DS_IA2_2','Ingles A2','2','0','48','27'),
+(2,'DS_CDI_3','Cálculo diferencial e integral','3','0','48','32'),
+(2,'DS_BDA_3','Base de datos avanzada','3','24','48','32'),
+(2,'DS_FA_3','Fundamentos de administración','3','0','24','25'),
+(2,'DS_PV_3','Programación visual','3','36','60','20'),
+(2,'DS_DI_3','Diseño de interfaz','3','36','60','20'),
+(2,'DS_IB1_3','Ingles B1.1','3','0','48','27'),
+(2,'DS_ED_4','Estadística descriptiva','4','0','48','26'),
+(2,'DS_LJ_4','Legislación informatica','4','0','48','26'),
+(2,'DS_PAW_4','Programación de aplicaciones web','4','24','60','38'),
+(2,'DS_DAM_4','Desarrollo de apliaciones moviles','4','24','72','37'),
+(2,'DS_IB2_4','Ingles B1.2','4','0','48','27'),
+(2,'DS_DC_4','Diversidad y cultura','4','0','36','26'),
+(2,'DS_CS_5','Calidad del software','5','24','60','6'),
+(2,'DS_E_5','Emprendimiento','5','0','36','5'),
+(2,'DS_PT_5','Proyecto de titulación','5','24','60','6'),
+(2,'DS_TAP_5','Tendencias actuales de programación','5','24','60','6'),
+(2,'DS_FRC_5','Fundamentos de redes y conectividaad','5','12','60','6'),
+(2,'DS_EP_5','Ética profesional','5','0','36','5'),
+(3, 'MK0501', 'CONTABILIDAD GENERAL I', 1, 11, 3, '4'),
+(3, 'MK0601', 'FUNDAMENTOS DE MARKETING', 1, 12, 3, '4'),
+(3, 'MK0701', 'INGLÉS', 1, 13, 3, '4'),
+(3, 'MK0801', 'DERECHO SOCIETARIO Y MERCANTIL', 1, 14, 3, '4'),
+(4, 'DM0101', 'HISTORIA DE LA MODA Y TEXTILES', 1, 15, 2, '4'),
+(4, 'DM0201', 'METODOLOGÍA DE LA INVESTIGACIÓN', 1, 16, 2, '4'),
+(4, 'DM0301', 'ILUSTRACIÓN BÁSICA DE MODA', 1, 17, 5, '4'),
+(4, 'DM0401', 'PATRONAJE Y CONFECCIÓN FEMENINA', 1, 18, 6, '4'),
+(4, 'DM0501', 'EXPRESIÓN ORAL Y ESCRITA', 1, 19, 2, '4'),
+(5, '1GT1CH01', 'LENGUAJE ORAL Y ESCRITO', 1, 20, 2, '4'),
+(5, '2GT1CD02', 'HISTORIA DEL ECUADOR', 1, 21, 4, '4'),
+(5, '3GT1CD02', 'GEOGRAFÍA TURÍSTICA ECUATORIANA', 1, 22, 4, '4'),
+(5, '4GT1CD02', 'ECOLOGÍA DEL ECUADOR', 1, 23, 4, '4'),
+(5, '5GT1CH01', 'REALIDAD NACIONAL EN EL SISTEMA TURÍSTICO ECUATORIANO', 1, 24, 2, '4'),
+(5, '6GT1CH01', 'ÉTICA PROFESIONAL EN EL TURISMO', 1, 25, 2, '4'),
+(5, '7GT1PR03', 'SISTEMA TURÍSTICO', 1, 26, 10, '4'),
+(5, '8GT1PR02', 'INTRODUCCIÓN AL TURISMO Y HOTELERÍA', 1, 27, 4, '4'),
+(5, '9GT1PR01', 'LEGISLACIÓN TURÍSTICA', 1, 28, 2, '4'),
+(5, '11GT1CI02', 'IDENTIFICACIÓN DESCRIPTIVA DESTINOS TURÍSTICOS ACTUALES', 1, 29, 2, '4'),
+(5, '10GT1PR05', 'FUNCIONAMIENTO Y DINÁMICA DEL TURISMO', 1, 30, 6, '4');
+
+INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2017-03-01', '1');
+INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '2');
+INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '3');
+INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '4');
+
+INSERT INTO `Carrera` (`id`, `resolucion`, `nombre`, `descripcion`, `idModalidad`, `idInstituto`, `siglas`) VALUES
+(1, '1', 'TECNOLOGÍA SUPERIOR EN DESARROLLO DE SOFTWARE ', 'TECNOLOGÍA SUPERIOR EN DESARROLLO DE SOFTWARE ', 1, 1, 'DS'),
 (2, '2', 'MARKETING', 'MARKETING', 1, 2, 'Edgar Huertas', 'MK'),
-(3, '3', 'DISEÑO DE MODAS CON NIVEL EQUIVALENTE A TECNOLOGÍA SUPERIOR', 'DISEÑO DE MODAS CON NIVEL EQUIVALENTE A TECNOLOGÍA SUPERIOR', 1, 3, 'Mariagracia', 'DM'),
-(4, '4', 'TÉCNICO SUPERIOR EN GUIANZA TURÍSTICA', 'TÉCNICO SUPERIOR EN GUIANZA TURÍSTICA', 1, 4, 'Byron Quishpe', 'GT');
+(3, '3', 'DISEÑO DE MODAS CON NIVEL EQUIVALENTE A TECNOLOGÍA SUPERIOR', 'DISEÑO DE MODAS CON NIVEL EQUIVALENTE A TECNOLOGÍA SUPERIOR', 1, 3, 'DM'),
+(4, '4', 'TÉCNICO SUPERIOR EN GUIANZA TURÍSTICA', 'TÉCNICO SUPERIOR EN GUIANZA TURÍSTICA', 1, 4, 'GT');
 INSERT INTO `Estado` (`id`, `descripcion`) VALUES
 (1, 'ACTIVO'),
 (2, 'INACTIVO');
@@ -84,11 +110,11 @@ INSERT INTO `Genero` (`id`, `descripcion`) VALUES
 (1, 'MASCULINO'),
 (2, 'FEMENINO'),
 (3, 'OTROS');
-INSERT INTO `Instituto` (`id`, `descripcion`, `rector`, `vicerector`, `color`) VALUES
-(1, 'INSTITUTO TECNOLÓGICO SUPERIOR BENITO JUÁREZ', 'Magister, Iván Óscar Borja Carrera', 'Magister, Héctor Fabián Arevalo Mosquera', 'verde'),
-(2, 'INSTITUTO TECNOLÓGICO SUPERIOR 24 DE MAYO', 'Magister, Iván Óscar Borja Carrera', 'Magister, Héctor Fabián Arevalo Mosquera', 'rojo'),
-(3, 'INSTITUTO TECNOLÓGICO SUPERIOR GRAN COLOMBIA', 'Magister, Iván Óscar Borja Carrera', 'Magister, Héctor Fabián Arevalo Mosquera', 'amarillo'),
-(4, 'INSTITUTO TECNOLÓGICO SUPERIOR DE TURISMO Y PATRIMONIO YAVIRAC', 'Magister, Iván Óscar Borja Carrera', 'Magister, Héctor Fabián Arevalo Mosquera', 'azul');
+INSERT INTO `Instituto` (`id`, `descripcion`, `color`) VALUES
+(1, 'INSTITUTO TECNOLÓGICO SUPERIOR BENITO JUÁREZ', 'verde'),
+(2, 'INSTITUTO TECNOLÓGICO SUPERIOR 24 DE MAYO', 'rojo'),
+(3, 'INSTITUTO TECNOLÓGICO SUPERIOR GRAN COLOMBIA', 'amarillo'),
+(4, 'INSTITUTO TECNOLÓGICO SUPERIOR DE TURISMO Y PATRIMONIO YAVIRAC', 'azul');
 INSERT INTO `Jornada` (`id`, `descripcion`) VALUES
 (1, 'MATUTINA'),
 (2, 'VESPERTINA'),
@@ -138,8 +164,12 @@ INSERT INTO `Ocupacion` (`id`, `descripcion`) VALUES
 (11, 'DOCENTE'),
 (12, 'ESTUDIANTE');
 INSERT INTO `PeriodoAcademico` (`id`, `descripcion`) VALUES
-(1, 'MAYO-SEPTIEMBRE'),
-(2, 'NOVIEMBRE-MARZO');
+(1, 'PRIMERO'),
+(2, 'SEGUNDO');
+(2, 'TERCERO');
+(2, 'CUARTO');
+(2, 'QUINTO');
+(2, 'SEXTO');
 INSERT INTO `PeriodoLectivo` (`id`, `descripcion`, `fechaInicio`, `fechaFin`, `matriculable`, `codigo`) VALUES
 (1, 'Mayo - Octubre 2017', '2017-05-01 00:00:00', '2017-10-31 00:00:00', 0, '2017-1'),
 (2, 'Noviembre 2017 - Abril 2018', '2017-11-01 00:00:00', '2018-04-30 00:00:00', 1, '2017-2');
@@ -151,7 +181,7 @@ INSERT INTO `Roles` (`id`, `descripcion`, `acceso`) VALUES
 (5, 'Secretaría Académica', 5),
 (6, 'Aspirante', 6),
 (7, 'Rector', 7),
-(8, 'Viserector', 8),
+(8, 'Vicerector', 8),
 (9, 'Coordinador de Carrera', 9);
 INSERT INTO `TipoAula` (`id`, `descripcion`) VALUES
 (1, 'AULA'),
@@ -1885,3 +1915,28 @@ INSERT INTO `Ubicacion` (`id`, `codigo`, `descripcion`, `codigoPadre`) VALUES
 (1690, '345.1.1.1224', 'VALLE', '345.1.1'),
 (1691, '345.1.1.1225', 'VICTORIA DEL PORTETE (IRQUIS)', '345.1.1'),
 (1692, '345.1.1.1226', 'YANUNCAY', '345.1.1');
+
+
+INSERT INTO `Cargo` (`descripcion`) VALUES
+('RECTOR/A'),
+('VICE RECTOR/A'),
+('CORRDINADOR/A DE CARRERA'),
+('CORRDINADOR ACADÉMICO'),
+('CORRDINADOR DE VINCULACIÓN'),
+('COORDINADOR DE INVESTIGACIÓN'),
+('SECRETARÍA GENERAL'),
+('ADMINISTRADOR/A TIC');
+
+INSERT INTO `CargoInstituto` (`idCarrera`, `idPersona`, `idCargo`, `idFechaInicio`,  ) VALUES
+(1, 5, 1, '2017-03-01'),
+(1, 3, 2, '2017-03-01'),
+(1, 30, 3, '2017-03-01'),
+(2, 5, 1, '2017-03-01'),
+(2, 3, 2, '2017-03-01'),
+(2, 64, 3, '2017-03-01'),
+(3, 5, 1, '2017-03-01'),
+(3, 3, 2, '2017-03-01'),
+(3, 50, 3, '2017-03-01'),
+(4, 5, 1, '2017-03-01'),
+(4, 3, 2, '2017-03-01'),
+(4, 1, 3, '2017-03-01');

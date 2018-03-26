@@ -5,9 +5,9 @@ class Controlador_asignatura extends Controlador_Base
 {
    function crear($args)
    {
-      $asignatura = new Asignatura($args["id"],$args["idMalla"],$args["codigo"],$args["nombre"],$args["nivel"],$args["idDocumentoPea"],$args["horasSemana"],$args["horasPractica"],$args["horasDocente"],$args["horasAutonomas"]);
-      $sql = "INSERT INTO Asignatura (idMalla,codigo,nombre,nivel,idDocumentoPea,horasSemana,horasPractica,horasDocente,horasAutonomas) VALUES (?,?,?,?,?,?,?,?,?);";
-      $parametros = array($asignatura->idMalla,$asignatura->codigo,$asignatura->nombre,$asignatura->nivel,$asignatura->idDocumentoPea,$asignatura->horasSemana,$asignatura->horasPractica,$asignatura->horasDocente,$asignatura->horasAutonomas);
+      $asignatura = new Asignatura($args["id"],$args["idMalla"],$args["codigo"],$args["nombre"],$args["idPeriodoAcademico"],$args["horasPractica"],$args["horasDocente"],$args["horasAutonomas"],$args["idUnidadOrganizacion"],$args["campoFormacion"]);
+      $sql = "INSERT INTO Asignatura (idMalla,codigo,nombre,idPeriodoAcademico,horasPractica,horasDocente,horasAutonomas,idUnidadOrganizacion,idCampoFormacion) VALUES (?,?,?,?,?,?,?,?,?);";
+      $parametros = array($asignatura->idMalla,$asignatura->codigo,$asignatura->nombre,$asignatura->idPeriodoAcademico,$asignatura->horasPractica,$asignatura->horasDocente,$asignatura->horasAutonomas,$asignatura->idUnidadOrganizacion,$asignatura->idCampoFormacion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_asignatura extends Controlador_Base
 
    function actualizar($args)
    {
-      $asignatura = new Asignatura($args["id"],$args["idMalla"],$args["codigo"],$args["nombre"],$args["nivel"],$args["idDocumentoPea"],$args["horasSemana"],$args["horasPractica"],$args["horasDocente"],$args["horasAutonomas"]);
-      $parametros = array($asignatura->idMalla,$asignatura->codigo,$asignatura->nombre,$asignatura->nivel,$asignatura->idDocumentoPea,$asignatura->horasSemana,$asignatura->horasPractica,$asignatura->horasDocente,$asignatura->horasAutonomas,$asignatura->id);
-      $sql = "UPDATE Asignatura SET idMalla = ?,codigo = ?,nombre = ?,nivel = ?,idDocumentoPea = ?,horasSemana = ?,horasPractica = ?,horasDocente = ?,horasAutonomas = ? WHERE id = ?;";
+      $asignatura = new Asignatura($args["id"],$args["idMalla"],$args["codigo"],$args["nombre"],$args["idPeriodoAcademico"],$args["horasPractica"],$args["horasDocente"],$args["horasAutonomas"],$args["idUnidadOrganizacion"],$args["campoFormacion"]);
+      $parametros = array($asignatura->idMalla,$asignatura->codigo,$asignatura->nombre,$asignatura->idPeriodoAcademico,$asignatura->horasPractica,$asignatura->horasDocente,$asignatura->horasAutonomas,$asignatura->idUnidadOrganizacion,$asignatura->idCampoFormacion);
+      $sql = "UPDATE Asignatura SET idMalla = ?,codigo = ?,nombre = ?,idPeridoAcademico = ?,horasPractica = ?,horasDocente = ?,horasAutonomas = ?,idUnidadOrganizacion = ?,idCampoFormacion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

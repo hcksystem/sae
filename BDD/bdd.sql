@@ -266,15 +266,12 @@ CREATE TABLE Carrera(
 	descripcion VARCHAR(255) NULL,
     idModalidad INT NULL,
     idInstituto INT NULL,
-    coordinador VARCHAR(255) NULL,
     siglas VARCHAR(20) NULL,
 PRIMARY KEY (id));
 
 CREATE TABLE Instituto(
 	id INT NOT NULL AUTO_INCREMENT,
 	descripcion VARCHAR(255) NULL,
-	rector VARCHAR(255) NULL,
-	vicerector VARCHAR(255) NULL,
     color VARCHAR(255) NULL,
 PRIMARY KEY (id));
 
@@ -491,7 +488,7 @@ CREATE TABLE HorasClaseDia (
 
 CREATE TABLE DiaSemana (
    id INT NOT NULL AUTO_INCREMENT,
-   detalle VARCHAR(10) NULL,
+   descripcion VARCHAR(10) NULL,
    PRIMARY KEY (id)
 );
 
@@ -505,17 +502,21 @@ CREATE TABLE fechaEvaluacionesParciales (
    PRIMARY KEY (id)
 );
 
+
+/* tablas portafolio docente */
+
 CREATE TABLE Asignatura (
 	id INT AUTO_INCREMENT NOT NULL,
 	idMalla INT NULL,
 	codigo VARCHAR(255) NULL,
 	nombre VARCHAR (255) NULL,
-	nivel INT NULL,
+	idPeriodoAcademico INT NULL,
     horasPractica INT NULL,
     horasDocente INT NULL,
     horasAutonomas INT NULL,
     idUnidadOrganizacion INT NULL,
     idCampoFormacion INT NULL,
+    credito INT NULL,
     PRIMARY KEY(id)
 );
 
@@ -547,15 +548,15 @@ CREATE TABLE AsignaturaCorrequisito (
 
 CREATE TABLE Silabo (
     id INT AUTO_INCREMENT NOT NULL,
-    idPeriodoLectivo INT NOT NULL,
-    idAsignatura INT NOT NULL,
-    descripcion MEDIUMTEXT NOT NULL,
-    objetivo1 VARCHAR(255) NOT NULL,
-    objetivo2 TEXT NOT NULL,
-    objetivo3 TEXT NOT NULL,
-    objetivo4 TEXT NOT NULL,
-    codigo VARCHAR(255) NOT NULL,
-    estado INT NOT NULL,
+    idPeriodoLectivo INT NULL,
+    idAsignatura INT NULL,
+    descripcion MEDIUMTEXT NULL,
+    objetivoParte1 VARCHAR(255) NULL,
+    objetivoParte2 TEXT NULL,
+    objetivoParte3 TEXT NULL,
+    objetivoParte4 TEXT NULL,
+    codigo VARCHAR(255) NULL,
+    idEstadoComponentePortafolioDocente INT NULL,
     PRIMARY KEY(id)
 );
 
@@ -580,7 +581,7 @@ CREATE TABLE SilaboElementos (
 
 CREATE TABLE VerboBloom (                   /*Tabla recursiba */
     id INT AUTO_INCREMENT NOT NULL,
-    detalle VARCHAR(60) NOT NULL,
+    descripcion VARCHAR(60) NOT NULL,
     idPadre VARCHAR(20) NOT NULL,
     PRIMARY KEY(id)
 );
@@ -604,36 +605,29 @@ CREATE TABLE SilaboEvidenciasRa (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE ContenidosUnidad (           /*Para Contenidos de la Unidad */
-    id INT AUTO_INCREMENT NOT NULL,
-    idSilaboUnidades INT NOT NULL,        /*Visualiza el campo DESCRIPCIÓn */
-    codigo VARCHAR(3) NOT NULL,
-    PRIMARY KEY(id) 
-);
-
 CREATE TABLE ContenidosElementos (         /* Para Contenidos */
     id INT AUTO_INCREMENT NOT NULL,
-    idContenidoUnidad INT NOT NULL,
-    semana INT NOT NULL,
-    idSilaboElementos INT NOT NULL,       /*Visualiza el campo OBJETO */
+    idSilaboUnidad INT NULL,
+    semana INT NULL,
+    contenido TEXT NULL,       /*Visualiza el campo OBJETO */
+    horasDocencia INT NOT NULL,
     observaciones TEXT NOT NULL,
-    PRIMARY KEY(id)
-);
-
-CREATE TABLE ContenidosDocente (           /*Para Actividad de Docencia */
-    id INT AUTO_INCREMENT NOT NULL,
-    idContenidoElementos INT NOT NULL,
-    idSilaboResultados INT NOT NULL,      /*Visualiza el campo OBJETO */
-    horasClase INT NOT NULL,
     PRIMARY KEY(id)
 );
 
 CREATE TABLE ContenidosActividades (     /*Para Trabajo práctico y autónomo */
     id INT AUTO_INCREMENT NOT NULL,
-    idContenidoElementos INT NOT NULL,
-    idSilaboEvidenciasRa INT NOT NULL,
-    tipo VARCHAR(50) NOT NULL,            /*Práctico o Autónomo*/
-    horasClase INT NOT NULL,
+    idContenidosElementos INT NULL,
+    contenido TEXT NULL,
+    idTipoContenidoActividad VARCHAR(50) NULL,            /*Docente, Práctico o Autónomo*/
+    orden INT NOT NULL,
+    horasActividad INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE TipoContenidoActividad (     /*Para Trabajo práctico y autónomo */
+    id INT AUTO_INCREMENT NOT NULL,
+    descripcion VARCHAR(50) NULL,            /*Docente, Práctico o Autónomo*/
     PRIMARY KEY(id)
 );
 
@@ -676,13 +670,13 @@ CREATE TABLE RelacionPerfilResultado (
 CREATE TABLE PerfilEgreso (
     id INT AUTO_INCREMENT NOT NULL,
     idmalla INT NOT NULL,
-    detalle VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
 
 CREATE TABLE SilaboBiliografia (
     id INT AUTO_INCREMENT NOT NULL,
-    detalle VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
     tipo VARCHAR(50) NOT NULL,       /* Básica o Complementaria */
     PRIMARY KEY(id)
 );
@@ -701,28 +695,28 @@ CREATE TABLE PlanSemana (
 
 CREATE TABLE PlanSemanaTema (
     id INT AUTO_INCREMENT NOT NULL,
-    detalle TEXT NOT NULL,
+    descripcion TEXT NOT NULL,
     idPlanSemana INT NOT NULL,
     PRIMARY KEY(id)    
 );
 
 CREATE TABLE PlanSemanaSubTema (
     id INT AUTO_INCREMENT NOT NULL,
-    detalle TEXT NOT NULL,
+    descripcion TEXT NOT NULL,
     idPlanSemana INT NOT NULL,
     PRIMARY KEY(id)    
 );
 
 CREATE TABLE PlanSemanaEjeTransversal (
     id INT AUTO_INCREMENT NOT NULL,
-    detalle TEXT NOT NULL,
+    descripcion TEXT NOT NULL,
     idPlanSemana INT NOT NULL,
     PRIMARY KEY(id)    
 );
 
 CREATE TABLE EjeTransversal (
     id INT AUTO_INCREMENT NOT NULL,
-    detalle VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
 
@@ -752,7 +746,7 @@ CREATE TABLE PlanSemanaRecursoDidactico (
 
 CREATE TABLE PlanSemanaDesarrolloClase (
     id INT AUTO_INCREMENT NOT NULL,
-    detalle TEXT NOT NULL,
+    descripcion TEXT NOT NULL,
     tiempo INT NOT NULL,
     idPlanSemana INT NOT NULL,
     PRIMARY KEY(id)    
@@ -760,7 +754,7 @@ CREATE TABLE PlanSemanaDesarrolloClase (
 
 CREATE TABLE PlanSemanaPrerrequisitos (
     id INT AUTO_INCREMENT NOT NULL,
-    detalle TEXT NOT NULL,
+    descripcion TEXT NOT NULL,
     idPlanSemana INT NOT NULL,
     PRIMARY KEY(id)    
 );
@@ -781,13 +775,69 @@ CREATE TABLE PlanSemanaTecnicaEvaluacion (
 
 CREATE TABLE TecnicaEvaluacion (
     id INT AUTO_INCREMENT NOT NULL,
-    detalle TEXT NOT NULL,
+    descripcion TEXT NOT NULL,
     PRIMARY KEY(id)    
 );
 
 CREATE TABLE PlanSemanaActividades (
     id INT AUTO_INCREMENT NOT NULL,
-    detalle TEXT NOT NULL,                        /* obtener de idSilaboEvidenciasRa */
+    descripcion TEXT NOT NULL,                        /* obtener de idSilaboEvidenciasRa */
     idPlanSemana INT NOT NULL,
     PRIMARY KEY(id)  
 );
+
+CREATE TABLE CargoInstituto (
+    id INT AUTO_INCREMENT NOT NULL,
+    idCarrera INT NULL,
+    idPersona INT NULL,
+    idCargo INT NULL,
+    fechaInicio DATE NULL,
+    fechaFin DATE NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE Cargo (
+    id INT AUTO_INCREMENT NOT NULL,
+    descripcion VARCHAR(100) NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE Aportes (
+    id INT AUTO_INCREMENT NOT NULL,
+    nota DOUBLE NOT NULL,
+    idDetalleAporte INT NOT NULL,
+    idMatriculaAsignatura INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE DetalleAporte (
+    id INT AUTO_INCREMENT NOT NULL,
+    descripcion VARCHAR(100) NULL,
+    idCategoriaNota INT NOT NULL,
+    idDocenteAsignatura INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE CategoriaAporte (
+    id INT AUTO_INCREMENT NOT NULL,
+    descripcion VARCHAR(100) NULL,
+    idPadre INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE AporteFinal (
+    id INT AUTO_INCREMENT NOT NULL,
+    idCategoriaAporte INT NOT NULL,
+    idMatriculaAsignatura INT NOT NULL,
+    nota DOUBLE NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE PorcentajeAporteFinal (
+    id INT AUTO_INCREMENT NOT NULL,
+    idAporteFinal INT NOT NULL,
+    idCategoriaAporte INT NOT NULL,
+    porcentaje INT NOT NULL,
+    PRIMARY KEY(id)
+);
+

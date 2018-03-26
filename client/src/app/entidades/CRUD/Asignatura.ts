@@ -3,10 +3,10 @@ export class Asignatura {
    idMalla: number;
    codigo: string;
    nombre: string;
-   nivel: number;
-   idDocumentoPea: number;
-   horasSemana: number;
+   idPeriodoAcademico: number;
    horasPractica: number;
    horasDocente: number;
    horasAutonomas: number;
+   idUnidadOrganizacion: number;
+   idCampoFormacion: number;
 }
