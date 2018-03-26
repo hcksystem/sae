@@ -120,13 +120,16 @@ INSERT INTO `Jornada` (`id`, `descripcion`) VALUES
 (2, 'VESPERTINA'),
 (3, 'NOCTURNA'),
 (4, 'INTENSIVA');
-INSERT INTO `JornadaCarrera` (`id`, `idJornada`, `idCarrera`) VALUES
-(1, 2, 1),
-(2, 2, 2),
-(3, 3, 2),
-(4, 2, 3),
-(5, 3, 3),
-(6, 4, 4);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (8,1,1);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (9,1,2);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (10,1,3);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (1,2,1);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (2,2,2);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (4,2,3);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (7,3,1);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (3,3,2);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (5,3,3);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (6,4,4);
 INSERT INTO `Modalidad` (`id`, `descripcion`) VALUES
 (1, 'PRESENCIAL'),
 (2, 'DUAL'),
