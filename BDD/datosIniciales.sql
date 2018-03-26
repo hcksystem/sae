@@ -7311,5 +7311,3 @@ INSERT INTO `SolicitudMatricula` (`id`, `codigo`, `fecha`, `idPeriodoLectivo`, `
 (336, '2017-2-333', '2017-10-08 18:35:06', 2, 3, 446, 4),
 (337, '2017-2-334', '2017-10-10 10:05:24', 2, 1, 76, 0),
 (338, '2017-2-335', '2017-10-19 11:42:32', 2, 1, 264, 2);
-INSERT INTO `Malla` (`id`, `fechaMallaInicio`, `idCarrera`, `idDocResolucion`) VALUES
-(1, '2017-03-01', 1, 1);

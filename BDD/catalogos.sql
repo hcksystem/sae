@@ -59,7 +59,7 @@ INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-0
 
 INSERT INTO `Carrera` (`id`, `resolucion`, `nombre`, `descripcion`, `idModalidad`, `idInstituto`, `siglas`) VALUES
 (1, '1', 'TECNOLOGÍA SUPERIOR EN DESARROLLO DE SOFTWARE ', 'TECNOLOGÍA SUPERIOR EN DESARROLLO DE SOFTWARE ', 1, 1, 'DS'),
-(2, '2', 'MARKETING', 'MARKETING', 1, 2, 'Edgar Huertas', 'MK'),
+(2, '2', 'MARKETING', 'MARKETING', 1, 2, 'MK'),
 (3, '3', 'DISEÑO DE MODAS CON NIVEL EQUIVALENTE A TECNOLOGÍA SUPERIOR', 'DISEÑO DE MODAS CON NIVEL EQUIVALENTE A TECNOLOGÍA SUPERIOR', 1, 3, 'DM'),
 (4, '4', 'TÉCNICO SUPERIOR EN GUIANZA TURÍSTICA', 'TÉCNICO SUPERIOR EN GUIANZA TURÍSTICA', 1, 4, 'GT');
 INSERT INTO `Estado` (`id`, `descripcion`) VALUES
@@ -165,11 +165,11 @@ INSERT INTO `Ocupacion` (`id`, `descripcion`) VALUES
 (12, 'ESTUDIANTE');
 INSERT INTO `PeriodoAcademico` (`id`, `descripcion`) VALUES
 (1, 'PRIMERO'),
-(2, 'SEGUNDO');
-(2, 'TERCERO');
-(2, 'CUARTO');
-(2, 'QUINTO');
-(2, 'SEXTO');
+(2, 'SEGUNDO'),
+(3, 'TERCERO'),
+(4, 'CUARTO'),
+(5, 'QUINTO'),
+(6, 'SEXTO');
 INSERT INTO `PeriodoLectivo` (`id`, `descripcion`, `fechaInicio`, `fechaFin`, `matriculable`, `codigo`) VALUES
 (1, 'Mayo - Octubre 2017', '2017-05-01 00:00:00', '2017-10-31 00:00:00', 0, '2017-1'),
 (2, 'Noviembre 2017 - Abril 2018', '2017-11-01 00:00:00', '2018-04-30 00:00:00', 1, '2017-2');
@@ -1927,7 +1927,7 @@ INSERT INTO `Cargo` (`descripcion`) VALUES
 ('SECRETARÍA GENERAL'),
 ('ADMINISTRADOR/A TIC');
 
-INSERT INTO `CargoInstituto` (`idCarrera`, `idPersona`, `idCargo`, `idFechaInicio`,  ) VALUES
+INSERT INTO `CargoInstituto` (`idCarrera`, `idPersona`, `idCargo`, `fechaInicio`) VALUES
 (1, 5, 1, '2017-03-01'),
 (1, 3, 2, '2017-03-01'),
 (1, 30, 3, '2017-03-01'),
