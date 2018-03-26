@@ -5,9 +5,9 @@ class Controlador_instituto extends Controlador_Base
 {
    function crear($args)
    {
-      $instituto = new Instituto($args["id"],$args["descripcion"],$args["rector"],$args["vicerector"],$args["color"]);
-      $sql = "INSERT INTO Instituto (descripcion,rector,vicerector,color) VALUES (?,?,?,?);";
-      $parametros = array($instituto->descripcion,$instituto->rector,$instituto->vicerector,$instituto->color);
+      $instituto = new Instituto($args["id"],$args["descripcion"],$args["color"]);
+      $sql = "INSERT INTO Instituto (descripcion,color) VALUES (?,?);";
+      $parametros = array($instituto->descripcion,$instituto->color);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_instituto extends Controlador_Base
 
    function actualizar($args)
    {
-      $instituto = new Instituto($args["id"],$args["descripcion"],$args["rector"],$args["vicerector"],$args["color"]);
-      $parametros = array($instituto->descripcion,$instituto->rector,$instituto->vicerector,$instituto->color,$instituto->id);
-      $sql = "UPDATE Instituto SET descripcion = ?,rector = ?,vicerector = ?,color = ? WHERE id = ?;";
+      $instituto = new Instituto($args["id"],$args["descripcion"],$args["color"]);
+      $parametros = array($instituto->descripcion,$instituto->color,$instituto->id);
+      $sql = "UPDATE Instituto SET descripcion = ?,color = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

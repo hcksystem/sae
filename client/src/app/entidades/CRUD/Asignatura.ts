@@ -9,4 +9,5 @@ export class Asignatura {
    horasAutonomas: number;
    idUnidadOrganizacion: number;
    idCampoFormacion: number;
+   credito: number;
 }

@@ -5,6 +5,5 @@ export class Carrera {
    descripcion: string;
    idModalidad: number;
    idInstituto: number;
-   coordinador: string;
    siglas: string;
 }

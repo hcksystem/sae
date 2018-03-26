@@ -5,9 +5,9 @@ class Controlador_carrera extends Controlador_Base
 {
    function crear($args)
    {
-      $carrera = new Carrera($args["id"],$args["resolucion"],$args["nombre"],$args["descripcion"],$args["idModalidad"],$args["idInstituto"],$args["coordinador"],$args["siglas"]);
-      $sql = "INSERT INTO Carrera (resolucion,nombre,descripcion,idModalidad,idInstituto,coordinador,siglas) VALUES (?,?,?,?,?,?,?);";
-      $parametros = array($carrera->resolucion,$carrera->nombre,$carrera->descripcion,$carrera->idModalidad,$carrera->idInstituto,$carrera->coordinador,$carrera->siglas);
+      $carrera = new Carrera($args["id"],$args["resolucion"],$args["nombre"],$args["descripcion"],$args["idModalidad"],$args["idInstituto"],$args["siglas"]);
+      $sql = "INSERT INTO Carrera (resolucion,nombre,descripcion,idModalidad,idInstituto,siglas) VALUES (?,?,?,?,?,?);";
+      $parametros = array($carrera->resolucion,$carrera->nombre,$carrera->descripcion,$carrera->idModalidad,$carrera->idInstituto,$carrera->siglas);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_carrera extends Controlador_Base
 
    function actualizar($args)
    {
-      $carrera = new Carrera($args["id"],$args["resolucion"],$args["nombre"],$args["descripcion"],$args["idModalidad"],$args["idInstituto"],$args["coordinador"],$args["siglas"]);
-      $parametros = array($carrera->resolucion,$carrera->nombre,$carrera->descripcion,$carrera->idModalidad,$carrera->idInstituto,$carrera->coordinador,$carrera->siglas,$carrera->id);
-      $sql = "UPDATE Carrera SET resolucion = ?,nombre = ?,descripcion = ?,idModalidad = ?,idInstituto = ?,coordinador = ?,siglas = ? WHERE id = ?;";
+      $carrera = new Carrera($args["id"],$args["resolucion"],$args["nombre"],$args["descripcion"],$args["idModalidad"],$args["idInstituto"],$args["siglas"]);
+      $parametros = array($carrera->resolucion,$carrera->nombre,$carrera->descripcion,$carrera->idModalidad,$carrera->idInstituto,$carrera->siglas,$carrera->id);
+      $sql = "UPDATE Carrera SET resolucion = ?,nombre = ?,descripcion = ?,idModalidad = ?,idInstituto = ?,siglas = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

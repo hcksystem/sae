@@ -11,8 +11,9 @@ class Asignatura
    public $horasAutonomas;
    public $idUnidadOrganizacion;
    public $idCampoFormacion;
+   public $credito;
 
-   function __construct($id,$idMalla,$codigo,$nombre,$nivel,$idDocumentoPea,$horasSemana,$horasPractica,$horasDocente,$horasAutonomas){
+   function __construct($id,$idMalla,$codigo,$nombre,$idPeriodoAcademico,$horasPractica,$horasDocente,$horasAutonomas,$idUnidadOrganizacion,$idCampoFormacion,$credito){
       $this->id = $id;
       $this->idMalla = $idMalla;
       $this->codigo = $codigo;
@@ -23,6 +24,7 @@ class Asignatura
       $this->horasAutonomas = $horasAutonomas;
       $this->idUnidadOrganizacion = $idUnidadOrganizacion;
       $this->idCampoFormacion = $idCampoFormacion;
+      $this->credito = $credito;
    }
 }
 ?>
