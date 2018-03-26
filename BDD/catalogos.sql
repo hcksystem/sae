@@ -175,7 +175,8 @@ INSERT INTO `PeriodoAcademico` (`id`, `descripcion`) VALUES
 (6, 'SEXTO');
 INSERT INTO `PeriodoLectivo` (`id`, `descripcion`, `fechaInicio`, `fechaFin`, `matriculable`, `codigo`) VALUES
 (1, 'Mayo - Octubre 2017', '2017-05-01 00:00:00', '2017-10-31 00:00:00', 0, '2017-1'),
-(2, 'Noviembre 2017 - Abril 2018', '2017-11-01 00:00:00', '2018-04-30 00:00:00', 1, '2017-2');
+(2, 'Noviembre 2017 - Abril 2018', '2017-11-01 00:00:00', '2018-04-30 00:00:00', 0, '2017-2'),
+(3, 'Mayo 2018 - Octubre 2018', '2018-05-01 00:00:00', '2018-10-30 00:00:00', 1, '2018-1');
 INSERT INTO `Roles` (`id`, `descripcion`, `acceso`) VALUES
 (1, 'Usuario por activar', 1),
 (2, 'Estudiante', 2),

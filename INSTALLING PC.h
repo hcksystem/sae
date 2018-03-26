@@ -33,3 +33,5 @@ sudo service apache2 restart
 
 git remote add upstream "https://github.com/YaviracTec/sae.git"
 git pull upstream master
+
+npm run build
