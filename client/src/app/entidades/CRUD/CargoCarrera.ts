@@ -1,6 +1,6 @@
-export class CargoInstituto {
+export class CargoCarrera {
    id: number;
-   idInstituto: number;
+   idCarrera: number;
    idPersona: number;
    idCargo: number;
    fechaInicio: Date;
