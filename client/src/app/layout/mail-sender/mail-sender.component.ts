@@ -1,3 +1,7 @@
+import { PersonaService } from 'app/CRUD/persona/persona.service';
+import { CargoCarrera } from './../../entidades/CRUD/CargoCarrera';
+import { CargoCarreraService } from './../../CRUD/cargocarrera/cargocarrera.service';
+import { Persona } from 'app/entidades/CRUD/Persona';
 import { Component, OnInit, ViewContainerRef} from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { MailData } from 'app/entidades/especifico/MailData';
@@ -28,6 +32,8 @@ export class MailSenderComponent implements OnInit {
     nivelSeleccionadoCombo: number;
     enviosRealizados: number;
     estadoSeleccionadoCombo: number;
+    cordinadores = [];
+
     Comodines = [
         '#nombre1',
         '#nombre2',
@@ -43,10 +49,13 @@ export class MailSenderComponent implements OnInit {
         '<img src="url">',
         '<h1></h1>',
         '<strong></strong>'];
+
     constructor(public toastr: ToastsManager,
         vcr: ViewContainerRef,
         private mailSenderDataService: MailSenderService,
-        private carreraDataService: CarreraService) {
+        private carreraDataService: CarreraService,
+        private cargoCarreraService: CargoCarreraService,
+        private personaService: PersonaService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -66,6 +75,7 @@ export class MailSenderComponent implements OnInit {
         this.nivelSeleccionadoCombo = 0;
         this.estadoSeleccionadoCombo = 0;
         this.getCarreras();
+        this.getCoordinadorCarrera();
     }
 
     filtroSeleccionado() {
@@ -74,6 +84,29 @@ export class MailSenderComponent implements OnInit {
         this.progresoPorcentaje = 0;
         this.tiempoRequerido = '';
         this.enviando = false;
+    }
+
+    getCoordinadorCarrera() {
+        this.busy = this.cargoCarreraService.getAll()
+        .then(cargosCarrera => {
+            cargosCarrera.forEach(cargoCarrera => {
+                if(cargoCarrera.idCargo == 3) {
+                    this.busy = this.personaService.get(cargoCarrera.idPersona)
+                    .then(respuesta => {
+                        const nombreCoordinador = respuesta.nombre1 + ' ' + respuesta.nombre2 + ' ' + respuesta.apellido1 + ' ' + respuesta.apellido2;
+                        const idCarrera = cargoCarrera.idCarrera;
+                        const coordinador = {idCarrera: idCarrera, nombre: nombreCoordinador};
+                        this.cordinadores.push(coordinador);
+                    })
+                    .catch(error => {
+
+                    });
+                }
+            });
+        })
+        .catch(error => {
+
+        });
     }
 
     getDestinatarios() {
@@ -85,6 +118,14 @@ export class MailSenderComponent implements OnInit {
                 return;
             }
             this.destinos = respuesta;
+            this.destinos.forEach(destino => {
+                this.cordinadores.forEach(coordinador => {
+                    if(destino.idCarrera = coordinador.idCarrera) {
+                        destino.coordinadorCarrera = coordinador.nombre;
+                    }
+                });
+            });
+            console.log(this.destinos);
             this.total = this.destinos.length;
         })
         .catch(error => {
