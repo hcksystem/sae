@@ -191,16 +191,13 @@ export class ContactoEstudiantesNuevosComponent implements OnInit {
    }
 
    filtroSeleccionado() {
+    this.paginaActual = 1;
     this.refresh();
    }
 
    refresh(): void {
-      this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = Persona[0];
-      this.entidadSeleccionada = this.crearEntidad();
-      this.carreraSeleccionadaCombo = 0;
-      this.getCarreras();
+      this.getNumeroPaginas(this.registrosPorPagina);
    }
 
    getPaginaPrimera():void {
@@ -230,6 +227,10 @@ export class ContactoEstudiantesNuevosComponent implements OnInit {
    ngOnInit() {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
+      this.entidades = Persona[0];
+      this.entidadSeleccionada = this.crearEntidad();
+      this.carreraSeleccionadaCombo = 0;
+      this.getCarreras();
       this.refresh();
    }
 

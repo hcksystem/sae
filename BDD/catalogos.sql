@@ -50,18 +50,27 @@ INSERT INTO Asignatura ( idMalla, codigo, nombre, idPeriodoAcademico, horasPract
 (5, '8GT1PR02', 'INTRODUCCIÓN AL TURISMO Y HOTELERÍA', 1, 27, 4, '4'),
 (5, '9GT1PR01', 'LEGISLACIÓN TURÍSTICA', 1, 28, 2, '4'),
 (5, '11GT1CI02', 'IDENTIFICACIÓN DESCRIPTIVA DESTINOS TURÍSTICOS ACTUALES', 1, 29, 2, '4'),
-(5, '10GT1PR05', 'FUNCIONAMIENTO Y DINÁMICA DEL TURISMO', 1, 30, 6, '4');
+(6, '10GT1PR05', 'FUNCIONAMIENTO Y DINÁMICA DEL TURISMO', 1, 30, 6, '4'),
+(6, '', 'FUNDAMENTOS DE LA COCINA CLÁSICA', 1, 0, 0, '5'),
+(6, '', 'SEGURIDAD Y PRIMEROS AUXILIOS', 1, 0, 0, '4'),
+(6, '', 'TÉCNICAS DE COCINA CLÁSICA', 1, 0, 0, '6'),
+(6, '', 'BASES DE PRODUCCIÓN PYP', 1, 0, 0, '4'),
+(6, '', 'SEGURIDAD E HIGIENE DE ALIMENTOS', 1, 0, 0, '4'),
+(6, '', 'CULTURA GASTRONÓMICA ECUATORIANA', 1, 0, 0, '5');
 
+INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2017-03-01', '1');
 INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2017-03-01', '1');
 INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '2');
 INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '3');
 INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '4');
+INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '5');
 
 INSERT INTO `Carrera` (`id`, `resolucion`, `nombre`, `descripcion`, `idModalidad`, `idInstituto`, `siglas`) VALUES
 (1, '1', 'TECNOLOGÍA SUPERIOR EN DESARROLLO DE SOFTWARE ', 'TECNOLOGÍA SUPERIOR EN DESARROLLO DE SOFTWARE ', 1, 1, 'DS'),
 (2, '2', 'MARKETING', 'MARKETING', 1, 2, 'MK'),
 (3, '3', 'DISEÑO DE MODAS CON NIVEL EQUIVALENTE A TECNOLOGÍA SUPERIOR', 'DISEÑO DE MODAS CON NIVEL EQUIVALENTE A TECNOLOGÍA SUPERIOR', 1, 3, 'DM'),
-(4, '4', 'TÉCNICO SUPERIOR EN GUIANZA TURÍSTICA', 'TÉCNICO SUPERIOR EN GUIANZA TURÍSTICA', 1, 4, 'GT');
+(4, '4', 'TÉCNICO SUPERIOR EN GUIANZA TURÍSTICA', 'TÉCNICO SUPERIOR EN GUIANZA TURÍSTICA', 1, 4, 'GT'),
+(5, '5', 'TÉCNICO SUPERIOR EN ARTE CULINARIO', 'TÉCNICO SUPERIOR EN ARTE CULINARIO', 1, 4, 'AC');
 INSERT INTO `Estado` (`id`, `descripcion`) VALUES
 (1, 'ACTIVO'),
 (2, 'INACTIVO');
@@ -130,6 +139,10 @@ INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (7,3,1);
 INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (3,3,2);
 INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (5,3,3);
 INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (6,4,4);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (11,1,5);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (12,2,5);
+INSERT INTO `JornadaCarrera` (`id`,`idJornada`,`idCarrera`) VALUES (13,3,5);
+
 INSERT INTO `Modalidad` (`id`, `descripcion`) VALUES
 (1, 'PRESENCIAL'),
 (2, 'DUAL'),
@@ -1942,3 +1955,4 @@ INSERT INTO `CargoCarrera` (`id`,`idCarrera`, `idPersona`, `idCargo`, `fechaInic
 (1, 1, 30, 3, '2017-03-01'),
 (2, 2, 64, 3, '2017-03-01'),
 (3, 3, 50, 3, '2017-03-01');
+(4, 5, 36, 3, '2017-03-01');
