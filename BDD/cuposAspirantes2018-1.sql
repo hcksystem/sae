@@ -1,3 +1,4 @@
+use ignug;
 INSERT INTO Cupo (id,idJornadaCarrera, idPersona, idEstadoCupo, idPeriodoLectivo, fecha) VALUES ('394','1','472','1','3','2018-03-26');
 INSERT INTO Cupo (id,idJornadaCarrera, idPersona, idEstadoCupo, idPeriodoLectivo, fecha) VALUES ('395','1','473','1','3','2018-03-26');
 INSERT INTO Cupo (id,idJornadaCarrera, idPersona, idEstadoCupo, idPeriodoLectivo, fecha) VALUES ('396','1','474','1','3','2018-03-26');
