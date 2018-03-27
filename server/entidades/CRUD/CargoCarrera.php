@@ -1,16 +1,16 @@
 <?php
-class CargoInstituto
+class CargoCarrera
 {
    public $id;
-   public $idInstituto;
+   public $idCarrera;
    public $idPersona;
    public $idCargo;
    public $fechaInicio;
    public $fechaFin;
 
-   function __construct($id,$idInstituto,$idPersona,$idCargo,$fechaInicio,$fechaFin){
+   function __construct($id,$idCarrera,$idPersona,$idCargo,$fechaInicio,$fechaFin){
       $this->id = $id;
-      $this->idInstituto = $idInstituto;
+      $this->idCarrera = $idCarrera;
       $this->idPersona = $idPersona;
       $this->idCargo = $idCargo;
       $this->fechaInicio = $fechaInicio;

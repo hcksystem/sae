@@ -17,18 +17,6 @@ INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (15,4,3);
 INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (16,4,4);
 INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (17,4,5);
 INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (18,4,6);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (19,4,1);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (20,4,1);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (21,4,2);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (22,4,2);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (23,4,3);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (24,4,3);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (25,4,4);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (26,4,4);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (27,4,5);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (28,4,5);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (29,4,6);
-INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (30,4,6);
 INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (31,5,1);
 INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (32,5,2);
 INSERT INTO `AsignaturaCupo` (`id`,`idCupo`,`idAsignatura`) VALUES (33,5,3);
@@ -4252,7 +4240,6 @@ INSERT INTO `Matricula` (`id`, `codigo`, `fecha`, `idPeriodoLectivo`, `idPersona
 (16, '2017-2-DM-16', '2017-10-02 09:38:11', 2, 347, 3, 16, '2017-2-DM', 5),
 (17, '2017-2-DS-17', '2017-10-01 11:57:04', 2, 118, 1, 17, '2017-2-DS', 1),
 (18, '2017-2-DS-18', '2017-10-01 18:58:16', 2, 84, 1, 18, '2017-2-DS', 1),
-(19, '2017-2-DS-18', '2017-10-01 18:58:16', 2, 84, 1, 18, '2017-2-DS', 1),
 (20, '2017-2-DS-20', '2017-10-02 21:08:41', 2, 163, 1, 20, '2017-2-DS', 1),
 (21, '2017-2-DM-21', '2017-10-02 15:24:57', 2, 304, 3, 21, '2017-2-DM', 4),
 (22, '2017-2-MK-22', '2017-09-30 14:15:20', 2, 215, 2, 22, '2017-2-MK', 2),
@@ -4697,18 +4684,6 @@ INSERT INTO `MatriculaAsignatura` (`id`, `idMatricula`, `idAsignatura`) VALUES
 (133, 18, 4),
 (134, 18, 5),
 (135, 18, 6),
-(136, 18, 1),
-(137, 19, 1),
-(138, 18, 2),
-(139, 19, 2),
-(140, 18, 3),
-(141, 19, 3),
-(142, 18, 4),
-(143, 19, 4),
-(144, 18, 5),
-(145, 19, 5),
-(146, 18, 6),
-(147, 19, 6),
 (148, 20, 1),
 (149, 20, 2),
 (150, 20, 3),

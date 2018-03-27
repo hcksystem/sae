@@ -5,15 +5,15 @@ class Controlador_cargoinstituto extends Controlador_Base
 {
    function crear($args)
    {
-      $cargoinstituto = new CargoInstituto($args["id"],$args["idCarrera"],$args["idPersona"],$args["idCargo"],$args["fechaInicio"],$args["fechaFin"]);
-      $sql = "INSERT INTO CargoInstituto (idCarrera,idPersona,idCargo,fechaInicio,fechaFin) VALUES (?,?,?,?,?);";
+      $cargoinstituto = new CargoInstituto($args["id"],$args["idInstituto"],$args["idPersona"],$args["idCargo"],$args["fechaInicio"],$args["fechaFin"]);
+      $sql = "INSERT INTO CargoInstituto (idInstituto,idPersona,idCargo,fechaInicio,fechaFin) VALUES (?,?,?,?,?);";
       $fechaInicioNoSQLTime = strtotime($cargoinstituto->fechaInicio);
       $fechaInicioSQLTime = date("Y-m-d", $fechaInicioNoSQLTime);
       $cargoinstituto->fechaInicio = $fechaInicioSQLTime;
       $fechaFinNoSQLTime = strtotime($cargoinstituto->fechaFin);
       $fechaFinSQLTime = date("Y-m-d", $fechaFinNoSQLTime);
       $cargoinstituto->fechaFin = $fechaFinSQLTime;
-      $parametros = array($cargoinstituto->idCarrera,$cargoinstituto->idPersona,$cargoinstituto->idCargo,$cargoinstituto->fechaInicio,$cargoinstituto->fechaFin);
+      $parametros = array($cargoinstituto->idInstituto,$cargoinstituto->idPersona,$cargoinstituto->idCargo,$cargoinstituto->fechaInicio,$cargoinstituto->fechaFin);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -24,9 +24,9 @@ class Controlador_cargoinstituto extends Controlador_Base
 
    function actualizar($args)
    {
-      $cargoinstituto = new CargoInstituto($args["id"],$args["idCarrera"],$args["idPersona"],$args["idCargo"],$args["fechaInicio"],$args["fechaFin"]);
-      $parametros = array($cargoinstituto->idCarrera,$cargoinstituto->idPersona,$cargoinstituto->idCargo,$cargoinstituto->fechaInicio,$cargoinstituto->fechaFin,$cargoinstituto->id);
-      $sql = "UPDATE CargoInstituto SET idCarrera = ?,idPersona = ?,idCargo = ?,fechaInicio = ?,fechaFin = ? WHERE id = ?;";
+      $cargoinstituto = new CargoInstituto($args["id"],$args["idInstituto"],$args["idPersona"],$args["idCargo"],$args["fechaInicio"],$args["fechaFin"]);
+      $parametros = array($cargoinstituto->idInstituto,$cargoinstituto->idPersona,$cargoinstituto->idCargo,$cargoinstituto->fechaInicio,$cargoinstituto->fechaFin,$cargoinstituto->id);
+      $sql = "UPDATE CargoInstituto SET idInstituto = ?,idPersona = ?,idCargo = ?,fechaInicio = ?,fechaFin = ? WHERE id = ?;";
       $fechaInicioNoSQLTime = strtotime($cargoinstituto->fechaInicio);
       $fechaInicioSQLTime = date("Y-m-d", $fechaInicioNoSQLTime);
       $cargoinstituto->fechaInicio = $fechaInicioSQLTime;

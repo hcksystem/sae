@@ -788,6 +788,16 @@ CREATE TABLE PlanSemanaActividades (
 
 CREATE TABLE CargoInstituto (
     id INT AUTO_INCREMENT NOT NULL,
+    idInstituto INT NULL,
+    idPersona INT NULL,
+    idCargo INT NULL,
+    fechaInicio DATE NULL,
+    fechaFin DATE NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE CargoCarrera (
+    id INT AUTO_INCREMENT NOT NULL,
     idCarrera INT NULL,
     idPersona INT NULL,
     idCargo INT NULL,

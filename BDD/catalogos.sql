@@ -1323,7 +1323,6 @@ INSERT INTO `Ubicacion` (`id`, `codigo`, `descripcion`, `codigoPadre`) VALUES
 (1095, '345.17.3.628', 'AYORA', '345.17.3'),
 (1096, '345.17.3.629', 'CANGAHUA', '345.17.3'),
 (1097, '345.17.3.630', 'CAYAMBE', '345.17.3'),
-(1098, '345.17.3.631', 'CAYAMBE', '345.17.3'),
 (1099, '345.17.3.632', 'JUAN MONTALVO', '345.17.3'),
 (1100, '345.17.3.633', 'OLMEDO (PESILLO)', '345.17.3'),
 (1101, '345.17.3.634', 'OTÓN', '345.17.3'),
@@ -1920,27 +1919,26 @@ INSERT INTO `Ubicacion` (`id`, `codigo`, `descripcion`, `codigoPadre`) VALUES
 (1691, '345.1.1.1225', 'VICTORIA DEL PORTETE (IRQUIS)', '345.1.1'),
 (1692, '345.1.1.1226', 'YANUNCAY', '345.1.1');
 
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (1,'RECTOR/A');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (2,'VICE RECTOR/A');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (3,'CORRDINADOR/A DE CARRERA');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (4,'CORRDINADOR/A ACADÉMICO/A');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (5,'CORRDINADOR/A DE VINCULACIÓN');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (6,'COORDINADOR/A DE INVESTIGACIÓN');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (7,'SECRETARÍA GENERAL');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (8,'ADMINISTRADOR/A TIC');
 
-INSERT INTO `Cargo` (`descripcion`) VALUES
-('RECTOR/A'),
-('VICE RECTOR/A'),
-('CORRDINADOR/A DE CARRERA'),
-('CORRDINADOR ACADÉMICO'),
-('CORRDINADOR DE VINCULACIÓN'),
-('COORDINADOR DE INVESTIGACIÓN'),
-('SECRETARÍA GENERAL'),
-('ADMINISTRADOR/A TIC');
+INSERT INTO `CargoInstituto` (`id`,`idInstituto`, `idPersona`, `idCargo`, `fechaInicio`) VALUES
+(1, 1, 3, 2, '2017-03-01'),
+(2, 2, 3, 2, '2017-03-01'),
+(3, 3, 3, 2, '2017-03-01'),
+(4, 4, 3, 2, '2017-03-01'),
+(5, 1, 5, 1, '2017-03-01'),
+(6, 2, 5, 1, '2017-03-01'),
+(7, 3, 5, 1, '2017-03-01'),
+(8, 4, 5, 1, '2017-03-01');
 
-INSERT INTO `CargoInstituto` (`idCarrera`, `idPersona`, `idCargo`, `fechaInicio`) VALUES
-(1, 5, 1, '2017-03-01'),
-(1, 3, 2, '2017-03-01'),
-(1, 30, 3, '2017-03-01'),
-(2, 5, 1, '2017-03-01'),
-(2, 3, 2, '2017-03-01'),
-(2, 64, 3, '2017-03-01'),
-(3, 5, 1, '2017-03-01'),
-(3, 3, 2, '2017-03-01'),
-(3, 50, 3, '2017-03-01'),
-(4, 5, 1, '2017-03-01'),
-(4, 3, 2, '2017-03-01'),
-(4, 1, 3, '2017-03-01');
+INSERT INTO `CargoCarrera` (`id`,`idCarrera`, `idPersona`, `idCargo`, `fechaInicio`) VALUES
+(1, 1, 30, 3, '2017-03-01'),
+(2, 2, 64, 3, '2017-03-01'),
+(3, 3, 50, 3, '2017-03-01');
