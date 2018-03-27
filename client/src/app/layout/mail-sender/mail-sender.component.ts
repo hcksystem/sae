@@ -146,7 +146,9 @@ export class MailSenderComponent implements OnInit {
     }
 
     cambioCuerpo() {
-        document.getElementById('previewBody').innerHTML = this.buildMessageBody(this.destinos[0]);
+        let cuerpo: string;
+        cuerpo = this.mailData.Mensaje;
+        document.getElementById('previewBody').innerHTML = this.buildMessageBody(this.destinos[0], cuerpo);
     }
 
     cuentaEnvios(mensajesPorEnviar: number) {
@@ -184,14 +186,27 @@ export class MailSenderComponent implements OnInit {
 
     buildMailData(cuenta: number) {
         const destino = this.destinos[cuenta - 1];
-        this.mailData.ToEmail = destino.correoElectronico;
-        this.mailData.ToAlias = destino.nombre1 + ' ' + destino.nombre2 + ' ' + destino.apellido1 + ' ' + destino.apellido2;
-        this.mailData.Mensaje = this.buildMessageBody(destino);
-        this.enviarEmail();
+        let paraEnviar: MailData;
+        paraEnviar = new MailData();
+        paraEnviar.ToAlias = destino.nombre1 + ' ' + destino.nombre2 + ' ' + destino.apellido1 + ' ' + destino.apellido2;
+        paraEnviar.ToEmail = destino.correoElectronico;
+        paraEnviar.Asunto = this.mailData.Asunto;
+        paraEnviar.FromAlias = this.mailData.FromAlias;
+        paraEnviar.FromClave = this.mailData.FromClave;
+        paraEnviar.FromEmail = this.mailData.FromEmail;
+        paraEnviar.ReplyAlias = this.mailData.ReplyAlias;
+        paraEnviar.ReplyEmail = this.mailData.ReplyEmail;
+        let cuerpo: string;
+        cuerpo = this.mailData.Mensaje;
+        paraEnviar.Mensaje = this.buildMessageBody(destino, cuerpo);
+        this.enviarEmail(paraEnviar);
     }
 
-    buildMessageBody(destino: DestinoMail) {
-        let messageBody = this.mailData.Mensaje;
+    buildMessageBody(destino: DestinoMail, cuerpo: string) {
+        let messageBody = cuerpo;
+        if (destino.idGenero == 2){
+            messageBody = messageBody.replace('BIENVENIDO', 'BIENVENIDA');
+        }
         messageBody = messageBody.replace('#nombre1', destino.nombre1);
         messageBody = messageBody.replace('#nombre2', destino.nombre2);
         messageBody = messageBody.replace('#apellido1', destino.apellido1);
@@ -206,8 +221,9 @@ export class MailSenderComponent implements OnInit {
         messageBody = messageBody.replace('#telefonoDomicilio', destino.telefonoDomicilio);
         return messageBody;
     }
-    enviarEmail() {
-        this.busy = this.mailSenderDataService.sendMail(this.mailData)
+
+    enviarEmail(datosEnvio: MailData) {
+        this.busy = this.mailSenderDataService.sendMail(datosEnvio)
         .then(respuesta => {
 
         })
@@ -256,6 +272,7 @@ export class MailSenderComponent implements OnInit {
     }
 
     iniciarEnvio() {
+        const cuerpo = this.mailData.Mensaje;
         this.setTiempoRequerido();
         this.setProgressBar();
         if ( this.mensajesEnviados < this.total && this.enviando ) {
@@ -263,6 +280,7 @@ export class MailSenderComponent implements OnInit {
                 this.mensajesEnviados++;
                 this.setProgressBar();
                 this.setTiempoRequerido();
+                this.mailData.Mensaje = cuerpo;
                 this.buildMailData(this.mensajesEnviados);
                 this.iniciarEnvio();
             }, this.tickTime);

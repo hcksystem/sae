@@ -950,3 +950,6 @@ INSERT INTO AsignaturaCupo (id, idCupo, idAsignatura) VALUES ('1786','551','56')
 INSERT INTO AsignaturaCupo (id, idCupo, idAsignatura) VALUES ('1787','552','56');
 INSERT INTO AsignaturaCupo (id, idCupo, idAsignatura) VALUES ('1788','553','56');
 INSERT INTO AsignaturaCupo (id, idCupo, idAsignatura) VALUES ('1789','554','56');
+INSERT INTO AsignaturaCupo (id, idCupo, idAsignatura) VALUES ('1790','555','43');
+INSERT INTO AsignaturaCupo (id, idCupo, idAsignatura) VALUES ('1791','556','43');
+INSERT INTO AsignaturaCupo (id, idCupo, idAsignatura) VALUES ('1792','557','43');
