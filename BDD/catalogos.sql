@@ -1956,3 +1956,4 @@ INSERT INTO `CargoCarrera` (`id`,`idCarrera`, `idPersona`, `idCargo`, `fechaInic
 (2, 2, 64, 3, '2017-03-01'),
 (3, 3, 50, 3, '2017-03-01');
 (4, 5, 36, 3, '2017-03-01');
+(5, 4, 33, 3, '2017-03-01');

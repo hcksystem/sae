@@ -120,11 +120,12 @@ export class MailSenderComponent implements OnInit {
             this.destinos = respuesta;
             this.destinos.forEach(destino => {
                 this.cordinadores.forEach(coordinador => {
-                    if(destino.idCarrera = coordinador.idCarrera) {
+                    if(destino.idCarrera == coordinador.idCarrera) {
                         destino.coordinadorCarrera = coordinador.nombre;
                     }
                 });
             });
+            console.log(this.cordinadores);
             console.log(this.destinos);
             this.total = this.destinos.length;
         })
@@ -204,9 +205,6 @@ export class MailSenderComponent implements OnInit {
 
     buildMessageBody(destino: DestinoMail, cuerpo: string) {
         let messageBody = cuerpo;
-        if (destino.idGenero == 2){
-            messageBody = messageBody.replace('BIENVENIDO', 'BIENVENIDA');
-        }
         messageBody = messageBody.replace('#nombre1', destino.nombre1);
         messageBody = messageBody.replace('#nombre2', destino.nombre2);
         messageBody = messageBody.replace('#apellido1', destino.apellido1);
