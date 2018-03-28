@@ -125,8 +125,6 @@ export class MailSenderComponent implements OnInit {
                     }
                 });
             });
-            console.log(this.cordinadores);
-            console.log(this.destinos);
             this.total = this.destinos.length;
         })
         .catch(error => {
@@ -147,6 +145,9 @@ export class MailSenderComponent implements OnInit {
     }
 
     cambioCuerpo() {
+        if(this.destinos.length == 0){
+            return;
+        }
         let cuerpo: string;
         cuerpo = this.mailData.Mensaje;
         document.getElementById('previewBody').innerHTML = this.buildMessageBody(this.destinos[0], cuerpo);
@@ -205,6 +206,11 @@ export class MailSenderComponent implements OnInit {
 
     buildMessageBody(destino: DestinoMail, cuerpo: string) {
         let messageBody = cuerpo;
+        if(destino.idGenero == 2){
+            messageBody = messageBody.replace('BIENVENIDO', 'BIENVENIDA');
+            messageBody = messageBody.replace('Bienvenido', 'Bienvenida');
+            messageBody = messageBody.replace('bienvenido', 'bienvenida');
+        }
         messageBody = messageBody.replace('#nombre1', destino.nombre1);
         messageBody = messageBody.replace('#nombre2', destino.nombre2);
         messageBody = messageBody.replace('#apellido1', destino.apellido1);
