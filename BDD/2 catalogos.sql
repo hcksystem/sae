@@ -1954,6 +1954,6 @@ INSERT INTO `CargoInstituto` (`id`,`idInstituto`, `idPersona`, `idCargo`, `fecha
 INSERT INTO `CargoCarrera` (`id`,`idCarrera`, `idPersona`, `idCargo`, `fechaInicio`) VALUES
 (1, 1, 30, 3, '2017-03-01'),
 (2, 2, 64, 3, '2017-03-01'),
-(3, 3, 50, 3, '2017-03-01');
-(4, 5, 36, 3, '2017-03-01');
+(3, 3, 50, 3, '2017-03-01'),
+(4, 5, 36, 3, '2017-03-01'),
 (5, 4, 33, 3, '2017-03-01');
