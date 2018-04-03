@@ -14,6 +14,10 @@ export class ContactoEstudiantesNuevosService {
     constructor(private http: Http) {
     }
 
+    contactado(id: number): Promise<any[]> {
+        return this.http.get(this.urlBase+'/contactado' + '?id=' + id).toPromise().then(response=>response.json() as any[]).catch(this.handleError);
+    }
+
     getAll(idCarrera: number): Promise<Persona[]> {
         return this.http.get(this.urlBase+'/leer' + '?idCarrera=' + idCarrera).toPromise().then(response=>response.json() as Persona[]).catch(this.handleError);
     }

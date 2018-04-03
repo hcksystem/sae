@@ -49,4 +49,13 @@ class Controlador_estudiantes_no_contactados extends Controlador_Base
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta[0];
    }
+
+   function contactado($args)
+   {
+    $idEstudiante = $args["id"];
+    $sql = "UPDATE Cupo SET idEstadoCupo = 2 WHERE idPersona = ?;";
+    $parametros = array($idEstudiante);
+    $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+    return $respuesta[0];
+   }
 }

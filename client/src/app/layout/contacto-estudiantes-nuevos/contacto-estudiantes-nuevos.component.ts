@@ -145,31 +145,26 @@ export class ContactoEstudiantesNuevosComponent implements OnInit {
    }
 
    aceptar(): void {
-      if (!this.isValid(this.entidadSeleccionada)) {return;}
-      if (this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
-         this.add(this.entidadSeleccionada);
-      } else {
-         this.update(this.entidadSeleccionada);
-      }
+        this.busy = this.dataService
+        .update(this.entidadSeleccionada)
+        .then(respuesta => {
+            this.busy = this.noContactadosDataService
+            .contactado(this.entidadSeleccionada.id)
+            .then(respuesta => {
+                this.toastr.success('La actualización fue exitosa, estudiante Contactado', 'Actualización');
+                this.refresh();
+            })
+            .catch(error => {
+            //Error al leer las paginas
+            });
+        })
+        .catch(error => {
+        //Error al leer las paginas
+        });
       this.cerrarVentanaEdicion();
    }
 
-    add(entidadNueva: Persona): void {
-        this.busy = this.dataService.create(entidadNueva)
-        .then(respuesta => {
-        if(respuesta){
-            this.toastr.success('La creación fue exitosa', 'Creación');
-        }else{
-            this.toastr.warning('Se produjo un error', 'Creación');
-        }
-        this.refresh();
-        })
-        .catch(error => {
-        this.toastr.warning('Se produjo un error', 'Creación');
-        });
-    }
-
-   crearEntidad(): Persona {
+    crearEntidad(): Persona {
       const nuevoPersona = new Persona();
       nuevoPersona.id = 0;
       return nuevoPersona;
