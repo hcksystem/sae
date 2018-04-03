@@ -27,9 +27,9 @@ class Controlador_estudiantes_no_contactados extends Controlador_Base
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
       if($idCarrera == 0){
-        $sql = "SELECT * FROM Persona INNER JOIN Cupo ON Cupo.idPersona = Persona.id INNER JOIN EstadoCupo ON Cupo.idEstadoCupo = EstadoCupo.id INNER JOIN JornadaCarrera ON Cupo.idJornadaCarrera = JornadaCarrera.id INNER JOIN PeriodoLectivo ON PeriodoLectivo.id = Cupo.idPeriodoLectivo WHERE PeriodoLectivo.matriculable = 1 AND EstadoCupo.id = 1 LIMIT $desde,$registrosPorPagina;";
+        $sql = "SELECT Persona.* FROM Persona INNER JOIN Cupo ON Cupo.idPersona = Persona.id INNER JOIN EstadoCupo ON Cupo.idEstadoCupo = EstadoCupo.id INNER JOIN JornadaCarrera ON Cupo.idJornadaCarrera = JornadaCarrera.id INNER JOIN PeriodoLectivo ON PeriodoLectivo.id = Cupo.idPeriodoLectivo WHERE PeriodoLectivo.matriculable = 1 AND EstadoCupo.id = 1 LIMIT $desde,$registrosPorPagina;";
       }else{
-        $sql = "SELECT * FROM Persona INNER JOIN Cupo ON Cupo.idPersona = Persona.id INNER JOIN EstadoCupo ON Cupo.idEstadoCupo = EstadoCupo.id INNER JOIN JornadaCarrera ON Cupo.idJornadaCarrera = JornadaCarrera.id INNER JOIN PeriodoLectivo ON PeriodoLectivo.id = Cupo.idPeriodoLectivo WHERE PeriodoLectivo.matriculable = 1 AND EstadoCupo.id = 1 AND idCarrera = ? LIMIT $desde,$registrosPorPagina;";
+        $sql = "SELECT Persona.* FROM Persona INNER JOIN Cupo ON Cupo.idPersona = Persona.id INNER JOIN EstadoCupo ON Cupo.idEstadoCupo = EstadoCupo.id INNER JOIN JornadaCarrera ON Cupo.idJornadaCarrera = JornadaCarrera.id INNER JOIN PeriodoLectivo ON PeriodoLectivo.id = Cupo.idPeriodoLectivo WHERE PeriodoLectivo.matriculable = 1 AND EstadoCupo.id = 1 AND idCarrera = ? LIMIT $desde,$registrosPorPagina;";
       }
       $parametros = array($idCarrera);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
