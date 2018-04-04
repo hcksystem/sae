@@ -50,7 +50,7 @@ INSERT INTO Asignatura ( idMalla, codigo, nombre, idPeriodoAcademico, horasPract
 (5, '8GT1PR02', 'INTRODUCCIÓN AL TURISMO Y HOTELERÍA', 1, 27, 4, '4'),
 (5, '9GT1PR01', 'LEGISLACIÓN TURÍSTICA', 1, 28, 2, '4'),
 (5, '11GT1CI02', 'IDENTIFICACIÓN DESCRIPTIVA DESTINOS TURÍSTICOS ACTUALES', 1, 29, 2, '4'),
-(6, '10GT1PR05', 'FUNCIONAMIENTO Y DINÁMICA DEL TURISMO', 1, 30, 6, '4'),
+(5, '10GT1PR05', 'FUNCIONAMIENTO Y DINÁMICA DEL TURISMO', 1, 30, 6, '4'),
 (6, '', 'FUNDAMENTOS DE LA COCINA CLÁSICA', 1, 0, 0, '5'),
 (6, '', 'SEGURIDAD Y PRIMEROS AUXILIOS', 1, 0, 0, '4'),
 (6, '', 'TÉCNICAS DE COCINA CLÁSICA', 1, 0, 0, '6'),
@@ -1932,14 +1932,16 @@ INSERT INTO `Ubicacion` (`id`, `codigo`, `descripcion`, `codigoPadre`) VALUES
 (1691, '345.1.1.1225', 'VICTORIA DEL PORTETE (IRQUIS)', '345.1.1'),
 (1692, '345.1.1.1226', 'YANUNCAY', '345.1.1');
 
-INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (1,'RECTOR/A');
-INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (2,'VICE RECTOR/A');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (1,'RECTOR');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (2,'VICE RECTOR');
 INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (3,'CORRDINADOR/A DE CARRERA');
 INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (4,'CORRDINADOR/A ACADÉMICO/A');
 INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (5,'CORRDINADOR/A DE VINCULACIÓN');
 INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (6,'COORDINADOR/A DE INVESTIGACIÓN');
 INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (7,'SECRETARÍA GENERAL');
 INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (8,'ADMINISTRADOR/A TIC');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (9,'RECTORA');
+INSERT INTO `Cargo` (`id`,`descripcion`) VALUES (10,'VICE RECTORA');
 
 INSERT INTO `CargoInstituto` (`id`,`idInstituto`, `idPersona`, `idCargo`, `fechaInicio`) VALUES
 (1, 1, 3, 2, '2017-03-01'),

@@ -3,13 +3,13 @@ class DatosInstituto
 {
    public $nombre;
    public $rector;
-   public $viserector;
+   public $vicerector;
    public $colorCarpeta;
    
-   function __construct($nombre, $rector, $viserector, $colorCarpeta){
+   function __construct($nombre, $rector, $vicerector, $colorCarpeta){
       $this->nombre = $nombre;
       $this->rector = $rector;
-      $this->viserector = $viserector;
+      $this->vicerector = $vicerector;
       $this->colorCarpeta = $colorCarpeta;
    }
 }

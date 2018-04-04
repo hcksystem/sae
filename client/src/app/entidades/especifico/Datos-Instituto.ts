@@ -1,6 +1,6 @@
 export class DatosInstituto {
     nombre: String;
     rector: String;
-    viserector: String;
+    vicerector: String;
     colorCarpeta: String;
 }
