@@ -380,36 +380,48 @@
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
                                                     <table class="table table-striped table-bordered">
                                                         <thead class="thead-dark">
-                                                        <tr>
-                                                            <th scope="col">
-                                                                <span>
-                                                                    <strong>Código</strong>
-                                                                </span>
-                                                            </th>
-                                                            <th scope="col">
-                                                                <span>
-                                                                    <strong>Asignatura</strong>
-                                                                </span>
-                                                            </th>
-                                                            <th scope="col">
-                                                                <span>
-                                                                    <strong>Nivel</strong>
-                                                                </span>
-                                                            </th>
-                                                            <th scope="col">
-                                                                <span>
-                                                                    <strong>Horas a la Semana</strong>
-                                                                </span>
-                                                            </th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr *ngFor="let actual of asignaturasMatricula">
-                                                            <td>{{actual.codigo}}</td>
-                                                            <td>{{actual.nombre}}</td>
-                                                            <td>{{actual.nivel}}</td>
-                                                            <td>{{actual.horasSemana}}</td>
-                                                        </tr>
+                                                            <tr>
+                                                                <th scope="col">
+                                                                    <span>
+                                                                        <strong>Código</strong>
+                                                                    </span>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <span>
+                                                                        <strong>Asignatura</strong>
+                                                                    </span>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <span>
+                                                                        <strong>Período Académico</strong>
+                                                                    </span>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <span>
+                                                                        <strong>Horas Docente</strong>
+                                                                    </span>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <span>
+                                                                        <strong>Horas Prácticas</strong>
+                                                                    </span>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <span>
+                                                                        <strong>Horas Autónomas</strong>
+                                                                    </span>
+                                                                </th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr *ngFor="let actual of asignaturasMatricula">
+                                                                <td>{{actual.codigo}}</td>
+                                                                <td>{{actual.nombre}}</td>
+                                                                <td>{{actual.idPeriodoAcademico}}</td>
+                                                                <td>{{actual.horasDocente}}</td>
+                                                                <td>{{actual.horasPractica}}</td>
+                                                                <td>{{actual.horasAutonomas}}</td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>

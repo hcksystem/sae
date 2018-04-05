@@ -52,12 +52,22 @@
                             </th>
                             <th scope="col">
                                 <span>
-                                    <strong>Nivel</strong>
+                                    <strong>Período Académico</strong>
                                 </span>
                             </th>
                             <th scope="col">
                                 <span>
-                                    <strong>Horas a la Semana</strong>
+                                    <strong>Horas Docente</strong>
+                                </span>
+                            </th>
+                            <th scope="col">
+                                <span>
+                                    <strong>Horas Prácticas</strong>
+                                </span>
+                            </th>
+                            <th scope="col">
+                                <span>
+                                    <strong>Horas Autónomas</strong>
                                 </span>
                             </th>
                         </tr>
@@ -66,8 +76,10 @@
                         <tr *ngFor="let actual of asignaturasMatriculables">
                             <td>{{actual.codigo}}</td>
                             <td>{{actual.nombre}}</td>
-                            <td>{{actual.nivel}}</td>
-                            <td>{{actual.horasSemana}}</td>
+                            <td>{{actual.idPeriodoAcademico}}</td>
+                            <td>{{actual.horasDocente}}</td>
+                            <td>{{actual.horasPractica}}</td>
+                            <td>{{actual.horasAutonomas}}</td>
                         </tr>
                         </tbody>
                     </table>
