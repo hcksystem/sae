@@ -1,3 +1,4 @@
+use ignug;
 INSERT INTO Asignatura ( idMalla, codigo, nombre, idPeriodoAcademico, horasPractica, horasDocente, horasAutonomas) VALUES
 (2,'DS_MD_1','Matemática discreta','1','0','48','27'),
 (2,'DS_IDS_1','Introducción al desarrollo de software','1','12','60','27'),
