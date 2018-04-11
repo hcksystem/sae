@@ -7,3 +7,10 @@ INSERT INTO Persona (id, identificacion, nombre1, nombre2, apellido1, apellido2,
 INSERT INTO `Cuenta` (`id`, `idRol`, `idPersona`) VALUES(476, 4, 635);
 INSERT INTO Persona (id, identificacion, nombre1, nombre2, apellido1, apellido2, fechaNacimiento, telefonoCelular, correoElectronicoInstitucional, idGenero) VALUE ('636','1712946902', 'José', 'Mauricio', 'Prieto', 'Encalada', '1980-09-22', '0984914337', 'jprieto@yavirac.edu.ec', '1');
 INSERT INTO `Cuenta` (`id`, `idRol`, `idPersona`) VALUES(477, 4, 636);
+
+INSERT INTO Persona (id, identificacion, nombre1, nombre2, apellido1, apellido2, correoElectronicoInstitucional, idGenero) VALUE ('633','1714966221', 'Daicy', 'de los Angeles', 'Aceldo', 'Rodriguez', 'daceldo@yavirac.edu.ec', '2');
+INSERT INTO `Cuenta` (`id`, `idRol`, `idPersona`) VALUES(483, 4, 691);
+INSERT INTO Persona (id, identificacion, nombre1, nombre2, apellido1, apellido2, correoElectronicoInstitucional, idGenero) VALUE ('633','0702128760', 'Martha', 'Magdalena', 'Gaona', 'Arcentales', 'mgaona@yavirac.edu.ec', '2');
+INSERT INTO `Cuenta` (`id`, `idRol`, `idPersona`) VALUES(484, 4, 692);
+
+idPersona 50 to Rol 4;

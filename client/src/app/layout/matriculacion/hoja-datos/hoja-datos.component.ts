@@ -82,7 +82,7 @@ export class HojaDatosComponent implements OnInit {
     ) {}
 
     getFotoPerfil() {
-        this.srcFoto = './../../../../assets/images/user.png';
+        this.srcFoto = 'assets/images/user.png';
         this.busy = this.fotoPerfilDataService.getFiltrado('idPersona', 'coincide' , this.personaLogeada.id.toString())
         .then(respuesta => {
             if ( JSON.stringify(respuesta) == '[0]' ) {
@@ -121,7 +121,7 @@ export class HojaDatosComponent implements OnInit {
         ) as LoginResult;
         this.personaLogeada = logedResult.persona;
         this.rol = logedResult.idRol;
-        this.srcFoto = './../../../../assets/images/user.png';
+        this.srcFoto = 'assets/images/user.png';
         this.getFotoPerfil();
         this.busy = this.generoDataService
             .getFiltrado(

@@ -88,7 +88,7 @@ export class SolicitudMatriculaComponent implements OnInit {
         this.busy = this.matriculacionDataService.getDatosInstituto(idCarrera)
         .then(respuesta => {
             this.datosInstituto = respuesta;
-            this.logo = './../../../../assets/images/logos/' + this.datosInstituto.nombre + '.png';
+            this.logo = 'assets/images/logos/' + this.datosInstituto.nombre + '.png';
         })
         .catch(error => {
 

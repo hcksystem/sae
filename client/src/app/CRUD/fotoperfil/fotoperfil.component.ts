@@ -35,7 +35,7 @@ export class FotoPerfilComponent implements OnInit {
    }
 
     getFotoPerfil() {
-        this.srcFoto = './../../../../assets/images/user.png';
+        this.srcFoto = 'assets/images/user.png';
         this.busy = this.dataService.get(this.entidadSeleccionada.id)
         .then(respuesta => {
             if ( JSON.stringify(respuesta) == '[0]' ) {
@@ -233,7 +233,7 @@ export class FotoPerfilComponent implements OnInit {
    ngOnInit() {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
-      this.srcFoto = './../../../../assets/images/user.png';
+      this.srcFoto = 'assets/images/user.png';
       this.refresh();
    }
 

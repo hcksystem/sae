@@ -119,7 +119,7 @@ export class TutorComponent implements OnInit {
         this.rol = logedResult.idRol;
         this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
         let autorizado = false;
-        this.srcFoto = './../../../../assets/images/user.png';
+        this.srcFoto = 'assets/images/user.png';
         this.rolesSecundarios.forEach(rol => {
             if ( rol.idRol == 4 ) {
                 autorizado = true;
@@ -251,7 +251,7 @@ export class TutorComponent implements OnInit {
     }
 
     getFotoPerfil() {
-        this.srcFoto = './../../../../assets/images/user.png';
+        this.srcFoto = 'assets/images/user.png';
         this.busy = this.fotoPerfilDataService.getFiltrado('idPersona', 'coincide' , this.solicitudMatriculaSeleccionada.idPersona.toString())
         .then(respuesta => {
             if ( JSON.stringify(respuesta) == '[0]' ) {
@@ -524,7 +524,7 @@ export class TutorComponent implements OnInit {
                 return;
             }
             this.datosInstituto = respuesta;
-            this.logo = './../../../../assets/images/logos/' + this.datosInstituto.nombre + '.png';
+            this.logo = 'assets/images/logos/' + this.datosInstituto.nombre + '.png';
         })
         .catch(error => {
 

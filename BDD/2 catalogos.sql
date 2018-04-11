@@ -1,5 +1,3 @@
-USE ignug;
-
 INSERT INTO Asignatura ( idMalla, codigo, nombre, idPeriodoAcademico, horasPractica, horasDocente, horasAutonomas) VALUES
 (2,'DS_MD_1','Matemática discreta','1','0','48','27'),
 (2,'DS_IDS_1','Introducción al desarrollo de software','1','12','60','27'),
@@ -58,12 +56,12 @@ INSERT INTO Asignatura ( idMalla, codigo, nombre, idPeriodoAcademico, horasPract
 (6, '', 'SEGURIDAD E HIGIENE DE ALIMENTOS', 1, 0, 0, '4'),
 (6, '', 'CULTURA GASTRONÓMICA ECUATORIANA', 1, 0, 0, '5');
 
-INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2017-03-01', '1');
-INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2017-03-01', '1');
-INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '2');
-INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '3');
-INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '4');
-INSERT INTO `ignug`.`Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '5');
+INSERT INTO `Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2017-03-01', '1');
+INSERT INTO `Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2017-03-01', '1');
+INSERT INTO `Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '2');
+INSERT INTO `Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '3');
+INSERT INTO `Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '4');
+INSERT INTO `Malla` (`fechaMallaInicio`, `idCarrera`) VALUES ('2015-02-02', '5');
 
 INSERT INTO `Carrera` (`id`, `resolucion`, `nombre`, `descripcion`, `idModalidad`, `idInstituto`, `siglas`) VALUES
 (1, '1', 'TECNOLOGÍA SUPERIOR EN DESARROLLO DE SOFTWARE ', 'TECNOLOGÍA SUPERIOR EN DESARROLLO DE SOFTWARE ', 1, 1, 'DS'),

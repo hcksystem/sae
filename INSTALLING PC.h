@@ -14,7 +14,6 @@ sudo apt-get install libbz2-1.0:i386
 sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1
 sudo apt-get install openjdk-8-jdk openjdk-8-jre
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-//Instalar Android Studio
 export PATH=${PATH}:~/Android/Sdk/tools
 export PATH=${PATH}:~/Android/Sdk/platform-tools
 sudo apt install gradle
