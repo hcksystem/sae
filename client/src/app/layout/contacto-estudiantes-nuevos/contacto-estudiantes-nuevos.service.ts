@@ -23,7 +23,7 @@ export class ContactoEstudiantesNuevosService {
     }
 
     getPagina(pagina: number, tamanoPagina: number, idCarrera: number): Promise<Persona[]> {
-        return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina + '&idCarrera=' + idCarrera).toPromise().then(response=>response.json() as Persona[]).catch(this.handleError);
+        return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina + '&idCarrera=' + idCarrera + '&foo='+ Math.random() ).toPromise().then(response=>response.json() as Persona[]).catch(this.handleError);
     }
 
     getNumeroPaginas(tamanoPagina: number, idCarrera: number): Promise<any> {

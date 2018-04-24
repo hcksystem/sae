@@ -33,7 +33,7 @@ export class MailSenderComponent implements OnInit {
     enviosRealizados: number;
     estadoSeleccionadoCombo: number;
     cordinadores = [];
-
+    alInstitucional: number;
     Comodines = [
         '#nombre1',
         '#nombre2',
@@ -46,6 +46,7 @@ export class MailSenderComponent implements OnInit {
         '#nivel',
         '#telefonoCelular',
         '#telefonoDomicilio',
+        '#correoElectronicoInstitucional',
         '<img src="url">',
         '<h1></h1>',
         '<strong></strong>'];
@@ -69,6 +70,7 @@ export class MailSenderComponent implements OnInit {
         this.progresoPorcentaje = 0;
         this.mensajesEnviados = 0;
         this.tiempoRequerido = '';
+        this.alInstitucional = 1;
         this.mensajeBarra = '';
         this.enviando = false;
         this.carreraSeleccionadaCombo = 0;
@@ -191,7 +193,12 @@ export class MailSenderComponent implements OnInit {
         let paraEnviar: MailData;
         paraEnviar = new MailData();
         paraEnviar.ToAlias = destino.nombre1 + ' ' + destino.nombre2 + ' ' + destino.apellido1 + ' ' + destino.apellido2;
-        paraEnviar.ToEmail = destino.correoElectronico;
+        if (this.alInstitucional == 1){
+            paraEnviar.ToEmail = destino.correoElectronicoInstitucional;
+        }
+        else{
+            paraEnviar.ToEmail = destino.correoElectronico;
+        }
         paraEnviar.Asunto = this.mailData.Asunto;
         paraEnviar.FromAlias = this.mailData.FromAlias;
         paraEnviar.FromClave = this.mailData.FromClave;
@@ -223,6 +230,7 @@ export class MailSenderComponent implements OnInit {
         messageBody = messageBody.replace('#nivel', niveles[destino.nivel - 1]);
         messageBody = messageBody.replace('#telefonoCelular', destino.telefonoCelular);
         messageBody = messageBody.replace('#telefonoDomicilio', destino.telefonoDomicilio);
+        messageBody = messageBody.replace('#correoElectronicoInstitucional', destino.correoElectronicoInstitucional);
         return messageBody;
     }
 

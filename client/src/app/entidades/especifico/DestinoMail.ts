@@ -7,6 +7,7 @@ export class DestinoMail {
     telefonoCelular: string;
     telefonoDomicilio: string;
     correoElectronico: string;
+    correoElectronicoInstitucional: string;
     idGenero: number;
     genero: string;
     idCarrera: number;

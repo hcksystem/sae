@@ -134,6 +134,7 @@
                             <select class="form-control" id="idEstado" [(ngModel)]="estadoSeleccionadoCombo" (change)="filtroSeleccionado()">
                                 <option value="0" selected>Matriculados</option>
                                 <option value="1" selected>Cupo Asignado</option>
+                                <option value="2" selected>Contactados</option>
                             </select>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
@@ -165,6 +166,19 @@
                                 <option value="4" selected>Cuarto Nivel</option>
                                 <option value="5" selected>Quinto Nivel</option>
                                 <option value="6" selected>Sexto Nivel</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+                        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                            <label class="col-form-label">Tipo Destino</label>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                            <select class="form-control" id="alInstitucional" [(ngModel)]="alInstitucional">
+                                <option value="0" selected>Correo Personal</option>
+                                <option value="1" selected>Correo Institucional</option>
                             </select>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>

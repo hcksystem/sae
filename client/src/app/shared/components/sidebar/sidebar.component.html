@@ -56,10 +56,9 @@
                 </ul>
             </li>
         </div>
-        <div class="nested-menu">
+        <div class="nested-menu" [hidden]="!secretariaAcademica">
             <a class="list-group-item" (click)="addExpandClass('pages5')">
-                <span>
-                    <i class="fa fa-plus"></i>&nbsp; {{ 'Asistencia' | translate }}</span>
+                <span><i class="fa fa-plus"></i>&nbsp; {{ 'Asistencia' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'pages5'">
                 <ul class="submenu">
@@ -74,7 +73,7 @@
                 </ul>
             </li>
         </div>
-        <div class="nested-menu">
+        <div class="nested-menu" [hidden]="!secretariaAcademica">
             <a class="list-group-item" (click)="addExpandClass('pages1')">
                 <span>
                     <i class="fa fa-plus"></i>&nbsp; {{ 'General' | translate }}</span>
@@ -200,7 +199,7 @@
                 </ul>
             </li>
         </div>
-        <div class="nested-menu">
+        <div class="nested-menu" [hidden]="!secretariaAcademica">
             <a class="list-group-item" (click)="addExpandClass('pages2')">
                 <span>
                     <i class="fa fa-plus"></i>&nbsp; {{ 'De lo académico' | translate }}</span>
@@ -274,7 +273,7 @@
                 </ul>
             </li>
         </div>
-        <div class="nested-menu">
+        <div class="nested-menu" [hidden]="!secretariaAcademica">
             <a class="list-group-item" (click)="addExpandClass('pages3')">
                 <span>
                     <i class="fa fa-plus"></i>&nbsp; {{ 'De la persona' | translate }}</span>
@@ -334,7 +333,7 @@
                 </ul>
             </li>
         </div>
-        <div class="nested-menu">
+        <div class="nested-menu" [hidden]="!secretariaAcademica">
             <a class="list-group-item" (click)="addExpandClass('pages4')">
                 <span>
                     <i class="fa fa-plus"></i>&nbsp; {{ 'De las seguridades' | translate }}</span>
