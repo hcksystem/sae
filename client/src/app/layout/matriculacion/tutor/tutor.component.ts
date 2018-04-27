@@ -380,13 +380,15 @@ export class TutorComponent implements OnInit {
         .catch(error => {
 
         });
-        this.busy = this.tipoDiscapacidadDataService.getFiltrado('id', 'coincide', aspirate.idTipoDiscapacidad.toString())
-        .then(respuesta => {
-            this.tipoDiscapacidad = respuesta[0].descripcion;
-        })
-        .catch(error => {
+        if(aspirate.idTipoDiscapacidad!=null){
+            this.busy = this.tipoDiscapacidadDataService.getFiltrado('id', 'coincide', aspirate.idTipoDiscapacidad.toString())
+            .then(respuesta => {
+                this.tipoDiscapacidad = respuesta[0].descripcion;
+            })
+            .catch(error => {
 
-        });
+            });
+        }
         this.busy = this.ubicacionDataService.getFiltrado('codigo', 'coincide', aspirate.idUbicacionDomicilioPais.toString())
         .then(respuesta => {
             this.paisDomicilio = respuesta[0].descripcion;

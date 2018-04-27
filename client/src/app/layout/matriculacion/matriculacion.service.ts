@@ -22,7 +22,7 @@ export class MatriculacionService {
 
    getAlumnosMatriculados(idCarrera: number, idJornada: number, idEstadoCupo: number): Promise<PersonaCombo[]> {
         const url = `${this.urlBase + 'alumnos_matriculados/consultar'}`;
-        return this.http.get(url + '?idCarrera=' + idCarrera + '&idJornada=' + idJornada + '&idEstadoCupo=' + idEstadoCupo)
+        return this.http.get(url + '?idCarrera=' + idCarrera + '&idJornada=' + idJornada + '&idEstadoCupo=' + idEstadoCupo + '&foo='+ Math.random())
         .toPromise()
         .then(response => {
             const toReturn = response.json() as PersonaCombo[];
@@ -32,7 +32,7 @@ export class MatriculacionService {
    }
 
    getRolesSecundariosRegistrados(): Promise<Roles[]> {
-        const url = `${this.urlBase + 'asignacion_roles_secundarios_roles/consultar'}`;
+        const url = `${this.urlBase + 'asignacion_roles_secundarios_roles/consultar' + '?foo='+ Math.random()}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
@@ -43,7 +43,7 @@ export class MatriculacionService {
     }
 
     getPersonasRolesSecundariosRegistrados(): Promise<PersonaCombo[]> {
-        const url = `${this.urlBase + 'asignacion_roles_secundarios_personas/consultar'}`;
+        const url = `${this.urlBase + 'asignacion_roles_secundarios_personas/consultar' + '?foo='+ Math.random()}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
@@ -54,7 +54,7 @@ export class MatriculacionService {
     }
 
     getPersonasRolesSecundariosAdmitidos(): Promise<PersonaCombo[]> {
-        const url = `${this.urlBase + 'asignacion_roles_secundarios_no_estudiantes/consultar'}`;
+        const url = `${this.urlBase + 'asignacion_roles_secundarios_no_estudiantes/consultar' + '?foo='+ Math.random()}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
@@ -65,7 +65,7 @@ export class MatriculacionService {
     }
 
    getPersonasSolicitudMatriculaRevisados(): Promise<PersonaCombo[]> {
-        const url = `${this.urlBase + 'estudiantes_solicitud_matricula_revisados/consultar'}`;
+        const url = `${this.urlBase + 'estudiantes_solicitud_matricula_revisados/consultar' + '?foo='+ Math.random()}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
@@ -76,7 +76,7 @@ export class MatriculacionService {
     }
 
    getPersonasSolicitudMatricula(): Promise<PersonaCombo[]> {
-        const url = `${this.urlBase + 'estudiantes_solicitud_matricula/consultar'}`;
+        const url = `${this.urlBase + 'estudiantes_solicitud_matricula/consultar' + '?foo='+ Math.random()}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
@@ -87,7 +87,7 @@ export class MatriculacionService {
     }
 
     getPaginasMatriculaFiltrado(idPersona: number, idCarrera: number, idPeriodoLectivo: number, registros_por_pagina: number): Promise<number> {
-        const url = `${this.urlBase + 'datos_estudiantes_matricula/numero_paginas?idPeriodoLectivo= ' + idPeriodoLectivo + '&registros_por_pagina=' + registros_por_pagina + '&idPersona=' + idPersona + '&idCarrera=' + idCarrera}`;
+        const url = `${this.urlBase + 'datos_estudiantes_matricula/numero_paginas?idPeriodoLectivo= ' + idPeriodoLectivo + '&registros_por_pagina=' + registros_por_pagina + '&idPersona=' + idPersona + '&idCarrera=' + idCarrera + '&foo='+ Math.random()}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
@@ -98,7 +98,7 @@ export class MatriculacionService {
     }
 
     getMatriculaFiltrado(idPersona: number, idCarrera: number, idPeriodoLectivo: number, pagina: number, registros_por_pagina: number): Promise<Matricula[]> {
-        const url = `${this.urlBase + 'datos_estudiantes_matricula/leer_paginado?idPersona=' + idPersona + '&idCarrera=' + idCarrera + '&idPeriodoLectivo=' + idPeriodoLectivo + '&registros_por_pagina=' + registros_por_pagina + '&pagina=' + pagina}`;
+        const url = `${this.urlBase + 'datos_estudiantes_matricula/leer_paginado?idPersona=' + idPersona + '&idCarrera=' + idCarrera + '&idPeriodoLectivo=' + idPeriodoLectivo + '&registros_por_pagina=' + registros_por_pagina + '&pagina=' + pagina + '&foo='+ Math.random()}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
@@ -109,7 +109,7 @@ export class MatriculacionService {
     }
 
    getPersonasMatriculadas(idCarrera: number, idPeriodoLectivo: number, idEstadoCupo: number): Promise<PersonaCombo[]> {
-        const url = `${this.urlBase + 'alumnos_matriculados/consultar?idEstadoCupo=' + idEstadoCupo + '&idCarrera=' + idCarrera + '&idPeriodoLectivo=' + idPeriodoLectivo}`;
+        const url = `${this.urlBase + 'alumnos_matriculados/consultar?idEstadoCupo=' + idEstadoCupo + '&idCarrera=' + idCarrera + '&idPeriodoLectivo=' + idPeriodoLectivo + '&foo='+ Math.random()}`;
         return this.http.get(url)
         .toPromise()
         .then(response => {
@@ -120,7 +120,7 @@ export class MatriculacionService {
    }
 
    getDatosCupo(idPersona: number): Promise<DatosCupo> {
-      const url = `${this.urlBase + 'datos_cupo/consultar?idPersona=' + idPersona.toString()}`;
+      const url = `${this.urlBase + 'datos_cupo/consultar?idPersona=' + idPersona.toString() + '&foo='+ Math.random()}`;
       return this.http.get(url)
       .toPromise()
       .then(response => {
@@ -131,7 +131,7 @@ export class MatriculacionService {
    }
 
    getDatosInstituto(idCarrera: number): Promise<DatosInstituto> {
-      const url = `${this.urlBase + 'datos_instituto/consultar?idCarrera=' + idCarrera.toString()}`;
+      const url = `${this.urlBase + 'datos_instituto/consultar?idCarrera=' + idCarrera.toString() + '&foo='+ Math.random()}`;
       return this.http.get(url)
       .toPromise()
       .then(response => {
@@ -142,7 +142,7 @@ export class MatriculacionService {
    }
 
    getPeriodoLectivoActual(): Promise<PeriodoLectivoActual> {
-      const url = `${this.urlBase + 'periodo_lectivo_actual/consultar'}`;
+      const url = `${this.urlBase + 'periodo_lectivo_actual/consultar' + '?foo='+ Math.random()}`;
       return this.http.get(url)
       .toPromise()
       .then(response => {
@@ -153,7 +153,7 @@ export class MatriculacionService {
    }
 
    getAsignaturasMatriculables(identificacion: string): Promise<Asignatura[]> {
-      const url = `${this.urlBase + 'asignaturas_matriculables/consultar?identificacion=' + identificacion.toString()}`;
+      const url = `${this.urlBase + 'asignaturas_matriculables/consultar?identificacion=' + identificacion.toString() + '&foo='+ Math.random()}`;
       return this.http.get(url)
       .toPromise()
       .then(response => {

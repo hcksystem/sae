@@ -183,7 +183,8 @@ export class HojaDatosComponent implements OnInit {
                 this.ocupacion = respuesta[0].descripcion;
             })
             .catch(error => {});
-        this.busy = this.tipoDiscapacidadDataService
+        if(this.personaLogeada.idTipoDiscapacidad != null) {
+            this.busy = this.tipoDiscapacidadDataService
             .getFiltrado(
                 'id',
                 'coincide',
@@ -193,6 +194,7 @@ export class HojaDatosComponent implements OnInit {
                 this.tipoDiscapacidad = respuesta[0].descripcion;
             })
             .catch(error => {});
+        }
         this.busy = this.ubicacionDataService
             .getFiltrado(
                 'codigo',
