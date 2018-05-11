@@ -603,7 +603,7 @@ export class SecretariaAcademicaComponent implements OnInit {
             this.matricula.idCarrera = this.datosCupo.idCarrera;
             this.matricula.idJornada = this.datosCupo.idJornada;
             this.matricula.idPeriodoLectivo = this.periodoLectivo.id;
-            this.matricula.idPersona = this.personaLogeada.id;
+            this.matricula.idPersona = this.solicitudMatriculaSeleccionada.idPersona;
             this.matricula.folio = this.numeroFolio.toString();
             this.matricula.numeroMatricula = this.numeroMatricula.toString();
             this.guardar(this.matricula);
