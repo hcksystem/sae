@@ -12,6 +12,7 @@ import { TipoSangreService } from '../../../CRUD/tiposangre/tiposangre.service';
 import { UbicacionService } from '../../../CRUD/ubicacion/ubicacion.service';
 import { Carrera } from 'app/entidades/CRUD/Carrera';
 import { CarreraService } from 'app/CRUD/carrera/carrera.service';
+import { TipoIngresosService } from 'app/CRUD/tipoingresos/tipoingresos.service';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 
@@ -39,6 +40,7 @@ export class FormularioDatosComponent implements OnInit {
     provinciaNacimiento: String;
     cantonNacimiento: String;
     paisDomicilio: String;
+    ingresos: String;
     provinciaDomicilio: String;
     cantonDomicilio: String;
     carrera: Carrera;
@@ -48,6 +50,7 @@ export class FormularioDatosComponent implements OnInit {
         private tipoSangreDataService: TipoSangreService,
         private ubicacionDataService: UbicacionService,
         private carreraDataService: CarreraService,
+        private ingresosDataService: TipoIngresosService,
         private router: Router,
         private rd: Renderer2) {
             this.toastr.setRootViewContainerRef(vcr);
@@ -83,6 +86,7 @@ export class FormularioDatosComponent implements OnInit {
         }
         this.getTipoSangre();
         this.getDatosNacimiento();
+        this.getIngresos();
         this.getDatosResidencia();
     }
 
@@ -176,6 +180,18 @@ export class FormularioDatosComponent implements OnInit {
         });
     }
 
+    getIngresos(): void {
+        this.busy = this.ingresosDataService
+            .getFiltrado(
+                'id',
+                'coincide',
+                this.personaLogeada.idIngresos.toString()
+            )
+            .then(respuesta => {
+                this.ingresos = respuesta[0].descripcion;
+            })
+            .catch(error => {});
+    }
     getDatosCupo(idPersona: number): void {
         this.busy = this.matriculacionDataService.getDatosCupo(idPersona)
         .then(respuesta => {

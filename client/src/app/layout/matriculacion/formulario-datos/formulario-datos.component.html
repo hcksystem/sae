@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12" style="background: white; border: 1px #D3D3D3 solid; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);">
             <div class="row m-2">
-                <div #encabezadoHojaDatos class="col-12">
+                <div #encabezadoFormularioDatos class="col-12">
                     <div class="form-group row">
                         <div class="col-12 text-right">
                             <ngx-barcode [bc-value]="barcode" [bc-display-value]="true"></ngx-barcode>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="row m-2">
-                <div #cuerpoHojaDatos class="col-12">
+                <div #cuerpoFormularioDatosPG1 class="col-12">
                     <table class="table table-bordered">
                         <tr>
                             <td colspan="3">
@@ -519,10 +519,270 @@
                     </table>
                 </div>
             </div>
+            <div class="row mt-4">
+                <div class="col-10"></div>
+                <div class="col-2 text-right">
+                    Página 1 de 2
+                </div>
+            </div>
+            <div class="row m-2">
+                <div #cuerpoFormularioDatosPG2 class="col-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td colspan="2">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>49. Ha realizado Prácticas Preprofesionales</strong></label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="realizadoPracticasPreprofesionales">Si</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="realizadoPracticasPreprofesionales">No</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>50. Nro. Horas de Prácticas Preprofesionales Realizadas</strong></label>
+                                        <input type="number" id="numeroHorasPreprofesionales" name="numeroHorasPreprofesionales">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>51. Tipo de Institución en el que se realiza Prácticas Pre profesionales</strong></label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="tipoInstitucionRealizaPracticas">Pública</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="tipoInstitucionRealizaPracticas">Privada</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="tipoInstitucionRealizaPracticas">Tercer Sector</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="tipoInstitucionRealizaPracticas">Organismos Internacionales</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="tipoInstitucionRealizaPracticas">Otros</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label ml-2"><strong>52. Sector Económico en el que realiza Prácticas Pre profesionales</strong></label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Agricultura, ganadería, silvicultura y pesca</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Explotación de minas y canteras</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Industrias manufactureras</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Comercio, reparación vehículos, efectos personales y enseres domésticos</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Servicios</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Construcción</label><br/>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Hoteles y restaurantes</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Transporte, almacenamiento y comunicaciones</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Intermediación financiera</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Administración pública y defensa</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Enseñanza</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="sectorEonomicoPracticas">Servicios sociales y de salud</label><br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>53. Ha participado en algún Proyecto de Vinculación con la Sociedad en el Instituto</strong></label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="proyectoVinculacionSociedad">Si</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="proyectoVinculacionSociedad">No</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>54. Cuál es el alcance del Proyecto de Vinculación con la Sociedad</strong></label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="alcanceProyectoVinculacion">Nacional</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="alcanceProyectoVinculacion">Provincial</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="alcanceProyectoVinculacion">Cantonal</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="alcanceProyectoVinculacion">Parroquial</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>55. El Estudiante se encuentra dedicado a</strong></label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="estudianteDedicadoA">Solamente al estudio</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="estudianteDedicadoA">Alguna ocupación para obtener ingresos</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>56. Cuál es el nombre de la empresa donde labora</strong></label>
+                                        <input type="text" id="empresaLabora" name="empresaLabora">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label ml-2"><strong>57. Indique cuál es el área de trabajo de la empresa</strong></label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Agricultura, ganadería, silvicultura y pesca</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Explotación de minas y canteras</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Industrias manufactureras</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Comercio, reparación vehículos, efectos personales y enseres domésticos</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Servicios</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Construcción</label><br/>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Hoteles y restaurantes</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Transporte, almacenamiento y comunicaciones</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Intermediación financiera</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Administración pública y defensa</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Enseñanza</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="areaTrabajoEmpresa">Servicios sociales y de salud</label><br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>58. Para qué emplea sus ingresos económicos el estudiante</strong></label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="empleoIngresosEstudiante">Sostener sus estudios</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="empleoIngresosEstudiante">Mantener a su familia</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="empleoIngresosEstudiante">Otros</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>59. Usted o algún miembro de la familia recibe el bono de desarrollo humano</strong></label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="bonnoDesarrolloHumano">Si</label>
+                                        <label class="radio-inline ml-2"><input type="radio" name="bonnoDesarrolloHumano">No</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label ml-2"><strong>60. Nivel de Formación del Padre</strong></label>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 1" disabled>Ninguno</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 8" disabled>Educación Básica</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 4" disabled>Licenciatura</label><br/>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 9" disabled>Centro de Alfabetización</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 2" disabled>Secundaria</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 6 || personaLogeada.idNivelEstudioPadre == 7" disabled>Post Grado</label><br/>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 10" disabled>Jardín de Infantes</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 11" disabled>Educación Media</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 12" disabled>No Sabe / No vive con el Padre</label><br/>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 13" disabled>Primaria</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 3" disabled>Superior No Universitario</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionPadre" [checked]="personaLogeada.idNivelEstudioPadre == 5" disabled>Ingeniería</label><br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label ml-2"><strong>61. Nivel de Formación del Madre</strong></label>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 1" disabled>Ninguno</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 8" disabled>Educación Básica</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 4" disabled>Licenciatura</label><br/>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 9" disabled>Centro de Alfabetización</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 2" disabled>Secundaria</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 6 || personaLogeada.idNivelEstudioMadre == 7" disabled>Post Grado</label><br/>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 10" disabled>Jardín de Infantes</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 11" disabled>Educación Media</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 12" disabled>No Sabe / No vive con el Padre</label><br/>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 13" disabled>Primaria</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 3" disabled>Superior No Universitario</label><br/>
+                                                <label class="radio-inline ml-2"><input type="radio" name="formacionMadre" [checked]="personaLogeada.idNivelEstudioMadre == 5" disabled>Ingeniería</label><br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>62. Ingresos del Hogar</strong></label>
+                                        {{ingresos}}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-form-label"><strong>63. Número de Miembros del Hogar</strong></label>
+                                        <input type="number" id="numeroMiembrosHogar" name="numeroMiembrosHogar">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div class="row">
-                <div #pieHojaDatos class="col-12">
+                <div class="col-8"></div>
+                <div class="col-4" style="border-style: none none solid none;">
+                    <strong>FIRMA ESTUDIANTE:</strong>
+                    <div style="width: 100%; height: 75px; float:left;"></div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-10"></div>
+                <div class="col-2 text-right">
+                    Página 2 de 2
+                </div>
+            </div>
+            <div class="row">
+                <div #pieFormularioDatos class="col-12">
                     <div class="row">
-                        <div class="col-12 text-center mt-4 mb-4">
+                        <div class="col-12 text-center mb-4">
                             <img alt="SENESCYT" height="75px" src="assets/images/logos/senescyt.png" />
                         </div>
                     </div>
