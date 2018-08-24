@@ -15,6 +15,7 @@ const routes: Routes = [
             { path: 'tutor', loadChildren: './matriculacion/tutor/tutor.module#TutorModule' },
             { path: 'hoja-datos', loadChildren: './matriculacion/hoja-datos/hoja-datos.module#HojaDatosModule' },
             { path: 'solicitud-matricula', loadChildren: './matriculacion/solicitud-matricula/solicitud-matricula.module#SolicitudMatriculaModule' },
+            { path: 'formulario-datos', loadChildren: './matriculacion/formulario-datos/formulario-datos.module#FormularioDatosModule' },
             { path: 'encuesta-factores-asociados', loadChildren: './encuesta-factores-asociados/encuesta-factores-asociados.module#EncuestaFactoresAsociadosModule' },
             { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
             { path: 'mail-sender', loadChildren: './mail-sender/mail-sender.module#MailSenderModule' },
