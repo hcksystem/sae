@@ -22,9 +22,10 @@ import * as html2canvas from 'html2canvas';
     styleUrls: ['./formulario-datos.component.scss']
 })
 export class FormularioDatosComponent implements OnInit {
-    @ViewChild('encabezadoSolicitudMatricula') encabezadoSolicitudMatricula: ElementRef;
-    @ViewChild('cuerpoSolicitudMatricula') cuerpoSolicitudMatricula: ElementRef;
-    @ViewChild('pieSolicitudMatricula') pieSolicitudMatricula: ElementRef;
+    @ViewChild('encabezadoFormularioDatos') encabezadoFormularioDatos: ElementRef;
+    @ViewChild('cuerpoFormularioDatosPG1') cuerpoFormularioDatosPG1: ElementRef;
+    @ViewChild('cuerpoFormularioDatosPG2') cuerpoFormularioDatosPG2: ElementRef;
+    @ViewChild('pieFormularioDatos') pieFormularioDatos: ElementRef;
     busy: Promise<any>;
     personaLogeada: Persona;
     rol: number;

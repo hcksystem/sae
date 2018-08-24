@@ -34,6 +34,10 @@
                             {{ 'Solicitud de Matrícula' | translate }} </a>
                     </li>
                     <li>
+                        <a [routerLink]="['/formulario-datos']" [routerLinkActive]="['router-link-active']" class="list-group-item" [hidden]="!estudiante">
+                            {{ 'Formulario de Datos' | translate }} </a>
+                    </li>
+                    <li>
                         <a [routerLink]="['/hoja-datos']" [routerLinkActive]="['router-link-active']" class="list-group-item" [hidden]="!estudiante">
                             {{ 'Hoja de Datos' | translate }} </a>
                     </li>
