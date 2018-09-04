@@ -41,9 +41,9 @@ class Controlador_chat extends Controlador_Base
         $idPersona = $args["idPersona"];
         $parametros = array();
         if($idPersona == null){
-            $sql = "SELECT DISTINCT Carrera.id as 'idCarrera', Carrera.descripcion as 'Carrera', Asignatura.nombre as 'Asignatura', Asignatura.idPeriodoAcademico as 'Nivel' FROM Asignatura INNER JOIN Malla ON Malla.id = Asignatura.idMalla INNER JOIN Carrera ON Carrera.id = Malla.idCarrera;";
+            $sql = "SELECT DISTINCT Carrera.id as 'idCarrera', Asignatura.id as 'idAsignatura', Jornada.id as 'idJornada', Carrera.descripcion as 'Carrera', Asignatura.nombre as 'Asignatura', Asignatura.idPeriodoAcademico as 'Nivel', Jornada.descripcion as 'Jornada' FROM Asignatura INNER JOIN Malla ON Malla.id = Asignatura.idMalla INNER JOIN Carrera ON Carrera.id = Malla.idCarrera;";
         }else {
-            $sql = "SELECT DISTINCT Carrera.id as 'idCarrera', Carrera.descripcion as 'Carrera', Asignatura.nombre as 'Asignatura', Asignatura.idPeriodoAcademico as 'Nivel', Jornada.descripcion as 'Jornada' FROM Asignatura INNER JOIN Malla ON Malla.id = Asignatura.idMalla INNER JOIN Carrera ON Carrera.id = Malla.idCarrera INNER JOIN MatriculaAsignatura ON MatriculaAsignatura.idAsignatura = Asignatura.id INNER JOIN Matricula ON MatriculaAsignatura.idMatricula = Matricula.id INNER JOIN Jornada ON Jornada.id = Matricula.idJornada WHERE Matricula.idPersona = ?;";
+            $sql = "SELECT DISTINCT Carrera.id as 'idCarrera', Asignatura.id as 'idAsignatura', Jornada.id as 'idJornada', Carrera.descripcion as 'Carrera', Asignatura.nombre as 'Asignatura', Asignatura.idPeriodoAcademico as 'Nivel', Jornada.descripcion as 'Jornada' FROM Asignatura INNER JOIN Malla ON Malla.id = Asignatura.idMalla INNER JOIN Carrera ON Carrera.id = Malla.idCarrera INNER JOIN MatriculaAsignatura ON MatriculaAsignatura.idAsignatura = Asignatura.id INNER JOIN Matricula ON MatriculaAsignatura.idMatricula = Matricula.id INNER JOIN Jornada ON Jornada.id = Matricula.idJornada WHERE Matricula.idPersona = ?;";
         }
         array_push($parametros, $idPersona);
         return $this->ejecutar_sql($sql, $parametros);
