@@ -1958,3 +1958,74 @@ INSERT INTO `CargoCarrera` (`id`,`idCarrera`, `idPersona`, `idCargo`, `fechaInic
 (3, 3, 50, 3, '2017-03-01'),
 (4, 5, 36, 3, '2017-03-01'),
 (5, 4, 33, 3, '2017-03-01');
+
+INSERT INTO `OcupacionEstudiante` (`id`, `descripcion`) VALUES
+(1, 'Solamente al estudio'),
+(2, 'Alguna ocupación para obtener ingresos');
+
+INSERT INTO `DestinoRecursosEstudiante` (`id`, `descripcion`) VALUES
+(1, 'Sostener sus estudios'),
+(2, 'Mantener a su familia'),
+(3, 'Otros');
+
+INSERT INTO `TipoCarrera` (`id`, `descripcion`) VALUES
+(1, 'Tecnicatura'),
+(2, 'Tecnología');
+
+INSERT INTO `ModalidadCarrera` (`id`, `descripcion`) VALUES
+(1, 'Presencial'),
+(2, 'Semipresencial'),
+(3, 'Dual');
+
+INSERT INTO `TipoBachillerato` (`id`, `descripcion`) VALUES
+(1, 'Técnico'),
+(2, 'Técnico Productivo'),
+(3, 'BGU'),
+(4, 'BI'),
+(5, 'Otro');
+ 
+INSERT INTO `TipoMatricula` (`id`, `descripcion`) VALUES
+(1, 'Ordinaria'),
+(2, 'Extraordinaria'),
+(3, 'Especial');
+ 
+INSERT INTO `TipoInstitucionPracticasPreprofesionales` (`id`, `descripcion`) VALUES
+(1, 'Pública'),
+(2, 'Privada'),
+(3, 'Tercer Sector'),
+(4, 'Organismos Internacionales'),
+(5, 'Otros');
+
+INSERT INTO `AlcanceProyectoVinculacion` (`id`, `descripcion`) VALUES
+(1, 'Nacional'),
+(2, 'Provincial'),
+(3, 'Cantonal'),
+(4, 'Parroquial');
+
+INSERT INTO `AreaEmpresaTrabaja` (`id`, `descripcion`) VALUES
+(1, 'Agricultura, ganadería, silvicultura y pesca'),
+(2, 'Explotación de minas y canteras'),
+(3, 'Industrias manufactureras'),
+(4, 'Comercio, reparación vehículos, efectos personales y enseres domésticos'),
+(5, 'Servicios'),
+(6, 'Construcción'),
+(7, 'Hoteles y restaurantes'),
+(8, 'Transporte, almacenamiento y comunicaciones'),
+(9, 'Intermediación financiera'),
+(10, 'Administración pública y defensa'),
+(11, 'Enseñanza'),
+(12, 'Servicios sociales y de salud');
+
+INSERT INTO `SectorEconomicoPracticasPreprofesionales` (`id`, `descripcion`) VALUES
+(1, 'Agricultura, ganadería, silvicultura y pesca'),
+(2, 'Explotación de minas y canteras'),
+(3, 'Industrias manufactureras'),
+(4, 'Comercio, reparación vehículos, efectos personales y enseres domésticos'),
+(5, 'Servicios'),
+(6, 'Construcción'),
+(7, 'Hoteles y restaurantes'),
+(8, 'Transporte, almacenamiento y comunicaciones'),
+(9, 'Intermediación financiera'),
+(10, 'Administración pública y defensa'),
+(11, 'Enseñanza'),
+(12, 'Servicios sociales y de salud');

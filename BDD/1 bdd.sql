@@ -99,6 +99,18 @@ CREATE TABLE Persona (
     nombreMadre VARCHAR(255) NULL,
     paisOrigenMadre INT NULL,
     idNivelEstudioMadre INT NULL,
+    codigoPostal VARCHAR(10) NULL,
+    telefonoContactoEmergencia VARCHAR(10) NULL,
+    idOcupacionEstudiante INT NULL,
+    idDestinoRecursosEstudiante INT NULL,
+    bonoDesarrolloHumano VARCHAR(20) NULL,
+    numeroCarnetConadis VARCHAR(45) NULL,
+    miembrosHogar INT NULL,
+    nombreContactoEmergencia VARCHAR(255) NULL,
+    parentescoContactoEmergencia VARCHAR(45) NULL,
+    hablaIdiomaAncestral VARCHAR(20) NULL,
+    idiomaAncestral VARCHAR(45) NULL,
+    etniaEspecifica VARCHAR(255) NULL,
     PRIMARY KEY (id)
 );
 
@@ -134,6 +146,18 @@ CREATE TABLE Estudiante(
     notaPostulacion DOUBLE NULL,
     tituloBachiller VARCHAR(1024) NULL,
     idTipoInstitucionProcedencia INT NULL,
+    idTipoBachillerato INT NULL,
+    poseeTituloEducacionSuperior VARCHAR(20) NULL,
+    anoGraduacion INT NULL,
+    fechaInicioCarrrera DATE NULL,
+    realizadoPracticasPreprofesionales VARCHAR(20) NULL,
+    horasPracticasPreprofesionales INT(11) NULL,
+    idTipoInstitucionPracticasPreprofesionales INT(11) NULL,
+    idSectorEconomicoPracticasPreprofesionales INT(11) NULL,
+    participadoProyectoVinculacion VARCHAR(20) NULL,
+    idAlcanceProyectoVinculacion INT(11) NULL,
+    nombreEmpresaTrabaja VARCHAR(255) NULL,
+    idAreaEmpresaTrabaja INT(11) NULL,
     PRIMARY KEY (id)
 );
 
@@ -267,6 +291,8 @@ CREATE TABLE Carrera(
     idModalidad INT NULL,
     idInstituto INT NULL,
     siglas VARCHAR(20) NULL,
+    idTipoCarrera INT NULL,
+    idModalidadCarrera INT NULL,
 PRIMARY KEY (id));
 
 CREATE TABLE Instituto(
@@ -460,6 +486,10 @@ CREATE TABLE Matricula(
     numeroMatricula VARCHAR(255) NULL,
     folio VARCHAR(255) NULL,
     idJornada INT NULL,
+    idTipoMatricula INT NULL,
+    paralelo VARCHAR(10) NULL,
+    repetidoMateria VARCHAR(20) NULL,
+    perdidoGratuidad VARCHAR(20) NULL,
 PRIMARY KEY (id));
 
 CREATE TABLE Asistencia(
@@ -851,3 +881,62 @@ CREATE TABLE PorcentajeAporteFinal (
     PRIMARY KEY(id)
 );
 
+CREATE TABLE OcupacionEstudiante (
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(20) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE DestinoRecursosEstudiante (
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(20) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE TipoCarrera (
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(20) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE ModalidadCarrera (
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(20) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE TipoBachillerato (
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(20) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE TipoMatricula (
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(20) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE AlcanceProyectoVinculacion (
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(20) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE AreaEmpresaTrabaja (
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(255) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE SectorEconomicoPracticasPreprofesionales (
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(255) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE TipoInstitucionPracticasPreprofesionales (
+	id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(20) NULL,
+    PRIMARY KEY (id)
+);
